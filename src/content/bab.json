@@ -1,0 +1,26 @@
+[
+  {
+    "bab": 1,
+    "judul": "Nglegena",
+    "ringkasan": "Dua puluh aksara dasar. Setiap aksara dibaca dengan vokal a.",
+    "letters": ["ha", "na", "ca", "ra", "ka", "da", "ta", "sa", "wa", "la", "pa", "dha", "ja", "ya", "nya", "ma", "ga", "ba", "tha", "nga"],
+    "contoh": [],
+    "mirip": [["ha", "la"]]
+  },
+  {
+    "bab": 2,
+    "judul": "Sandhangan swara",
+    "ringkasan": "Tanda yang mengubah vokal a menjadi i, u, é, o, atau e.",
+    "letters": ["wulu", "suku", "taling", "tarung", "pepet"],
+    "contoh": [{ "aksara": "ꦏꦶ", "uraian": "ka + wulu = ki" }],
+    "mirip": []
+  },
+  {
+    "bab": 3,
+    "judul": "Panyigeg + pangkon",
+    "ringkasan": "Tanda penutup suku kata (r, ng, h) dan pangkon untuk mematikan vokal.",
+    "letters": ["layar", "cecak", "wignyan", "pangkon"],
+    "contoh": [],
+    "mirip": []
+  }
+]

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+*.local
+.vercel/
+coverage/
+
+# Model ONNX diunduh dari Drive tim, tidak di-commit (lihat public/models/README.md).
+public/models/*.onnx

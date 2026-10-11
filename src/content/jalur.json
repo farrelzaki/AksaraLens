@@ -1,0 +1,14 @@
+[
+  { "id": "b1-p1", "bab": 1, "type": "lesson", "title": "ha na ca ra ka", "letters": ["ha", "na", "ca", "ra", "ka"] },
+  { "id": "b1-tulis1", "bab": 1, "type": "writing", "title": "Latihan menulis 1", "letters": ["ha", "na", "ca", "ra", "ka"] },
+  { "id": "b1-p2", "bab": 1, "type": "lesson", "title": "da ta sa wa la", "letters": ["da", "ta", "sa", "wa", "la"] },
+  { "id": "b1-tulis2", "bab": 1, "type": "writing", "title": "Latihan menulis 2", "letters": ["da", "ta", "sa", "wa", "la"] },
+  { "id": "b1-p3", "bab": 1, "type": "lesson", "title": "pa dha ja ya nya", "letters": ["pa", "dha", "ja", "ya", "nya"] },
+  { "id": "b1-tulis3", "bab": 1, "type": "writing", "title": "Latihan menulis 3", "letters": ["pa", "dha", "ja", "ya", "nya"] },
+  { "id": "b1-p4", "bab": 1, "type": "lesson", "title": "ma ga ba tha nga", "letters": ["ma", "ga", "ba", "tha", "nga"] },
+  { "id": "b1-tulis4", "bab": 1, "type": "writing", "title": "Latihan menulis 4", "letters": ["ma", "ga", "ba", "tha", "nga"] },
+  { "id": "b2-p5", "bab": 2, "type": "lesson", "title": "wulu + suku", "letters": ["wulu", "suku"] },
+  { "id": "b2-p6", "bab": 2, "type": "lesson", "title": "taling, taling tarung, pepet", "letters": ["taling", "tarung", "pepet"] },
+  { "id": "b3-p7", "bab": 3, "type": "lesson", "title": "layar, cecak, wignyan", "letters": ["layar", "cecak", "wignyan"] },
+  { "id": "b3-p8", "bab": 3, "type": "lesson", "title": "pangkon", "letters": ["pangkon"] }
+]
