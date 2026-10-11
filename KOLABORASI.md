@@ -1,5 +1,18 @@
 # KOLABORASI.md
 
+## Isi username GitHub-mu di sini
+
+Ganti teks di dalam tanda kutip dengan username GitHub-mu, lalu samakan `git config`:
+`git config user.name "<username-mu>"`.
+
+```ini
+farrel  = "farrelzaki"
+emil    = "masukan username github"
+choirun = "masukan username github"
+```
+
+Nilai ini dipakai tabel *Anggota* (bagian 1) dan dicek agen di awal sesi (bagian 0, langkah 3).
+
 > Aturan kerja kelompok untuk manusia **dan** agen AI. File ini **di-commit** dan sama untuk semua anggota.
 > File pribadi (`AGENTS.md`, `TASK.md`, `PROJECT_STATE.md`) di-gitignore; milik masing-masing orang.
 > Jika file ini bertentangan dengan `AGENTS.md` dalam urusan kerja kelompok, **file ini yang berlaku**.
@@ -15,7 +28,7 @@ Agen AI wajib menjalankan langkah ini di awal setiap sesi, **sebelum membaca tas
    > Sebelum mulai, kamu siapa? (1) Farrel (2) Emil (3) Choirun
    - Jangan menebak dari nama folder, riwayat chat, atau `git config`.
    - Jika jawaban **tidak ada** di tabel, berhenti. Minta pengguna menambahkan dirinya ke tabel anggota lebih dulu.
-3. **Cek konsistensi.** Bandingkan jawaban dengan `git config user.name`. Jika berbeda, beri peringatan (jangan memblokir) dan sarankan memperbaiki `git config`.
+3. **Cek konsistensi.** Bandingkan username pengguna di blok *Isi username GitHub-mu* (paling atas) dengan `git config user.name`. Jika username masih `masukan username github`, minta pengguna mengisinya dulu. Jika berbeda, beri peringatan (jangan memblokir) dan sarankan memperbaiki `git config`.
 4. **Catat** pengguna aktif di `PROJECT_STATE.md` pribadi (field `Pengguna aktif`).
 5. **Sinkronkan.** Pindah ke branch task, tarik branch itu dan `develop` terbaru (bagian 6) sebelum mulai bekerja.
 6. **Tampilkan task milik pengguna aktif** dari *Papan Task* (bagian 3), lalu tanyakan mana yang dikerjakan.
@@ -24,13 +37,13 @@ Identitas berlaku untuk satu sesi. Jika pengguna bilang "sekarang aku X", ulangi
 
 ## 1. Anggota
 
-`git user.name` harus sama dengan `git config user.name` orang tersebut.
+Username GitHub diisi di blok [*Isi username GitHub-mu*](#isi-username-github-mu-di-sini) paling atas, bukan di tabel ini.
 
-| Nama | Panggilan | Peran | Wilayah (folder/file milik) | `git user.name` |
+| Nama | Panggilan | Peran | Wilayah (folder/file milik) | Username GitHub |
 | --- | --- | --- | --- | --- |
-| Farrel | Farrel | ML + scanner | `src/ml/`, `src/aksara/`, `src/features/scanner/`, `src/features/profil/` (huruf sering salah, sumber data), `public/models/` | `farrelzaki` |
-| Emil | Emil | Auth, data, konten, logika jalur | `src/content/`, `src/progres/`, `src/lib/`, `src/features/akun/`, `supabase/` | _[isi Emil]_ |
-| Choirun | Choirun | UI/UX + tampilan frontend | `src/app/`, tampilan `src/features/*` (kecuali logika di wilayah lain), gaya, `docs/DESIGN_SYSTEM.md` | _[isi Choirun]_ |
+| Farrel | Farrel | ML + scanner | `src/ml/`, `src/aksara/`, `src/features/scanner/`, `src/features/profil/` (huruf sering salah, sumber data), `public/models/` | → `farrel` di atas |
+| Emil | Emil | Auth, data, konten, logika jalur | `src/content/`, `src/progres/`, `src/lib/`, `src/features/akun/`, `supabase/` | → `emil` di atas |
+| Choirun | Choirun | UI/UX + tampilan frontend | `src/app/`, tampilan `src/features/*` (kecuali logika di wilayah lain), gaya, `docs/DESIGN_SYSTEM.md` | → `choirun` di atas |
 
 **File bersama** (menyentuh semua orang, wajib dikunci dulu di bagian 4):
 `package.json` / `package-lock.json`, konfigurasi (`.env.example`, `vite.config.ts`, `tsconfig.json`, `vercel.json`), migrasi di `supabase/migrations/`, kontrak di `docs/ARSITEKTUR.md` bagian 4, `CLAUDE.md`, dan file ini.
