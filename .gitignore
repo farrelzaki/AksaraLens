@@ -9,3 +9,20 @@ coverage/
 
 # Model ONNX diunduh dari Drive tim, tidak di-commit (lihat public/models/README.md).
 public/models/*.onnx
+
+# File agen pribadi (milik masing-masing anggota; salinan awalnya di docs/templat-agen/).
+# CLAUDE.md sengaja TIDAK di sini: ia di-commit dan dipakai bersama.
+/AGENTS.md
+/TASK.md
+/PROJECT_STATE.md
+CLAUDE.local.md
+
+# Python (notebook/skrip ML lokal)
+.venv/
+__pycache__/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+*.log
