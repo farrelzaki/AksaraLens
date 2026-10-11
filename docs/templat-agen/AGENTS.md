@@ -144,8 +144,8 @@ Jika ragu, perlakukan sebagai perubahan besar.
 
 Aturan Git ada di `KOLABORASI.md` bagian 2, 5, dan 6 (`multi-branch`: `feature/<bagian>` dari
 `develop`, PR ke `develop`, tidak ada commit langsung ke `main`/`develop`, pesan commit
-`feat:`/`fix:`/`refactor:`/`style:`/`docs:`/`chore:`). Jangan commit, push, atau rewrite
-history tanpa diminta pengguna.
+`feat:`/`fix:`/`refactor:`/`style:`/`docs:`/`chore:`). Agen mengurus commit, push, PR, dan merge
+ke `develop` secara otomatis sesuai `KOLABORASI.md` bagian 5a.
 
 ## 9. Task Dan State
 

@@ -46,7 +46,7 @@ Identitas berlaku untuk satu sesi. Jika pengguna bilang "sekarang aku X", ulangi
 | `feature/<bagian>` | Satu fitur atau satu bagian pengembangan | Dibuat dari `develop` |
 
 - **Tidak ada commit langsung ke `main` maupun `develop`.** Semua merge lewat Pull Request.
-- Reviewer wajib: 1 anggota lain selain penulis PR.
+- PR boleh di-merge oleh penulisnya sendiri; review anggota lain tidak wajib.
 - `main` dan `develop` harus selalu lulus `npm run build`.
 
 ## 3. Papan Task
@@ -57,7 +57,7 @@ Aturan untuk agen:
 - Diminta mengerjakan task milik orang lain → **tolak**, sebutkan pemiliknya. Boleh dikerjakan hanya jika pemiliknya setuju; catat `disetujui <pemilik> <tanggal>` di kolom Catatan.
 - Task dengan pemilik `-` boleh diklaim: umumkan dulu di grup tim, lalu isi nama pengguna aktif dan ubah status ke `[~]` sebagai commit pertama di branch task-mu.
 - Pengguna hanya mengubah baris task miliknya sendiri. Task baru boleh ditambahkan siapa saja di bagian bawah tabel.
-- Status: `[ ]` belum · `[~]` dikerjakan · `[r]` menunggu review · `[x]` selesai · `[-]` batal
+- Status: `[ ]` belum · `[~]` dikerjakan · `[r]` PR dibuka · `[x]` selesai · `[-]` batal
 
 | ID | Task | Pemilik | Status | Branch | Area / file | Update | Catatan |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -89,7 +89,7 @@ Agen **tidak boleh** menyunting file bersama yang sedang dikunci orang lain.
 
 ### Aturan penting
 
-- **Dilarang commit langsung ke `main`** (juga `develop`). Semua merge lewat Pull Request agar ada review dan riwayat versi yang rapi.
+- **Dilarang commit langsung ke `main`** (juga `develop`). Semua merge lewat Pull Request agar perubahan terlihat tim dan riwayat versi rapi.
 - **Selalu sinkronkan branch-mu dengan `develop` terbaru** sebelum mengubah apa pun.
 - **Satu branch = satu fitur atau satu bagian pengembangan.**
 - **Jangan mengubah file anggota lain** (wilayah di bagian 1) tanpa diskusi dan persetujuan pemiliknya. Bug di wilayah orang lain → laporkan, jangan perbaiki.
@@ -97,7 +97,19 @@ Agen **tidak boleh** menyunting file bersama yang sedang dikunci orang lain.
 - Butuh fungsi milik orang lain yang belum ada → pakai bentuk dari kontrak (`docs/ARSITEKTUR.md` bagian 4) dan buat **mock lokal** di wilayahmu.
 - `.env` dan rahasia tidak pernah di-commit. `git add .` boleh, tapi **cek `git status` dulu** agar tidak ada file asing yang ikut.
 - **Dilarang** `git push --force` ke `main`/`develop`, `git reset --hard` atas commit yang sudah di-push, dan rewrite history bersama.
-- Agen **tidak** commit/push/merge tanpa diminta pengguna.
+- **Agen AI yang mengurus Git** untuk pengguna aktif (bagian 5a).
+
+### 5a. Git oleh agen AI
+
+Agen menjalankan alur bagian 6 secara otomatis, tanpa menunggu diminta:
+
+- **Sebelum mulai:** pindah ke branch task (buat dari `develop` bila belum ada), tarik branch itu dan `develop` terbaru.
+- **Commit:** setiap satu perubahan utuh yang lulus `npm run typecheck` dan `npm test`. Hanya file di wilayah pengguna aktif. Pesan commit ditulis agen sesuai tipe di bawah, berbahasa Inggris, menjelaskan *apa* yang berubah.
+- **Push:** ke `feature/<bagian>` milik pengguna aktif setelah commit.
+- **PR dan merge ke `develop`:** saat bagian/fitur selesai, agen sinkron dengan `develop`, memastikan `npm run build` lulus, membuka PR, lalu me-merge-nya; kemudian memperbarui papan task dan log.
+- **Batas:** tidak pernah push langsung ke `main`/`develop`, tidak pernah force push/rewrite history, dan **berhenti serta melapor** bila ada konflik (bagian 7), build/tes gagal, atau perubahan menyentuh wilayah anggota lain atau file bersama yang dikunci.
+- **PR `develop` → `main`** (rilis) hanya saat pengguna memintanya.
+- Setiap selesai, agen melaporkan ringkas: commit apa saja, branch, dan tautan PR.
 
 ### Pesan commit
 
@@ -147,8 +159,8 @@ git commit -m "feat: integrate Model 2 line detector"
 git push origin feature/<bagian>
 ```
 
-**Selesai satu fitur/bagian:** buka PR `feature/<bagian>` → `develop`, minta 1 reviewer,
-ubah status task ke `[r]`. Setelah merge: status `[x]`, isi log (bagian 8).
+**Selesai satu fitur/bagian:** buka PR `feature/<bagian>` → `develop`,
+ubah status task ke `[r]`, lalu merge setelah build lulus. Setelah merge: status `[x]`, isi log (bagian 8).
 
 **Rilis/titik periksa:** PR `develop` → `main` (akhir Okt, pertengahan Nov, pertengahan Des, final).
 
@@ -167,6 +179,7 @@ Format: `- YYYY-MM-DD · T-xx · apa yang dikerjakan · hasil/verifikasi · cata
 ### Log Farrel
 
 - 2026-10-11 · T-01 · arsitektur awal sesuai PRD v1.1 + template kolaborasi · typecheck, 18 tes, build lulus · lihat `docs/ARSITEKTUR.md`
+- 2026-10-12 · T-01 · aturan Git tim: multi-branch via `develop`, tanpa reviewer wajib, Git diurus agen AI (bagian 5a) · dokumen saja · berlaku setelah PR #1 masuk `develop`
 
 ### Log Emil
 
