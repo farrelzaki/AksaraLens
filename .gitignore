@@ -26,3 +26,6 @@ __pycache__/
 Thumbs.db
 .idea/
 *.log
+
+# Berkas kerja pribadi/hasil ML mentah (model, dataset, spreadsheet). Jangan di-commit.
+docs/random/
