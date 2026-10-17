@@ -2,6 +2,7 @@ import { Link } from 'react-router';
 import { hurufDariKode } from '../../aksara/huruf';
 import { hurufSeringSalah } from '../../progres/model';
 import { useProgres } from '../../progres/ProgresProvider';
+import { TentangSumber } from './TentangSumber';
 
 // F7: huruf sering salah, akun, tentang & sumber data. Tidak menampilkan progres per bab.
 export function ProfilPage() {
@@ -33,10 +34,7 @@ export function ProfilPage() {
         {/* TODO(Emil): status masuk/tamu, nama, email, keluar, hapus akun. */}
         <Link to="/masuk">Masuk / daftar</Link>
       </section>
-      <section>
-        <h2>Tentang & sumber data</h2>
-        {/* TODO(Farrel): atribusi wajib CC BY 4.0 / CC BY-SA 4.0 / OFL / MIT + sitasi NusaAksara. */}
-      </section>
+      <TentangSumber />
     </>
   );
 }
