@@ -1,0 +1,38 @@
+{
+ "versi": 1,
+ "kelas": [
+  "ha",
+  "na",
+  "ca",
+  "ra",
+  "ka",
+  "da",
+  "ta",
+  "sa",
+  "wa",
+  "la",
+  "pa",
+  "dha",
+  "ja",
+  "ya",
+  "nya",
+  "ma",
+  "ga",
+  "ba",
+  "tha",
+  "nga",
+  "bukan"
+ ],
+ "input": "[N,1,64,64] float32, tinta=1 latar=0",
+ "praproses": [
+  "grayscale (transparan -> latar putih)",
+  "GaussianBlur 3x3",
+  "Otsu THRESH_BINARY_INV; balik jika tinta > 50%",
+  "buang komponen < max(4, 0.0005*luas)",
+  "potong ke kotak tinta, persegi + margin 12%",
+  "resize 128x128 INTER_AREA, ambang > 30",
+  "skeleton (Zhang-Suen) lalu dilate elips 5x5",
+  "resize 64x64 INTER_AREA, nilai 0..1"
+ ],
+ "ambang_awal": 0.6
+}

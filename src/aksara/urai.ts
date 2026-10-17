@@ -30,7 +30,7 @@ interface Pembangun {
   adaPasangan: boolean;
 }
 
-const VOKAL: Record<string, string> = { wulu: 'i', suku: 'u', pepet: 'e', taling: 'é', tarung: 'o' };
+const VOKAL: Record<string, string> = { wulu: 'i', suku: 'u', pepet: 'ê', taling: 'é', tarung: 'o' };
 
 const komponenDari = (h: Huruf, peran: Peran): Komponen => ({
   kode: h.kode,

@@ -18,7 +18,7 @@ describe('urai', () => {
 
   it('menggabung konsonan mati sebelum pasangan dan menandai pasangan', () => {
     const suku = urai('ꦲꦤꦏ꧀ꦏꦼꦕꦶꦭ꧀');
-    expect(suku.map((s) => s.latin)).toEqual(['a', 'nak', 'ke', 'cil']);
+    expect(suku.map((s) => s.latin)).toEqual(['a', 'nak', 'kê', 'cil']);
     const ke = suku[2];
     expect(ke.adaPasangan).toBe(true);
     expect(ke.komponen[0]).toMatchObject({ kode: 'ka', peran: 'pasangan', bab: null });
@@ -26,7 +26,7 @@ describe('urai', () => {
   });
 
   it('membaca panyigeg', () => {
-    expect(keLatin('ꦱꦼꦒꦂ')).toBe('se-gar');
+    expect(keLatin('ꦱꦼꦒꦂ')).toBe('sê-gar');
     expect(keLatin('ꦧꦁꦱ')).toBe('bang-sa');
   });
 
