@@ -63,8 +63,32 @@ function bobot1D(nSrc: number, nDst: number, skala: number): Bobot {
   return out;
 }
 
-/** cv2.resize(..., INTER_AREA). `skalaX/Y` = src/dst (default dari ukuran). Hasil dibulatkan ke uint8. */
-export function resize(g: Gray, nw: number, nh: number, skalaX = g.w / nw, skalaY = g.h / nh): Gray {
+/**
+ * Koefisien cabang linear cv2.resize untuk INTER_AREA saat membesar:
+ * sx = floor(dx·skala), fx = (dx+1) − (sx+1)/skala, fx ≤ 0 → 0, lainnya pecahannya.
+ */
+function linearArea(nSrc: number, nDst: number, skala: number): { sx: Int32Array; fx: Float64Array } {
+  const sx = new Int32Array(nDst);
+  const fx = new Float64Array(nDst);
+  for (let o = 0; o < nDst; o++) {
+    let s0 = Math.floor(o * skala);
+    let f = o + 1 - (s0 + 1) / skala;
+    f = f <= 0 ? 0 : f - Math.floor(f);
+    if (s0 >= nSrc - 1) [s0, f] = [nSrc - 1, 0];
+    sx[o] = s0;
+    fx[o] = f;
+  }
+  return { sx, fx };
+}
+
+/**
+ * cv2.resize(..., INTER_AREA). `skalaX/Y` = src/dst (default dari ukuran).
+ * Mengecil di kedua sumbu: rata-rata luas (float). Selain itu cv2 memakai cabang linear dengan
+ * koefisien khusus INTER_AREA dan fixed-point 11 bit untuk uint8 — ditiru di sini.
+ * Hasil dibulatkan ke uint8, kecuali `bulatkan = false` (masukan float32 di cv2).
+ */
+export function resize(g: Gray, nw: number, nh: number, skalaX = g.w / nw, skalaY = g.h / nh, bulatkan = true): Gray {
+  if (skalaX < 1 || skalaY < 1) return resizeLinear(g, nw, nh, skalaX, skalaY, bulatkan);
   const bx = bobot1D(g.w, nw, skalaX);
   const by = bobot1D(g.h, nh, skalaY);
   const tmp = new Float32Array(nw * g.h);
@@ -83,7 +107,39 @@ export function resize(g: Gray, nw: number, nh: number, skalaX = g.w / nw, skala
     for (let x = 0; x < nw; x++) {
       let s = 0;
       for (let k = 0; k < i.length; k++) s += tmp[i[k] * nw + x] * w[k];
-      out.d[y * nw + x] = keUint8(s);
+      out.d[y * nw + x] = bulatkan ? keUint8(s) : s;
+    }
+  }
+  return out;
+}
+
+const SKALA_KOEF = 2048; // INTER_RESIZE_COEF_SCALE
+
+function resizeLinear(g: Gray, nw: number, nh: number, skalaX: number, skalaY: number, uint8: boolean): Gray {
+  const X = linearArea(g.w, nw, skalaX);
+  const Y = linearArea(g.h, nh, skalaY);
+  const q = (f: number) => (uint8 ? bulat(f * SKALA_KOEF) : f);
+  const ax0 = Array.from(X.fx, (f) => q(1 - f));
+  const ax1 = Array.from(X.fx, (f) => q(f));
+  const tmp = new Float64Array(nw * g.h);
+  for (let y = 0; y < g.h; y++) {
+    const r = y * g.w;
+    for (let x = 0; x < nw; x++) {
+      const s0 = X.sx[x];
+      const s1 = Math.min(s0 + 1, g.w - 1);
+      tmp[y * nw + x] = g.d[r + s0] * ax0[x] + g.d[r + s1] * ax1[x];
+    }
+  }
+  const out = buatGray(nw, nh);
+  for (let y = 0; y < nh; y++) {
+    const r0 = Y.sx[y];
+    const r1 = Math.min(r0 + 1, g.h - 1);
+    const b0 = q(1 - Y.fx[y]);
+    const b1 = q(Y.fx[y]);
+    for (let x = 0; x < nw; x++) {
+      const v = tmp[r0 * nw + x] * b0 + tmp[r1 * nw + x] * b1;
+      // FixedPtCast<int, uchar, 22>: (v + 2^21) >> 22
+      out.d[y * nw + x] = uint8 ? Math.min(255, Math.max(0, Math.floor((v + 2097152) / 4194304))) : v;
     }
   }
   return out;
@@ -127,7 +183,8 @@ const reflect101 = (i: number, n: number) => (n === 1 ? 0 : i < 0 ? -i : i >= n 
 const replicate = (i: number, n: number) => (i < 0 ? 0 : i >= n ? n - 1 : i);
 
 function kernelGauss(k: number): number[] {
-  if (k === 5) return [1 / 16, 4 / 16, 6 / 16, 4 / 16, 1 / 16]; // tabel tetap cv2 untuk ksize 5
+  if (k === 3) return [1 / 4, 2 / 4, 1 / 4]; // tabel tetap cv2 untuk ksize 3 & 5
+  if (k === 5) return [1 / 16, 4 / 16, 6 / 16, 4 / 16, 1 / 16];
   const sigma = 0.3 * ((k - 1) * 0.5 - 1) + 0.8;
   const r = k >> 1;
   const v = Array.from({ length: k }, (_, i) => Math.exp(-((i - r) ** 2) / (2 * sigma * sigma)));
@@ -137,6 +194,8 @@ function kernelGauss(k: number): number[] {
 
 /** cv2.GaussianBlur(g, (5,5), 0). */
 export const blur5 = (g: Gray) => konvolusi(g, kernelGauss(5), reflect101);
+/** cv2.GaussianBlur(g, (3,3), 0). */
+export const blur3 = (g: Gray) => konvolusi(g, kernelGauss(3), reflect101);
 
 // ---------- ambang ----------
 
@@ -339,9 +398,9 @@ export interface Komponen {
   luas: number;
 }
 
-/** cv2.connectedComponentsWithStats(…, 8) atas piksel bernilai true. */
-export function komponenTerhubung(aktif: Uint8Array, w: number, h: number): Komponen[] {
-  const label = new Int32Array(w * h).fill(-1);
+/** cv2.connectedComponentsWithStats(…, 8) atas piksel bernilai true. `label` (opsional) diisi indeks komponen. */
+export function komponenTerhubung(aktif: Uint8Array, w: number, h: number, label = new Int32Array(w * h)): Komponen[] {
+  label.fill(-1);
   const hasil: Komponen[] = [];
   const tumpuk: number[] = [];
   for (let s = 0; s < aktif.length; s++) {

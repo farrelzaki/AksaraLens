@@ -86,7 +86,7 @@ Goresan = Record<KodeHuruf, [x, y][][]>   // dinormalkan 0–1
 | Penyedia | Fungsi | Dipakai oleh |
 | --- | --- | --- |
 | `progres/ProgresProvider` | `useProgres() → { status, stats, selesaikanTitik(id), catat(letter, benar) }` | semua halaman |
-| `ml/model1/periksa` | `periksaTulisan(kanvas, target) → HasilCek \| null` | latihan |
+| `ml/model1/periksa` | `siapkanPemeriksa()`, `cekKanvas(kanvas) → 'kosong' \| 'terlalu_kecil' \| 'siap'`, `periksaTulisan(kanvas, target) → HasilCek \| null` | latihan |
 | `ml/model2/scan` | `siapkanScanner()`, `bacaFoto(ImageBitmap) → HasilScan` | scanner |
 | `aksara/urai` | `urai(baris) → SukuKata[]`, `keLatin()`, `tautanMateri(komponen)` | scanner |
 
@@ -109,6 +109,9 @@ Goresan = Record<KodeHuruf, [x, y][][]>   // dinormalkan 0–1
 - **Kesetaraan scanner dengan notebook:** `python -I -X utf8 scripts/rujukan_scanner.py . <gambar>` menjalankan
   pipeline notebook (OpenCV + onnxruntime) pada gambar yang sama; bandingkan sudut, kotak, dan teksnya
   dengan `bacaFoto()` di browser. Wajib diulang bila model atau pra-proses diubah.
+- **Kesetaraan Model 1:** `praproses()` dibandingkan dengan notebook pada 200 coretan acak (skeleton
+  identik 200/200, keluaran 191/200; sisanya beda ≤ beberapa piksel akibat presisi float resize) dan
+  196 tulisan tangan Roboflow (tebakan model 100% sama).
 - Waktu inferensi diukur manual di ponsel uji (lihat PRD, Metrik).
 
 ## 7. Keputusan Terbuka
