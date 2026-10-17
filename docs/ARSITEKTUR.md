@@ -16,6 +16,7 @@ Status: **draf** (scaffolding 11 Okt 2026)
 | Styling | **belum diputuskan** | — | Tailwind vs CSS Modules (T-06); sementara CSS biasa di `src/app/app.css` |
 | Test | Vitest | 5.0 | Logika murni |
 | Hosting | Vercel | — | Produksi dari `main`; `develop` = integrasi |
+| Berkas model | Supabase Storage (bucket publik `models`) | — | `.onnx` tidak di repo; folder berversi (`v1/`), lewat `VITE_MODEL_URL` (diputuskan 18 Okt 2026) |
 | Pelatihan model | PyTorch di Colab (repo terpisah `aksaralens-ml`) | — | Ekspor ONNX tanpa kuantisasi |
 
 Versi diverifikasi ke npm 11 Okt 2026. Jangan naikkan versi mayor di tengah semester.
@@ -124,7 +125,6 @@ Jangan diputuskan agen sendiri.
 | TBD-02 | Styling (Tailwind / CSS Modules) dan tetap TypeScript atau tidak | Choirun + Emil | 18 Okt |
 | TBD-03 | Ambang keyakinan latihan menulis (awal 0,6) | Farrel | 8 Nov |
 | TBD-04 | Scanner di browser atau FastAPI | Farrel | Setelah uji ponsel (T-02) |
-| TBD-05 | Cara menyajikan `.onnx` di Vercel (LFS / penyimpanan terpisah) | Farrel | Sebelum deploy |
 
 ## 8. Risiko Teknis
 
