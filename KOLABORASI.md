@@ -196,6 +196,7 @@ Format: `- YYYY-MM-DD · T-xx · apa yang dikerjakan · hasil/verifikasi · cata
 - 2026-10-12 · T-01 · aturan Git tim: multi-branch via `develop`, tanpa reviewer wajib, Git diurus agen AI (bagian 5a) · dokumen saja · berlaku setelah PR #1 masuk `develop`
 - 2026-10-18 · T-11 · scanner jalan di browser: deskew, detektor baris, CRNN, `keLogis`, uraian; label/charset dari hasil ML · 37 tes, typecheck, build; 4 gambar uji identik dengan `scripts/rujukan_scanner.py` (pipeline notebook) · model `.onnx` salin dari `docs/random` ke `public/models/`; uji ponsel = T-02
 - 2026-10-18 · T-08 · pra-proses Model 1 (skeleton = LUT skimage) + `periksaTulisan`/`cekKanvas`; Profil: Tentang & sumber data · 44 tes; 196 tulisan tangan Roboflow: tebakan 100% sama dengan notebook (akurasi 99,5%); 20/20 huruf di browser, ±130 ms · Choirun: panggil `cekKanvas` untuk menonaktifkan Cek, `periksaTulisan(kanvas, huruf)` saat Cek
+- 2026-10-18 · TBD-05 · model `.onnx` disajikan dari Supabase Storage (bucket publik `models/v1`) lewat `VITE_MODEL_URL`; kosong = `public/models/` · 45 tes, model lokal termuat · Emil: tambahkan `VITE_MODEL_URL` ke env Vercel saat setup (T-03); `.env.example` ikut diubah
 
 ### Log Emil
 
