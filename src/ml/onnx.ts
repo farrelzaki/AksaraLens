@@ -6,9 +6,9 @@ import type { InferenceSession } from 'onnxruntime-web';
 export type NamaModel = 'model1' | 'model2a' | 'model2b';
 
 const BERKAS: Record<NamaModel, string> = {
-  model1: '/models/model1.onnx',
-  model2a: '/models/model2a.onnx',
-  model2b: '/models/model2b.onnx',
+  model1: '/models/aksaralens_huruf.onnx',
+  model2a: '/models/aksaralens_scanner.onnx',
+  model2b: '/models/aksaralens_detektor_baris.onnx',
 };
 
 const cache = new Map<NamaModel, Promise<InferenceSession>>();

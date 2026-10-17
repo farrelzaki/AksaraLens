@@ -84,6 +84,7 @@ Aturan untuk agen:
 | T-08 | Integrasi Model 1 ke kanvas + ambang keyakinan | Farrel | `[ ]` | | `src/ml/model1/` | | 19 Okt–8 Nov |
 | T-09 | Navbar, jalur, layar pelajaran, materi | Choirun | `[ ]` | | `src/app/`, `src/features/belajar/`, `src/features/pelajaran/` | | 19 Okt–8 Nov |
 | T-10 | Soal + logika jalur (tamu) | Emil | `[ ]` | | `src/content/`, `src/progres/` | | 19 Okt–8 Nov |
+| T-11 | Scanner end-to-end di browser (detektor → CRNN → transliterasi) + sinkron label hasil ML | Farrel | `[x]` | `feature/scanner` | `src/ml/`, `src/aksara/`, `src/features/scanner/` | 2026-10-18 | Identik dengan notebook; uji di ponsel lanjut di T-02 |
 
 Rincian langkah task (rencana, checkpoint) ditulis di `TASK.md` pribadi, bukan di sini.
 
@@ -193,6 +194,7 @@ Format: `- YYYY-MM-DD · T-xx · apa yang dikerjakan · hasil/verifikasi · cata
 
 - 2026-10-11 · T-01 · arsitektur awal sesuai PRD v1.1 + template kolaborasi · typecheck, 18 tes, build lulus · lihat `docs/ARSITEKTUR.md`
 - 2026-10-12 · T-01 · aturan Git tim: multi-branch via `develop`, tanpa reviewer wajib, Git diurus agen AI (bagian 5a) · dokumen saja · berlaku setelah PR #1 masuk `develop`
+- 2026-10-18 · T-11 · scanner jalan di browser: deskew, detektor baris, CRNN, `keLogis`, uraian; label/charset dari hasil ML · 37 tes, typecheck, build; 4 gambar uji identik dengan `scripts/rujukan_scanner.py` (pipeline notebook) · model `.onnx` salin dari `docs/random` ke `public/models/`; uji ponsel = T-02
 
 ### Log Emil
 

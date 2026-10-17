@@ -22,8 +22,8 @@ Versi diverifikasi ke npm 11 Okt 2026. Jangan naikkan versi mayor di tengah seme
 
 **Sengaja tidak dipakai:** server Express (kebutuhan server hanya akun + progres, sudah
 ditangani Supabase) · Carakan.js (transliterasi per suku kata ditulis sendiri di
-`src/aksara/urai.ts` karena juga dipakai Kaji lebih dalam) · OpenCV.js (belum perlu;
-pertimbangkan bila pra-proses scanner butuh deskew).
+`src/aksara/urai.ts` karena juga dipakai Kaji lebih dalam) · OpenCV.js (±8 MB; operasi gambar yang dipakai notebook ditulis ulang di
+`src/ml/model2/gambar.ts` dan hasilnya diverifikasi sama dengan notebook).
 
 **Cadangan:** bila scan di ponsel > 3 dtk, Model 2 pindah ke FastAPI (Hugging Face Spaces).
 
@@ -48,7 +48,8 @@ src/
   content/      jalur.json, bab.json, goresan.json + tipe (index.ts)
   progres/      model.ts (murni: status jalur, huruf sering salah, catat jawaban, gabung progres),
                 penyimpanan.ts (tamu/akun), ProgresProvider.tsx
-  ml/           onnx.ts (lazy, cache sesi); model1/ (keputusan, praproses, periksa); model2/ (ctc, scan)
+  ml/           onnx.ts (lazy, cache sesi); model1/ (keputusan, periksa, huruf_label.json);
+                model2/ (gambar = pengganti cv2, detektor, ctc, scan, scanner_charset.json)
   lib/          supabase.ts (null bila .env kosong → mode tamu)
   features/     belajar, pelajaran, latihan, scanner, profil, akun
 supabase/migrations/   Skema + RLS + trigger profil
@@ -105,6 +106,9 @@ Goresan = Record<KodeHuruf, [x, y][][]>   // dinormalkan 0–1
 - **Wajib dites (Vitest):** `aksara/urai`, `ml/model1/keputusan`, `ml/model2/ctc`, `progres/model`,
   dan pra-proses begitu diimplementasikan (bandingkan dengan keluaran notebook).
 - **Tidak wajib:** komponen React tampilan.
+- **Kesetaraan scanner dengan notebook:** `python -I -X utf8 scripts/rujukan_scanner.py . <gambar>` menjalankan
+  pipeline notebook (OpenCV + onnxruntime) pada gambar yang sama; bandingkan sudut, kotak, dan teksnya
+  dengan `bacaFoto()` di browser. Wajib diulang bila model atau pra-proses diubah.
 - Waktu inferensi diukur manual di ponsel uji (lihat PRD, Metrik).
 
 ## 7. Keputusan Terbuka
@@ -118,7 +122,6 @@ Jangan diputuskan agen sendiri.
 | TBD-03 | Ambang keyakinan latihan menulis (awal 0,6) | Farrel | 8 Nov |
 | TBD-04 | Scanner di browser atau FastAPI | Farrel | Setelah uji ponsel (T-02) |
 | TBD-05 | Cara menyajikan `.onnx` di Vercel (LFS / penyimpanan terpisah) | Farrel | Sebelum deploy |
-| TBD-06 | Urutan label Model 1 dan charset Model 2a harus sama dengan notebook | Farrel | Sebelum integrasi |
 
 ## 8. Risiko Teknis
 
