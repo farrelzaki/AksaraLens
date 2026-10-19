@@ -30,8 +30,26 @@ export const AMBANG_YAKIN_SCAN = 0.7; // TODO(Farrel): setel saat uji foto kamer
 const SISI_MAKS = 2048;
 const SISI_SUDUT = 800;
 
-/** Memanaskan model (dipanggil di worker; halaman memakai scanner.ts). */
-export const siapkanScanner = () => Promise.all([muatModel('model2b'), muatModel('model2a')]);
+/**
+ * Memanaskan model (dipanggil di worker; halaman memakai scanner.ts). Selain memuat, menjalankan satu
+ * inferensi kecil agar inisialisasi backend (mis. kompilasi shader WebGPU, ±2 dtk) tidak terjadi
+ * saat pengguna menekan Baca.
+ */
+let pemanasan: Promise<void> | null = null;
+export function siapkanScanner(): Promise<void> {
+  pemanasan ??= panaskan().catch((e) => {
+    pemanasan = null;
+    throw e;
+  });
+  return pemanasan;
+}
+
+async function panaskan(): Promise<void> {
+  const [ort, det, pembaca] = await Promise.all([ortSiap(), muatModel('model2b'), muatModel('model2a')]);
+  const kosong = () => new Float32Array(TINGGI_BARIS * TINGGI_BARIS);
+  await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', kosong(), [1, 1, TINGGI_BARIS, TINGGI_BARIS]) });
+  await pembaca.run({ [pembaca.inputNames[0]]: new ort.Tensor('float32', kosong(), [1, 1, TINGGI_BARIS, TINGGI_BARIS]) });
+}
 
 /** Gambar (File/Blob) -> grayscale, latar transparan dianggap putih, sisi terpanjang ≤ 2048. */
 export async function grayDariBerkas(berkas: Blob): Promise<Gray> {
@@ -49,6 +67,7 @@ export async function grayDariBerkas(berkas: Blob): Promise<Gray> {
 
 export async function bacaGray(gray: Gray): Promise<HasilScan> {
   const mulai = performance.now();
+  await siapkanScanner();
   const [ort, det, pembaca] = await Promise.all([ortSiap(), muatModel('model2b'), muatModel('model2a')]);
 
   // 1. polaritas & deskew
