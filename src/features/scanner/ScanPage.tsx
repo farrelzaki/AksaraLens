@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { bacaFoto, siapkanScanner } from '../../ml/model2/scanner';
+import { PENUH, bacaFoto, siapkanScanner, type Bingkai } from '../../ml/model2/scanner';
+import { BingkaiPotong } from './BingkaiPotong';
 import { simpanHasilSementara } from './hasilScan';
 
-// F5 langkah 1–3: ambil/pilih foto -> pratinjau -> Baca.
-// TODO(Choirun): tampilan + bingkai potong (Atur area). Foto hanya hidup di memori halaman ini.
+// F5 langkah 1–3: ambil/pilih foto -> atur area (bingkai potong) -> Baca.
+// TODO(Choirun): tampilan. Foto hanya hidup di memori halaman ini.
 export function ScanPage() {
   const [siap, setSiap] = useState(false);
   const [foto, setFoto] = useState<File | null>(null);
   const [pratinjau, setPratinjau] = useState<string | null>(null);
+  const [bingkai, setBingkai] = useState<Bingkai>(PENUH);
   const [memproses, setMemproses] = useState(false);
   const [galat, setGalat] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -30,6 +32,7 @@ export function ScanPage() {
   const pilih = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGalat(null);
     setFoto(e.target.files?.[0] ?? null);
+    setBingkai(PENUH);
     e.target.value = '';
   };
 
@@ -38,7 +41,7 @@ export function ScanPage() {
     setMemproses(true);
     setGalat(null);
     try {
-      const hasil = await bacaFoto(foto);
+      const hasil = await bacaFoto(foto, bingkai);
       if (import.meta.env.DEV) console.info('[scanner]', hasil.info);
       simpanHasilSementara(hasil);
       navigate('/scan/hasil');
@@ -61,7 +64,7 @@ export function ScanPage() {
         Pilih dari galeri
         <input type="file" accept="image/*" onChange={pilih} />
       </label>
-      {pratinjau && <img src={pratinjau} alt="Pratinjau foto" style={{ maxWidth: '100%' }} />}
+      {pratinjau && <BingkaiPotong src={pratinjau} nilai={bingkai} onUbah={setBingkai} />}
       {foto && (
         <button onClick={baca} disabled={!siap || memproses}>
           {memproses ? 'Membaca…' : 'Baca'}

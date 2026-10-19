@@ -10,7 +10,8 @@ import { urai, type SukuKata } from '../../aksara/urai';
 import { muatModel, ortSiap } from '../onnx';
 import { CHARSET, TINGGI_BARIS, dekodeGreedy, keInputBaris } from './ctc';
 import { kotakDariLogit, masukanDetektor, potongBaris, type Kotak } from './detektor';
-import { cariSudut, dariRGBA, maskerTinta, normalisasiPolaritas, putar, resize, type Gray } from './gambar';
+import { PENUH, kePiksel, sama, type Bingkai } from './bingkai';
+import { cariSudut, dariRGBA, maskerTinta, normalisasiPolaritas, potong, putar, resize, type Gray } from './gambar';
 
 export interface BarisTerbaca {
   unicode: string;
@@ -98,7 +99,11 @@ export async function bacaGray(gray: Gray): Promise<HasilScan> {
   return rakitHasil(baris, { waktuMs: performance.now() - mulai, sudut, kotak });
 }
 
-export const bacaFoto = async (berkas: Blob) => bacaGray(await grayDariBerkas(berkas));
+/** Foto -> hasil. `bingkai` = area pilihan pengguna (Atur area), relatif 0..1; bawaan seluruh foto. */
+export async function bacaFoto(berkas: Blob, bingkai: Bingkai = PENUH): Promise<HasilScan> {
+  const gray = await grayDariBerkas(berkas);
+  return bacaGray(sama(bingkai, PENUH) ? gray : potong(gray, ...kePiksel(bingkai, gray.w, gray.h)));
+}
 
 export function rakitHasil(baris: { unicode: string; keyakinan: number }[], info: HasilScan['info']): HasilScan {
   const hasil = baris.map((b) => ({ ...b, sukuKata: urai(b.unicode) }));

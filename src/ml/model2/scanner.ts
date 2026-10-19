@@ -1,10 +1,12 @@
 // Klien scanner di thread utama: meneruskan permintaan ke scan.worker.ts.
 // Halaman memakai modul ini, bukan scan.ts langsung.
 
+import type { Bingkai } from './bingkai';
 import type { HasilScan } from './scan';
 import type { Jawaban, Pesan, Permintaan } from './scan.worker';
 
-export type { HasilScan };
+export type { Bingkai, HasilScan };
+export { PENUH } from './bingkai';
 
 type Tunggu = { selesai: (v: unknown) => void; gagal: (e: Error) => void };
 
@@ -44,5 +46,5 @@ function kirim<T>(p: Pesan): Promise<T> {
 /** Memanaskan model di worker saat tab Scanner dibuka (tombol Baca nonaktif sampai selesai). */
 export const siapkanScanner = () => kirim<void>({ jenis: 'siapkan' });
 
-/** Membaca foto di worker. Foto tidak disimpan dan tidak dikirim ke server. */
-export const bacaFoto = (foto: Blob) => kirim<HasilScan>({ jenis: 'baca', foto });
+/** Membaca foto (hanya area `bingkai`) di worker. Foto tidak disimpan dan tidak dikirim ke server. */
+export const bacaFoto = (foto: Blob, bingkai?: Bingkai) => kirim<HasilScan>({ jenis: 'baca', foto, bingkai });
