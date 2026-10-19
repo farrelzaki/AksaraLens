@@ -201,6 +201,7 @@ Format: `- YYYY-MM-DD · T-xx · apa yang dikerjakan · hasil/verifikasi · cata
 - 2026-10-19 · T-11 · pemanasan scanner kini menjalankan 1 inferensi (baca pertama 2,9 → 0,7 dtk di laptop); permintaan worker diproses berurutan (sebelumnya bisa menggantung bila Baca ditekan saat pemanasan); Kaji: "taling tarung" satu komponen · 45 tes, dicek di browser · model salah membaca *pada lungsi* sebagai pangkon pada satu gambar uji
 - 2026-10-19 · T-08 · evaluasi Model 1 (`docs/EVALUASI.md`, `scripts/evaluasi_model1.py`): penolakan coretan acak + sandhangan 99,1% @0,6 (target PRD ≥ 85% tercapai); tabel ambang 0,4–0,9 untuk keputusan ambang · positif dari Roboflow (optimistis), perlu tulisan kanvas teman
 - 2026-10-19 · T-11 · model disimpan di Cache Storage (`aksaralens-model`; versi lama dihapus otomatis) agar latihan & scanner jalan offline setelah sekali dimuat; `vercel.json` ikut diubah (cache permanen `/assets/`, nama berhash) · dicek di browser: 3 model tercache, terbaca saat fetch diputus · offline penuh setelah muat ulang halaman butuh service worker (belum, perlu keputusan tim)
+- 2026-10-19 · T-11 · bingkai potong "Atur area" (F5 langkah 2): `ml/model2/bingkai.ts` (murni, dites) + `BingkaiPotong.tsx`; `bacaFoto(foto, bingkai)` hanya membaca area pilihan · 50 tes; di browser bingkai dipersempit ke baris 1 → hanya baris 1 terbaca · Choirun: gaya bingkai/pegangan bebas diubah, logika di `ubahBingkai`
 
 ### Log Emil
 
