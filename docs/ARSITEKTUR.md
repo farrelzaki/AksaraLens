@@ -89,7 +89,7 @@ Goresan = Record<KodeHuruf, [x, y][][]>   // dinormalkan 0–1
 | --- | --- | --- |
 | `progres/ProgresProvider` | `useProgres() → { status, stats, selesaikanTitik(id), catat(letter, benar) }` | semua halaman |
 | `ml/model1/periksa` | `siapkanPemeriksa()`, `cekKanvas(kanvas) → 'kosong' \| 'terlalu_kecil' \| 'siap'`, `periksaTulisan(kanvas, target) → HasilCek \| null` | latihan |
-| `ml/model2/scanner` | `siapkanScanner()`, `bacaFoto(Blob) → HasilScan` (berjalan di Web Worker) | scanner |
+| `ml/model2/scanner` | `siapkanScanner()`, `bacaFoto(Blob, bingkai?) → HasilScan` (berjalan di Web Worker; `bingkai` relatif 0..1) | scanner |
 | `aksara/urai` | `urai(baris) → SukuKata[]`, `keLatin()`, `tautanMateri(komponen)` | scanner |
 
 ## 5. Konvensi
