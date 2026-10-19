@@ -198,6 +198,8 @@ Format: `- YYYY-MM-DD · T-xx · apa yang dikerjakan · hasil/verifikasi · cata
 - 2026-10-18 · T-08 · pra-proses Model 1 (skeleton = LUT skimage) + `periksaTulisan`/`cekKanvas`; Profil: Tentang & sumber data · 44 tes; 196 tulisan tangan Roboflow: tebakan 100% sama dengan notebook (akurasi 99,5%); 20/20 huruf di browser, ±130 ms · Choirun: panggil `cekKanvas` untuk menonaktifkan Cek, `periksaTulisan(kanvas, huruf)` saat Cek
 - 2026-10-18 · TBD-05 · model `.onnx` disajikan dari Supabase Storage (bucket publik `models/v1`) lewat `VITE_MODEL_URL`; kosong = `public/models/` · 45 tes, model lokal termuat · Emil: tambahkan `VITE_MODEL_URL` ke env Vercel saat setup (T-03); `.env.example` ikut diubah
 - 2026-10-19 · T-11 · scanner dipindah ke Web Worker (`scanner.ts` → `scan.worker.ts`); `vite.config.ts` ikut diubah (`worker.format: 'es'`) · thread utama 0 ms terblokir saat membaca (sebelumnya ±230 ms di laptop) · halaman memakai `ml/model2/scanner`, bukan `scan`
+- 2026-10-19 · T-11 · pemanasan scanner kini menjalankan 1 inferensi (baca pertama 2,9 → 0,7 dtk di laptop); permintaan worker diproses berurutan (sebelumnya bisa menggantung bila Baca ditekan saat pemanasan); Kaji: "taling tarung" satu komponen · 45 tes, dicek di browser · model salah membaca *pada lungsi* sebagai pangkon pada satu gambar uji
+- 2026-10-19 · T-08 · evaluasi Model 1 (`docs/EVALUASI.md`, `scripts/evaluasi_model1.py`): penolakan coretan acak + sandhangan 99,1% @0,6 (target PRD ≥ 85% tercapai); tabel ambang 0,4–0,9 untuk keputusan ambang · positif dari Roboflow (optimistis), perlu tulisan kanvas teman
 
 ### Log Emil
 
