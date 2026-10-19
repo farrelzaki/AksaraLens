@@ -12,8 +12,11 @@ describe('urai', () => {
     expect(ki.komponen.map((k) => k.kode)).toEqual(['ka', 'wulu']);
   });
 
-  it('membaca taling tarung sebagai o', () => {
-    expect(keLatin('ꦏꦺꦴ')).toBe('ko');
+  it('membaca taling tarung sebagai o, satu komponen bertaut ke materi tarung', () => {
+    const [ko] = urai('ꦏꦺꦴ');
+    expect(ko.latin).toBe('ko');
+    expect(ko.komponen.map((k) => k.nama)).toEqual(['ka', 'taling tarung']);
+    expect(tautanMateri(ko.komponen[1])).toBe('/belajar/materi/2#tarung');
   });
 
   it('menggabung konsonan mati sebelum pasangan dan menandai pasangan', () => {
@@ -21,7 +24,7 @@ describe('urai', () => {
     expect(suku.map((s) => s.latin)).toEqual(['a', 'nak', 'kê', 'cil']);
     const ke = suku[2];
     expect(ke.adaPasangan).toBe(true);
-    expect(ke.komponen[0]).toMatchObject({ kode: 'ka', peran: 'pasangan', bab: null });
+    expect(ke.komponen[0]).toMatchObject({ kode: 'ka', nama: 'pasangan ka', peran: 'pasangan', bab: null });
     expect(suku[3].komponen.map((k) => k.kode)).toEqual(['ca', 'wulu', 'la', 'pangkon']);
   });
 

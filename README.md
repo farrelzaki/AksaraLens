@@ -26,6 +26,7 @@ Model `.onnx` tidak ada di repo; lihat `public/models/README.md`.
 | `docs/PRD.md` | Apa yang dibangun (ringkasan PRD v1.1) | ya |
 | `docs/ARSITEKTUR.md` | Stack, struktur kode, kontrak antarbagian, keputusan terbuka | ya |
 | `docs/DESIGN_SYSTEM.md` | Token visual & komponen (diisi Choirun) | ya |
+| `docs/EVALUASI.md` | Hasil uji model di aplikasi (untuk laporan) | ya |
 | `docs/referensi/` | Dokumen sumber, hanya dibaca | ya |
 | `AGENTS.md`, `TASK.md`, `PROJECT_STATE.md` | Aturan kerja agen, task, dan memori sesi milik masing-masing | **tidak** |
 

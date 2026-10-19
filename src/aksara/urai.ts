@@ -8,6 +8,8 @@ export type Peran = 'aksara' | 'pasangan' | 'sandhangan' | 'panyigeg' | 'pangkon
 
 export interface Komponen {
   kode: string;
+  /** Nama untuk ditampilkan, mis. 'taling tarung', 'pasangan ka', 'pada lungsi'. */
+  nama: string;
   unicode: string;
   peran: Peran;
   /** Bab materi tujuan tautan; null = "belum ada di materi" (pasangan, pada). */
@@ -32,8 +34,11 @@ interface Pembangun {
 
 const VOKAL: Record<string, string> = { wulu: 'i', suku: 'u', pepet: 'ê', taling: 'é', tarung: 'o' };
 
+const NAMA: Record<string, string> = { lingsa: 'pada lingsa', lungsi: 'pada lungsi' };
+
 const komponenDari = (h: Huruf, peran: Peran): Komponen => ({
   kode: h.kode,
+  nama: peran === 'pasangan' ? `pasangan ${h.kode}` : (NAMA[h.kode] ?? h.kode),
   unicode: h.unicode,
   peran,
   bab: peran === 'pasangan' ? null : h.bab,
@@ -104,7 +109,11 @@ export function urai(baris: string): SukuKata[] {
         if (kini) {
           kini.teks += c;
           kini.vokal = VOKAL[h.kode];
-          kini.komponen.push(komponenDari(h, 'sandhangan'));
+          const akhir = kini.komponen.at(-1);
+          if (h.kode === 'tarung' && akhir?.kode === 'taling') {
+            // taling + tarung = satu sandhangan "taling tarung" (materi Bab 2, kode 'tarung')
+            kini.komponen[kini.komponen.length - 1] = { ...komponenDari(h, 'sandhangan'), nama: 'taling tarung', unicode: akhir.unicode + h.unicode };
+          } else kini.komponen.push(komponenDari(h, 'sandhangan'));
         }
         break;
       case 'panyigeg':

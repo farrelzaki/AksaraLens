@@ -13,12 +13,17 @@ const ctx = self as unknown as {
   postMessage: (j: Jawaban) => void;
 };
 
-ctx.onmessage = async (e) => {
+// Sesi ONNX tidak boleh dijalankan bersamaan (bisa menggantung di WebGPU): proses berurutan.
+let antrean: Promise<void> = Promise.resolve();
+
+ctx.onmessage = (e) => {
   const p = e.data;
-  try {
-    const hasil = p.jenis === 'siapkan' ? (await siapkanScanner(), undefined) : await bacaFoto(p.foto);
-    ctx.postMessage({ id: p.id, ok: true, hasil });
-  } catch (err) {
-    ctx.postMessage({ id: p.id, ok: false, galat: err instanceof Error ? err.message : String(err) });
-  }
+  antrean = antrean.then(async () => {
+    try {
+      const hasil = p.jenis === 'siapkan' ? (await siapkanScanner(), undefined) : await bacaFoto(p.foto);
+      ctx.postMessage({ id: p.id, ok: true, hasil });
+    } catch (err) {
+      ctx.postMessage({ id: p.id, ok: false, galat: err instanceof Error ? err.message : String(err) });
+    }
+  });
 };
