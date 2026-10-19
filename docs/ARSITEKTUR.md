@@ -50,7 +50,8 @@ src/
   progres/      model.ts (murni: status jalur, huruf sering salah, catat jawaban, gabung progres),
                 penyimpanan.ts (tamu/akun), ProgresProvider.tsx
   ml/           onnx.ts (lazy, cache sesi); model1/ (keputusan, periksa, huruf_label.json);
-                model2/ (gambar = pengganti cv2, detektor, ctc, scan, scanner_charset.json)
+                model2/ (gambar = pengganti cv2, detektor, ctc, scan + scan.worker, scanner = klien worker,
+                scanner_charset.json)
   lib/          supabase.ts (null bila .env kosong → mode tamu)
   features/     belajar, pelajaran, latihan, scanner, profil, akun
 supabase/migrations/   Skema + RLS + trigger profil
@@ -88,7 +89,7 @@ Goresan = Record<KodeHuruf, [x, y][][]>   // dinormalkan 0–1
 | --- | --- | --- |
 | `progres/ProgresProvider` | `useProgres() → { status, stats, selesaikanTitik(id), catat(letter, benar) }` | semua halaman |
 | `ml/model1/periksa` | `siapkanPemeriksa()`, `cekKanvas(kanvas) → 'kosong' \| 'terlalu_kecil' \| 'siap'`, `periksaTulisan(kanvas, target) → HasilCek \| null` | latihan |
-| `ml/model2/scan` | `siapkanScanner()`, `bacaFoto(ImageBitmap) → HasilScan` | scanner |
+| `ml/model2/scanner` | `siapkanScanner()`, `bacaFoto(Blob) → HasilScan` (berjalan di Web Worker) | scanner |
 | `aksara/urai` | `urai(baris) → SukuKata[]`, `keLatin()`, `tautanMateri(komponen)` | scanner |
 
 ## 5. Konvensi
