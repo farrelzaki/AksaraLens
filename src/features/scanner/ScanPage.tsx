@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { bacaFoto, siapkanScanner } from '../../ml/model2/scan';
+import { bacaFoto, siapkanScanner } from '../../ml/model2/scanner';
 import { simpanHasilSementara } from './hasilScan';
 
 // F5 langkah 1–3: ambil/pilih foto -> pratinjau -> Baca.

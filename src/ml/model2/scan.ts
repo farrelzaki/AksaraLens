@@ -30,7 +30,7 @@ export const AMBANG_YAKIN_SCAN = 0.7; // TODO(Farrel): setel saat uji foto kamer
 const SISI_MAKS = 2048;
 const SISI_SUDUT = 800;
 
-/** Memanaskan model saat tab Scanner dibuka (tombol Baca nonaktif sampai selesai). */
+/** Memanaskan model (dipanggil di worker; halaman memakai scanner.ts). */
 export const siapkanScanner = () => Promise.all([muatModel('model2b'), muatModel('model2a')]);
 
 /** Gambar (File/Blob) -> grayscale, latar transparan dianggap putih, sisi terpanjang ≤ 2048. */
