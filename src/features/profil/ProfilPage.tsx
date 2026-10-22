@@ -173,10 +173,7 @@ export function ProfilPage() {
         )}
       </section>
 
-      <section>
-        <h2>Tentang & sumber data</h2>
-        <TentangSumber />
-      </section>
+      <TentangSumber />
     </>
   );
 }
