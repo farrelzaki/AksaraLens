@@ -16,7 +16,7 @@ export function KajiPage() {
             <span className="aksara" lang="jv">{s.teks}</span> <strong>{s.latin}</strong> ={' '}
             {s.komponen.map((k, j) => {
               const url = tautanMateri(k);
-              const label = k.peran === 'pasangan' ? `pasangan ${k.kode}` : k.kode;
+              const label = k.nama;
               return (
                 <span key={j}>
                   {j > 0 && ' + '}

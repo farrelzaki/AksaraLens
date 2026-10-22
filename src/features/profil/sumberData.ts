@@ -1,5 +1,6 @@
 // F7 "Tentang & sumber data". Atribusi wajib (CC BY 4.0, CC BY-SA 4.0, SIL OFL 1.1) dan
 // sitasi NusaAksara. Sumber: PRD Lampiran + notebook Model 1 & 2. Ubah bersama bila dataset berubah.
+
 export interface Sumber {
   nama: string;
   oleh: string;

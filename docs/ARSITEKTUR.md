@@ -16,14 +16,15 @@ Status: **draf** (scaffolding 11 Okt 2026)
 | Styling | **belum diputuskan** | — | Tailwind vs CSS Modules (T-06); sementara CSS biasa di `src/app/app.css` |
 | Test | Vitest | 5.0 | Logika murni |
 | Hosting | Vercel | — | Produksi dari `main`; `develop` = integrasi |
+| Berkas model | Supabase Storage (bucket publik `models`) | — | `.onnx` tidak di repo; folder berversi (`v1/`), lewat `VITE_MODEL_URL` (diputuskan 18 Okt 2026) |
 | Pelatihan model | PyTorch di Colab (repo terpisah `aksaralens-ml`) | — | Ekspor ONNX tanpa kuantisasi |
 
 Versi diverifikasi ke npm 11 Okt 2026. Jangan naikkan versi mayor di tengah semester.
 
 **Sengaja tidak dipakai:** server Express (kebutuhan server hanya akun + progres, sudah
 ditangani Supabase) · Carakan.js (transliterasi per suku kata ditulis sendiri di
-`src/aksara/urai.ts` karena juga dipakai Kaji lebih dalam) · OpenCV.js (belum perlu;
-pertimbangkan bila pra-proses scanner butuh deskew).
+`src/aksara/urai.ts` karena juga dipakai Kaji lebih dalam) · OpenCV.js (±8 MB; operasi gambar yang dipakai notebook ditulis ulang di
+`src/ml/model2/gambar.ts` dan hasilnya diverifikasi sama dengan notebook).
 
 **Cadangan:** bila scan di ponsel > 3 dtk, Model 2 pindah ke FastAPI (Hugging Face Spaces).
 
@@ -48,7 +49,9 @@ src/
   content/      jalur.json, bab.json, goresan.json + tipe (index.ts)
   progres/      model.ts (murni: status jalur, huruf sering salah, catat jawaban, gabung progres),
                 penyimpanan.ts (tamu/akun), ProgresProvider.tsx
-  ml/           onnx.ts (lazy, cache sesi); model1/ (keputusan, praproses, periksa); model2/ (ctc, scan)
+  ml/           onnx.ts (lazy, cache sesi); model1/ (keputusan, periksa, huruf_label.json);
+                model2/ (gambar = pengganti cv2, detektor, ctc, scan + scan.worker, scanner = klien worker,
+                scanner_charset.json)
   lib/          supabase.ts (null bila .env kosong → mode tamu)
   features/     belajar, pelajaran, latihan, scanner, profil, akun
 supabase/migrations/   Skema + RLS + trigger profil
@@ -85,8 +88,8 @@ Goresan = Record<KodeHuruf, [x, y][][]>   // dinormalkan 0–1
 | Penyedia | Fungsi | Dipakai oleh |
 | --- | --- | --- |
 | `progres/ProgresProvider` | `useProgres() → { status, stats, selesaikanTitik(id), catat(letter, benar) }` | semua halaman |
-| `ml/model1/periksa` | `periksaTulisan(kanvas, target) → HasilCek \| null` | latihan |
-| `ml/model2/scan` | `siapkanScanner()`, `bacaFoto(ImageBitmap) → HasilScan` | scanner |
+| `ml/model1/periksa` | `siapkanPemeriksa()`, `cekKanvas(kanvas) → 'kosong' \| 'terlalu_kecil' \| 'siap'`, `periksaTulisan(kanvas, target) → HasilCek \| null` | latihan |
+| `ml/model2/scanner` | `siapkanScanner()`, `bacaFoto(Blob, bingkai?) → HasilScan` (berjalan di Web Worker; `bingkai` relatif 0..1) | scanner |
 | `aksara/urai` | `urai(baris) → SukuKata[]`, `keLatin()`, `tautanMateri(komponen)` | scanner |
 
 ## 5. Konvensi
@@ -105,6 +108,12 @@ Goresan = Record<KodeHuruf, [x, y][][]>   // dinormalkan 0–1
 - **Wajib dites (Vitest):** `aksara/urai`, `ml/model1/keputusan`, `ml/model2/ctc`, `progres/model`,
   dan pra-proses begitu diimplementasikan (bandingkan dengan keluaran notebook).
 - **Tidak wajib:** komponen React tampilan.
+- **Kesetaraan scanner dengan notebook:** `python -I -X utf8 scripts/rujukan_scanner.py . <gambar>` menjalankan
+  pipeline notebook (OpenCV + onnxruntime) pada gambar yang sama; bandingkan sudut, kotak, dan teksnya
+  dengan `bacaFoto()` di browser. Wajib diulang bila model atau pra-proses diubah.
+- **Kesetaraan Model 1:** `praproses()` dibandingkan dengan notebook pada 200 coretan acak (skeleton
+  identik 200/200, keluaran 191/200; sisanya beda ≤ beberapa piksel akibat presisi float resize) dan
+  196 tulisan tangan Roboflow (tebakan model 100% sama).
 - Waktu inferensi diukur manual di ponsel uji (lihat PRD, Metrik).
 
 ## 7. Keputusan Terbuka
@@ -117,8 +126,6 @@ Jangan diputuskan agen sendiri.
 | TBD-02 | Styling (Tailwind / CSS Modules) dan tetap TypeScript atau tidak | Choirun + Emil | 18 Okt |
 | TBD-03 | Ambang keyakinan latihan menulis (awal 0,6) | Farrel | 8 Nov |
 | TBD-04 | Scanner di browser atau FastAPI | Farrel | Setelah uji ponsel (T-02) |
-| TBD-05 | Cara menyajikan `.onnx` di Vercel (LFS / penyimpanan terpisah) | Farrel | Sebelum deploy |
-| TBD-06 | Urutan label Model 1 dan charset Model 2a harus sama dengan notebook | Farrel | Sebelum integrasi |
 
 ## 8. Risiko Teknis
 

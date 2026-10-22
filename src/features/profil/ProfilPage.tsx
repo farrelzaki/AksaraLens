@@ -6,6 +6,7 @@ import { TentangSumber } from './TentangSumber';
 import { useState, type FormEvent } from 'react';
 import { gantiSandi, hapusAkun as hapusAkunSupabase, keluar } from '../../lib/auth';
 import { useSesi } from '../../lib/sesi';
+
 // F7: huruf sering salah, akun, tentang & sumber data. Tidak menampilkan progres per bab.
 
 export function ProfilPage() {
@@ -173,6 +174,9 @@ export function ProfilPage() {
         )}
       </section>
 
+        {/* TODO(Emil): status masuk/tamu, nama, email, keluar, hapus akun. */}
+        <Link to="/masuk">Masuk / daftar</Link>
+      </section>
       <TentangSumber />
     </>
   );
