@@ -1,0 +1,292 @@
+{
+  "ha": {
+    "contoh": [
+      {
+        "kata": "aksara",
+        "arti": "huruf, tulisan"
+      }
+    ],
+    "catatan": "ꦲ (ha) juga dipakai untuk menulis bunyi “a” di awal kata, misalnya “aksara”. Bentuknya mirip ꦭ (la), jadi perhatikan baik-baik.",
+    "status": "draf"
+  },
+  "na": {
+    "contoh": [
+      {
+        "kata": "nandur",
+        "arti": "menanam"
+      }
+    ],
+    "status": "draf"
+  },
+  "ca": {
+    "contoh": [
+      {
+        "kata": "caping",
+        "arti": "topi petani"
+      }
+    ],
+    "status": "draf"
+  },
+  "ra": {
+    "contoh": [
+      {
+        "kata": "rasa",
+        "arti": "rasa"
+      }
+    ],
+    "status": "draf"
+  },
+  "ka": {
+    "contoh": [
+      {
+        "kata": "kali",
+        "arti": "sungai"
+      }
+    ],
+    "status": "draf"
+  },
+  "da": {
+    "contoh": [
+      {
+        "kata": "dalan",
+        "arti": "jalan"
+      }
+    ],
+    "status": "draf"
+  },
+  "ta": {
+    "contoh": [
+      {
+        "kata": "tali",
+        "arti": "tali"
+      }
+    ],
+    "status": "draf"
+  },
+  "sa": {
+    "contoh": [
+      {
+        "kata": "sawah",
+        "arti": "sawah"
+      }
+    ],
+    "status": "draf"
+  },
+  "wa": {
+    "contoh": [
+      {
+        "kata": "wayang",
+        "arti": "wayang"
+      }
+    ],
+    "status": "draf"
+  },
+  "la": {
+    "contoh": [
+      {
+        "kata": "lara",
+        "arti": "sakit"
+      }
+    ],
+    "catatan": "Bentuknya mirip ꦲ (ha). Perhatikan perbedaannya.",
+    "status": "draf"
+  },
+  "pa": {
+    "contoh": [
+      {
+        "kata": "pasar",
+        "arti": "pasar"
+      }
+    ],
+    "status": "draf"
+  },
+  "dha": {
+    "contoh": [
+      {
+        "kata": "dhahar",
+        "arti": "makan, bahasa halus"
+      }
+    ],
+    "status": "draf"
+  },
+  "ja": {
+    "contoh": [
+      {
+        "kata": "jaran",
+        "arti": "kuda"
+      }
+    ],
+    "status": "draf"
+  },
+  "ya": {
+    "contoh": [
+      {
+        "kata": "yaiku",
+        "arti": "yaitu"
+      }
+    ],
+    "status": "draf"
+  },
+  "nya": {
+    "contoh": [
+      {
+        "kata": "nyamuk",
+        "arti": "nyamuk"
+      }
+    ],
+    "status": "draf"
+  },
+  "ma": {
+    "contoh": [
+      {
+        "kata": "manuk",
+        "arti": "burung"
+      }
+    ],
+    "status": "draf"
+  },
+  "ga": {
+    "contoh": [
+      {
+        "kata": "gajah",
+        "arti": "gajah"
+      }
+    ],
+    "status": "draf"
+  },
+  "ba": {
+    "contoh": [
+      {
+        "kata": "banyu",
+        "arti": "air"
+      }
+    ],
+    "status": "draf"
+  },
+  "tha": {
+    "contoh": [
+      {
+        "kata": "thathit",
+        "arti": "kilat"
+      }
+    ],
+    "status": "draf"
+  },
+  "nga": {
+    "contoh": [
+      {
+        "kata": "ngarep",
+        "arti": "depan"
+      }
+    ],
+    "status": "draf"
+  },
+  "wulu": {
+    "bunyi": "i",
+    "posisi": "di atas aksara",
+    "contoh": [
+      {
+        "kata": "pitik",
+        "arti": "ayam"
+      }
+    ],
+    "status": "draf"
+  },
+  "suku": {
+    "bunyi": "u",
+    "posisi": "di bawah aksara",
+    "contoh": [
+      {
+        "kata": "buku",
+        "arti": "buku"
+      }
+    ],
+    "status": "draf"
+  },
+  "taling": {
+    "bunyi": "é",
+    "posisi": "di depan (sebelah kiri) aksara",
+    "contoh": [
+      {
+        "kata": "sate",
+        "arti": "sate"
+      }
+    ],
+    "catatan": "Bunyinya bisa é atau è, tergantung katanya.",
+    "status": "draf"
+  },
+  "tarung": {
+    "bunyi": "o",
+    "posisi": "mengapit aksara: taling di depan, tarung di belakang",
+    "contoh": [
+      {
+        "kata": "soto",
+        "arti": "soto"
+      }
+    ],
+    "status": "draf"
+  },
+  "pepet": {
+    "bunyi": "e",
+    "posisi": "di atas aksara",
+    "contoh": [
+      {
+        "kata": "pecel",
+        "arti": "makanan sayur dengan bumbu kacang"
+      }
+    ],
+    "status": "draf"
+  },
+  "layar": {
+    "bunyi": "ar",
+    "posisi": "di atas aksara",
+    "contoh": [
+      {
+        "kata": "kabar",
+        "arti": "kabar, berita"
+      }
+    ],
+    "catatan": "Layar menambah bunyi “r” di akhir suku kata.",
+    "status": "draf"
+  },
+  "cecak": {
+    "bunyi": "ang",
+    "posisi": "di atas aksara",
+    "contoh": [
+      {
+        "kata": "kembang",
+        "arti": "bunga"
+      }
+    ],
+    "catatan": "Cecak menambah bunyi “ng” di akhir suku kata.",
+    "status": "draf"
+  },
+  "wignyan": {
+    "bunyi": "ah",
+    "posisi": "di belakang aksara",
+    "contoh": [
+      {
+        "kata": "lemah",
+        "arti": "tanah"
+      }
+    ],
+    "catatan": "Wignyan menambah bunyi “h” di akhir suku kata.",
+    "status": "draf"
+  },
+  "pangkon": {
+    "bunyi": "tanpa vokal",
+    "posisi": "di belakang aksara",
+    "contoh": [
+      {
+        "kata": "bapak",
+        "arti": "ayah"
+      },
+      {
+        "kata": "tindak",
+        "arti": "pergi, bahasa halus"
+      }
+    ],
+    "catatan": "Pangkon mematikan bunyi “a” bawaan, sehingga aksara dibaca sebagai konsonan saja.",
+    "status": "draf"
+  }
+}
