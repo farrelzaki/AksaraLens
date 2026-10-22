@@ -54,6 +54,9 @@ src/
                 scanner_charset.json)
   lib/          supabase.ts (null bila .env kosong → mode tamu)
   features/     belajar, pelajaran, latihan, scanner, profil, akun
+design/
+  assets-csv/   Aset .csv desain (token visual, tabel warna, komponen)
+  uiux/         Hasil final desain UI/UX (wireframe, mockup, ekspor Figma)
 supabase/migrations/   Skema + RLS + trigger profil
 public/models/         .onnx (tidak di-commit)
 ```

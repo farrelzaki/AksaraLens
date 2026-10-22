@@ -43,7 +43,7 @@ Username GitHub diisi di blok [*Isi username GitHub-mu*](#isi-username-github-mu
 | --- | --- | --- | --- | --- |
 | Farrel | Farrel | ML + scanner | `src/ml/`, `src/aksara/`, `src/features/scanner/`, `src/features/profil/` (huruf sering salah, sumber data), `public/models/` | → `farrel` di atas |
 | Emil | Emil | Auth, data, konten, logika jalur | `src/content/`, `src/progres/`, `src/lib/`, `src/features/akun/`, `supabase/` | → `emil` di atas |
-| Choirun | Choirun | UI/UX + tampilan frontend | `src/app/`, tampilan `src/features/*` (kecuali logika di wilayah lain), gaya, `docs/DESIGN_SYSTEM.md` | → `choirun` di atas |
+| Choirun | Choirun | UI/UX + tampilan frontend | `src/app/`, tampilan `src/features/*` (kecuali logika di wilayah lain), gaya, `docs/DESIGN_SYSTEM.md`, `design/assets-csv/`, `design/uiux/` | → `choirun` di atas |
 
 **File bersama** (menyentuh semua orang, wajib dikunci dulu di bagian 4):
 `package.json` / `package-lock.json`, konfigurasi (`.env.example`, `vite.config.ts`, `tsconfig.json`, `vercel.json`), migrasi di `supabase/migrations/`, kontrak di `docs/ARSITEKTUR.md` bagian 4, `CLAUDE.md`, dan file ini.
@@ -78,7 +78,7 @@ Aturan untuk agen:
 | T-02 | Uji ONNX Runtime Web di ponsel (waktu cek tulisan & scan) | Farrel | `[ ]` | | `src/ml/` | | Menentukan browser vs FastAPI |
 | T-03 | Setup Supabase + Vercel, isi `.env` | Emil | `[ ]` | | `supabase/`, `src/lib/` | | Batas 18 Okt |
 | T-04 | Draf konten 3 bab + isi `jalur.json` final | Emil | `[ ]` | | `src/content/` | | Batas 18 Okt |
-| T-05 | Wireframe semua layar | Choirun | `[ ]` | | `docs/DESIGN_SYSTEM.md` | | Batas 18 Okt |
+| T-05 | Wireframe semua layar & aset visual | Choirun | `[ ]` | | `docs/DESIGN_SYSTEM.md`, `design/assets-csv/`, `design/uiux/` | | Batas 18 Okt |
 | T-06 | Putuskan styling (Tailwind / CSS Modules) dan TypeScript | Choirun + Emil | `[ ]` | | `package.json`, `src/app/app.css` | | Batas 18 Okt |
 | T-07 | Rekam data goresan 20 huruf | Semua | `[ ]` | | `src/content/goresan.json` | | Rujukan arah: Omah Aksara |
 | T-08 | Integrasi Model 1 ke kanvas + ambang keyakinan | Farrel | `[~]` | | `src/ml/model1/` | 2026-10-18 | Sisi ML selesai (`periksaTulisan`, `cekKanvas`); tinggal sambung ke kanvas Choirun + setel ambang |
