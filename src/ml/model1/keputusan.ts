@@ -6,8 +6,11 @@ import meta from './huruf_label.json';
 export const LABEL_MODEL1: readonly string[] = meta.kelas;
 export const BUKAN_HURUF = 'bukan';
 
-/** Awal 0,6; disetel saat uji (keputusan terbuka, batas 8 Nov). */
-export const AMBANG_AWAL = meta.ambang_awal;
+/**
+ * Ambang keyakinan 0,7 — keputusan Farrel (19 Okt 2026) berdasarkan docs/EVALUASI.md:
+ * tulisan benar diterima 98,0%, coretan + sandhangan ditolak 99,5%. Nilai awal notebook (0,6) tidak dipakai.
+ */
+export const AMBANG_AWAL = 0.7;
 
 export type HasilCek =
   | { jenis: 'benar'; keyakinan: number }

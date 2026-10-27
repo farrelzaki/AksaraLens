@@ -173,10 +173,6 @@ export function ProfilPage() {
           </>
         )}
       </section>
-
-        {/* TODO(Emil): status masuk/tamu, nama, email, keluar, hapus akun. */}
-        <Link to="/masuk">Masuk / daftar</Link>
-      </section>
       <TentangSumber />
     </>
   );

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { LABEL_MODEL1, nilaiTulisan } from './keputusan';
+import { AMBANG_AWAL, LABEL_MODEL1, nilaiTulisan } from './keputusan';
 
 const prob = (huruf: string, p: number) => {
   const v = new Array(LABEL_MODEL1.length).fill((1 - p) / (LABEL_MODEL1.length - 1));
@@ -19,5 +19,11 @@ describe('nilaiTulisan', () => {
   it('belum terbaca bila keyakinan rendah atau kelas bukan huruf', () => {
     expect(nilaiTulisan(prob('ka', 0.4), 'ka')).toEqual({ jenis: 'belum_terbaca' });
     expect(nilaiTulisan(prob('bukan', 0.95), 'ka')).toEqual({ jenis: 'belum_terbaca' });
+  });
+});
+
+describe('AMBANG_AWAL', () => {
+  it('0,7 sesuai keputusan tim', () => {
+    expect(AMBANG_AWAL).toBe(0.7);
   });
 });
