@@ -1,40 +1,130 @@
-/* Gaya dasar sementara. Library styling (Tailwind vs CSS Modules) belum
-   diputuskan (Choirun + Emil, batas 18 Okt); ganti seluruh file ini setelahnya. */
-
-:root {
-  font-family: system-ui, sans-serif;
-  color: #1f1f1f;
-  background: #fff;
-}
-
-.aksara {
-  font-family: 'Noto Sans Javanese', serif;
-}
+@import './tokens.css';
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  background-color: #1A1614;
+  min-height: 100%;
 }
 
 body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background-color: #1A1614;
+  min-height: 100vh;
   margin: 0;
+  padding: 24px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
-.shell {
-  min-height: 100dvh;
-  max-width: 480px;
-  margin: 0 auto;
+/* Bingkai Desain Mobile Default: Android Compact 412 × 917 px (sesuai Figma & DESIGN_SYSTEM.md §0) */
+#root {
+  width: 412px;
+  min-width: 412px;
+  max-width: 412px;
+  height: 917px;
+  min-height: 917px;
+  max-height: 917px;
+  box-sizing: content-box; /* Canvas dalam TEPAT 412 × 917 px, border di luar */
   display: flex;
   flex-direction: column;
+  margin: auto;
+  position: relative;
+  background-color: var(--color-cream);
+  border-radius: 46px;
+  border: 10px solid #2B1810;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+@media (max-width: 430px) {
+  body {
+    padding: 0;
+    align-items: stretch;
+    background-color: var(--color-cream);
+  }
+  #root {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    height: 100dvh;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    box-sizing: border-box;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+/* Shell wadah mobile 412 × 917 px (Android Compact sesuai Figma) */
+.shell {
+  width: 412px;
+  height: 917px;
+  max-width: 412px;
+  max-height: 917px;
+  margin: 0 auto;
+  background-color: var(--color-cream);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+@media (max-width: 430px) {
+  .shell {
+    width: 100%;
+    max-width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+  }
 }
 
 .isi {
   flex: 1;
-  padding: 16px;
+  width: 100%;
+  height: 100%;
+  max-height: 917px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 96px; /* Ruang untuk floating navbar */
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.isi.layar-penuh {
+  padding-bottom: 0 !important;
+}
+
+/* Floating Navbar sesuai NAVBAR.png & HOMEPAGE.png */
+.navbar-container {
+  position: sticky;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  max-width: 412px;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+  pointer-events: none;
+  padding: 0 16px;
+  margin-top: auto;
 }
 
 .navbar {
-<<<<<<< HEAD
-=======
   pointer-events: auto;
   width: calc(100% - 32px);
   max-width: 398px;
@@ -1485,30 +1575,307 @@ body {
 /* ====== LOGOUT FOOTER - sesuai EDIT PROFILE 1.png ====== */
 /* Logout terletak di bagian bawah edit profil, sticky/fixed */
 .edit-logout-footer {
->>>>>>> 3d50f8b (feat: add MateriBabPage component and corresponding CSS styling for chapter learning journey)
   position: sticky;
   bottom: 0;
-  display: flex;
-  justify-content: space-around;
-  border-top: 1px solid #ddd;
-  background: #fff;
-  padding-bottom: env(safe-area-inset-bottom);
+  left: 0;
+  width: 100%;
+  background: var(--color-cream);
+  padding: 12px 20px 28px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
 }
 
-.navbar a {
-  min-height: 44px;
+/* Logout button: soft warning style (#FFF0DF background, orange text) */
+.btn-logout-footer {
+  width: 100%;
+  min-height: 52px;
+  background: #FFF0DF;
+  border: 1px solid #E1CBB5;
+  border-radius: var(--radius-lg);
+  color: #91511E;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
   display: flex;
   align-items: center;
-  padding: 0 12px;
-  color: inherit;
-  text-decoration: none;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.navbar a.active {
+.btn-logout-footer:hover {
+  background: #FFE4CC;
+  transform: translateY(-1px);
+}
+
+.btn-logout-footer:active {
+  transform: translateY(0px);
+}
+
+/* Masuk/Buat Akun button - olive style */
+.btn-masuk-footer {
+  background: #E7EDDA;
+  border-color: #9CAF6C;
+  color: #52632F;
+}
+
+.btn-masuk-footer:hover {
+  background: #D8E7C8;
+}
+
+/* ========================================================
+   PROFIL & EDIT PROFIL PAGE (PROFIL 1.png, EDIT PROFILE 1.png)
+   ======================================================== */
+.profil-page {
+  padding: 18px 18px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profil-loading {
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.profil-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.profil-title {
+  font-size: 22px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.profil-tagline {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.profil-hero-art {
+  position: relative;
+  height: 200px;
+  background: linear-gradient(180deg, #FBE0B2 0%, #E8F0D6 60%, #FAF7F2 100%);
+  border-radius: 26px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 14px rgba(77, 52, 35, 0.04);
+}
+
+.pine-trees-left {
+  position: absolute;
+  bottom: -10px;
+  left: 12px;
+  width: 50px;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.pine-trees-right {
+  position: absolute;
+  bottom: -10px;
+  right: 12px;
+  width: 50px;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.profil-avatar-big {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.speech-bubble-aksa {
+  background: var(--color-white);
+  border-radius: 14px;
+  padding: 6px 14px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  box-shadow: 0 4px 12px rgba(77, 52, 35, 0.08);
+  border: 1px solid var(--border);
+  margin-top: 6px;
+}
+
+/* Card Motivasi */
+.card-motivasi {
+  background: var(--color-white);
+  border-radius: 22px;
+  border: 1.5px solid var(--border);
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-card);
+}
+
+.motivasi-text {
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.motivasi-divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 14px;
+}
+
+.motivasi-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.book-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--bab1-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.motivasi-progress-details {
+  flex: 1;
+}
+
+.progress-numbers {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13.5px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--text-primary);
+}
+
+.percent-label {
+  color: var(--color-olive);
+}
+
+.progress-track-gray {
+  height: 6px;
+  background: #EFE9E2;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-fill-green {
+  height: 100%;
+  background: var(--color-sage);
+  border-radius: var(--radius-full);
+}
+
+.progress-caption {
+  font-size: 11.5px;
+  color: #8C827A;
+  display: block;
+  margin-top: 4px;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--color-white);
+  border: 1.5px solid var(--border);
+  border-radius: 18px;
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+  box-shadow: var(--shadow-card);
+}
+
+.stat-val {
+  font-size: 20px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 2px 0 0;
+}
+
+.stat-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Card Lemah (Huruf Sering Salah) */
+.card-lemah {
+  background: #FFF9F2;
+  border: 1.5px solid #E1CBB5;
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 22px;
+}
+
+.lemah-title {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #91511E;
+  margin-bottom: 4px;
+}
+
+.lemah-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.lemah-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lemah-tag-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-white);
+  border: 1px solid #E1CBB5;
+  border-radius: 10px;
+  padding: 6px 10px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 12.5px;
+  transition: transform 0.15s ease;
+}
+
+.lemah-tag-item:hover {
+  transform: translateY(-1px);
+}
+
+.lemah-tag-item .aksara {
+  font-size: 16px;
+}
+
+.lemah-tag-item .latin {
   font-weight: 700;
 }
-<<<<<<< HEAD
-=======
 
 .lemah-tag-item .ratio {
   font-size: 11px;
@@ -3852,4 +4219,3 @@ body {
 
 
 
->>>>>>> b99654f (feat: add comprehensive core CSS styles and mobile layout framework for AksaraLens)
