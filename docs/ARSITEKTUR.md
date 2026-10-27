@@ -127,7 +127,7 @@ Jangan diputuskan agen sendiri.
 | --- | --- | --- | --- |
 | TBD-01 | Isi pelajaran per bab (`jalur.json` masih usulan PRD) | Emil | 18 Okt |
 | TBD-02 | Styling (Tailwind / CSS Modules) dan tetap TypeScript atau tidak | Choirun + Emil | 18 Okt |
-| TBD-03 | Ambang keyakinan latihan menulis (awal 0,6) | Farrel | 8 Nov |
+| TBD-03 | ~~Ambang keyakinan latihan menulis~~ — **diputuskan 0,7** (19 Okt 2026, lihat `docs/EVALUASI.md`) | Farrel | selesai |
 | TBD-04 | Scanner di browser atau FastAPI | Farrel | Setelah uji ponsel (T-02) |
 
 ## 8. Risiko Teknis
