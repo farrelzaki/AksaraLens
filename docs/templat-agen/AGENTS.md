@@ -30,6 +30,8 @@ Jika bagian ini masih kosong, tanyakan kepada pengguna sebelum menulis kode.
 | `docs/PRD.md` | Apa yang dibangun: tujuan, fitur, aturan bisnis | Disepakati dengan pengguna |
 | `docs/ARSITEKTUR.md` | Stack, struktur kode, perintah, kontrak API, konvensi | Disepakati dengan pengguna |
 | `docs/DESIGN_SYSTEM.md` | Token visual, tipografi, komponen (opsional) | Disepakati dengan pengguna |
+| `design/assets-csv/` | Berkas aset `.csv` untuk desain (token, palet, data desain) | Disepakati dengan pengguna / Choirun |
+| `design/uiux/` | Hasil final desain UI/UX (mockup, wireframe, ekspor Figma) | Disepakati dengan pengguna / Choirun |
 | `docs/referensi/` | Dokumen sumber (PRD AksaraLens v1.1 lengkap) | Hanya dibaca |
 
 Aturan menempatkan informasi:

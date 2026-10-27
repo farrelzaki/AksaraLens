@@ -8,6 +8,7 @@
 | Versi | 1.1 (11 Okt 2026, @Ifril) |
 | Tim | Farrel, Emil, Choirun |
 | Jadwal | 7 Okt 2026 – awal Jan 2027 |
+| Desain & UI/UX | `docs/DESIGN_SYSTEM.md`, aset `.csv` di `design/assets-csv/`, hasil final di `design/uiux/` |
 
 ## 1. Ringkasan
 

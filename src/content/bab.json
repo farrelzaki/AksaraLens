@@ -4,7 +4,13 @@
     "judul": "Nglegena",
     "ringkasan": "Dua puluh aksara dasar. Setiap aksara dibaca dengan vokal a.",
     "letters": ["ha", "na", "ca", "ra", "ka", "da", "ta", "sa", "wa", "la", "pa", "dha", "ja", "ya", "nya", "ma", "ga", "ba", "tha", "nga"],
-    "contoh": [],
+    "contoh": [
+      { "aksara": "ꦫꦱ", "uraian": "ra + sa = rasa (rasa)" },
+      { "aksara": "ꦭꦫ", "uraian": "la + ra = lara (sakit)" },
+      { "aksara": "ꦩꦠ", "uraian": "ma + ta = mata (mata)" },
+      { "aksara": "ꦫꦗ", "uraian": "ra + ja = raja (raja)" },
+      { "aksara": "ꦕꦫ", "uraian": "ca + ra = cara (cara)" }
+    ],
     "mirip": [["ha", "la"]]
   },
   {
@@ -12,7 +18,13 @@
     "judul": "Sandhangan swara",
     "ringkasan": "Tanda yang mengubah vokal a menjadi i, u, é, o, atau e.",
     "letters": ["wulu", "suku", "taling", "tarung", "pepet"],
-    "contoh": [{ "aksara": "ꦏꦶ", "uraian": "ka + wulu = ki" }],
+    "contoh": [
+      { "aksara": "ꦏꦶ", "uraian": "ka + wulu = ki" },
+      { "aksara": "ꦏꦸ", "uraian": "ka + suku = ku" },
+      { "aksara": "ꦏꦺ", "uraian": "ka + taling = ké" },
+      { "aksara": "ꦏꦺꦴ", "uraian": "ka + taling tarung = ko" },
+      { "aksara": "ꦏꦼ", "uraian": "ka + pepet = ke" }
+    ],
     "mirip": []
   },
   {
@@ -20,7 +32,12 @@
     "judul": "Panyigeg + pangkon",
     "ringkasan": "Tanda penutup suku kata (r, ng, h) dan pangkon untuk mematikan vokal.",
     "letters": ["layar", "cecak", "wignyan", "pangkon"],
-    "contoh": [],
+    "contoh": [
+      { "aksara": "ꦏꦂ", "uraian": "ka + layar = kar" },
+      { "aksara": "ꦏꦁ", "uraian": "ka + cecak = kang" },
+      { "aksara": "ꦏꦃ", "uraian": "ka + wignyan = kah" },
+      { "aksara": "ꦏ꧀", "uraian": "ka + pangkon = k" }
+    ],
     "mirip": []
   }
 ]

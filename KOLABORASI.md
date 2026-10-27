@@ -7,8 +7,8 @@ Ganti teks di dalam tanda kutip dengan username GitHub-mu, lalu samakan `git con
 
 ```ini
 farrel  = "farrelzaki"
-emil    = "masukan username github"
-choirun = "masukan username github"
+emil    = "Baruna13"
+choirun = "kenjidotkom"
 ```
 
 Nilai ini dipakai tabel *Anggota* (bagian 1) dan dicek agen di awal sesi (bagian 0, langkah 3).
@@ -43,7 +43,7 @@ Username GitHub diisi di blok [*Isi username GitHub-mu*](#isi-username-github-mu
 | --- | --- | --- | --- | --- |
 | Farrel | Farrel | ML + scanner | `src/ml/`, `src/aksara/`, `src/features/scanner/`, `src/features/profil/` (huruf sering salah, sumber data), `public/models/` | → `farrel` di atas |
 | Emil | Emil | Auth, data, konten, logika jalur | `src/content/`, `src/progres/`, `src/lib/`, `src/features/akun/`, `supabase/` | → `emil` di atas |
-| Choirun | Choirun | UI/UX + tampilan frontend | `src/app/`, tampilan `src/features/*` (kecuali logika di wilayah lain), gaya, `docs/DESIGN_SYSTEM.md` | → `choirun` di atas |
+| Choirun | Choirun | UI/UX + tampilan frontend | `src/app/`, tampilan `src/features/*` (kecuali logika di wilayah lain), gaya, `docs/DESIGN_SYSTEM.md`, `design/assets-csv/`, `design/uiux/` | → `choirun` di atas |
 
 **File bersama** (menyentuh semua orang, wajib dikunci dulu di bagian 4):
 `package.json` / `package-lock.json`, konfigurasi (`.env.example`, `vite.config.ts`, `tsconfig.json`, `vercel.json`), migrasi di `supabase/migrations/`, kontrak di `docs/ARSITEKTUR.md` bagian 4, `CLAUDE.md`, dan file ini.
@@ -78,12 +78,13 @@ Aturan untuk agen:
 | T-02 | Uji ONNX Runtime Web di ponsel (waktu cek tulisan & scan) | Farrel | `[ ]` | | `src/ml/` | | Menentukan browser vs FastAPI |
 | T-03 | Setup Supabase + Vercel, isi `.env` | Emil | `[ ]` | | `supabase/`, `src/lib/` | | Batas 18 Okt |
 | T-04 | Draf konten 3 bab + isi `jalur.json` final | Emil | `[ ]` | | `src/content/` | | Batas 18 Okt |
-| T-05 | Wireframe semua layar | Choirun | `[ ]` | | `docs/DESIGN_SYSTEM.md` | | Batas 18 Okt |
+| T-05 | Wireframe semua layar & aset visual | Choirun | `[ ]` | | `docs/DESIGN_SYSTEM.md`, `design/assets-csv/`, `design/uiux/` | | Batas 18 Okt |
 | T-06 | Putuskan styling (Tailwind / CSS Modules) dan TypeScript | Choirun + Emil | `[ ]` | | `package.json`, `src/app/app.css` | | Batas 18 Okt |
 | T-07 | Rekam data goresan 20 huruf | Semua | `[ ]` | | `src/content/goresan.json` | | Rujukan arah: Omah Aksara |
-| T-08 | Integrasi Model 1 ke kanvas + ambang keyakinan | Farrel | `[ ]` | | `src/ml/model1/` | | 19 Okt–8 Nov |
+| T-08 | Integrasi Model 1 ke kanvas + ambang keyakinan | Farrel | `[~]` | | `src/ml/model1/` | 2026-10-18 | Sisi ML selesai (`periksaTulisan`, `cekKanvas`); tinggal sambung ke kanvas Choirun + setel ambang |
 | T-09 | Navbar, jalur, layar pelajaran, materi | Choirun | `[ ]` | | `src/app/`, `src/features/belajar/`, `src/features/pelajaran/` | | 19 Okt–8 Nov |
 | T-10 | Soal + logika jalur (tamu) | Emil | `[ ]` | | `src/content/`, `src/progres/` | | 19 Okt–8 Nov |
+| T-11 | Scanner end-to-end di browser (detektor → CRNN → transliterasi) + sinkron label hasil ML | Farrel | `[x]` | `feature/scanner` | `src/ml/`, `src/aksara/`, `src/features/scanner/` | 2026-10-18 | Identik dengan notebook; uji di ponsel lanjut di T-02 |
 
 Rincian langkah task (rencana, checkpoint) ditulis di `TASK.md` pribadi, bukan di sini.
 
@@ -193,6 +194,15 @@ Format: `- YYYY-MM-DD · T-xx · apa yang dikerjakan · hasil/verifikasi · cata
 
 - 2026-10-11 · T-01 · arsitektur awal sesuai PRD v1.1 + template kolaborasi · typecheck, 18 tes, build lulus · lihat `docs/ARSITEKTUR.md`
 - 2026-10-12 · T-01 · aturan Git tim: multi-branch via `develop`, tanpa reviewer wajib, Git diurus agen AI (bagian 5a) · dokumen saja · berlaku setelah PR #1 masuk `develop`
+- 2026-10-18 · T-11 · scanner jalan di browser: deskew, detektor baris, CRNN, `keLogis`, uraian; label/charset dari hasil ML · 37 tes, typecheck, build; 4 gambar uji identik dengan `scripts/rujukan_scanner.py` (pipeline notebook) · model `.onnx` salin dari `docs/random` ke `public/models/`; uji ponsel = T-02
+- 2026-10-18 · T-08 · pra-proses Model 1 (skeleton = LUT skimage) + `periksaTulisan`/`cekKanvas`; Profil: Tentang & sumber data · 44 tes; 196 tulisan tangan Roboflow: tebakan 100% sama dengan notebook (akurasi 99,5%); 20/20 huruf di browser, ±130 ms · Choirun: panggil `cekKanvas` untuk menonaktifkan Cek, `periksaTulisan(kanvas, huruf)` saat Cek
+- 2026-10-27 · T-08 · ambang keyakinan diputuskan **0,7** (`AMBANG_AWAL`, lihat `docs/EVALUASI.md`) · `ProfilPage.tsx`: sisa placeholder lama dari merge #11 membuat build gagal, dihapus · tes `soal.test.ts` (Emil) gagal: data menulis pepet `we`, kode `wê` — perlu keputusan Emil
+- 2026-10-18 · TBD-05 · model `.onnx` disajikan dari Supabase Storage (bucket publik `models/v1`) lewat `VITE_MODEL_URL`; kosong = `public/models/` · 45 tes, model lokal termuat · Emil: tambahkan `VITE_MODEL_URL` ke env Vercel saat setup (T-03); `.env.example` ikut diubah
+- 2026-10-19 · T-11 · scanner dipindah ke Web Worker (`scanner.ts` → `scan.worker.ts`); `vite.config.ts` ikut diubah (`worker.format: 'es'`) · thread utama 0 ms terblokir saat membaca (sebelumnya ±230 ms di laptop) · halaman memakai `ml/model2/scanner`, bukan `scan`
+- 2026-10-19 · T-11 · pemanasan scanner kini menjalankan 1 inferensi (baca pertama 2,9 → 0,7 dtk di laptop); permintaan worker diproses berurutan (sebelumnya bisa menggantung bila Baca ditekan saat pemanasan); Kaji: "taling tarung" satu komponen · 45 tes, dicek di browser · model salah membaca *pada lungsi* sebagai pangkon pada satu gambar uji
+- 2026-10-19 · T-08 · evaluasi Model 1 (`docs/EVALUASI.md`, `scripts/evaluasi_model1.py`): penolakan coretan acak + sandhangan 99,1% @0,6 (target PRD ≥ 85% tercapai); tabel ambang 0,4–0,9 untuk keputusan ambang · positif dari Roboflow (optimistis), perlu tulisan kanvas teman
+- 2026-10-19 · T-11 · model disimpan di Cache Storage (`aksaralens-model`; versi lama dihapus otomatis) agar latihan & scanner jalan offline setelah sekali dimuat; `vercel.json` ikut diubah (cache permanen `/assets/`, nama berhash) · dicek di browser: 3 model tercache, terbaca saat fetch diputus · offline penuh setelah muat ulang halaman butuh service worker (belum, perlu keputusan tim)
+- 2026-10-19 · T-11 · bingkai potong "Atur area" (F5 langkah 2): `ml/model2/bingkai.ts` (murni, dites) + `BingkaiPotong.tsx`; `bacaFoto(foto, bingkai)` hanya membaca area pilihan · 50 tes; di browser bingkai dipersempit ke baris 1 → hanya baris 1 terbaca · Choirun: gaya bingkai/pegangan bebas diubah, logika di `ubahBingkai`
 
 ### Log Emil
 
