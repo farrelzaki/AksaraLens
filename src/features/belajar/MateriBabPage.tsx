@@ -47,7 +47,8 @@ export function MateriBabPage() {
   const pathStroke =
     babNomor === 1 ? '#D2DCC0' : babNomor === 2 ? '#DCD9C0' : '#D5C0DC';
 
-  // 5 Tahapan perjalanan belajar dengan koordinat persis sesuai Figma
+  // 5 Tahapan perjalanan belajar dengan koordinat presisi sesuai Figma (366 × 650)
+  // Perhatikan: Pada Figma MATERI BAB 1-3, tahap 1 dan 2 sama-sama menggunakan ikon mata (mengenali)
   const tahapan = [
     {
       id: 'kenali',
@@ -62,7 +63,7 @@ export function MateriBabPage() {
       id: 'temukan',
       title: babNomor === 1 ? 'Temukan bentuknya' : babNomor === 2 ? 'Temukan tandanya' : 'Temukan penandanya',
       sub: 'Mengenali · 3 tantangan',
-      icon: 'search',
+      icon: 'eye',
       cx: 238.9,
       cy: 202.0,
       titikRef: titikBab[1] || titikBab[0],
@@ -96,7 +97,7 @@ export function MateriBabPage() {
     },
   ];
 
-  // Cari apakah ada titik yang aktif saat ini
+  // Cari index tahapan yang aktif: tahapan pertama yang terbuka dan belum selesai
   const indexAktif = tahapan.findIndex((t) => {
     const s = t.titikRef ? status.get(t.titikRef.id) : undefined;
     return s === 'terbuka';
@@ -123,7 +124,8 @@ export function MateriBabPage() {
         <h1 className="materi-header-title">Perjalanan belajar</h1>
         <button className="btn-circle-nav" onClick={() => navigate('/profil')} aria-label="Lihat Progres">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" width="20" height="20">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+            <polyline points="16 7 22 7 22 13" />
           </svg>
         </button>
       </header>
@@ -167,17 +169,23 @@ export function MateriBabPage() {
         </svg>
 
         {/* Aksara Jawa dekoratif mengambang */}
-        <span className="floating-aksara aksara" style={{ top: '65px', right: '16px' }} aria-hidden="true">ꦲꦤ</span>
-        <span className="floating-aksara aksara" style={{ top: '250px', left: '16px', fontSize: '26px' }} aria-hidden="true">✦</span>
-        <span className="floating-aksara aksara" style={{ top: '530px', right: '16px' }} aria-hidden="true">ꦲꦤ</span>
+        <span className="floating-aksara aksara" style={{ top: '65px', right: '16px' }} aria-hidden="true">
+          {babNomor === 1 ? 'ꦲꦤ' : babNomor === 2 ? 'ꦶꦸ' : 'ꦁꦃ'}
+        </span>
+        <span className="floating-aksara aksara" style={{ top: '250px', left: '16px', fontSize: '26px' }} aria-hidden="true">
+          ✦
+        </span>
+        <span className="floating-aksara aksara" style={{ top: '530px', right: '16px' }} aria-hidden="true">
+          {babNomor === 1 ? 'ꦲꦤ' : babNomor === 2 ? 'ꦺꦴ' : '꧀'}
+        </span>
 
         {/* 5 Node Tahapan dengan penempatan presisi di titik S-curve */}
         {tahapan.map((tahap, idx) => {
           const titikStatus = tahap.titikRef ? status.get(tahap.titikRef.id) : idx === 0 ? 'terbuka' : 'terkunci';
           const isTerbuka = titikStatus === 'terbuka' || titikStatus === 'selesai';
           const isSelesai = titikStatus === 'selesai';
-          // Tentukan node aktif: jika belum ada yang selesai, node 0 aktif; atau node pertama yang 'terbuka'
-          const isCurrent = indexAktif === -1 ? idx === 0 : idx === indexAktif;
+          // Tentukan node aktif: jika indexAktif >= 0 gunakan itu, jika tidak ada yg aktif dan ada selesai, node terakhir; default node 0
+          const isCurrent = indexAktif === -1 ? (selesaiCount === 0 && idx === 0) : idx === indexAktif;
 
           return (
             <div
@@ -188,10 +196,10 @@ export function MateriBabPage() {
                 top: `${tahap.cy}px`,
               }}
             >
-              {/* Tag "MULAI DI SINI" melayang di atas node aktif */}
+              {/* Tag "MULAI DI SINI" melayang di atas node aktif pertama, atau "LANJUTKAN" jika sudah ada yang selesai */}
               {isCurrent && (
                 <div className="node-start-badge">
-                  {idx === 0 ? 'MULAI DI SINI' : 'LANJUTKAN'}
+                  {selesaiCount === 0 ? 'MULAI DI SINI' : 'LANJUTKAN'}
                 </div>
               )}
 
@@ -208,11 +216,6 @@ export function MateriBabPage() {
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" width="30" height="30">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
-                  )}
-                  {tahap.icon === 'search' && (
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" width="28" height="28">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                   )}
                   {tahap.icon === 'brain' && (
@@ -284,7 +287,7 @@ export function MateriBabPage() {
         <span>Selesaikan satu langkah untuk membuka langkah berikutnya.</span>
       </div>
 
-      {/* 5. CTA Button Bawah (di akhir halaman yang dapat digulir) */}
+      {/* 5. CTA Button Bawah */}
       <div className="bottom-cta-container">
         <button
           type="button"
