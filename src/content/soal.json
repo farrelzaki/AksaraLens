@@ -1,0 +1,821 @@
+{
+  "b1-p1": {
+    "pilihan": [
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "ha",
+        "tanya": "ꦲ",
+        "jawab": "ha",
+        "pilihan": [
+          "ha",
+          "la",
+          "na",
+          "ca"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "na",
+        "tanya": "na",
+        "jawab": "ꦤ",
+        "pilihan": [
+          "ꦕ",
+          "ꦤ",
+          "ꦫ",
+          "ꦏ"
+        ]
+      },
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "ca",
+        "tanya": "ꦕ",
+        "jawab": "ca",
+        "pilihan": [
+          "ra",
+          "ka",
+          "ca",
+          "ha"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "ra",
+        "tanya": "ra",
+        "jawab": "ꦫ",
+        "pilihan": [
+          "ꦏ",
+          "ꦲ",
+          "ꦤ",
+          "ꦫ"
+        ]
+      },
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "ka",
+        "tanya": "ꦏ",
+        "jawab": "ka",
+        "pilihan": [
+          "ka",
+          "ha",
+          "na",
+          "ca"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "ha",
+        "tanya": "ha",
+        "jawab": "ꦲ",
+        "pilihan": [
+          "ꦭ",
+          "ꦲ",
+          "ꦤ",
+          "ꦕ"
+        ]
+      }
+    ],
+    "jodoh": [
+      {
+        "huruf": "ha",
+        "aksara": "ꦲ",
+        "latin": "ha"
+      },
+      {
+        "huruf": "na",
+        "aksara": "ꦤ",
+        "latin": "na"
+      },
+      {
+        "huruf": "ca",
+        "aksara": "ꦕ",
+        "latin": "ca"
+      },
+      {
+        "huruf": "ra",
+        "aksara": "ꦫ",
+        "latin": "ra"
+      },
+      {
+        "huruf": "ka",
+        "aksara": "ꦏ",
+        "latin": "ka"
+      }
+    ]
+  },
+  "b1-p2": {
+    "pilihan": [
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "da",
+        "tanya": "ꦢ",
+        "jawab": "da",
+        "pilihan": [
+          "da",
+          "ta",
+          "sa",
+          "wa"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "ta",
+        "tanya": "ta",
+        "jawab": "ꦠ",
+        "pilihan": [
+          "ꦱ",
+          "ꦠ",
+          "ꦮ",
+          "ꦭ"
+        ]
+      },
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "sa",
+        "tanya": "ꦱ",
+        "jawab": "sa",
+        "pilihan": [
+          "wa",
+          "la",
+          "sa",
+          "ha"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "wa",
+        "tanya": "wa",
+        "jawab": "ꦮ",
+        "pilihan": [
+          "ꦭ",
+          "ꦲ",
+          "ꦤ",
+          "ꦮ"
+        ]
+      },
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "la",
+        "tanya": "ꦭ",
+        "jawab": "la",
+        "pilihan": [
+          "la",
+          "ha",
+          "na",
+          "ca"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "la",
+        "tanya": "la",
+        "jawab": "ꦭ",
+        "pilihan": [
+          "ꦲ",
+          "ꦭ",
+          "ꦤ",
+          "ꦕ"
+        ]
+      }
+    ],
+    "jodoh": [
+      {
+        "huruf": "da",
+        "aksara": "ꦢ",
+        "latin": "da"
+      },
+      {
+        "huruf": "ta",
+        "aksara": "ꦠ",
+        "latin": "ta"
+      },
+      {
+        "huruf": "sa",
+        "aksara": "ꦱ",
+        "latin": "sa"
+      },
+      {
+        "huruf": "wa",
+        "aksara": "ꦮ",
+        "latin": "wa"
+      },
+      {
+        "huruf": "la",
+        "aksara": "ꦭ",
+        "latin": "la"
+      }
+    ]
+  },
+  "b1-p3": {
+    "pilihan": [
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "pa",
+        "tanya": "ꦥ",
+        "jawab": "pa",
+        "pilihan": [
+          "pa",
+          "dha",
+          "ja",
+          "ya"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "dha",
+        "tanya": "dha",
+        "jawab": "ꦝ",
+        "pilihan": [
+          "ꦗ",
+          "ꦝ",
+          "ꦪ",
+          "ꦚ"
+        ]
+      },
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "ja",
+        "tanya": "ꦗ",
+        "jawab": "ja",
+        "pilihan": [
+          "ya",
+          "nya",
+          "ja",
+          "ha"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "ya",
+        "tanya": "ya",
+        "jawab": "ꦪ",
+        "pilihan": [
+          "ꦚ",
+          "ꦲ",
+          "ꦤ",
+          "ꦪ"
+        ]
+      },
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "nya",
+        "tanya": "ꦚ",
+        "jawab": "nya",
+        "pilihan": [
+          "nya",
+          "ha",
+          "na",
+          "ca"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "ja",
+        "tanya": "ja",
+        "jawab": "ꦗ",
+        "pilihan": [
+          "ꦪ",
+          "ꦗ",
+          "ꦚ",
+          "ꦲ"
+        ]
+      }
+    ],
+    "jodoh": [
+      {
+        "huruf": "pa",
+        "aksara": "ꦥ",
+        "latin": "pa"
+      },
+      {
+        "huruf": "dha",
+        "aksara": "ꦝ",
+        "latin": "dha"
+      },
+      {
+        "huruf": "ja",
+        "aksara": "ꦗ",
+        "latin": "ja"
+      },
+      {
+        "huruf": "ya",
+        "aksara": "ꦪ",
+        "latin": "ya"
+      },
+      {
+        "huruf": "nya",
+        "aksara": "ꦚ",
+        "latin": "nya"
+      }
+    ]
+  },
+  "b1-p4": {
+    "pilihan": [
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "ma",
+        "tanya": "ꦩ",
+        "jawab": "ma",
+        "pilihan": [
+          "ma",
+          "ga",
+          "ba",
+          "tha"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "ga",
+        "tanya": "ga",
+        "jawab": "ꦒ",
+        "pilihan": [
+          "ꦧ",
+          "ꦒ",
+          "ꦛ",
+          "ꦔ"
+        ]
+      },
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "ba",
+        "tanya": "ꦧ",
+        "jawab": "ba",
+        "pilihan": [
+          "tha",
+          "nga",
+          "ba",
+          "ha"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "tha",
+        "tanya": "tha",
+        "jawab": "ꦛ",
+        "pilihan": [
+          "ꦔ",
+          "ꦲ",
+          "ꦤ",
+          "ꦛ"
+        ]
+      },
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "nga",
+        "tanya": "ꦔ",
+        "jawab": "nga",
+        "pilihan": [
+          "nga",
+          "ha",
+          "na",
+          "ca"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "ba",
+        "tanya": "ba",
+        "jawab": "ꦧ",
+        "pilihan": [
+          "ꦛ",
+          "ꦧ",
+          "ꦔ",
+          "ꦲ"
+        ]
+      }
+    ],
+    "jodoh": [
+      {
+        "huruf": "ma",
+        "aksara": "ꦩ",
+        "latin": "ma"
+      },
+      {
+        "huruf": "ga",
+        "aksara": "ꦒ",
+        "latin": "ga"
+      },
+      {
+        "huruf": "ba",
+        "aksara": "ꦧ",
+        "latin": "ba"
+      },
+      {
+        "huruf": "tha",
+        "aksara": "ꦛ",
+        "latin": "tha"
+      },
+      {
+        "huruf": "nga",
+        "aksara": "ꦔ",
+        "latin": "nga"
+      }
+    ]
+  },
+  "b2-p5": {
+    "pilihan": [
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "wulu",
+        "tanya": "ꦏꦶ",
+        "jawab": "ki",
+        "pilihan": [
+          "ki",
+          "ku",
+          "ké",
+          "ko"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "suku",
+        "tanya": "mu",
+        "jawab": "ꦩꦸ",
+        "pilihan": [
+          "ꦩꦺ",
+          "ꦩꦸ",
+          "ꦩꦺꦴ",
+          "ꦩꦼ"
+        ]
+      },
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "wulu",
+        "tanya": "ꦥꦶ",
+        "jawab": "pi",
+        "pilihan": [
+          "pu",
+          "pé",
+          "pi",
+          "po"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "suku",
+        "tanya": "tu",
+        "jawab": "ꦠꦸ",
+        "pilihan": [
+          "ꦠꦺ",
+          "ꦠꦺꦴ",
+          "ꦠꦼ",
+          "ꦠꦸ"
+        ]
+      },
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "wulu",
+        "tanya": "ꦗꦶ",
+        "jawab": "ji",
+        "pilihan": [
+          "ji",
+          "ju",
+          "jé",
+          "jo"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "suku",
+        "tanya": "wu",
+        "jawab": "ꦮꦸ",
+        "pilihan": [
+          "ꦮꦺ",
+          "ꦮꦸ",
+          "ꦮꦺꦴ",
+          "ꦮꦼ"
+        ]
+      }
+    ],
+    "jodoh": [
+      {
+        "huruf": "wulu",
+        "aksara": "ꦏꦶ",
+        "latin": "ki"
+      },
+      {
+        "huruf": "wulu",
+        "aksara": "ꦱꦶ",
+        "latin": "si"
+      },
+      {
+        "huruf": "suku",
+        "aksara": "ꦩꦸ",
+        "latin": "mu"
+      },
+      {
+        "huruf": "suku",
+        "aksara": "ꦫꦸ",
+        "latin": "ru"
+      }
+    ]
+  },
+  "b2-p6": {
+    "pilihan": [
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "taling",
+        "tanya": "ꦠꦺ",
+        "jawab": "té",
+        "pilihan": [
+          "té",
+          "to",
+          "te",
+          "ti"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "tarung",
+        "tanya": "jo",
+        "jawab": "ꦗꦺꦴ",
+        "pilihan": [
+          "ꦗꦼ",
+          "ꦗꦺꦴ",
+          "ꦗꦶ",
+          "ꦗꦸ"
+        ]
+      },
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "pepet",
+        "tanya": "ꦮꦼ",
+        "jawab": "we",
+        "pilihan": [
+          "wi",
+          "wu",
+          "we",
+          "wé"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "taling",
+        "tanya": "cé",
+        "jawab": "ꦕꦺ",
+        "pilihan": [
+          "ꦕꦺꦴ",
+          "ꦕꦼ",
+          "ꦕꦶ",
+          "ꦕꦺ"
+        ]
+      },
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "tarung",
+        "tanya": "ꦭꦺꦴ",
+        "jawab": "lo",
+        "pilihan": [
+          "lo",
+          "le",
+          "li",
+          "lu"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "pepet",
+        "tanya": "ke",
+        "jawab": "ꦏꦼ",
+        "pilihan": [
+          "ꦏꦶ",
+          "ꦏꦼ",
+          "ꦏꦸ",
+          "ꦏꦺ"
+        ]
+      }
+    ],
+    "jodoh": [
+      {
+        "huruf": "taling",
+        "aksara": "ꦏꦺ",
+        "latin": "ké"
+      },
+      {
+        "huruf": "taling",
+        "aksara": "ꦠꦺ",
+        "latin": "té"
+      },
+      {
+        "huruf": "tarung",
+        "aksara": "ꦱꦺꦴ",
+        "latin": "so"
+      },
+      {
+        "huruf": "tarung",
+        "aksara": "ꦥꦺꦴ",
+        "latin": "po"
+      },
+      {
+        "huruf": "pepet",
+        "aksara": "ꦧꦼ",
+        "latin": "be"
+      }
+    ]
+  },
+  "b3-p7": {
+    "pilihan": [
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "layar",
+        "tanya": "ꦏꦂ",
+        "jawab": "kar",
+        "pilihan": [
+          "kar",
+          "kang",
+          "kah",
+          "k"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "cecak",
+        "tanya": "mang",
+        "jawab": "ꦩꦁ",
+        "pilihan": [
+          "ꦩꦃ",
+          "ꦩꦁ",
+          "ꦩ꧀",
+          "ꦩꦂ"
+        ]
+      },
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "wignyan",
+        "tanya": "ꦥꦃ",
+        "jawab": "pah",
+        "pilihan": [
+          "p",
+          "par",
+          "pah",
+          "pang"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "layar",
+        "tanya": "tar",
+        "jawab": "ꦠꦂ",
+        "pilihan": [
+          "ꦠꦁ",
+          "ꦠꦃ",
+          "ꦠ꧀",
+          "ꦠꦂ"
+        ]
+      },
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "cecak",
+        "tanya": "ꦗꦁ",
+        "jawab": "jang",
+        "pilihan": [
+          "jang",
+          "jah",
+          "j",
+          "jar"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "wignyan",
+        "tanya": "wah",
+        "jawab": "ꦮꦃ",
+        "pilihan": [
+          "ꦮ꧀",
+          "ꦮꦃ",
+          "ꦮꦂ",
+          "ꦮꦁ"
+        ]
+      }
+    ],
+    "jodoh": [
+      {
+        "huruf": "layar",
+        "aksara": "ꦏꦂ",
+        "latin": "kar"
+      },
+      {
+        "huruf": "layar",
+        "aksara": "ꦩꦂ",
+        "latin": "mar"
+      },
+      {
+        "huruf": "cecak",
+        "aksara": "ꦧꦁ",
+        "latin": "bang"
+      },
+      {
+        "huruf": "cecak",
+        "aksara": "ꦱꦁ",
+        "latin": "sang"
+      },
+      {
+        "huruf": "wignyan",
+        "aksara": "ꦫꦃ",
+        "latin": "rah"
+      }
+    ]
+  },
+  "b3-p8": {
+    "pilihan": [
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "pangkon",
+        "tanya": "ꦠ꧀",
+        "jawab": "t",
+        "pilihan": [
+          "t",
+          "tar",
+          "tang",
+          "tah"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "pangkon",
+        "tanya": "j",
+        "jawab": "ꦗ꧀",
+        "pilihan": [
+          "ꦗꦂ",
+          "ꦗ꧀",
+          "ꦗꦁ",
+          "ꦗꦃ"
+        ]
+      },
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "pangkon",
+        "tanya": "ꦮ꧀",
+        "jawab": "w",
+        "pilihan": [
+          "war",
+          "wang",
+          "w",
+          "wah"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "pangkon",
+        "tanya": "c",
+        "jawab": "ꦕ꧀",
+        "pilihan": [
+          "ꦕꦂ",
+          "ꦕꦁ",
+          "ꦕꦃ",
+          "ꦕ꧀"
+        ]
+      },
+      {
+        "arah": "aksara-ke-latin",
+        "huruf": "pangkon",
+        "tanya": "ꦭ꧀",
+        "jawab": "l",
+        "pilihan": [
+          "l",
+          "lar",
+          "lang",
+          "lah"
+        ]
+      },
+      {
+        "arah": "latin-ke-aksara",
+        "huruf": "pangkon",
+        "tanya": "k",
+        "jawab": "ꦏ꧀",
+        "pilihan": [
+          "ꦏꦂ",
+          "ꦏ꧀",
+          "ꦏꦁ",
+          "ꦏꦃ"
+        ]
+      }
+    ],
+    "jodoh": [
+      {
+        "huruf": "pangkon",
+        "aksara": "ꦏ꧀",
+        "latin": "k"
+      },
+      {
+        "huruf": "pangkon",
+        "aksara": "ꦱ꧀",
+        "latin": "s"
+      },
+      {
+        "huruf": "pangkon",
+        "aksara": "ꦩ꧀",
+        "latin": "m"
+      },
+      {
+        "huruf": "pangkon",
+        "aksara": "ꦫ꧀",
+        "latin": "r"
+      },
+      {
+        "huruf": "pangkon",
+        "aksara": "ꦧ꧀",
+        "latin": "b"
+      }
+    ]
+  }
+}

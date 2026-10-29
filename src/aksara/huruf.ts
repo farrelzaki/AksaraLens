@@ -25,7 +25,7 @@ export const HURUF: readonly Huruf[] = [
   { kode: 'suku', unicode: 'ꦸ', latin: 'u', jenis: 'sandhangan', bab: 2 },
   { kode: 'taling', unicode: 'ꦺ', latin: 'é', jenis: 'sandhangan', bab: 2 },
   { kode: 'tarung', unicode: 'ꦴ', latin: 'o', jenis: 'sandhangan', bab: 2 },
-  { kode: 'pepet', unicode: 'ꦼ', latin: 'e', jenis: 'sandhangan', bab: 2 },
+  { kode: 'pepet', unicode: 'ꦼ', latin: 'ê', jenis: 'sandhangan', bab: 2 },
   { kode: 'layar', unicode: 'ꦂ', latin: 'r', jenis: 'panyigeg', bab: 3 },
   { kode: 'cecak', unicode: 'ꦁ', latin: 'ng', jenis: 'panyigeg', bab: 3 },
   { kode: 'wignyan', unicode: 'ꦃ', latin: 'h', jenis: 'panyigeg', bab: 3 },

@@ -1,4 +1,5 @@
 import { Link, Navigate } from 'react-router';
+import { MODE_DEMO } from '../../ml/model2/scanner';
 import { ambilHasilSementara } from './hasilScan';
 
 // F5 langkah 4: per baris tampil Unicode + bacaan Latin per suku kata.
@@ -12,6 +13,7 @@ export function HasilPage() {
 
   return (
     <>
+      {MODE_DEMO && <p role="note">Mode demo: hasil yang tampil adalah contoh, bukan hasil model.</p>}
       {hasil.kurangYakin && <p role="alert">Hasil mungkin kurang tepat</p>}
       {hasil.baris.map((b, i) => (
         <section key={i}>

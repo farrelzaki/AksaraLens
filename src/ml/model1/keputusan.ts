@@ -1,14 +1,16 @@
 // F4 langkah 4: dari probabilitas CNN ke umpan balik. Fungsi murni, wajib dites.
 
-// TODO(Farrel): samakan urutan dengan notebook Model 1 (indeks kelas keluaran ONNX).
-export const LABEL_MODEL1 = [
-  'ha', 'na', 'ca', 'ra', 'ka', 'da', 'ta', 'sa', 'wa', 'la',
-  'pa', 'dha', 'ja', 'ya', 'nya', 'ma', 'ga', 'ba', 'tha', 'nga',
-  'bukan_huruf',
-] as const;
+import meta from './huruf_label.json';
 
-/** Awal 0,6; disetel saat uji (keputusan terbuka, batas 8 Nov). */
-export const AMBANG_AWAL = 0.6;
+/** Indeks = kelas keluaran ONNX Model 1 (huruf_label.json dari notebook). */
+export const LABEL_MODEL1: readonly string[] = meta.kelas;
+export const BUKAN_HURUF = 'bukan';
+
+/**
+ * Ambang keyakinan 0,7 — keputusan Farrel (19 Okt 2026) berdasarkan docs/EVALUASI.md:
+ * tulisan benar diterima 98,0%, coretan + sandhangan ditolak 99,5%. Nilai awal notebook (0,6) tidak dipakai.
+ */
+export const AMBANG_AWAL = 0.7;
 
 export type HasilCek =
   | { jenis: 'benar'; keyakinan: number }
@@ -26,7 +28,7 @@ export function nilaiTulisan(
   const huruf = label[teratas];
   const keyakinan = prob[teratas];
 
-  if (keyakinan < ambang || huruf === 'bukan_huruf') return { jenis: 'belum_terbaca' };
+  if (keyakinan < ambang || huruf === BUKAN_HURUF) return { jenis: 'belum_terbaca' };
   if (huruf === target) return { jenis: 'benar', keyakinan };
   return { jenis: 'terbaca_lain', huruf, keyakinan };
 }
