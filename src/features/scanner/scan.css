@@ -548,3 +548,21 @@
   color: #FFFAF3;
   box-shadow: none;
 }
+
+/* Garis pemindaian saat aksara sedang dibaca di latar belakang */
+.scan-garis {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #d5e6b0;
+  box-shadow: 0 0 14px #d5e6b0;
+  animation: scanGaris 1.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes scanGaris {
+  0% { top: 0; }
+  50% { top: calc(100% - 3px); }
+  100% { top: 0; }
+}
