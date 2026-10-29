@@ -1,56 +1,6617 @@
-/* Gaya dasar sementara. Library styling (Tailwind vs CSS Modules) belum
-   diputuskan (Choirun + Emil, batas 18 Okt); ganti seluruh file ini setelahnya. */
-
-:root {
-  font-family: system-ui, sans-serif;
-  color: #1f1f1f;
-  background: #fff;
-}
-
-.aksara {
-  font-family: 'Noto Sans Javanese', serif;
-}
+@import './tokens.css';
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  background-color: #1A1614;
+  min-height: 100%;
 }
 
 body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background-color: #1A1614;
+  min-height: 100vh;
   margin: 0;
+  padding: 24px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
-.shell {
-  min-height: 100dvh;
-  max-width: 480px;
-  margin: 0 auto;
+/* Bingkai Desain Mobile Default: Android Compact 412 × 917 px (sesuai Figma & DESIGN_SYSTEM.md §0) */
+#root {
+  width: 412px;
+  min-width: 412px;
+  max-width: 412px;
+  height: 917px;
+  min-height: 917px;
+  max-height: 917px;
+  box-sizing: content-box;
+  /* Canvas dalam TEPAT 412 × 917 px, border di luar */
   display: flex;
   flex-direction: column;
+  margin: auto;
+  position: relative;
+  background-color: var(--color-cream);
+  border-radius: 46px;
+  border: 10px solid #2B1810;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+@media (max-width: 430px) {
+  body {
+    padding: 0;
+    align-items: stretch;
+    background-color: var(--color-cream);
+  }
+
+  #root {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    height: 100dvh;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    box-sizing: border-box;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+/* Shell wadah mobile 412 × 917 px (Android Compact sesuai Figma) */
+.shell {
+  width: 412px;
+  height: 917px;
+  max-width: 412px;
+  max-height: 917px;
+  margin: 0 auto;
+  background-color: var(--color-cream);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+@media (max-width: 430px) {
+  .shell {
+    width: 100%;
+    max-width: 100%;
+    height: 100dvh;
+    max-height: 100dvh;
+  }
 }
 
 .isi {
   flex: 1;
-  padding: 16px;
+  width: 100%;
+  height: 100%;
+  max-height: 917px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 96px;
+  /* Ruang untuk floating navbar */
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.isi.layar-penuh {
+  padding-bottom: 0 !important;
+}
+
+/* Floating Navbar sesuai NAVBAR.png & HOMEPAGE.png */
+.navbar-container {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 412px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+  pointer-events: none;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
 .navbar {
-  position: sticky;
-  bottom: 0;
-  display: flex;
-  justify-content: space-around;
-  border-top: 1px solid #ddd;
-  background: #fff;
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-.navbar a {
-  min-height: 44px;
+  pointer-events: auto;
+  width: 100%;
+  max-width: 380px;
+  height: 68px;
+  background: var(--color-white);
+  border-radius: var(--radius-full);
   display: flex;
   align-items: center;
-  padding: 0 12px;
-  color: inherit;
+  justify-content: space-between;
+  padding: 6px 8px;
+  box-shadow: 0 10px 30px rgba(77, 52, 35, 0.12), 0 2px 8px rgba(77, 52, 35, 0.04);
+  border: 1px solid rgba(229, 222, 215, 0.6);
+  box-sizing: border-box;
+}
+
+.navbar-item {
+  flex: 1;
+  height: 48px;
+  border-radius: var(--radius-full);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  text-decoration: none;
+  color: #7D6B5E;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 4px 12px;
+}
+
+.navbar-item svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+  transition: transform 0.2s ease;
+}
+
+/* Ketika aktif: pil cokelat gelap dengan teks krem terang (NAVBAR.png) */
+.navbar-item.active {
+  background-color: var(--color-brown, #43281C);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(67, 40, 28, 0.25);
+}
+
+.navbar-item.active svg {
+  stroke: #FFFFFF;
+  transform: scale(1.05);
+}
+
+.navbar-item:not(.active):hover {
+  color: var(--text-primary);
+  background-color: rgba(231, 237, 218, 0.3);
+}
+
+/* Utility buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--h-button);
+  padding: 0 24px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
   text-decoration: none;
 }
 
-.navbar a.active {
+.btn-primary {
+  background-color: var(--color-brown);
+  color: var(--text-on-brown);
+  box-shadow: var(--shadow-cta);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+  filter: brightness(0.95);
+}
+
+.btn-olive {
+  background-color: var(--color-olive);
+  color: #FFFFFF;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-brown);
+  border: 1.5px solid var(--border-strong);
+}
+
+.btn-outline:active {
+  background-color: rgba(77, 52, 35, 0.05);
+}
+
+/* Kartu */
+.card {
+  background: var(--color-white);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* Aksara label */
+.aksara {
+  font-family: var(--font-aksara);
+  line-height: 1.6;
+}
+
+/* ========================================================
+   HOME / BELAJAR PAGE STYLING (HOMEPAGE.png)
+   ======================================================== */
+.home-container {
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.avatar-btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 999px;
+  outline: none;
+  flex-shrink: 0;
+}
+
+/* Avatar Profil Bulat — menampilkan icon profil yang dipilih pengguna (HOMEPAGE.png) */
+.avatar-profil-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #E3EDCC;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(77, 52, 35, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.avatar-profil-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+.avatar-btn:hover .avatar-profil-circle {
+  transform: scale(1.06);
+  box-shadow: 0 4px 14px rgba(77, 52, 35, 0.15);
+}
+
+.avatar-btn:active .avatar-profil-circle {
+  transform: scale(0.97);
+}
+
+/* Fallback: ikon kecambah lama (dipakai di profil page) */
+.avatar-sprout {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background: var(--color-mint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-avatar);
+  transition: transform 0.2s ease;
+}
+
+.avatar-btn:hover .avatar-sprout {
+  transform: scale(1.05);
+}
+
+.avatar-sprout svg {
+  width: 24px;
+  height: 24px;
+}
+
+
+.home-greeting {
+  display: flex;
+  flex-direction: column;
+}
+
+.greeting-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+.greeting-name {
+  font-size: 19px;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+/* Hero Banner */
+.hero-banner {
+  background: #8FA55B;
+  border-radius: 26px;
+  padding: 24px 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 24px rgba(82, 99, 47, 0.16);
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 65%;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  font-size: 10.5px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #384520;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.hero-eyebrow .dot {
+  font-size: 14px;
+}
+
+.hero-title {
+  font-size: 25px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.22;
+  color: #43281C;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.hero-desc {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #384520;
+  margin-bottom: 16px;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #43281C;
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 10px 20px;
+  font-family: var(--font-display);
   font-weight: 700;
+  font-size: 13.5px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(67, 40, 28, 0.28);
+  transition: all 0.2s ease;
+}
+
+.hero-cta:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+.hero-cta:active {
+  transform: scale(0.97);
+}
+
+.hero-mascot {
+  position: absolute;
+  right: -10px;
+  bottom: -14px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Section Title Bar */
+.section-title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.badge-bab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--color-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 5px 12px;
+  box-shadow: 0 2px 6px rgba(77, 52, 35, 0.03);
+}
+
+/* Bab List */
+.bab-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bab-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--color-white);
+  border: 1.5px solid var(--border);
+  border-radius: 22px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  outline: none;
+}
+
+.bab-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-strong);
+  box-shadow: 0 10px 26px rgba(77, 52, 35, 0.07);
+}
+
+.bab-card:active {
+  transform: scale(0.99);
+}
+
+.bab-card:focus-visible {
+  outline: 3px solid var(--color-olive);
+  outline-offset: 2px;
+}
+
+.bab-card-media {
+  width: 96px;
+  height: 108px;
+  border-radius: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bab-card:hover .bab-card-media {
+  transform: scale(1.03);
+}
+
+/* Per-bab background tints for mascot cards */
+.theme-bab1 .bab-card-media {
+  background: #E8EFD8;
+}
+
+.theme-bab2 .bab-card-media {
+  background: #FFF1C7;
+}
+
+.theme-bab3 .bab-card-media {
+  background: #EDE5FA;
+}
+
+.bab-card-mascot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom;
+  display: block;
+}
+
+
+.bab-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.bab-number {
+  font-size: 10.5px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8C827A;
+}
+
+.bab-title {
+  font-size: 16.5px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 1px 0 2px;
+  letter-spacing: -0.01em;
+}
+
+.bab-desc {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bab-progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.progress-text {
+  font-size: 11.5px;
+  color: #8C827A;
+  font-weight: 500;
+}
+
+.progress-bar-track {
+  height: 5px;
+  background: #EFE9E2;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+.theme-bab1 .progress-bar-fill {
+  background: var(--bab1);
+}
+
+.theme-bab2 .progress-bar-fill {
+  background: var(--bab2);
+}
+
+.theme-bab3 .progress-bar-fill {
+  background: var(--bab3);
+}
+
+.bab-card-action {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+
+.icon-completed {
+  color: #46612E;
+}
+
+.icon-arrow {
+  color: #4D3423;
+  transition: transform 0.2s ease;
+}
+
+.bab-card:hover .icon-arrow {
+  transform: translateX(3px);
+}
+
+/* Home Footer Quote */
+.home-footer-quote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 28px 0 12px;
+  font-size: 12.5px;
+  color: var(--text-subtle);
+}
+
+/* Toast Message */
+.toast-pesan {
+  position: fixed;
+  bottom: 104px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #43281C;
+  color: #FFFFFF;
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  z-index: 200;
+  animation: toastFade 0.3s ease;
+}
+
+@keyframes toastFade {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ========================================================
+   MATERI / PERJALANAN BELAJAR PAGE (MATERI BAB 1-3.png)
+   ======================================================== */
+.materi-page {
+  padding: 18px 18px 48px;
+  display: flex;
+  flex-direction: column;
+  background-color: #F7F4F1;
+  min-height: 100%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.materi-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.btn-circle-nav {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border-strong);
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-brown);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(77, 52, 35, 0.04);
+}
+
+.btn-circle-nav:hover {
+  background: var(--color-cream);
+  transform: scale(1.04);
+}
+
+.materi-header-title {
+  font-size: 17px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #4D3423;
+}
+
+.materi-hero-card {
+  border-radius: 26px;
+  padding: 24px 20px 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 24px rgba(77, 52, 35, 0.08);
+  flex-shrink: 0;
+}
+
+.theme-bab1 .materi-hero-card {
+  background: #9CAF6C;
+  color: #4D3423;
+}
+
+.theme-bab2 .materi-hero-card {
+  background: #FFD263;
+  color: #4D3423;
+}
+
+.theme-bab3 .materi-hero-card {
+  background: #BBA4EF;
+  color: #271746;
+}
+
+.materi-badge-bab {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: var(--radius-full);
+  padding: 4px 12px;
+  font-size: 11px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #4D3423;
+  margin-bottom: 12px;
+}
+
+.materi-hero-title {
+  font-size: 28px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.materi-hero-sub {
+  font-size: 14px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  opacity: 0.85;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.materi-hero-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.progress-track-white {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-fill-white {
+  height: 100%;
+  background: #FFFFFF;
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+/* Winding Journey Path - Presisi 366 × 740 px */
+.journey-path-container {
+  position: relative;
+  width: 366px;
+  height: 740px;
+  min-height: 740px;
+  flex-shrink: 0;
+  margin: 10px auto 28px;
+}
+
+.path-svg-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 366px;
+  height: 650px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Aksara melayang dengan animasi subtle floating */
+.floating-aksara {
+  position: absolute;
+  color: #9CAF6C;
+  opacity: 0.38;
+  font-size: 40px;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+  animation: floatAksara 4s ease-in-out infinite alternate;
+}
+
+.theme-bab2 .floating-aksara {
+  color: #FFD263;
+}
+
+.theme-bab3 .floating-aksara {
+  color: #BBA4EF;
+}
+
+@keyframes floatAksara {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(-7px) rotate(1.5deg);
+  }
+}
+
+/* Posisi spot tiap node */
+.journey-node-spot {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.node-start-badge {
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #43281C;
+  color: #FFFFFF;
+  font-size: 10px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 8px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(67, 40, 28, 0.25);
+  z-index: 4;
+  animation: tagBounce 2.4s ease-in-out infinite;
+}
+
+@keyframes tagBounce {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+
+.node-button {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 4.5px solid #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 6px 18px rgba(77, 52, 35, 0.08);
+}
+
+/* Node aktif dengan breathing pulse glow */
+.node-button.current {
+  background: #8FA55B;
+  color: #4D3423;
+  animation: pulseGlowBab1 2.5s ease-in-out infinite;
+}
+
+.theme-bab2 .node-button.current {
+  background: #FFD263;
+  color: #4D3423;
+  animation: pulseGlowBab2 2.5s ease-in-out infinite;
+}
+
+.theme-bab3 .node-button.current {
+  background: #BBA4EF;
+  color: #271746;
+  animation: pulseGlowBab3 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseGlowBab1 {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 5px rgba(156, 175, 108, 0.25), 0 8px 20px rgba(77, 52, 35, 0.12);
+  }
+
+  50% {
+    box-shadow: 0 0 0 13px rgba(156, 175, 108, 0.08), 0 10px 26px rgba(77, 52, 35, 0.18);
+  }
+}
+
+@keyframes pulseGlowBab2 {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 5px rgba(255, 210, 99, 0.3), 0 8px 20px rgba(77, 52, 35, 0.12);
+  }
+
+  50% {
+    box-shadow: 0 0 0 13px rgba(255, 210, 99, 0.1), 0 10px 26px rgba(77, 52, 35, 0.18);
+  }
+}
+
+@keyframes pulseGlowBab3 {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 5px rgba(187, 164, 239, 0.3), 0 8px 20px rgba(77, 52, 35, 0.12);
+  }
+
+  50% {
+    box-shadow: 0 0 0 13px rgba(187, 164, 239, 0.1), 0 10px 26px rgba(77, 52, 35, 0.18);
+  }
+}
+
+/* Hover effects */
+.node-button:not(.locked):hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 14px 28px rgba(77, 52, 35, 0.22);
+}
+
+.node-button.locked:hover {
+  transform: scale(1.02);
+  background-color: #DEE4D3;
+  transition: all 0.2s ease;
+}
+
+.theme-bab2 .node-button.locked:hover {
+  background-color: #E6E0D3;
+}
+
+.theme-bab3 .node-button.locked:hover {
+  background-color: #E3DCEB;
+}
+
+/* Node terkunci */
+.node-button.locked {
+  background: #E7EDDA;
+  color: #9CA08E;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.theme-bab2 .node-button.locked {
+  background: #EDE8DC;
+}
+
+.theme-bab3 .node-button.locked {
+  background: #EAE4F2;
+}
+
+/* Node selesai */
+.node-button.completed {
+  background: #52632F;
+  color: #FFFFFF;
+  box-shadow: 0 6px 16px rgba(82, 99, 47, 0.25);
+}
+
+.theme-bab2 .node-button.completed {
+  background: #C99723;
+  color: #FFFFFF;
+  box-shadow: 0 6px 16px rgba(201, 151, 35, 0.25);
+}
+
+.theme-bab3 .node-button.completed {
+  background: #6F52A8;
+  color: #FFFFFF;
+  box-shadow: 0 6px 16px rgba(111, 82, 168, 0.25);
+}
+
+.node-icon-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.node-status-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.node-status-badge.play-custom {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.node-status-badge.lock {
+  background: #A5A09A;
+  color: #FFFFFF;
+}
+
+.node-status-badge.checkmark {
+  background: #46612E;
+  color: #FFFFFF;
+}
+
+.theme-bab2 .node-status-badge.checkmark {
+  background: #8E6B15;
+}
+
+.theme-bab3 .node-status-badge.checkmark {
+  background: #563D85;
+}
+
+/* Label teks di bawah lingkaran node */
+.node-label-box {
+  margin-top: 10px;
+  text-align: center;
+  width: 170px;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.node-title {
+  font-size: 15px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #4D3423;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.node-sub {
+  font-size: 12px;
+  font-family: var(--font-display);
+  color: #8C827A;
+  margin: 3px 0 0;
+}
+
+/* Info Banner Card */
+.info-banner-card {
+  flex-shrink: 0;
+  background: #EDF4DF;
+  border: 1px solid #D5E4BC;
+  border-radius: 18px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12.5px;
+  color: #46612E;
+  margin: 16px 0 24px;
+  line-height: 1.4;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.info-banner-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(77, 52, 35, 0.05);
+}
+
+.theme-bab2 .info-banner-card {
+  background: #F0EFE3;
+  border-color: #DDD8BF;
+  color: #524F3A;
+}
+
+.theme-bab3 .info-banner-card {
+  background: #EDE8F5;
+  border-color: #D6CCE8;
+  color: #4F3C6D;
+}
+
+.info-banner-card svg {
+  flex-shrink: 0;
+}
+
+/* Bottom CTA Container & Button */
+.bottom-cta-container {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.btn-materi-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: auto;
+  min-width: 230px;
+  max-width: 280px;
+  height: 48px;
+  padding: 0 28px;
+  border-radius: var(--radius-full);
+  background-color: #43281C;
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14.5px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(67, 40, 28, 0.24);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-materi-cta:hover {
+  background-color: #2F1B12;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(67, 40, 28, 0.35);
+}
+
+.btn-materi-cta:active {
+  transform: scale(0.98);
+}
+
+.btn-materi-cta svg {
+  transition: transform 0.2s ease;
+}
+
+.btn-materi-cta:hover svg {
+  transform: translateX(4px);
+}
+
+/* ========================================================
+   AUTH / LOGIN & REGISTER PAGE (LOGIN.png, REGIST.png)
+   ======================================================== */
+
+/* BASE AUTH PAGE (412 × 917 px sesuai Figma) */
+.auth-page {
+  width: 100%;
+  height: 100%;
+  min-height: 917px;
+  max-height: 917px;
+  padding: 24px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* LOGIN PAGE - mint/sage background (#E7EDDA) */
+.auth-page-masuk {
+  background-color: #E7EDDA;
+}
+
+/* REGISTER PAGE - lime green background (#A8D800) */
+.auth-page-regist {
+  background-color: #A8D800;
+}
+
+/* ---- Header ---- */
+.auth-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0;
+  padding-bottom: 4px;
+}
+
+/* Back button */
+.btn-circle-nav-auth {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-circle-nav-mint {
+  background: rgba(255, 255, 255, 0.55);
+  color: #4D3423;
+}
+
+.btn-circle-nav-lime {
+  background: rgba(255, 255, 255, 0.35);
+  color: #0B1035;
+}
+
+.btn-circle-nav-auth:hover {
+  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Brand lockup - AksaraLensa */
+.auth-brand-lockup {
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+.auth-page-masuk .brand-bold,
+.auth-page-masuk .brand-regular {
+  color: #4D3423;
+}
+
+.auth-page-regist .brand-bold,
+.auth-page-regist .brand-regular {
+  color: #0B1035;
+}
+
+.brand-bold {
+  font-weight: 800;
+}
+
+.brand-regular {
+  font-weight: 400;
+}
+
+/* ---- Mascot ---- */
+.auth-mascot-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-mascot-img {
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+.mascot-login {
+  margin: 14px 0 10px;
+}
+
+.mascot-login .auth-mascot-img {
+  width: 170px;
+  height: 155px;
+  object-fit: contain;
+}
+
+.mascot-regist {
+  margin: 10px 0 2px;
+}
+
+.mascot-regist .auth-mascot-img {
+  width: 250px;
+  height: 137px;
+  object-fit: contain;
+}
+
+/* ---- Titles (CENTERED per LOGIN.png & REGIST.png) ---- */
+.auth-title-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.auth-title {
+  font-size: 32px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+  line-height: 1.15;
+}
+
+.auth-title-brown {
+  color: #4D3423;
+}
+
+.auth-title-dark {
+  color: #0B1035;
+}
+
+.auth-sub {
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+
+.auth-sub-mint {
+  color: #5F6347;
+}
+
+.auth-sub-lime {
+  color: #405602;
+}
+
+/* ---- Google Button ---- */
+.btn-google-auth {
+  width: 100%;
+  min-height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14.5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 0;
+}
+
+.btn-google-white {
+  background: #FFFFFF;
+  border: 1.5px solid #DEDFC5;
+  color: #4D3423;
+  box-shadow: 0 2px 8px rgba(77, 52, 35, 0.05);
+}
+
+.btn-google-lime {
+  background: #FFFFFF;
+  border: none;
+  color: #0B1035;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-google-auth:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* ---- Divider ---- */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 18px 0 16px;
+  font-size: 12px;
+}
+
+.auth-divider-mint {
+  color: #5F6347;
+}
+
+.auth-divider-lime {
+  color: #405602;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+}
+
+.auth-divider-mint::before,
+.auth-divider-mint::after {
+  border-bottom: 1px solid rgba(95, 99, 71, 0.35);
+}
+
+.auth-divider-lime::before,
+.auth-divider-lime::after {
+  border-bottom: 1px solid rgba(64, 86, 2, 0.35);
+}
+
+.auth-divider span {
+  padding: 0 12px;
+}
+
+/* ---- Form ---- */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label,
+.form-label-mint,
+.form-label-lime {
+  font-size: 12.5px;
+  font-weight: 700;
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+.form-label-mint {
+  color: #5C5F47;
+}
+
+.form-label-lime {
+  color: #405602;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link-btn-text {
+  background: none;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  color: #5F6347;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+/* Input variants */
+.auth-input {
+  width: 100%;
+  height: 48px;
+  border-radius: 16px;
+  padding: 0 16px;
+  font-size: 14.5px;
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* White input (login/mint) */
+.auth-input-white {
+  background: #FFFFFF;
+  border: 1.5px solid #DEDFC5;
+  color: #4D3423;
+}
+
+.auth-input-white::placeholder {
+  color: #7C8069;
+}
+
+.auth-input-white:focus {
+  border-color: #4D3423;
+  box-shadow: 0 0 0 3px rgba(77, 52, 35, 0.12);
+}
+
+/* Lime input (register) */
+.auth-input-lime {
+  background: #B9EC00;
+  border: none;
+  color: #0B1035;
+}
+
+.auth-input-lime::placeholder {
+  color: #5C7715;
+}
+
+.auth-input-lime:focus {
+  box-shadow: 0 0 0 3px rgba(11, 16, 53, 0.2);
+}
+
+/* Cream input (edit profil) */
+.auth-input-cream {
+  background: #F7F4F1;
+  border: 1.5px solid #E5DED7;
+  color: #4D3423;
+}
+
+.auth-input-cream::placeholder {
+  color: #6B6F58;
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper .auth-input {
+  padding-right: 48px;
+}
+
+.btn-toggle-eye {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #8C827A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+/* Checkbox */
+.checkbox-demo-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.checkbox-custom {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  accent-color: #43281C;
+  flex-shrink: 0;
+  margin-top: 1px;
+  cursor: pointer;
+}
+
+.checkbox-label-text {
+  font-size: 12px;
+  color: #3B4E04;
+  line-height: 1.4;
+}
+
+/* Auth Alert */
+.auth-alert {
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.auth-alert.error {
+  background: #FFF0EA;
+  border: 1px solid #DC9B8C;
+  color: #964632;
+}
+
+.auth-alert.success {
+  background: #EDF4DF;
+  border: 1px solid #8EAF62;
+  color: #46612E;
+}
+
+/* Submit Button */
+.btn-auth-submit {
+  width: 100%;
+  min-height: 56px;
+  border-radius: 16px;
+  border: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+
+.btn-auth-submit-brown {
+  background: #43281C;
+  color: #FFFBEA;
+  box-shadow: 0 4px 14px rgba(67, 40, 28, 0.25);
+}
+
+.btn-auth-submit-brown:hover {
+  background: #331E15;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(67, 40, 28, 0.35);
+}
+
+.btn-auth-submit-brown:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(67, 40, 28, 0.2);
+}
+
+/* Footer switch */
+.auth-footer-switch {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13.5px;
+}
+
+.auth-page-masuk .auth-footer-switch {
+  color: #5F6347;
+}
+
+.auth-page-regist .auth-footer-switch {
+  color: #405602;
+}
+
+.auth-link-bold {
+  background: none;
+  border: none;
+  font-weight: 700;
+  font-family: var(--font-display);
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.auth-link-dark {
+  color: #0B1035;
+}
+
+.auth-link-dark-underline {
+  color: #4D3423;
+}
+
+/* Skip link */
+.btn-auth-skip {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #5F6347;
+  font-size: 13px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  margin-top: 8px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 0;
+}
+
+.btn-auth-skip:hover {
+  color: #4D3423;
+}
+
+/* ---- Edit Profil Extra Components ---- */
+
+/* "Edit" button kecil di sebelah judul informasi profil */
+.btn-edit-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-olive);
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 8px;
+}
+
+.btn-edit-text:hover {
+  text-decoration: underline;
+}
+
+/* Note di bawah password form */
+.edit-password-note {
+  font-size: 11.5px;
+  color: #8C827A;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+/* Tombol "Periksa perubahan" - primary-compact style dari design system */
+.btn-periksa-perubahan {
+  width: 100%;
+  min-height: 52px;
+  background: #4D3423;
+  color: #F7F4F1;
+  border: none;
+  border-radius: 16px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: all 0.2s ease;
+}
+
+.btn-periksa-perubahan:hover {
+  background: #3F2A1C;
+  transform: translateY(-1px);
+}
+
+.btn-periksa-perubahan:active {
+  transform: translateY(1px);
+}
+
+/* ====== LOGOUT FOOTER - sesuai EDIT PROFILE 1.png ====== */
+/* Logout terletak di bagian bawah edit profil, sticky/fixed */
+.edit-logout-footer {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--color-cream);
+  padding: 12px 20px 28px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+/* Logout button: soft warning style (#FFF0DF background, orange text) */
+.btn-logout-footer {
+  width: 100%;
+  min-height: 52px;
+  background: #FFF0DF;
+  border: 1px solid #E1CBB5;
+  border-radius: var(--radius-lg);
+  color: #91511E;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-logout-footer:hover {
+  background: #FFE4CC;
+  transform: translateY(-1px);
+}
+
+.btn-logout-footer:active {
+  transform: translateY(0px);
+}
+
+/* Masuk/Buat Akun button - olive style */
+.btn-masuk-footer {
+  background: #E7EDDA;
+  border-color: #9CAF6C;
+  color: #52632F;
+}
+
+.btn-masuk-footer:hover {
+  background: #D8E7C8;
+}
+
+/* ========================================================
+   PROFIL & EDIT PROFIL PAGE (PROFIL 1.png, EDIT PROFILE 1.png)
+   ======================================================== */
+.profil-page {
+  padding: 18px 18px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profil-loading {
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.profil-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.profil-title {
+  font-size: 22px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.profil-tagline {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.profil-hero-art {
+  position: relative;
+  height: 200px;
+  background: linear-gradient(180deg, #FBE0B2 0%, #E8F0D6 60%, #FAF7F2 100%);
+  border-radius: 26px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 14px rgba(77, 52, 35, 0.04);
+}
+
+.pine-trees-left {
+  position: absolute;
+  bottom: -14px;
+  left: 12px;
+  width: 50px;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.pine-trees-right {
+  position: absolute;
+  bottom: -14px;
+  right: 12px;
+  width: 50px;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.profil-avatar-big {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.speech-bubble-aksa {
+  background: var(--color-white);
+  border-radius: 14px;
+  padding: 6px 14px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  box-shadow: 0 4px 12px rgba(77, 52, 35, 0.08);
+  border: 1px solid var(--border);
+  margin-top: 6px;
+}
+
+/* Card Motivasi */
+.card-motivasi {
+  background: var(--color-white);
+  border-radius: 22px;
+  border: 1.5px solid var(--border);
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-card);
+}
+
+.motivasi-text {
+  font-size: 13px;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.motivasi-divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 14px;
+}
+
+.motivasi-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.book-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--bab1-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.motivasi-progress-details {
+  flex: 1;
+}
+
+.progress-numbers {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13.5px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--text-primary);
+}
+
+.percent-label {
+  color: var(--color-olive);
+}
+
+.progress-track-gray {
+  height: 6px;
+  background: #EFE9E2;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-fill-green {
+  height: 100%;
+  background: var(--color-sage);
+  border-radius: var(--radius-full);
+}
+
+.progress-caption {
+  font-size: 11.5px;
+  color: #8C827A;
+  display: block;
+  margin-top: 4px;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--color-white);
+  border: 1.5px solid var(--border);
+  border-radius: 18px;
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+  box-shadow: var(--shadow-card);
+}
+
+.stat-val {
+  font-size: 20px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 2px 0 0;
+}
+
+.stat-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Card Lemah (Huruf Sering Salah) */
+.card-lemah {
+  background: #FFF9F2;
+  border: 1.5px solid #E1CBB5;
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 22px;
+}
+
+.lemah-title {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #91511E;
+  margin-bottom: 4px;
+}
+
+.lemah-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.lemah-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lemah-tag-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-white);
+  border: 1px solid #E1CBB5;
+  border-radius: 10px;
+  padding: 6px 10px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 12.5px;
+  transition: transform 0.15s ease;
+}
+
+.lemah-tag-item:hover {
+  transform: translateY(-1px);
+}
+
+.lemah-tag-item .aksara {
+  font-size: 16px;
+}
+
+.lemah-tag-item .latin {
+  font-weight: 700;
+}
+
+.lemah-tag-item .ratio {
+  font-size: 11px;
+  color: #91511E;
+}
+
+/* Section Perjalanan */
+.section-perjalanan {
+  margin-top: 6px;
+}
+
+.perjalanan-title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.perjalanan-count {
+  font-size: 12.5px;
+  color: #8C827A;
+  font-weight: 600;
+}
+
+/* Banner Motivasi Bawah (PROFIL 1.png) */
+.info-banner-card {
+  background: #EAF0DD;
+  border: 1px solid #D5E1C3;
+  border-radius: 18px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #46612E;
+  margin-top: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(70, 97, 46, 0.06);
+}
+
+.info-banner-card svg {
+  flex-shrink: 0;
+  stroke: #46612E;
+}
+
+.info-banner-card strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #384F25;
+  margin-bottom: 2px;
+}
+
+.info-banner-card span {
+  font-size: 12px;
+  color: #556B3F;
+}
+
+/* ========================================================
+   EDIT PROFIL MODE (EDIT PROFILE 1.png, EDIT PROFILE 2.png)
+   ======================================================== */
+.profil-edit-page {
+  padding: 18px 20px 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--color-cream);
+}
+
+.edit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.edit-title {
+  font-size: 18px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.edit-avatar-card {
+  background: var(--bab1-tint);
+  border-radius: 24px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.avatar-bubble-wrapper {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.avatar-circle-ring {
+  width: 96px;
+  height: 96px;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-avatar);
+}
+
+.avatar-edit-badge {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-full);
+  background: var(--color-brown);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.edit-nama {
+  font-size: 20px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.edit-subtitle {
+  font-size: 12.5px;
+  color: var(--color-olive);
+  margin-top: 2px;
+}
+
+.settings-card {
+  background: var(--color-white);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 18px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-card);
+}
+
+.settings-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings-card-header h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.card-header-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-lock-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--orange-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-sub {
+  font-size: 11.5px;
+  color: #8C827A;
+  display: block;
+}
+
+.btn-dropdown-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 4px;
+}
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.settings-field:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.field-label {
+  font-size: 11.5px;
+  color: #8C827A;
+  font-weight: 600;
+}
+
+.field-value {
+  font-size: 14.5px;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.edit-password-form {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-logout {
+  width: 100%;
+  min-height: 52px;
+  border-radius: var(--radius-full);
+  background: var(--orange-soft);
+  border: 1px solid var(--orange-border);
+  color: var(--orange-text);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+  background: #FFE4CC;
+}
+
+.btn-text-danger {
+  background: none;
+  border: none;
+  color: #B91C1C;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.confirm-delete-box {
+  padding: 12px;
+  background: #FFF0EA;
+  border-radius: 12px;
+  font-size: 13px;
+  color: #964632;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-danger {
+  background: #B91C1C;
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 8px 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ========================================================
+   MODAL DIALOG & GANTI AVATAR (MODAL GANTI AVA.png)
+   ======================================================== */
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(43, 24, 16, 0.52);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 16px;
+  animation: modalBackdropFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modal-avatar-card {
+  background: #FDFBF7;
+  border-radius: 28px;
+  padding: 24px 20px 20px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 24px 60px rgba(43, 24, 16, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-sizing: border-box;
+}
+
+.modal-avatar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.modal-category-label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #728448;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.modal-avatar-title {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 800;
+  color: #43281C;
+  line-height: 1.22;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.btn-circle-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(67, 40, 28, 0.07);
+  color: #43281C;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+}
+
+.btn-circle-close:hover {
+  background: rgba(67, 40, 28, 0.14);
+  transform: scale(1.08);
+}
+
+.btn-circle-close:active {
+  transform: scale(0.95);
+}
+
+/* Preview Box (MODAL GANTI AVA.png) */
+.avatar-preview-box {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1.5px solid rgba(229, 222, 215, 0.7);
+  box-shadow: 0 4px 14px rgba(67, 40, 28, 0.04);
+}
+
+.avatar-preview-img-wrap {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #B9EC00;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.avatar-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  display: block;
+}
+
+.avatar-preview-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar-preview-name {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 800;
+  color: #43281C;
+}
+
+.avatar-preview-sub {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  color: #7B7268;
+  margin-top: 2px;
+}
+
+/* 8 Avatar Grid (MODAL GANTI AVA.png) */
+.avatar-grid-8 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+  margin-top: 2px;
+}
+
+.avatar-choice-card {
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 16px;
+  border: 1.5px solid #EAE5DE;
+  padding: 9px 4px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+}
+
+.avatar-choice-card:hover {
+  border-color: #8DA564;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(67, 40, 28, 0.08);
+}
+
+.avatar-choice-card.selected {
+  background: #E8EFE0;
+  border-color: #556E37;
+  box-shadow: 0 4px 12px rgba(85, 110, 55, 0.18);
+}
+
+.avatar-check-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: #556E37;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(85, 110, 55, 0.3);
+}
+
+.avatar-thumb-wrap {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: transparent;
+}
+
+.avatar-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  display: block;
+}
+
+.avatar-choice-name {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  color: #43281C;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60px;
+}
+
+/* Modal Actions */
+.modal-avatar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 6px;
+}
+
+.btn-cancel-avatar {
+  background: none;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #5C4B40;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+}
+
+.btn-cancel-avatar:hover {
+  color: #43281C;
+  background: rgba(67, 40, 28, 0.05);
+}
+
+.btn-save-avatar {
+  background: #43281C;
+  color: #FFFFFF;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 11px 20px;
+  border-radius: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(67, 40, 28, 0.25);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-save-avatar:hover {
+  background: #331E15;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(67, 40, 28, 0.32);
+}
+
+.btn-save-avatar:active {
+  transform: scale(0.98);
+}
+
+@keyframes modalBackdropFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ========================================================
+   SCANNER / LENSA AKSARA (CAMERA 1-4.png)
+   ======================================================== */
+.camera-screen {
+  background: #302820;
+  color: #FFFAF3;
+  min-height: 100dvh;
+  padding: 18px 18px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cam-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.cam-btn-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFAF3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cam-btn-circle:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.cam-header-titles {
+  text-align: center;
+}
+
+.cam-title {
+  font-size: 18px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: #FFFAF3;
+  line-height: 1.2;
+}
+
+.cam-sub {
+  font-size: 12px;
+  color: #E0D6CA;
+}
+
+/* Viewfinder */
+.viewfinder-container {
+  position: relative;
+  height: 380px;
+  background: rgba(18, 14, 10, 0.65);
+  border-radius: 26px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px 0 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.corner-bracket {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-color: #D5E6B0;
+  border-style: solid;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.corner-bracket.top-left {
+  top: 14px;
+  left: 14px;
+  border-width: 3.5px 0 0 3.5px;
+  border-top-left-radius: 12px;
+}
+
+.corner-bracket.top-right {
+  top: 14px;
+  right: 14px;
+  border-width: 3.5px 3.5px 0 0;
+  border-top-right-radius: 12px;
+}
+
+.corner-bracket.bottom-left {
+  bottom: 14px;
+  left: 14px;
+  border-width: 0 0 3.5px 3.5px;
+  border-bottom-left-radius: 12px;
+}
+
+.corner-bracket.bottom-right {
+  bottom: 14px;
+  right: 14px;
+  border-width: 0 3.5px 3.5px 0;
+  border-bottom-right-radius: 12px;
+}
+
+.viewfinder-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crop-preview-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camera-live-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.camera-inactive-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px 20px;
+}
+
+.cam-icon-box {
+  width: 68px;
+  height: 68px;
+  border-radius: var(--radius-full);
+  background: rgba(213, 230, 176, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.inactive-title {
+  font-size: 18px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #FFFAF3;
+  margin-bottom: 6px;
+}
+
+.inactive-desc {
+  font-size: 13px;
+  color: #E0D6CA;
+  line-height: 1.45;
+  max-width: 260px;
+  margin-bottom: 18px;
+}
+
+.btn-coba-kamera {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(213, 230, 176, 0.35);
+  color: #D5E6B0;
+  padding: 9px 20px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-coba-kamera:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: #D5E6B0;
+}
+
+.cam-instructions {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.instruction-title {
+  font-size: 15px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #FFFAF3;
+}
+
+.instruction-sub {
+  font-size: 12.5px;
+  color: #E0D6CA;
+  margin-top: 2px;
+}
+
+.cam-alert-error {
+  background: rgba(220, 155, 140, 0.2);
+  border: 1px solid #DC9B8C;
+  color: #FFAAA0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 12.5px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.cam-alert-loading {
+  background: rgba(213, 230, 176, 0.15);
+  border: 1px solid rgba(213, 230, 176, 0.3);
+  color: #D5E6B0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 12.5px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/* Action Bar */
+.cam-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: auto;
+  padding: 10px 6px 4px;
+}
+
+.cam-control-btn {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: #FFFAF3;
+  font-size: 12px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cam-control-btn .icon-wrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.cam-control-btn:hover .icon-wrapper {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.cam-shutter-btn {
+  width: 74px;
+  height: 74px;
+  border-radius: var(--radius-full);
+  border: 4px solid #FFFFFF;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease;
+}
+
+.cam-shutter-btn .shutter-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: #FFFFFF;
+  transition: transform 0.15s ease;
+}
+
+.cam-shutter-btn:active .shutter-inner {
+  transform: scale(0.88);
+}
+
+.cam-btn-baca {
+  background: #8FA55B;
+  color: #2D1E15;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 800;
+  font-family: var(--font-display);
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(156, 175, 108, 0.45);
+  transition: all 0.2s ease;
+}
+
+.cam-btn-baca:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.cam-disclaimer {
+  font-size: 11px;
+  text-align: center;
+  color: rgba(224, 214, 202, 0.7);
+  margin-top: 14px;
+}
+
+/* ========================================================
+   PELAJARAN & LATIHAN MENULIS (Kenali, Temukan, Tulis, Result)
+   ======================================================== */
+.pelajaran-page {
+  padding: 18px 18px 40px;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pelajaran-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.header-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.meta-sub {
+  font-size: 11px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--color-olive);
+  letter-spacing: 0.08em;
+}
+
+.meta-step {
+  font-size: 14.5px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.timer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  box-shadow: 0 2px 6px rgba(77, 52, 35, 0.04);
+}
+
+.progress-bar-linear {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.progress-bar-linear .progress-fill {
+  height: 6px;
+  background: var(--color-olive);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+.step-counter {
+  font-size: 12px;
+  font-weight: 700;
+  color: #8C827A;
+}
+
+.pelajaran-card-main {
+  background: var(--color-white);
+  border-radius: 26px;
+  border: 1.5px solid var(--border);
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-top-badge-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.badge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bab1-tint);
+  color: var(--text-on-lime-label);
+  font-size: 11px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.08em;
+}
+
+.mini-aksa-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  background: var(--bab1-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.pelajaran-card-title {
+  font-size: 25px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.pelajaran-card-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+  line-height: 1.45;
+}
+
+/* Aksara Showcase Box (Tahap Kenalan) */
+.aksara-showcase-box {
+  height: 280px;
+  background: var(--bab1-tint);
+  border-radius: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.aksara-showcase-box .aksara-xl {
+  font-size: 110px;
+  color: var(--color-brown);
+  user-select: none;
+}
+
+.latin-pill {
+  background: var(--color-white);
+  border-radius: var(--radius-full);
+  padding: 6px 22px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-brown);
+  box-shadow: 0 2px 8px rgba(77, 52, 35, 0.08);
+  margin-top: 6px;
+}
+
+.aksara-carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.carousel-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--bab1-tint);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-brown);
+  transition: all 0.2s ease;
+}
+
+.carousel-arrow:hover:not(:disabled) {
+  background: var(--color-sage);
+  color: var(--color-white);
+}
+
+.carousel-arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.carousel-info {
+  text-align: center;
+}
+
+.carousel-count {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  display: block;
+}
+
+.carousel-hint {
+  font-size: 12px;
+  color: var(--color-olive);
+  font-weight: 700;
+}
+
+.aksara-micro-note {
+  font-size: 11.5px;
+  text-align: center;
+  color: #8C827A;
+}
+
+/* Soal Prompt & Opsi Pilihan Ganda (Tahap Tantangan) */
+.soal-prompt-box {
+  height: 160px;
+  background: var(--bab1-tint);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.soal-target-text {
+  font-size: 38px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--color-brown);
+}
+
+.opsi-jawaban-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.opsi-item-btn {
+  width: 100%;
+  min-height: 58px;
+  background: var(--color-white);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.opsi-item-btn:hover:not(:disabled) {
+  border-color: var(--border-strong);
+  background: rgba(231, 237, 218, 0.3);
+}
+
+.opsi-item-btn.terpilih {
+  border-color: var(--color-olive);
+  background: #F6F9F0;
+  box-shadow: 0 0 0 2px rgba(82, 99, 47, 0.2);
+}
+
+.opsi-item-btn.benar {
+  border-color: var(--success-border);
+  background: var(--success-bg);
+}
+
+.opsi-item-btn.salah {
+  border-color: var(--error-border);
+  background: var(--error-bg);
+}
+
+.opsi-huruf-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.opsi-aksara-text {
+  font-size: 28px;
+  color: var(--text-primary);
+}
+
+.opsi-radio-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radio-inner {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-olive);
+}
+
+/* Drawing Canvas (Tahap Tulis) */
+.writing-canvas-container {
+  position: relative;
+  width: 100%;
+  height: 310px;
+  background: #FAF7F2;
+  border: 1.5px dashed var(--border-strong);
+  border-radius: 22px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  touch-action: none;
+}
+
+.canvas-watermark {
+  position: absolute;
+  font-size: 150px;
+  color: rgba(77, 52, 35, 0.12);
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+}
+
+.drawing-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  cursor: crosshair;
+}
+
+.canvas-control-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.canvas-hint-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.canvas-hint-main {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.canvas-hint-sub {
+  font-size: 11px;
+  color: #8C827A;
+}
+
+.btn-hapus-canvas {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--orange-soft);
+  border: 1px solid var(--orange-border);
+  color: var(--orange-text);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-hapus-canvas:hover {
+  background: #FFE4CC;
+}
+
+/* Result Screen (result.png) */
+.result-card {
+  text-align: center;
+  padding: 26px 20px;
+}
+
+.badge-tahap-selesai {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--success-bg);
+  color: var(--success-text);
+  font-size: 11.5px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  margin: 0 auto 8px;
+}
+
+.result-headline {
+  font-size: 24px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.result-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.result-stats-box {
+  background: var(--bab1-tint);
+  border-radius: 18px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.res-stat-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.res-stat-num {
+  font-size: 22px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--color-brown);
+}
+
+.res-stat-lbl {
+  font-size: 11.5px;
+  color: var(--color-olive);
+  font-weight: 600;
+}
+
+.res-stat-divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(82, 99, 47, 0.2);
+}
+
+/* Bottom Fixed Controls */
+.bottom-action-fixed {
+  position: sticky;
+  bottom: 16px;
+  width: 100%;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 50;
+}
+
+.btn-pelajaran-cta {
+  width: 100%;
+  min-height: 54px;
+  font-size: 15.5px;
+  box-shadow: 0 6px 18px rgba(67, 40, 28, 0.25);
+}
+
+.btn-disabled {
+  background: #C4C8B8;
+  color: #FFFFFF;
+  cursor: not-allowed;
+  border: none;
+}
+
+.hint-bawah {
+  font-size: 12px;
+  color: #8C827A;
+  text-align: center;
+}
+
+.feedback-bottom-banner {
+  width: 100%;
+}
+
+.feedback-card {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.feedback-card.benar {
+  background: var(--success-bg);
+  border: 1.5px solid var(--success-border);
+  color: var(--success-text);
+}
+
+.feedback-card.salah {
+  background: var(--error-bg);
+  border: 1.5px solid var(--error-border);
+  color: var(--error-text);
+}
+
+.feedback-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+}
+
+.btn-next-soal {
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+}
+
+/* ========================================================
+   SCAN RESULT & KAJI LEBIH DALAM (HasilPage.tsx, KajiPage.tsx)
+   ======================================================== */
+.scan-result-page,
+.scan-kaji-page {
+  padding: 18px 18px 40px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.scan-res-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.scan-res-title {
+  font-size: 18px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.scan-res-lines-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.scan-line-card {
+  background: var(--color-white);
+  border: 1.5px solid var(--border);
+  border-radius: 22px;
+  padding: 18px;
+  box-shadow: var(--shadow-card);
+}
+
+.line-aksara-wrapper {
+  background: var(--color-cream);
+  border-radius: 16px;
+  padding: 16px 12px;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.scan-line-unicode {
+  font-size: 34px;
+  color: var(--color-brown);
+}
+
+.line-latin-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.line-label {
+  font-size: 11px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8C827A;
+}
+
+.line-latin-text {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.suku-kata-chip {
+  background: var(--bab1-tint);
+  color: var(--text-on-lime-label);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.suku-kata-chip.has-pasangan {
+  background: var(--orange-soft);
+  color: var(--orange-text);
+}
+
+.sup-star {
+  color: var(--orange);
+  font-size: 12px;
+  margin-left: 2px;
+}
+
+.kaji-intro-banner {
+  background: var(--bab1-tint);
+  border-radius: 16px;
+  padding: 12px 16px;
+  font-size: 12.5px;
+  color: var(--color-olive);
+  line-height: 1.4;
+  margin-bottom: 18px;
+}
+
+.kaji-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kaji-card {
+  background: var(--color-white);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: var(--shadow-card);
+}
+
+.kaji-card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.kaji-aksara {
+  font-size: 30px;
+  color: var(--color-brown);
+}
+
+.kaji-latin {
+  font-size: 16.5px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.kaji-components-list {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kaji-label {
+  font-size: 11.5px;
+  color: #8C827A;
+  font-weight: 600;
+}
+
+.kaji-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.komponen-chip-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--success-bg);
+  color: var(--success-text);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  font-size: 12.5px;
+  font-weight: 700;
+  transition: transform 0.15s ease;
+}
+
+.komponen-chip-link:hover {
+  transform: translateY(-1px);
+}
+
+.komponen-chip-disabled {
+  display: inline-flex;
+  background: #F2F0ED;
+  color: #8C827A;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+}
+
+
+
+/* Profil Hero BG Image */
+.profil-bg-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.profil-hero-art {
+  position: relative;
+  border-radius: 26px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 14px rgba(77, 52, 35, 0.04);
+}
+
+.profil-avatar-big {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+/* Maskot image styling */
+.aksa-mascot {
+  display: block;
+  object-fit: contain;
+}
+
+/* Fix: Profile hero section needs min height for absolute mascot */
+.profil-hero-art img.profil-bg-img {
+  min-height: 200px;
+}
+
+/* ==========================================================================
+   MODAL GANTI AVATAR (MODAL GANTI AVA.png)
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(67, 40, 28, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.25s ease;
+}
+
+.modal-avatar-card {
+  width: 100%;
+  max-width: 390px;
+  background-color: #F7F4F1;
+  border-radius: 28px;
+  padding: 24px 20px 20px;
+  box-shadow: 0 20px 40px rgba(67, 40, 28, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-avatar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.modal-category-label {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #7D8C57;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.modal-avatar-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: #43281C;
+  line-height: 1.25;
+}
+
+.btn-circle-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background-color: #E7EDDA;
+  color: #43281C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-circle-close:hover {
+  background-color: #D8E2C4;
+}
+
+/* Preview Box */
+.avatar-preview-box {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 4px 12px rgba(67, 40, 28, 0.04);
+}
+
+.avatar-preview-img-wrap {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: #EBF3D3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 3px solid #E7EDDA;
+}
+
+.avatar-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.avatar-preview-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar-preview-name {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: #43281C;
+  margin-bottom: 2px;
+}
+
+.avatar-preview-sub {
+  font-size: 12px;
+  color: #7D6B5E;
+}
+
+/* 8 Avatars Grid */
+.avatar-grid-8 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.avatar-choice-card {
+  position: relative;
+  background-color: #FFFFFF;
+  border: 1.5px solid #EAE4DD;
+  border-radius: 16px;
+  padding: 10px 4px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.avatar-choice-card:hover {
+  border-color: #9CAF6C;
+  transform: translateY(-2px);
+}
+
+.avatar-choice-card.selected {
+  background-color: #E7EDDA;
+  border-color: #6C823D;
+  box-shadow: 0 4px 10px rgba(108, 130, 61, 0.15);
+}
+
+.avatar-check-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #5E7333;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.avatar-thumb-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #F7F4F1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.avatar-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.avatar-choice-name {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 600;
+  color: #43281C;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Actions */
+.modal-avatar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.btn-text-cancel {
+  background: none;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: #7D6B5E;
+  padding: 10px 16px;
+  cursor: pointer;
+  border-radius: 9999px;
+  transition: background-color 0.2s;
+}
+
+.btn-text-cancel:hover {
+  background-color: rgba(67, 40, 28, 0.05);
+}
+
+.btn-save-avatar {
+  background-color: #43281C;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 9999px;
+  padding: 12px 22px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(67, 40, 28, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-save-avatar:hover {
+  background-color: #2F1B12;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   SPLASH SCREEN (SPLASH SCREEN.png)
+   ========================================================================== */
+.splash-screen-container {
+  width: 100%;
+  flex: 1;
+  min-height: 917px;
+  height: 100%;
+  max-height: 917px;
+  background-color: #43281C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+  margin-top: -30px;
+  /* Perfect optical centering per mockup */
+}
+
+.splash-logo-wrap {
+  width: 170px;
+  height: 155px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: floatMascot 3s ease-in-out infinite;
+}
+
+.splash-mascot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.splash-brand-title {
+  font-family: var(--font-display);
+  font-size: 38px;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.splash-brand-title .brand-bold {
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.splash-brand-title .brand-regular {
+  font-weight: 400;
+  color: #FFFFFF;
+}
+
+.splash-brand-dot {
+  color: #A8D800;
+  margin-left: 1px;
+  font-weight: 800;
+}
+
+.splash-tagline {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  color: #CAD8AE;
+  letter-spacing: 0.12em;
+  margin-bottom: 26px;
+}
+
+.splash-loading-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.splash-loading-dots .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #9CAF6C;
+  animation: dotPulse 1.4s ease-in-out infinite;
+}
+
+.splash-loading-dots .dot-1 {
+  animation-delay: 0s;
+}
+
+.splash-loading-dots .dot-2 {
+  animation-delay: 0.2s;
+}
+
+.splash-loading-dots .dot-3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes dotPulse {
+
+  0%,
+  80%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+
+  40% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   CAMERA SCREEN SAMPLE & SLIDE-UP DRAWER (CAMERA 1-4.png)
+   ========================================================================== */
+.sample-card-note {
+  background-color: #F7F4F1;
+  border-radius: 12px;
+  padding: 24px 20px;
+  width: 240px;
+  transform: rotate(-3deg);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.sample-note-label {
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 700;
+  color: #8C7B6E;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+.sample-note-aksara {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sample-note-aksara .aksara {
+  font-size: 28px;
+  color: #43281C;
+  line-height: 1.25;
+}
+
+.sample-note-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #DCD4CA;
+  margin: 16px 0 10px;
+}
+
+.sample-note-sub {
+  font-size: 12px;
+  color: #9E8E81;
+}
+
+/* Bottom Sheet Drawer */
+.scan-bottom-sheet {
+  position: absolute;
+  bottom: 96px;
+  left: 16px;
+  right: 16px;
+  background-color: #F7F4F1;
+  border-radius: 28px;
+  padding: 20px 20px 24px;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.4);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.sheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.sheet-result-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: #43281C;
+  margin-bottom: 4px;
+}
+
+.sheet-result-sub {
+  font-size: 12px;
+  color: #7D6B5E;
+}
+
+.sheet-btn-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  color: #7D6B5E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sheet-btn-close:hover {
+  background-color: rgba(67, 40, 28, 0.1);
+  color: #43281C;
+}
+
+.btn-bedah-suku {
+  width: 100%;
+  background-color: #43281C;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 14px;
+  padding: 12px 18px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(67, 40, 28, 0.2);
+  transition: background-color 0.2s;
+}
+
+.btn-bedah-suku:hover {
+  background-color: #2F1B12;
+}
+
+/* Detail Suku Kata Grid */
+.sheet-detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: fadeIn 0.25s ease;
+}
+
+.syllable-grid-6 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.syllable-chip-card {
+  background-color: #FFFFFF;
+  border: 1.5px solid #E5DED7;
+  border-radius: 16px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.syllable-chip-card:hover {
+  border-color: #9CAF6C;
+}
+
+.syllable-chip-card.active {
+  background-color: #E7EDDA;
+  border-color: #6C823D;
+  box-shadow: 0 2px 8px rgba(108, 130, 61, 0.15);
+}
+
+.syllable-aksara {
+  font-size: 26px;
+  color: #43281C;
+  line-height: 1.2;
+}
+
+.syllable-latin {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  color: #7D6B5E;
+}
+
+.syllable-chip-card.active .syllable-latin {
+  color: #43281C;
+}
+
+.syllable-explain-box {
+  background-color: #E7EDDA;
+  border-radius: 14px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.explain-text {
+  font-size: 13px;
+  color: #43281C;
+  font-weight: 500;
+  flex: 1;
+}
+
+.btn-sound-explain {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.btn-sound-explain:hover {
+  transform: scale(1.05);
+}
+
+.link-pelajari-materi {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: #43281C;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.link-pelajari-materi:hover {
+  text-decoration: underline;
+}
+
+/* Custom Play Badge for Node (MATERI BAB 1.png) */
+.node-status-badge.play-custom {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  z-index: 3;
+}
+
+.node-svg-art {
+  display: block;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   ONBOARDING SCREENS (ONBOARDING SCREEN 1, 2, 3.png)
+   ========================================================================== */
+.onboarding-screen {
+  width: 100%;
+  flex: 1;
+  min-height: 917px;
+  height: 100%;
+  max-height: 917px;
+  background-color: #43281C;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.onboarding-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 20px 8px;
+}
+
+.btn-circle-nav-dark {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-circle-nav-dark:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.onboarding-brand {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #F1E7DC;
+  text-transform: uppercase;
+}
+
+.btn-lewati {
+  background: none;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: #D5DDC2;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 9999px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-lewati:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.onboarding-body {
+  padding: 4px 24px 0;
+  text-align: left;
+}
+
+.onboarding-step-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #9CAF6C;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.onboarding-title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+  letter-spacing: -0.03em;
+}
+
+.onboarding-desc {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #F1E7DC;
+  max-width: 330px;
+  font-weight: 400;
+}
+
+.onboarding-scene-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 16px;
+  margin: 8px 0 0;
+  min-height: 280px;
+}
+
+.onboarding-scene-img {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  max-height: 340px;
+  object-fit: contain;
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.onboarding-footer {
+  background-color: #9CAF6C;
+  border-top-left-radius: 50% 28px;
+  border-top-right-radius: 50% 28px;
+  padding: 24px 24px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  height: 135px;
+  box-sizing: border-box;
+}
+
+.slider-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot-bar {
+  height: 8px;
+  width: 8px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+}
+
+.dot-bar.active {
+  width: 26px;
+  background-color: #43281C;
+}
+
+.btn-onboarding-next {
+  background-color: #43281C;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 9999px;
+  height: 48px;
+  padding: 0 24px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(67, 40, 28, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-onboarding-next:hover {
+  background-color: #2F1B12;
+  transform: translateY(-1px);
+}
+
+/* Onboarding slide/fade animations between steps */
+@keyframes onboardingSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes onboardingSlideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+}
+
+@keyframes onboardingFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes onboardingFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+.onboarding-slide-in {
+  animation: onboardingSlideIn 0.25s ease both;
+}
+
+.onboarding-slide-out {
+  animation: onboardingSlideOut 0.2s ease both;
+}
+
+.onboarding-scene-fade-in {
+  animation: onboardingFadeIn 0.28s ease both;
+}
+
+.onboarding-scene-fade-out {
+  animation: onboardingFadeOut 0.2s ease both;
+}
+
+
+/* ==========================================================================
+   INTRO SCREEN (INTRO.png)
+   ========================================================================== */
+.intro-screen {
+  width: 100%;
+  flex: 1;
+  min-height: 917px;
+  height: 100%;
+  max-height: 917px;
+  background-color: #FFFBEA;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.intro-blob-green {
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background-color: #9CAF6C;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.intro-blob-brown {
+  position: absolute;
+  top: 30px;
+  right: -60px;
+  width: 210px;
+  height: 190px;
+  border-radius: 50%;
+  background-color: #633923;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.intro-content {
+  position: relative;
+  z-index: 2;
+  padding: 160px 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  flex-shrink: 0;
+}
+
+.intro-headline {
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #43281C;
+  margin-bottom: 12px;
+  letter-spacing: -0.03em;
+}
+
+.highlight-text {
+  position: relative;
+  display: inline-block;
+}
+
+.highlight-text::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  height: 9px;
+  background-color: #9CAF6C;
+  border-radius: 4px;
+  z-index: -1;
+}
+
+.intro-desc {
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: #5E614D;
+  margin-bottom: 24px;
+}
+
+.intro-btn-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.intro-btn-primary {
+  width: 100%;
+  height: 54px;
+  background-color: #43281C;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 16px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(67, 40, 28, 0.2);
+  transition: all 0.2s ease;
+}
+
+.intro-btn-primary:hover {
+  background-color: #2F1B12;
+}
+
+.intro-btn-outline {
+  width: 100%;
+  height: 54px;
+  background-color: #FFFDF6;
+  border: 1.5px solid #9CAF6C;
+  color: #4D5230;
+  border-radius: 16px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.intro-btn-outline:hover {
+  background-color: #F4F7EB;
+}
+
+.btn-text-jelajahi {
+  background: none;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #5E614D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 6px 0;
+  margin-top: 2px;
+  transition: color 0.2s;
+}
+
+.btn-text-jelajahi:hover {
+  color: #43281C;
+}
+
+.intro-bottom-mascot {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 0;
+  padding-right: 0;
+}
+
+.intro-bubble {
+  align-self: flex-end;
+  margin-right: 32px;
+  margin-bottom: 12px;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 10px 18px;
+  box-shadow: 0 4px 16px rgba(67, 40, 28, 0.12);
+  z-index: 3;
+  transform: rotate(3deg);
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #43281C;
+  border: 1px solid #ECE7DE;
+  white-space: nowrap;
+}
+
+.intro-bubble span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Maskot Intro: full-width, cropped dari bawah layar */
+.intro-mascot-img {
+  width: 100%;
+  max-width: 412px;
+  height: auto;
+  object-fit: contain;
+  object-position: top;
+  display: block;
+  align-self: center;
+}
+
+
+/* profil-settings-btn - tombol settings bulat di profil */
+.profil-settings-btn {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 14px rgba(77, 52, 35, 0.07);
+}
+
+
+
+/* ==========================================================================
+   SPLASH SCREEN (SPLASH SCREEN.png)
+   Dark brown #43281C background, mascot centered, AksaraLensa brand + tagline
+   ========================================================================== */
+.splash-screen {
+  width: 100%;
+  height: 100%;
+  min-height: 917px;
+  max-height: 917px;
+  background-color: #43281C;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  cursor: pointer;
+  gap: 0;
+  /* Entrance animation */
+  animation: splashFadeIn 0.6s ease both;
+}
+
+@keyframes splashFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Exit fade out when navigating */
+.splash-screen.splash-exit {
+  animation: splashFadeOut 0.55s ease forwards;
+}
+
+@keyframes splashFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+}
+
+/* Mascot logo image */
+.splash-mascot-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  animation: splashMascotFloat 3s ease-in-out infinite;
+}
+
+@keyframes splashMascotFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.splash-mascot-img {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Brand text group */
+.splash-brand-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* "AksaraLensa." title */
+.splash-brand-title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+}
+
+.splash-brand-bold {
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.splash-brand-light {
+  font-weight: 300;
+  color: #F1E7DC;
+}
+
+.splash-brand-dot {
+  font-weight: 800;
+  color: #9CAF6C;
+}
+
+/* Tagline */
+.splash-tagline {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  color: #C8BFB6;
+  letter-spacing: 0.04em;
+  margin: 0;
+  text-align: center;
+}
+
+/* Loading dots */
+.splash-loading-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 48px;
+}
+
+.splash-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #9CAF6C;
+  display: inline-block;
+  animation: splashDotPulse 1.4s ease-in-out infinite both;
+}
+
+.splash-dot-1 {
+  animation-delay: 0s;
+}
+
+.splash-dot-2 {
+  animation-delay: 0.2s;
+}
+
+.splash-dot-3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes splashDotPulse {
+
+  0%,
+  80%,
+  100% {
+    transform: scale(0.7);
+    opacity: 0.5;
+  }
+
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+
+
+
+
+
+
+/* ========================================================
+   LATIHAN AWAL / KENALI AKSARA DASAR (Kenali aksara dasar 1-4.png)
+   ======================================================== */
+.pelajaran-page-container {
+  min-height: 100%;
+  background-color: #E8EEDC;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 18px 24px;
+  box-sizing: border-box;
+  position: relative;
+  overflow-y: auto;
+}
+
+/* Header Top Bar */
+.pelajaran-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.pelajaran-btn-back {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1.5px solid #E2DCD3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3A2315;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(77, 52, 35, 0.04);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.pelajaran-btn-back:hover {
+  background: #FAF7F2;
+  transform: scale(1.05);
+}
+
+.pelajaran-header-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.pelajaran-tag-bab {
+  font-family: var(--font-display);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5D6C3D;
+  margin-bottom: 2px;
+}
+
+.pelajaran-tag-tahap {
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #3A2315;
+}
+
+.pelajaran-timer-capsule {
+  background: #FFFFFF;
+  border-radius: 999px;
+  padding: 6px 14px;
+  border: 1px solid #E2DCD3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: #3A2315;
+  box-shadow: 0 2px 6px rgba(77, 52, 35, 0.04);
+  flex-shrink: 0;
+}
+
+.pelajaran-timer-capsule svg {
+  color: #3A2315;
+}
+
+/* Progress Bar */
+.pelajaran-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-shrink: 0;
+}
+
+.pelajaran-progress-track {
+  flex: 1;
+  height: 6px;
+  background: #D7DEC8;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.pelajaran-progress-fill {
+  height: 100%;
+  background: #556B2F;
+  border-radius: 999px;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pelajaran-progress-text {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: #556B2F;
+  flex-shrink: 0;
+}
+
+/* Main White Card */
+.pelajaran-card-main {
+  background: #FFFFFF;
+  border-radius: 28px;
+  border: 1px solid rgba(229, 222, 215, 0.7);
+  box-shadow: 0 8px 30px rgba(77, 52, 35, 0.06);
+  padding: 22px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.pelajaran-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.chip-kenalan-dulu {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #EBF3DC;
+  color: #4E602B;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pelajaran-card-mascot-head {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #B9EC00;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.pelajaran-card-mascot-head img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pelajaran-card-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  color: #3A2315;
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+}
+
+.pelajaran-card-subtitle {
+  font-size: 13px;
+  color: #6B6159;
+  line-height: 1.45;
+  margin: 0 0 16px;
+}
+
+/* Feedback Row (Error / Success) */
+.feedback-msg-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 700;
+  margin: 0 0 16px;
+  animation: feedbackSlideIn 0.25s ease;
+}
+
+.feedback-msg-row.wrong {
+  color: #B33A24;
+}
+
+.feedback-msg-row.correct {
+  color: #3D5C1E;
+}
+
+@keyframes feedbackSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Big Aksara Container Box */
+.aksara-box-center {
+  background: #E5EBD8;
+  border-radius: 22px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 16px;
+  transition: transform 0.2s ease;
+}
+
+.aksara-box-center.pulse {
+  animation: aksaraBoxPulse 0.4s ease;
+}
+
+@keyframes aksaraBoxPulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.aksara-glyph-huge {
+  font-family: var(--font-aksara);
+  font-size: 96px;
+  line-height: 1;
+  color: #3A2315;
+  user-select: none;
+}
+
+.aksara-latin-capsule {
+  background: #FFFFFF;
+  border-radius: 999px;
+  padding: 6px 24px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  color: #3A2315;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-top: 14px;
+}
+
+/* Stepper & Carousel Controls */
+.aksara-stepper-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.btn-stepper-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: #EBF1DF;
+  color: #4E602B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.btn-stepper-circle:not(:disabled):hover {
+  background: #DFE8D0;
+  transform: scale(1.06);
+}
+
+.btn-stepper-circle:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.stepper-info-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.stepper-counter-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #7A6E65;
+}
+
+.btn-contoh-bentuk {
+  background: none;
+  border: none;
+  color: #4E602B;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: opacity 0.15s ease;
+}
+
+.btn-contoh-bentuk:hover {
+  opacity: 0.8;
+}
+
+.pelajaran-card-footnote {
+  text-align: center;
+  font-size: 11px;
+  color: #8C827A;
+  margin-top: 4px;
+}
+
+/* 4 Options List for Quiz */
+.soal-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+  margin-bottom: 6px;
+}
+
+.soal-option-card {
+  height: 54px;
+  border-radius: 16px;
+  background: #FFFFFF;
+  border: 1.5px solid #E5E0D8;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 14px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.soal-option-card:hover:not(.locked) {
+  border-color: #8DA564;
+  transform: translateY(-1px);
+}
+
+.soal-option-card.selected {
+  background: #E6EED9;
+  border-color: #556B2F;
+}
+
+.soal-option-card.wrong {
+  background: #FDEBE7;
+  border-color: #DE7F6D;
+}
+
+.soal-option-card.correct {
+  background: #E8F2D8;
+  border-color: #628236;
+}
+
+.option-badge-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #D5CEBF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: #4D3423;
+  flex-shrink: 0;
+}
+
+.soal-option-card.wrong .option-badge-circle {
+  border-color: #DE7F6D;
+  background: #F9D6CE;
+  color: #B33A24;
+}
+
+.soal-option-card.correct .option-badge-circle {
+  border-color: #628236;
+  background: #DCE8C7;
+  color: #3D5C1E;
+}
+
+.option-latin-label {
+  flex: 1;
+  font-family: var(--font-display);
+  font-size: 16.5px;
+  font-weight: 800;
+  color: #3A2315;
+}
+
+.option-radio-ring {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid #D0C8BF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.soal-option-card.selected .option-radio-ring {
+  background: #556B2F;
+  border-color: #556B2F;
+}
+
+.option-feedback-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.option-feedback-icon.wrong {
+  color: #B33A24;
+}
+
+.option-feedback-icon.correct {
+  color: #46612E;
+}
+
+/* Bottom Actions */
+.pelajaran-bottom-container {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.btn-action-pelajaran {
+  width: 100%;
+  height: 48px;
+  background: #4E602B;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 16px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(78, 96, 43, 0.28);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-action-pelajaran:hover {
+  background: #415024;
+  transform: translateY(-1px);
+}
+
+.btn-action-pelajaran:active {
+  transform: scale(0.98);
+}
+
+.btn-action-pelajaran:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pelajaran-bottom-quote {
+  font-size: 12px;
+  color: #7A6E65;
+  text-align: center;
+}
+
+
+/* ========================================================
+   LATIHAN MENULIS (Latihan menulis 1-2.png)
+   ======================================================== */
+.canvas-drawing-container {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  background: #FAF7F2;
+  border-radius: 22px;
+  border: 1.5px dashed #D8CFBF;
+  overflow: hidden;
+  margin-bottom: 14px;
+  touch-action: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas-watermark-guide {
+  position: absolute;
+  font-family: var(--font-aksara);
+  font-size: 150px;
+  color: #DDD4BA;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+.canvas-drawing-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  cursor: crosshair;
+}
+
+.canvas-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.canvas-instruction-text {
+  font-size: 12.5px;
+  color: #6B6159;
+  line-height: 1.4;
+}
+
+.canvas-instruction-sub {
+  font-size: 11px;
+  color: #8C827A;
+  margin-top: 2px;
+}
+
+.btn-canvas-clear {
+  background: #F4EFEB;
+  border: 1px solid #E5DED5;
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: #4D3423;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.btn-canvas-clear:hover {
+  background: #EBE4DD;
+}
+
+
+/* ========================================================
+   PROFIL PAGE (PROFIL 1.png) - Pixel Accurate Full Bleed
+   ======================================================== */
+.profil-screen-container {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 36px;
+  background-color: var(--color-cream);
+  overflow-x: hidden;
+}
+
+.profil-hero-art {
+  position: relative;
+  width: 100%;
+  height: 364px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background: linear-gradient(180deg, #F9CDA8 0%, #FFF3CC 55%, #E8F0D6 100%);
+  margin: 0;
+  border-radius: 0;
+}
+
+.profil-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  pointer-events: none;
+  user-select: none;
+}
+
+.profil-settings-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1px solid rgba(77, 52, 35, 0.08);
+  box-shadow: 0 4px 12px rgba(77, 52, 35, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profil-settings-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 16px rgba(77, 52, 35, 0.14);
+}
+
+.profil-settings-btn:active {
+  transform: scale(0.96);
+}
+
+.profil-hero-text {
+  position: absolute;
+  top: 26px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.profil-hero-name {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  color: #43281C;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.profil-hero-sub {
+  font-size: 13px;
+  color: #685A4E;
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+.profil-avatar-big {
+  position: relative;
+  z-index: 6;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profil-avatar-click-wrapper {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  outline: none;
+  border-radius: 50%;
+}
+
+.profil-avatar-halo-circle {
+  width: 152px;
+  height: 152px;
+  border-radius: 50%;
+  background-color: #B9EC00;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.45), 0 8px 24px rgba(67, 40, 28, 0.12);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.profil-avatar-click-wrapper:hover .profil-avatar-halo-circle {
+  transform: scale(1.03);
+}
+
+.profil-avatar-click-wrapper:active .profil-avatar-halo-circle {
+  transform: scale(0.98);
+}
+
+.profil-avatar-img-inner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  display: block;
+}
+
+.speech-bubble-aksa {
+  position: absolute;
+  right: -32px;
+  bottom: 8px;
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 7px 12px;
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #43281C;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 8;
+  text-align: left;
+}
+
+.profil-body-content {
+  padding: 16px 18px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-banner-sprout-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #DCE7CA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-banner-heading {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #384F25;
+  margin-bottom: 2px;
+}
+
+.info-banner-sub {
+  font-size: 12px;
+  color: #556B3F;
+}
+
+/* ========================================================
+   EDIT PROFIL PAGE (EDIT PROFILE 1.png & EDIT PROFILE 2.png)
+   ======================================================== */
+.profil-edit-page-container {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-cream);
+  position: relative;
+  overflow: hidden;
+}
+
+.edit-toast-banner {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  right: 20px;
+  z-index: 100;
+  background: #43281C;
+  color: #FFFBEA;
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  animation: toastFadeIn 0.25s ease-out;
+}
+
+@keyframes toastFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.edit-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px 14px;
+  background-color: var(--color-cream);
+  flex-shrink: 0;
+}
+
+.btn-circle-nav-edit {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1px solid #EDE6DE;
+  box-shadow: 0 2px 8px rgba(77, 52, 35, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #43281C;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.btn-circle-nav-edit:hover {
+  transform: scale(1.05);
+  background-color: #FAF7F2;
+}
+
+.btn-circle-nav-edit:active {
+  transform: scale(0.96);
+}
+
+.edit-page-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  color: #43281C;
+  margin: 0;
+  text-align: center;
+}
+
+.edit-scroll-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 18px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card Avatar Sage Green (EDIT PROFILE 1.png) */
+.edit-avatar-sage-card {
+  background: #E5ECD6;
+  border-radius: 28px;
+  padding: 26px 20px 22px;
+  text-align: center;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 16px rgba(70, 97, 46, 0.06);
+}
+
+.avatar-sage-center-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.btn-avatar-ring-trigger {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  border-radius: 50%;
+}
+
+.avatar-circle-sage-ring {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  background: #B9EC00;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 0 0 6px #FFFFFF, 0 6px 18px rgba(67, 40, 28, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.btn-avatar-ring-trigger:hover .avatar-circle-sage-ring {
+  transform: scale(1.04);
+}
+
+.avatar-sage-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  display: block;
+}
+
+.avatar-edit-pencil-badge {
+  position: absolute;
+  bottom: 0px;
+  right: -2px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #43281C;
+  border: 2.5px solid #FFFFFF;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
+}
+
+.btn-avatar-ring-trigger:hover .avatar-edit-pencil-badge {
+  transform: scale(1.1);
+}
+
+.edit-user-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: #43281C;
+  margin: 0 0 4px;
+}
+
+.edit-user-sub {
+  font-size: 13px;
+  color: #6E645A;
+  margin: 0;
+}
+
+/* Card Putih Bersih Edit */
+.edit-card-white {
+  background: #FFFFFF;
+  border: 1.5px solid #EDE6DE;
+  border-radius: 22px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 14px rgba(77, 52, 35, 0.04);
+}
+
+.edit-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.edit-card-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 800;
+  color: #43281C;
+  margin: 0;
+}
+
+.btn-edit-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #46612E;
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 4px 6px;
+  border-radius: 8px;
+  transition: background-color 0.15s ease;
+}
+
+.btn-edit-toggle:hover {
+  background-color: #EDF3E4;
+}
+
+.info-display-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-label-text {
+  font-size: 11.5px;
+  color: #8C827A;
+  font-weight: 600;
+}
+
+.field-value-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: #43281C;
+}
+
+/* Form Edit Fields (EDIT PROFILE 2.png) */
+.info-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.edit-text-input {
+  width: 100%;
+  height: 48px;
+  border-radius: 14px;
+  background: #F7F4F1;
+  border: 1.5px solid #E5DED7;
+  padding: 0 16px;
+  font-size: 14.5px;
+  font-family: var(--font-body);
+  color: #43281C;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.edit-text-input:focus {
+  border-color: #43281C;
+  box-shadow: 0 0 0 3px rgba(67, 40, 28, 0.1);
+  background: #FFFFFF;
+}
+
+.edit-form-note {
+  font-size: 11.5px;
+  color: #8C827A;
+  line-height: 1.45;
+  margin: 4px 0 6px;
+}
+
+.info-edit-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 6px;
+}
+
+.btn-batal-text {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #7C7064;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+
+.btn-batal-text:hover {
+  background-color: #F7F4F1;
+}
+
+.btn-simpan-brown {
+  background: #43281C;
+  color: #FFFBEA;
+  border: none;
+  border-radius: 14px;
+  padding: 10px 18px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 3px 10px rgba(67, 40, 28, 0.2);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.btn-simpan-brown:hover {
+  background: #331E15;
+  transform: translateY(-1px);
+}
+
+.btn-simpan-brown:active {
+  transform: translateY(1px);
+}
+
+/* Accordion Header Ganti Kata Sandi */
+.accordion-header-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.accordion-title-side {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lock-badge-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: #FFF0DF;
+  border: 1px solid #F5DECA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lock-text-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.lock-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 800;
+  color: #43281C;
+}
+
+.lock-sub {
+  font-size: 11.5px;
+  color: #8C827A;
+  margin-top: 2px;
+}
+
+.accordion-chevron {
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accordion-chevron.open {
+  transform: rotate(180deg);
+}
+
+.password-form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.password-divider {
+  height: 1px;
+  background: #EDE6DE;
+  margin: 14px 0 4px;
+}
+
+.btn-toggle-eye-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12.5px;
+  color: #46612E;
+  font-weight: 600;
+  padding: 4px 0;
+}
+
+.btn-periksa-perubahan-brown {
+  width: 100%;
+  height: 50px;
+  border-radius: 14px;
+  background: #43281C;
+  color: #FFFBEA;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  margin-top: 6px;
+  box-shadow: 0 3px 10px rgba(67, 40, 28, 0.2);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.btn-periksa-perubahan-brown:hover {
+  background: #331E15;
+  transform: translateY(-1px);
+}
+
+.btn-periksa-perubahan-brown:active {
+  transform: translateY(1px);
+}
+
+/* Tombol Logout Soft Peach di Bawah */
+.btn-logout-peach {
+  width: 100%;
+  height: 52px;
+  border-radius: 16px;
+  background: #FFF0DF;
+  border: 1.5px solid #E1CBB5;
+  color: #91511E;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  margin-top: 4px;
+  margin-bottom: 24px;
+  transition: all 0.2s ease;
+}
+
+.btn-logout-peach:hover {
+  background: #FFE4CC;
+  border-color: #E6CBB3;
+  transform: translateY(-1px);
+}
+
+.btn-logout-peach:active {
+  transform: translateY(1px);
+}
+
+
+/* ========================================================
+   ENFORCE STRICT LEFT-ALIGNMENT & MATCH MASCOT BOXES
+   ======================================================== */
+.bab-card {
+  text-align: left !important;
+  align-items: center !important;
+}
+
+.bab-card-info {
+  text-align: left !important;
+  align-items: flex-start !important;
+}
+
+.bab-number,
+.bab-title,
+.bab-desc,
+.progress-text,
+.bab-progress-container,
+.section-title,
+.section-title-bar,
+.perjalanan-title-bar,
+.hero-content,
+.hero-eyebrow,
+.hero-title,
+.hero-desc,
+.home-greeting,
+.greeting-sub,
+.greeting-name {
+  text-align: left !important;
+}
+
+.bab-card-media {
+  width: 96px;
+  height: 108px;
+  border-radius: 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Background tints for both Homepage and Profil cards */
+.theme-bab1 .bab-card-media {
+  background: #E8EFD8 !important;
+}
+
+.theme-bab2 .bab-card-media {
+  background: #FFF1C7 !important;
+}
+
+.theme-bab3 .bab-card-media {
+  background: #EDE5FA !important;
+}
+
+
+/* Profil Hero Art & Content Seamless Overlap (PROFIL 1.png) */
+.profil-hero-art {
+  height: 384px !important;
+}
+
+.profil-body-content {
+  margin-top: -30px !important;
+  position: relative !important;
+  z-index: 10 !important;
+  padding: 0 18px 32px !important;
+}
+
+.profil-screen-container .card-motivasi {
+  border-radius: 28px !important;
+  box-shadow: 0 6px 20px rgba(77, 52, 35, 0.08) !important;
+}
+
+/* Profil Bab Media Box: 116px × 92px matches the 142×112 aspect ratio of maskot profil bab 1/2/3.svg */
+.profil-screen-container .bab-card-media {
+  width: 116px !important;
+  height: 92px !important;
+  border-radius: 18px !important;
+}
+
+.profil-screen-container .bab-card {
+  padding: 14px 16px !important;
+}
+
+/* Homepage Bab Media Box: 96px × 108px matches maskot homepage bab 1/2/3.svg */
+.home-container .bab-card-media {
+  width: 96px !important;
+  height: 108px !important;
+  border-radius: 20px !important;
+}
+
+
+/* ========================================================
+   PROFIL HERO DIV — Pixel-accurate sesuai PROFIL 1.png
+   ======================================================== */
+
+/* Override tinggi hero agar lanskap + avatar muat sempurna */
+.profil-hero-art {
+  height: 390px !important;
+  justify-content: flex-end !important;
+  padding-bottom: 0 !important;
+}
+
+/* Nama user — font display besar, tebal, tengah */
+.profil-hero-name {
+  font-family: 'Plus Jakarta Sans', var(--font-display), sans-serif !important;
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  color: #43281C !important;
+  text-align: center !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 !important;
+  line-height: 1.15 !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Subjudul "Teman belajar aksara Jawa" */
+.profil-hero-sub {
+  font-family: 'Plus Jakarta Sans', var(--font-display), sans-serif !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  color: #685A4E !important;
+  text-align: center !important;
+  margin: 4px 0 0 !important;
+}
+
+/* Posisi teks nama dari atas */
+.profil-hero-text {
+  position: absolute !important;
+  top: 28px !important;
+  left: 0 !important;
+  right: 0 !important;
+  text-align: center !important;
+  z-index: 5 !important;
+  pointer-events: none !important;
+}
+
+/* Container avatar + sparkle + speech bubble */
+.profil-avatar-big {
+  position: relative !important;
+  z-index: 6 !important;
+  margin-bottom: 0 !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  width: 100% !important;
+  padding-bottom: 28px !important;
+}
+
+/* Sparkle / bintang oranye kecil di kiri bawah avatar */
+.profil-sparkle-left {
+  position: absolute !important;
+  left: calc(50% - 120px) !important;
+  bottom: 72px !important;
+  z-index: 7 !important;
+  pointer-events: none !important;
+  filter: drop-shadow(0 1px 2px rgba(245, 166, 35, 0.3)) !important;
+}
+
+/* Tombol wrapper avatar (no bg, no border) */
+.profil-avatar-click-wrapper {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  display: block !important;
+  outline: none !important;
+  border-radius: 50% !important;
+  position: relative !important;
+  z-index: 6 !important;
+}
+
+/* Halo outer ring — ring semi-transparan putih di sekeliling avatar */
+.profil-avatar-halo-outer {
+  width: 188px !important;
+  height: 188px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.32) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 8px 32px rgba(67, 40, 28, 0.1) !important;
+  transition: transform 0.2s ease !important;
+}
+
+.profil-avatar-click-wrapper:hover .profil-avatar-halo-outer {
+  transform: scale(1.03) !important;
+}
+
+.profil-avatar-click-wrapper:active .profil-avatar-halo-outer {
+  transform: scale(0.98) !important;
+}
+
+/* Avatar lingkaran berlatar #A8D800 (lime-green dari icon profile 1.svg) */
+.profil-avatar-halo-circle {
+  width: 160px !important;
+  height: 160px !important;
+  border-radius: 50% !important;
+  background-color: #A8D800 !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+}
+
+/* Gambar avatar di dalam lingkaran */
+.profil-avatar-img-inner {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center bottom !important;
+  display: block !important;
+}
+
+/* Speech bubble "Aku temani setiap langkahmu." */
+.speech-bubble-aksa {
+  position: absolute !important;
+  right: calc(50% - 168px) !important;
+  bottom: 54px !important;
+  background: #FFFFFF !important;
+  border-radius: 14px !important;
+  padding: 8px 13px !important;
+  font-family: 'Plus Jakarta Sans', var(--font-display), sans-serif !important;
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  color: #43281C !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09), 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid rgba(0, 0, 0, 0.04) !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+  z-index: 8 !important;
+  text-align: left !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+}
+
+/* Ekor speech bubble ke kiri */
+.speech-bubble-aksa::before {
+  content: '' !important;
+  position: absolute !important;
+  left: -8px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 0 !important;
+  height: 0 !important;
+  border-style: solid !important;
+  border-width: 6px 8px 6px 0 !important;
+  border-color: transparent #FFFFFF transparent transparent !important;
+  filter: drop-shadow(-2px 0 2px rgba(0, 0, 0, 0.04)) !important;
+}
+
+/* Body content menumpuk rapi di atas hero */
+.profil-body-content {
+  position: relative !important;
+  z-index: 10 !important;
+  padding: 18px 18px 32px !important;
+  margin-top: 0 !important;
+  background: transparent !important;
+}
+
+
+/* === HERO PROFIL: Hapus override lama, gunakan yang baru di bawah ini (6113+) === */
+/* Reset dari rule lama di 6077-6087 yang tidak lagi relevan */
+/* Semua override sudah benar di blok "PROFIL HERO DIV" di atas */
+
+/* Taruh di PALING BAWAH app.css supaya menang atas aturan lama. */
+
+:root {
+  /* tinggi pill navbar + jarak bawah; ruang aman agar konten akhir tidak tertutup */
+  --tinggi-nav: 96px;
+}
+
+/* Halaman biasa: sisakan ruang di bawah untuk navbar yang melayang.
+   Layar penuh (tanpa navbar) dan Scanner tidak disentuh. */
+.isi:not(.layar-penuh):not(.isi-scan) {
+  padding-bottom: calc(var(--tinggi-nav) + env(safe-area-inset-bottom));
+}
+
+/* Profil: hero full-bleed (batalkan padding atas/kiri/kanan bawaan .isi). */
+.isi:has(.profil-page) {
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Navbar tidak lagi memakan ruang layout: lapisan setinggi 0 yang menempel
+   di dasar layar; pill-nya diposisikan absolut di atas konten. */
+.navbar-container:not(.navbar-scan) {
+  position: sticky;
+  bottom: 0;
+  z-index: 50;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.navbar-container:not(.navbar-scan)>.navbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  margin: 0 16px calc(12px + env(safe-area-inset-bottom));
+}
+
+
+/* ========================================================
+   LOGOUT BUTTON POLISH (EDIT PROFILE 1.png & DESIGN_SYSTEM.md §6.2)
+   Soft-warning: #FFF0DF background, #E1CBB5 border, #91511E text,
+   16px radius, Plus Jakarta Sans 700 15px, proper shadow and spacing
+   ======================================================== */
+.btn-logout-peach {
+  width: 100% !important;
+  height: 52px !important;
+  min-height: 52px !important;
+  border-radius: 16px !important;
+  background-color: #FFF0DF !important;
+  border: 1.5px solid #E1CBB5 !important;
+  color: #91511E !important;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  cursor: pointer !important;
+  margin-top: 10px !important;
+  margin-bottom: 32px !important;
+  box-shadow: 0 3px 12px rgba(145, 81, 30, 0.08) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-sizing: border-box !important;
+}
+
+.btn-logout-peach svg {
+  color: #91511E !important;
+  stroke: #91511E !important;
+  flex-shrink: 0 !important;
+}
+
+.btn-logout-peach:hover {
+  background-color: #FFE5CC !important;
+  border-color: #D8BCA3 !important;
+  color: #7A3F12 !important;
+  box-shadow: 0 6px 18px rgba(145, 81, 30, 0.14) !important;
+  transform: translateY(-1px) !important;
+}
+
+.btn-logout-peach:active {
+  background-color: #FCD8B8 !important;
+  transform: translateY(1px) !important;
+  box-shadow: 0 1px 4px rgba(145, 81, 30, 0.08) !important;
+}
+
+/* ========================================================
+   ENFORCE PLUS JAKARTA SANS ACCORDING TO USER REQUIREMENT
+   (All UI text uses Plus Jakarta Sans, Aksara glyphs keep Noto Sans Javanese)
+   ======================================================== */
+body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+.aksara, [lang="jv"], .aksara-xl, .aksara-lg, .aksara-md, .aksara-sm, .canvas-watermark-guide {
+  font-family: 'Noto Sans Javanese', serif !important;
 }

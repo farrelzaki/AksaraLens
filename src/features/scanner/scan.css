@@ -1,0 +1,550 @@
+/* Lensa Aksara — sesuai referensi CAMERA 1–4.png (kanvas 412 × 917) */
+
+/* Seluruh shell & kanvas berlatar gelap kamera #231913 saat di /scan agar tidak bocor warna krem */
+.shell.shell-scan,
+.isi.isi-scan {
+  background-color: #231913 !important;
+  background: #231913 !important;
+}
+
+#root:has(.shell-scan) {
+  background-color: #231913 !important;
+}
+
+.scan-page {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #231913;
+  overflow: hidden;
+  color: #FFFAF3;
+  font-family: var(--font-display);
+  text-align: left;
+}
+
+/* Kamera memenuhi seluruh layar di belakang UI */
+.scan-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.scan-video-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 12, 8, 0.55) 0%,
+    rgba(20, 12, 8, 0.05) 22%,
+    rgba(20, 12, 8, 0.05) 65%,
+    rgba(20, 12, 8, 0.55) 100%
+  );
+}
+
+/* Header */
+.scan-header {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  right: 0;
+  height: 44px;
+  z-index: 10;
+  transition: opacity 0.25s ease;
+}
+
+.scan-header.redup {
+  opacity: 0.35;
+}
+
+.scan-circle-btn {
+  position: absolute;
+  top: 2px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 250, 243, 0.14);
+  color: #FFFAF3;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.scan-circle-btn:hover {
+  background: rgba(255, 250, 243, 0.22);
+}
+
+.scan-circle-btn.kiri {
+  left: 24px;
+}
+
+.scan-circle-btn.kanan {
+  right: 22px;
+  cursor: default;
+}
+
+.scan-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 24px;
+  color: #FFFAF3;
+}
+
+.scan-subtitle {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 500;
+  color: #E0D6CA;
+  margin-top: 4px;
+}
+
+/* Bingkai bidik */
+.scan-frame {
+  position: absolute;
+  left: 37px;
+  right: 37px;
+  top: 218px;
+  height: 283px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.scan-corner {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border: 0 solid #D5E6B0;
+  z-index: 12;
+  pointer-events: none;
+}
+
+.scan-corner.lt {
+  left: 0;
+  top: 0;
+  border-left-width: 3px;
+  border-top-width: 3px;
+  border-top-left-radius: 14px;
+}
+
+.scan-corner.rt {
+  right: 0;
+  top: 0;
+  border-right-width: 3px;
+  border-top-width: 3px;
+  border-top-right-radius: 14px;
+}
+
+.scan-corner.lb {
+  left: 0;
+  bottom: 0;
+  border-left-width: 3px;
+  border-bottom-width: 3px;
+  border-bottom-left-radius: 14px;
+}
+
+.scan-corner.rb {
+  right: 0;
+  bottom: 0;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
+  border-bottom-right-radius: 14px;
+}
+
+.scan-media {
+  position: absolute;
+  inset: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.scan-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.scan-media img.contoh {
+  width: 82%;
+  height: auto;
+  max-height: 100%;
+  transform: rotate(2deg);
+}
+
+.scan-empty {
+  text-align: center;
+  padding: 0 16px;
+  color: #FFFAF3;
+}
+
+.scan-empty h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFAF3;
+  margin-top: 10px;
+}
+
+.scan-empty p {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: #CFC3B5;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.scan-retry {
+  margin-top: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(213, 230, 176, 0.4);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #D5E6B0;
+  font-size: 11px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.scan-retry:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Petunjuk & Tombol kontrol kamera */
+.scan-hint {
+  position: absolute;
+  top: 540px;
+  left: 20px;
+  right: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 10;
+}
+
+.scan-hint strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: #FFFAF3;
+}
+
+.scan-hint span {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: #CFC3B5;
+}
+
+.scan-controls {
+  position: absolute;
+  top: 610px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0 32px;
+  z-index: 10;
+}
+
+.scan-side-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #FFFAF3;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.scan-side-btn:hover {
+  opacity: 0.8;
+}
+
+.scan-shutter {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 4px solid #8B7B70;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+  transition: border-color 0.2s ease;
+}
+
+.scan-shutter span {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #8B7B70;
+  display: block;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.scan-shutter:active span {
+  transform: scale(0.92);
+}
+
+.scan-shutter.siap span {
+  background: #D5E6B0;
+}
+
+.scan-shutter:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.scan-shutter.sibuk span {
+  background: #8B7B70;
+  animation: scanPulse 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes scanPulse {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.scan-note {
+  position: absolute;
+  top: 710px;
+  left: 20px;
+  right: 20px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: #CFC3B5;
+  z-index: 10;
+}
+
+/* Lembar hasil melayang (Pop-up output melayang di atas kamera) */
+.scan-sheet {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 96px;
+  background: #F7F4F1;
+  border-radius: 28px;
+  padding: 22px 20px 20px;
+  color: #4D3423;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+  z-index: 95;
+  max-height: calc(100% - 140px);
+  overflow-y: auto;
+  animation: sheetNaik 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes sheetNaik {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+.scan-sheet-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: #4D3423;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.15s ease;
+}
+
+.scan-sheet-close:hover {
+  background: rgba(77, 52, 35, 0.08);
+}
+
+.scan-sheet-title {
+  margin-top: 8px;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 32px;
+  color: #4D3423;
+  text-align: left;
+}
+
+.scan-sheet-sub {
+  margin-top: 6px;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  color: #6B6159;
+  text-align: left;
+}
+
+.scan-bedah {
+  margin-top: 16px;
+  width: 100%;
+  height: 44px;
+  border: none;
+  border-radius: 14px;
+  background: #4D3423;
+  color: #F7F4F1;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Grid 3-kolom kartu suku kata: ba pak tin / dak pa sar */
+.scan-chips {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.scan-chip {
+  padding: 12px 8px 10px;
+  border-radius: 16px;
+  border: 1.5px solid #E5DED7;
+  background: #FFFFFF;
+  color: #4D3423;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  font-family: var(--font-display);
+  transition: all 0.15s ease;
+}
+
+.scan-chip .aksara {
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+.scan-chip small {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.scan-chip.aktif {
+  background: #E5ECD6;
+  border-color: #9CAF6C;
+}
+
+.scan-info {
+  margin-top: 14px;
+  background: #E5ECD6;
+  border-radius: 16px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.scan-info p {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: #4D3423;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.scan-speaker {
+  width: 60px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 1px solid #D5E6B0;
+  border-radius: 12px;
+  background: #FFFFFF;
+  color: #4D3423;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.scan-speaker:active {
+  transform: scale(0.95);
+}
+
+.scan-materi {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.scan-materi a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #52632F;
+  text-decoration: none;
+}
+
+/* Navbar transparan melayang langsung di atas kamera */
+.navbar-container.navbar-scan {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  z-index: 90;
+}
+
+.navbar-container.navbar-scan .navbar {
+  background: rgba(245, 240, 232, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  max-width: 366px;
+}
+
+.navbar-container.navbar-scan .navbar-item {
+  flex: 1;
+  color: #6B5B4D;
+}
+
+.navbar-container.navbar-scan .navbar-item.active {
+  flex: 1.5;
+  background: #4D3423;
+  color: #FFFAF3;
+  box-shadow: none;
+}
