@@ -4,9 +4,17 @@
 import type { Bingkai } from './bingkai';
 import type { HasilScan } from './scan';
 import type { Jawaban, Pesan, Permintaan } from './scan.worker';
+import { urai } from '../../aksara/urai';
 
 export type { Bingkai, HasilScan };
 export { PENUH } from './bingkai';
+
+/**
+ * Mode demo frontend: hasil contoh tanpa model. Hanya aktif bila VITE_SCANNER_DEMO=1 di .env.
+ * Dipakai untuk mencoba alur halaman; halaman menampilkan label "Mode demo" selama aktif.
+ */
+export const MODE_DEMO = import.meta.env.VITE_SCANNER_DEMO === '1';
+
 
 type Tunggu = { selesai: (v: unknown) => void; gagal: (e: Error) => void };
 
@@ -44,7 +52,18 @@ function kirim<T>(p: Pesan): Promise<T> {
 }
 
 /** Memanaskan model di worker saat tab Scanner dibuka (tombol Baca nonaktif sampai selesai). */
-export const siapkanScanner = () => kirim<void>({ jenis: 'siapkan' });
+export const siapkanScanner = () => (MODE_DEMO ? Promise.resolve() : kirim<void>({ jenis: 'siapkan' }));
+
+/** Hasil contoh untuk mode demo: tiga baris dari uji foto render (bukan hasil model). */
+const UNICODE_DEMO = ['ꦥꦤꦺꦴꦫꦩꦗꦮ', 'ꦧꦸꦏꦸꦱꦼꦏꦺꦴꦭꦃ', 'ꦗꦭꦤ꧀ꦩꦭꦶꦪꦺꦴꦧꦺꦴꦫꦺꦴ'];
+
+function hasilDemo(): HasilScan {
+  const baris = UNICODE_DEMO.map((u) => ({ unicode: u, keyakinan: 0.95, sukuKata: urai(u) }));
+  return { baris, kurangYakin: false, info: { waktuMs: 1500, sudut: 0, kotak: [] } };
+}
 
 /** Membaca foto (hanya area `bingkai`) di worker. Foto tidak disimpan dan tidak dikirim ke server. */
-export const bacaFoto = (foto: Blob, bingkai?: Bingkai) => kirim<HasilScan>({ jenis: 'baca', foto, bingkai });
+export const bacaFoto = (foto: Blob, bingkai?: Bingkai) =>
+  MODE_DEMO
+    ? new Promise<HasilScan>((selesai) => setTimeout(() => selesai(hasilDemo()), 1500))
+    : kirim<HasilScan>({ jenis: 'baca', foto, bingkai });

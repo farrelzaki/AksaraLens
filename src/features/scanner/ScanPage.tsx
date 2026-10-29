@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { PENUH, bacaFoto, siapkanScanner, type Bingkai } from '../../ml/model2/scanner';
+import { MODE_DEMO, PENUH, bacaFoto, siapkanScanner, type Bingkai } from '../../ml/model2/scanner';
 import { BingkaiPotong } from './BingkaiPotong';
 import { simpanHasilSementara } from './hasilScan';
 
@@ -55,6 +55,9 @@ export function ScanPage() {
   return (
     <>
       <h1>Scanner</h1>
+      {MODE_DEMO && (
+        <p role="note">Mode demo: hasil yang tampil adalah contoh, bukan hasil model.</p>
+      )}
       <p>Foto tulisan cetak, lurus, terang, 1–3 baris.</p>
       <label>
         Kamera

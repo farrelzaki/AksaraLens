@@ -1,5 +1,6 @@
 import { Link, Navigate } from 'react-router';
 import { tautanMateri } from '../../aksara/urai';
+import { MODE_DEMO } from '../../ml/model2/scanner';
 import { ambilHasilSementara } from './hasilScan';
 
 // F5 langkah 5: tiap suku kata diuraikan ke komponennya + tautan materi.
@@ -9,6 +10,7 @@ export function KajiPage() {
 
   return (
     <>
+      {MODE_DEMO && <p role="note">Mode demo: hasil yang tampil adalah contoh, bukan hasil model.</p>}
       <Link to="/scan/hasil">← Kembali</Link>
       <ul>
         {hasil.baris.flatMap((b) => b.sukuKata).map((s, i) => (
