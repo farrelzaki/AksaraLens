@@ -41,7 +41,7 @@ const TANTANGAN_SOAL = [
 export function PelajaranPage() {
   const { id } = useParams();
   const titik = titikDariId(id ?? 'b1-p1');
-  const { selesaikanTitik } = useProgres();
+  const { selesaikanTitik, catat } = useProgres();
   const navigate = useNavigate();
 
   // Mode: 'kenalan' (Kenali aksara dasar 1.png) -> 'kuis' (Kenali aksara dasar 2-4.png) -> 'selesai'
@@ -105,6 +105,8 @@ export function PelajaranPage() {
 
     setSudahDiperiksa(true);
     setApakahBenar(benar);
+    // Setiap jawaban dicatat ke statistik huruf (dipakai di Profil)
+    catat(currentSoal.jawaban, benar);
 
     if (benar) {
       try {

@@ -3,11 +3,12 @@ import { useNavigate, useParams } from 'react-router';
 import { titikDariId } from '../../content';
 import { useProgres } from '../../progres/ProgresProvider';
 import { hurufDariKode } from '../../aksara/huruf';
+import { cekKanvas, periksaTulisan, siapkanPemeriksa, type HasilCek } from '../../ml/model1/periksa';
 
 export function LatihanPage() {
   const { id } = useParams();
   const titik = titikDariId(id ?? 'b1-tulis1');
-  const { selesaikanTitik } = useProgres();
+  const { selesaikanTitik, catat } = useProgres();
   const navigate = useNavigate();
 
   // Daftar huruf yang dilatih (default: ha, na, ca)
@@ -15,6 +16,14 @@ export function LatihanPage() {
   const [hurufIndex, setHurufIndex] = useState(0);
   const [hasDrawn, setHasDrawn] = useState(false);
   const [isDrawing, setIsDrawing] = useState(false);
+  const [hasilCek, setHasilCek] = useState<HasilCek | null>(null);
+  const [galatCek, setGalatCek] = useState<string | null>(null);
+  const [memeriksa, setMemeriksa] = useState(false);
+
+  // Model pemeriksa dimuat saat halaman dibuka (F4)
+  useEffect(() => {
+    siapkanPemeriksa().catch(() => setGalatCek('Pemeriksa tulisan belum siap. Muat ulang halaman.'));
+  }, []);
 
   // Timer
   const [detik, setDetik] = useState(2);
@@ -50,6 +59,8 @@ export function LatihanPage() {
       ctx.strokeStyle = '#3C2415';
     }
     setHasDrawn(false);
+    setHasilCek(null);
+    setGalatCek(null);
   }, [hurufIndex]);
 
   const handlePointerDown = (e: PointerEvent<HTMLCanvasElement>) => {
@@ -99,6 +110,45 @@ export function LatihanPage() {
     if (!ctx) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     setHasDrawn(false);
+    setHasilCek(null);
+    setGalatCek(null);
+  };
+
+  // Cek tulisan: model menilai satu huruf, hasilnya dicatat ke statistik. Tidak menghalangi Lanjut.
+  const handleCek = async () => {
+    const canvas = canvasRef.current;
+    if (!canvas || memeriksa) return;
+    const status = cekKanvas(canvas);
+    if (status === 'kosong') {
+      setGalatCek('Tulis aksaranya dulu di kanvas.');
+      return;
+    }
+    if (status === 'terlalu_kecil') {
+      setGalatCek('Tulisan terlalu kecil. Tulis lebih besar.');
+      return;
+    }
+    setMemeriksa(true);
+    setGalatCek(null);
+    setHasilCek(null);
+    try {
+      const h = await periksaTulisan(canvas, kodeHuruf);
+      if (!h) {
+        setGalatCek('Tulis aksaranya dulu di kanvas.');
+        return;
+      }
+      setHasilCek(h);
+      catat(kodeHuruf, h.jenis === 'benar');
+    } catch {
+      setGalatCek('Pemeriksaan belum berhasil. Coba lagi.');
+    } finally {
+      setMemeriksa(false);
+    }
+  };
+
+  const pesanHasil = (h: HasilCek): string => {
+    if (h.jenis === 'benar') return 'Benar! Aksara ini tepat.';
+    if (h.jenis === 'terbaca_lain') return `Terbaca sebagai ${hurufDariKode(h.huruf)?.latin ?? h.huruf}. Coba lagi atau lanjut.`;
+    return 'Belum terbaca, coba lagi.';
   };
 
   const handleLanjut = () => {
@@ -191,7 +241,7 @@ export function LatihanPage() {
         <div className="canvas-controls-row">
           <div>
             <p className="canvas-instruction-text">Gunakan jari atau mouse untuk menulis.</p>
-            <p className="canvas-instruction-sub">Latihan mandiri · tulisan belum dinilai otomatis.</p>
+            <p className="canvas-instruction-sub">Tekan Cek untuk memeriksa tulisanmu.</p>
           </div>
           <button
             type="button"
@@ -204,7 +254,17 @@ export function LatihanPage() {
             </svg>
             Hapus
           </button>
+          <button
+            type="button"
+            className="btn-canvas-clear"
+            onClick={handleCek}
+            disabled={!hasDrawn || memeriksa}
+          >
+            {memeriksa ? 'Memeriksa…' : 'Cek'}
+          </button>
         </div>
+        {galatCek && <p role="alert" className="canvas-instruction-sub">{galatCek}</p>}
+        {hasilCek && <p role="status" className="canvas-instruction-sub">{pesanHasil(hasilCek)}</p>}
       </main>
 
       {/* 4. Bottom Action */}
