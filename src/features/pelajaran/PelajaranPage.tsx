@@ -75,20 +75,10 @@ export function PelajaranPage() {
   const currentAksara = NGLEGENA[aksaraIndex] || NGLEGENA[0];
   const currentSoal = TANTANGAN_SOAL[soalIndex] || TANTANGAN_SOAL[0];
 
-  // Putar suara pelafalan aksara
+  // Contoh bentuk: hanya umpan balik visual (tanpa pelafalan suara, PRD non-goal)
   const handleContohBentuk = () => {
     setAnimasiPulse(true);
     setTimeout(() => setAnimasiPulse(false), 500);
-
-    try {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const u = new SpeechSynthesisUtterance(currentAksara.latin);
-        u.lang = 'id-ID';
-        u.rate = 0.85;
-        window.speechSynthesis.speak(u);
-      }
-    } catch {}
   };
 
   const handlePilihOpsi = (idx: number) => {
@@ -108,15 +98,6 @@ export function PelajaranPage() {
     // Setiap jawaban dicatat ke statistik huruf (dipakai di Profil)
     catat(currentSoal.jawaban, benar);
 
-    if (benar) {
-      try {
-        if ('speechSynthesis' in window) {
-          const u = new SpeechSynthesisUtterance(currentSoal.jawaban);
-          u.lang = 'id-ID';
-          window.speechSynthesis.speak(u);
-        }
-      } catch {}
-    }
   };
 
   const handleLanjutSoal = () => {
