@@ -42,6 +42,13 @@ function syncDesignAssets() {
 
 try {
   syncDesignAssets();
+  const sourceDir = path.resolve(currentDir, 'design/assets-csv');
+  const files = fs.readdirSync(sourceDir);
+  fs.writeFileSync(path.resolve(currentDir, 'public/assets_list.json'), JSON.stringify(files, null, 2));
+  const uiuxDir = path.resolve(currentDir, 'design/uiux');
+  if (fs.existsSync(uiuxDir)) {
+    fs.writeFileSync(path.resolve(currentDir, 'public/uiux_list.json'), JSON.stringify(fs.readdirSync(uiuxDir), null, 2));
+  }
 } catch (e) {
   console.warn('Sync assets warning:', e);
 }

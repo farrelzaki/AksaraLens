@@ -49,14 +49,9 @@ export function IntroPage() {
       </div>
 
       <div className="intro-bottom-mascot">
-        <div className="intro-bubble">
-          <span>
-            Hai! Aku Aksa <span style={{ color: '#7E993B', marginLeft: '4px' }}>✦</span>
-          </span>
-        </div>
         <img
           src="/assets/maskot intro.svg"
-          alt="Maskot Aksa"
+          alt="Maskot Aksa - Hai! Aku Aksa ✦"
           className="intro-mascot-img"
           draggable={false}
         />

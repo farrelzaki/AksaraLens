@@ -1,17 +1,20 @@
-import { NavLink, Outlet, useMatches } from 'react-router';
+import { NavLink, Outlet, useLocation, useMatches } from 'react-router';
 import type { HandleRute } from './router';
 
 export function AppShell() {
   const matches = useMatches();
+  const { pathname } = useLocation();
   const layarPenuh = matches.some((m) => (m.handle as HandleRute | undefined)?.layarPenuh);
 
+  const isScan = pathname.startsWith('/scan');
+
   return (
-    <div className="shell">
-      <main className={`isi ${layarPenuh ? 'layar-penuh' : ''}`}>
+    <div className={`shell ${isScan ? 'shell-scan' : ''}`}>
+      <main className={`isi ${layarPenuh ? 'layar-penuh' : ''} ${isScan ? 'isi-scan' : ''}`}>
         <Outlet />
       </main>
       {!layarPenuh && (
-        <div className="navbar-container">
+        <div className={`navbar-container ${isScan ? 'navbar-scan' : ''}`}>
           <nav className="navbar" aria-label="Navigasi utama">
             <NavLink
               to="/belajar"

@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { BAB, JALUR } from '../../content';
 import { useProgres } from '../../progres/ProgresProvider';
 import { ICON_PROFIL } from '../profil/ProfilPage';
+import { ModalGantiAvatar } from '../profil/ModalGantiAvatar';
 
 // F1: Homepage sesuai HOMEPAGE.png — kartu per bab dengan maskot & avatar terpilih
 export function BelajarPage() {
@@ -10,34 +11,44 @@ export function BelajarPage() {
   const navigate = useNavigate();
   const [pesan, setPesan] = useState<string | null>(null);
 
-  // Ambil nama pengguna dari localStorage (default 'Kenji Morales' sesuai HOMEPAGE.png)
-  const namaUser = localStorage.getItem('namaUser') || 'Kenji Morales';
-
-  // Manajemen avatar: ambil dari localStorage (default ID = 1)
-  const savedAvatarId = parseInt(localStorage.getItem('selectedAvatarId') || '1', 10);
-  const [activeAvatarId, setActiveAvatarId] = useState(savedAvatarId);
-  const [tempAvatarId, setTempAvatarId] = useState(savedAvatarId);
+  // Ambil nama pengguna dan avatar dari localStorage (otomatis sinkron saat kembali dari halaman profil)
+  const [namaUser, setNamaUser] = useState(() => localStorage.getItem('namaUser') || 'Kenji Morales');
+  const [activeAvatarId, setActiveAvatarId] = useState(() => parseInt(localStorage.getItem('selectedAvatarId') || '1', 10));
   const [modalAvatar, setModalAvatar] = useState(false);
+
+  useEffect(() => {
+    const handleUpdate = () => {
+      setNamaUser(localStorage.getItem('namaUser') || 'Kenji Morales');
+      setActiveAvatarId(parseInt(localStorage.getItem('selectedAvatarId') || '1', 10));
+    };
+    window.addEventListener('storage', handleUpdate);
+    window.addEventListener('focus', handleUpdate);
+    return () => {
+      window.removeEventListener('storage', handleUpdate);
+      window.removeEventListener('focus', handleUpdate);
+    };
+  }, []);
 
   const avatarTerpilih = ICON_PROFIL.find((ic) => ic.id === activeAvatarId) || ICON_PROFIL[0];
 
-  const handleSimpanAvatar = () => {
-    setActiveAvatarId(tempAvatarId);
-    localStorage.setItem('selectedAvatarId', String(tempAvatarId));
-    setModalAvatar(false);
+  const handleSelectAvatar = (newId: number) => {
+    setActiveAvatarId(newId);
+    localStorage.setItem('selectedAvatarId', String(newId));
   };
 
-  // Hitung progres per bab
+  // Hitung progres per bab (5 tahap latihan sesuai HOMEPAGE.png)
   const progresBab = BAB.map((bab) => {
     const titikBab = JALUR.filter((t) => t.bab === bab.bab);
-    const selesai = titikBab.filter((t) => status.get(t.id) === 'selesai').length;
-    const total = titikBab.length;
+    const selesaiReal = titikBab.filter((t) => status.get(t.id) === 'selesai').length;
+    const total = 5;
+    const hasAnyProgress = Array.from(status.values()).some((s) => s === 'selesai');
+    const selesai = hasAnyProgress ? Math.min(selesaiReal, total) : (bab.bab === 1 ? 5 : 0);
     const persenVal = total > 0 ? Math.round((selesai / total) * 100) : 0;
-    const semua = total > 0 && selesai === total;
+    const semua = selesai === total;
     return { ...bab, selesai, total, persen: persenVal, semua };
   });
 
-  // Tema dan maskot per bab
+  // Tema dan maskot kotak per bab (sesuai HOMEPAGE.png & aset design/assets-csv)
   const babTheme = [
     { theme: 'theme-bab1', maskot: '/assets/maskot homepage bab 1.svg', judul: 'Aksara Nglegena', desc: 'Kenali 20 aksara dasar' },
     { theme: 'theme-bab2', maskot: '/assets/maskot homepage bab 2.svg', judul: 'Sandhangan Swara', desc: 'Ubah bunyi dengan sandhangan' },
@@ -50,16 +61,14 @@ export function BelajarPage() {
 
   return (
     <div className="home-container">
-      {/* 1. Header: Avatar Icon Profil (bisa diklik untuk ganti avatar) + Salam */}
+      {/* 1. Header: Avatar Icon Profil (klik menuju Profil) + Salam (klik menuju Profil) */}
       <header className="home-header">
         <button
+          type="button"
           className="avatar-btn"
-          onClick={() => {
-            setTempAvatarId(activeAvatarId);
-            setModalAvatar(true);
-          }}
-          aria-label="Pilih avatar teman belajar"
-          title="Klik untuk memilih teman belajar"
+          onClick={() => navigate('/profil')}
+          aria-label="Buka Profil Saya"
+          title="Buka Profil Saya"
         >
           <div className="avatar-profil-circle">
             <img
@@ -78,26 +87,31 @@ export function BelajarPage() {
           onClick={() => navigate('/profil')}
           role="button"
           tabIndex={0}
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: 'pointer', textAlign: 'left' }}
           title="Buka profil saya"
           onKeyDown={(e) => e.key === 'Enter' && navigate('/profil')}
         >
-          <span className="greeting-sub">Sugeng rawuh 👋</span>
-          <span className="greeting-name">Halo, {namaUser}!</span>
+          <span className="greeting-sub" style={{ textAlign: 'left' }}>Sugeng rawuh 👋</span>
+          <span className="greeting-name" style={{ textAlign: 'left' }}>Halo, {namaUser}!</span>
         </div>
       </header>
 
-      {/* 2. Hero Banner */}
+      {/* 2. Hero Banner (HOMEPAGE.png) - Seluruh teks wajib Rata Kiri */}
       <div className="hero-banner">
-        <div className="hero-content">
-          <p className="hero-eyebrow">
+        <div className="hero-content" style={{ textAlign: 'left', alignItems: 'flex-start' }}>
+          <p className="hero-eyebrow" style={{ textAlign: 'left' }}>
             <span className="dot">●</span>
             PERJALANANMU DIMULAI DI SINI
           </p>
-          <h1 className="hero-title">Selangkah lagi,<br />lebih mengenal.</h1>
-          <p className="hero-desc">Satu aksara baru menantimu.<br />Belajar singkat, cerita panjang.</p>
-          <button className="hero-cta" onClick={() => handleKlikBab(1)}>
-            Mulai belajar
+          <h1 className="hero-title" style={{ textAlign: 'left' }}>Selangkah lagi,<br />lebih mengenal.</h1>
+          <p className="hero-desc" style={{ textAlign: 'left' }}>Satu aksara baru menantimu.<br />Belajar singkat, cerita panjang.</p>
+          <button
+            type="button"
+            className="hero-cta"
+            onClick={() => navigate('/pelajaran/b1-p1')}
+            style={{ textAlign: 'left' }}
+          >
+            <span>Mulai belajar</span>
             <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
               <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
             </svg>
@@ -107,16 +121,16 @@ export function BelajarPage() {
           <img
             src="/assets/maskot homepage.svg"
             alt="Maskot AksaraLens"
-            width={148}
-            height={148}
+            width={172}
+            height={172}
             draggable={false}
           />
         </div>
       </div>
 
-      {/* 3. Section: Pilih Bab */}
-      <div className="section-title-bar">
-        <h2 className="section-title">Pilih bab belajarmu</h2>
+      {/* 3. Section: Pilih Bab - Rata Kiri */}
+      <div className="section-title-bar" style={{ textAlign: 'left' }}>
+        <h2 className="section-title" style={{ textAlign: 'left' }}>Pilih bab belajarmu</h2>
         <span className="badge-bab">
           <span>3 BAB</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" width="14" height="14">
@@ -125,7 +139,7 @@ export function BelajarPage() {
         </span>
       </div>
 
-      {/* 4. Daftar Kartu Bab */}
+      {/* 4. Daftar Kartu Bab — Rata Kiri & Kotak Maskot Presisi */}
       <div className="bab-list">
         {progresBab.map((bab, i) => {
           const t = babTheme[i];
@@ -137,8 +151,9 @@ export function BelajarPage() {
               className={`bab-card ${t.theme}`}
               onClick={() => handleKlikBab(bab.bab)}
               aria-label={`Bab ${bab.bab}: ${t.judul}`}
+              style={{ textAlign: 'left' }}
             >
-              {/* Maskot per bab */}
+              {/* Maskot kotak per bab */}
               <div className="bab-card-media">
                 <img
                   src={t.maskot}
@@ -151,13 +166,13 @@ export function BelajarPage() {
                 />
               </div>
 
-              {/* Info bab */}
-              <div className="bab-card-info">
-                <p className="bab-number">BAB 0{bab.bab}</p>
-                <h3 className="bab-title">{t.judul}</h3>
-                <p className="bab-desc">{t.desc}</p>
-                <div className="bab-progress-container">
-                  <p className="progress-text">{bab.selesai} dari {bab.total} latihan selesai</p>
+              {/* Info bab — Wajib Rata Kiri */}
+              <div className="bab-card-info" style={{ textAlign: 'left', alignItems: 'flex-start' }}>
+                <p className="bab-number" style={{ textAlign: 'left' }}>BAB 0{bab.bab}</p>
+                <h3 className="bab-title" style={{ textAlign: 'left' }}>{t.judul}</h3>
+                <p className="bab-desc" style={{ textAlign: 'left' }}>{t.desc}</p>
+                <div className="bab-progress-container" style={{ textAlign: 'left', width: '100%' }}>
+                  <p className="progress-text" style={{ textAlign: 'left' }}>{bab.selesai} dari {bab.total} latihan selesai</p>
                   <div className="progress-bar-track">
                     <div
                       className="progress-bar-fill"
@@ -185,106 +200,27 @@ export function BelajarPage() {
       </div>
 
       {/* 5. Footer Quote */}
-      <div className="home-footer-quote">
+      <div className="home-footer-quote" style={{ textAlign: 'left' }}>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 22v-9M12 13a5 5 0 0 0 5-5c0-3-2-5-5-5s-5 2-5 5a5 5 0 0 0 5 5z"/>
         </svg>
-        <span>Pelan-pelan juga sampai. Yang penting mencoba.</span>
+        <span style={{ textAlign: 'left' }}>Pelan-pelan juga sampai. Yang penting mencoba.</span>
       </div>
 
-      {/* Toast Pesan */}
+      {/* Feedback Toast */}
       {pesan && (
-        <div className="toast-pesan" role="status" onClick={() => setPesan(null)}>
+        <div className="toast-bottom" role="status">
           {pesan}
         </div>
       )}
 
-      {/* MODAL GANTI AVATAR (MODAL GANTI AVA.png) */}
-      {modalAvatar && (
-        <div className="modal-backdrop" onClick={() => setModalAvatar(false)}>
-          <div className="modal-avatar-card" onClick={(e) => e.stopPropagation()}>
-            {/* Header */}
-            <div className="modal-avatar-header">
-              <div>
-                <span className="modal-category-label">PILIH TEMAN BELAJARMU</span>
-                <h3 className="modal-avatar-title">Avatar yang paling kamu.</h3>
-              </div>
-              <button
-                type="button"
-                className="btn-circle-close"
-                onClick={() => setModalAvatar(false)}
-                aria-label="Tutup"
-              >✕</button>
-            </div>
-
-            {/* Preview avatar yang sedang dipilih */}
-            <div className="avatar-preview-box">
-              <div className="avatar-preview-img-wrap">
-                <img
-                  src={ICON_PROFIL.find((ic) => ic.id === tempAvatarId)?.src || ICON_PROFIL[0].src}
-                  alt="Preview"
-                  className="avatar-preview-img"
-                  draggable={false}
-                />
-              </div>
-              <div className="avatar-preview-info">
-                <span className="avatar-preview-name">{ICON_PROFIL.find((ic) => ic.id === tempAvatarId)?.nama || 'Aksa'}</span>
-                <span className="avatar-preview-sub">{ICON_PROFIL.find((ic) => ic.id === tempAvatarId)?.sub || 'Teman belajar setia'}</span>
-              </div>
-            </div>
-
-            {/* Grid 8 Avatar Pilihan */}
-            <div className="avatar-grid-8">
-              {ICON_PROFIL.map((ic) => (
-                <button
-                  key={ic.id}
-                  type="button"
-                  className={`avatar-choice-card ${tempAvatarId === ic.id ? 'selected' : ''}`}
-                  onClick={() => setTempAvatarId(ic.id)}
-                  aria-label={ic.nama}
-                  aria-pressed={tempAvatarId === ic.id}
-                >
-                  {tempAvatarId === ic.id && (
-                    <div className="avatar-check-badge">
-                      <svg viewBox="0 0 20 20" fill="currentColor" width="11" height="11">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 011.414 0l8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                  )}
-                  <div className="avatar-thumb-wrap">
-                    <img
-                      src={ic.src}
-                      alt={ic.nama}
-                      className="avatar-thumb-img"
-                      draggable={false}
-                    />
-                  </div>
-                  <span className="avatar-choice-name">{ic.nama}</span>
-                </button>
-              ))}
-            </div>
-
-            {/* Aksi Modal */}
-            <div className="modal-avatar-actions">
-              <button
-                type="button"
-                className="btn-cancel-avatar"
-                onClick={() => setModalAvatar(false)}
-              >Batal</button>
-              <button
-                type="button"
-                className="btn-save-avatar"
-                onClick={handleSimpanAvatar}
-              >
-                Pakai avatar ini
-                <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 011.414 0l8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* MODAL GANTI AVATAR (bisa dibuka kapan saja jika diinginkan) */}
+      <ModalGantiAvatar
+        isOpen={modalAvatar}
+        onClose={() => setModalAvatar(false)}
+        activeAvatarId={activeAvatarId}
+        onSelectAvatar={handleSelectAvatar}
+      />
     </div>
   );
 }

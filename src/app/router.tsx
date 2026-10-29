@@ -7,6 +7,7 @@ import { BelajarPage } from '../features/belajar/BelajarPage';
 import { MateriBabPage } from '../features/belajar/MateriBabPage';
 import { PelajaranPage } from '../features/pelajaran/PelajaranPage';
 import { ProfilPage } from '../features/profil/ProfilPage';
+import { EditProfilPage } from '../features/profil/EditProfilPage';
 import { MasukPage } from '../features/akun/MasukPage';
 import { SplashPage } from '../features/onboarding/SplashPage';
 import { IntroPage } from '../features/onboarding/IntroPage';
@@ -39,6 +40,7 @@ export const router = createBrowserRouter([
       { path: 'scan/hasil', lazy: async () => ({ Component: (await import('../features/scanner/HasilPage')).HasilPage }) },
       { path: 'scan/kaji', lazy: async () => ({ Component: (await import('../features/scanner/KajiPage')).KajiPage }) },
       { path: 'profil', element: <ProfilPage /> },
+      { path: 'edit-profil', element: <EditProfilPage />, handle: penuh },
       { path: 'masuk', element: <MasukPage />, handle: penuh },
       { path: 'daftar', element: <MasukPage />, handle: penuh },
       { path: '*', element: <Navigate to="/belajar" replace /> },
