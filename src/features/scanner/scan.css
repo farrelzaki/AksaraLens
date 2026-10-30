@@ -11,6 +11,13 @@
   background-color: #231913 !important;
 }
 
+@media (max-width: 430px) {
+  html:has(.shell-scan),
+  body:has(.shell-scan) {
+    background-color: #231913;
+  }
+}
+
 .scan-page {
   position: absolute;
   inset: 0;
