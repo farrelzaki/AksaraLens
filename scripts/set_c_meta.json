@@ -1,0 +1,632 @@
+{
+ "C01": {
+  "folder": "set_c",
+  "file": "C01.jpg",
+  "split": "pengembangan",
+  "grup": "C01",
+  "jenis": "adegan",
+  "hias": false,
+  "kotak": [
+   [
+    0.37,
+    0.3,
+    0.71,
+    0.378
+   ]
+  ]
+ },
+ "C02": {
+  "folder": "set_c",
+  "file": "C02.jpg",
+  "split": "uji",
+  "grup": "C02",
+  "jenis": "adegan",
+  "hias": false,
+  "kotak": [
+   [
+    0.27,
+    0.37,
+    0.81,
+    0.53
+   ]
+  ]
+ },
+ "C03": {
+  "folder": "set_c",
+  "file": "C03.jpg",
+  "split": "pengembangan",
+  "grup": "C03",
+  "jenis": "adegan",
+  "hias": false,
+  "kotak": [
+   [
+    0.39,
+    0.48,
+    0.63,
+    0.535
+   ]
+  ]
+ },
+ "C04": {
+  "folder": "set_c",
+  "file": "C04.jpg",
+  "split": "uji",
+  "grup": "C04",
+  "jenis": "adegan",
+  "hias": false,
+  "kotak": [
+   [
+    0.095,
+    0.5,
+    0.92,
+    0.61
+   ]
+  ]
+ },
+ "C05": {
+  "folder": "set_c",
+  "file": "C05.jpg",
+  "split": "pengembangan",
+  "grup": "ragasemangsang",
+  "jenis": "adegan",
+  "hias": true,
+  "kotak": [
+   [
+    0.13,
+    0.18,
+    0.83,
+    0.34
+   ]
+  ]
+ },
+ "C06": {
+  "folder": "set_c",
+  "file": "C06.jpg",
+  "split": "pengembangan",
+  "grup": "ragasemangsang",
+  "jenis": "adegan",
+  "hias": true,
+  "kotak": [
+   [
+    0.27,
+    0.28,
+    0.63,
+    0.56
+   ]
+  ]
+ },
+ "C07": {
+  "folder": "set_c",
+  "file": "C07.jpg",
+  "split": "pengembangan",
+  "grup": "C07",
+  "jenis": "adegan",
+  "hias": false,
+  "kotak": [
+   [
+    0.12,
+    0.61,
+    0.42,
+    0.735
+   ]
+  ]
+ },
+ "C08": {
+  "folder": "set_c",
+  "file": "C08.jpg",
+  "split": "uji",
+  "grup": "C08",
+  "jenis": "adegan",
+  "hias": true,
+  "kotak": [
+   [
+    0.23,
+    0.32,
+    0.45,
+    0.66
+   ]
+  ],
+  "catatan": "Huruf dihias ornamen; Latin \"Roro\" berdampingan."
+ },
+ "C09": {
+  "folder": "set_c",
+  "file": "C09.jpg",
+  "split": "pengembangan",
+  "grup": "C09",
+  "jenis": "adegan",
+  "hias": false,
+  "kotak": [
+   [
+    0.24,
+    0.56,
+    0.76,
+    0.81
+   ]
+  ]
+ },
+ "C10": {
+  "folder": "set_c",
+  "file": "C10.jpg",
+  "split": "uji",
+  "grup": "C10",
+  "jenis": "adegan",
+  "hias": false,
+  "kotak": [
+   [
+    0.33,
+    0.56,
+    0.68,
+    0.625
+   ]
+  ]
+ },
+ "C11": {
+  "folder": "set_c",
+  "file": "C11.jpg",
+  "split": "pengembangan",
+  "grup": "modern-use",
+  "jenis": "rapat",
+  "hias": true,
+  "kotak": [
+   [
+    0,
+    0,
+    1,
+    1
+   ]
+  ],
+  "catatan": "Bawah huruf terpotong crop."
+ },
+ "C12": {
+  "folder": "set_c",
+  "file": "C12.jpg",
+  "split": "uji",
+  "grup": "C12",
+  "jenis": "adegan",
+  "hias": false,
+  "kotak": [
+   [
+    0.445,
+    0.62,
+    0.83,
+    0.69
+   ]
+  ]
+ },
+ "C13": {
+  "folder": "set_c",
+  "file": "C13.jpg",
+  "split": "pengembangan",
+  "grup": "modern-use",
+  "jenis": "adegan",
+  "hias": false,
+  "kotak": null,
+  "catatan": "Baris huruf diputar ±15° dan terpotong tepi; recall tidak diukur (kotak null), teks tetap dinilai."
+ },
+ "C14": {
+  "folder": "set_c",
+  "file": "C14.jpg",
+  "split": "pengembangan",
+  "grup": "C14",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "C15": {
+  "folder": "set_c",
+  "file": "C15.jpg",
+  "split": "uji",
+  "grup": "C15",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "C16": {
+  "folder": "set_c",
+  "file": "C16.jpg",
+  "split": "pengembangan",
+  "grup": "C16",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "C17": {
+  "folder": "set_c",
+  "file": "C17.jpg",
+  "split": "uji",
+  "grup": "C17",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "C18": {
+  "folder": "set_c",
+  "file": "C18.jpg",
+  "split": "pengembangan",
+  "grup": "C18",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "C19": {
+  "folder": "set_c",
+  "file": "C19.jpg",
+  "split": "pengembangan",
+  "grup": "C19",
+  "jenis": "adegan",
+  "hias": false,
+  "kotak": [
+   [
+    0.54,
+    0.53,
+    0.73,
+    0.64
+   ]
+  ]
+ },
+ "C20": {
+  "folder": "set_c",
+  "file": "C20.jpg",
+  "split": "uji",
+  "grup": "C20",
+  "jenis": "adegan",
+  "hias": false,
+  "kotak": [
+   [
+    0.675,
+    0.18,
+    0.837,
+    0.225
+   ]
+  ]
+ },
+ "C21": {
+  "folder": "set_c",
+  "file": "C21.jpg",
+  "split": "uji",
+  "grup": "C21",
+  "jenis": "adegan",
+  "hias": false,
+  "kotak": [
+   [
+    0.295,
+    0.236,
+    0.78,
+    0.285
+   ]
+  ]
+ },
+ "C22": {
+  "folder": "set_c",
+  "file": "C22.jpg",
+  "split": "pengembangan",
+  "grup": "C22",
+  "jenis": "rapat",
+  "hias": false,
+  "kotak": [
+   [
+    0,
+    0.1,
+    1,
+    0.95
+   ]
+  ]
+ },
+ "C23": {
+  "folder": "set_c",
+  "file": "C23.jpg",
+  "split": "uji",
+  "grup": "C23",
+  "jenis": "rapat",
+  "hias": false,
+  "kotak": [
+   [
+    0,
+    0.1,
+    1,
+    1
+   ]
+  ],
+  "catatan": "Ejaan pasangan ꦢ/ꦝ pada \"mandala\" tidak bisa dipastikan dari foto; kunci dipertahankan."
+ },
+ "C24": {
+  "folder": "set_c",
+  "file": "C24.jpg",
+  "split": "uji",
+  "grup": "C24",
+  "jenis": "rapat",
+  "hias": true,
+  "kotak": [
+   [
+    0.19,
+    0.48,
+    1,
+    0.85
+   ]
+  ],
+  "catatan": "Tepi kanan papan terpotong saat crop; layar tampak sebagian."
+ },
+ "C25": {
+  "folder": "set_c",
+  "file": "C25.jpg",
+  "split": "pengembangan",
+  "grup": "C25",
+  "jenis": "rapat",
+  "hias": false,
+  "kotak": [
+   [
+    0.04,
+    0.38,
+    0.97,
+    0.82
+   ]
+  ]
+ },
+ "C26": {
+  "folder": "set_c",
+  "file": "C26.jpg",
+  "split": "uji",
+  "grup": "pn-surakarta",
+  "jenis": "adegan",
+  "hias": true,
+  "kotak": [
+   [
+    0.25,
+    0.557,
+    0.534,
+    0.618
+   ]
+  ]
+ },
+ "C27": {
+  "folder": "set_c",
+  "file": "C27.jpg",
+  "split": "uji",
+  "grup": "C27",
+  "jenis": "rapat",
+  "hias": true,
+  "kotak": [
+   [
+    0,
+    0.18,
+    1,
+    0.69
+   ],
+   [
+    0.22,
+    0.75,
+    0.63,
+    0.94
+   ]
+  ],
+  "catatan": "Dua baris: \"Hotel Dana\" dan \"Solo\"."
+ },
+ "C28": {
+  "folder": "set_c",
+  "file": "C28.jpg",
+  "split": "pengembangan",
+  "grup": "C28",
+  "jenis": "rapat",
+  "hias": false,
+  "kotak": [
+   [
+    0,
+    0.2,
+    1,
+    0.75
+   ]
+  ]
+ },
+ "C29": {
+  "folder": "set_c",
+  "file": "C29.jpg",
+  "split": "uji",
+  "grup": "C29",
+  "jenis": "rapat",
+  "hias": false,
+  "kotak": [
+   [
+    0,
+    0.25,
+    1,
+    1
+   ]
+  ]
+ },
+ "C30": {
+  "folder": "set_c",
+  "file": "C30.jpg",
+  "split": "uji",
+  "grup": "pn-surakarta",
+  "jenis": "rapat",
+  "hias": true,
+  "kotak": [
+   [
+    0.1,
+    0.2,
+    1,
+    0.95
+   ]
+  ]
+ },
+ "N01": {
+  "folder": "set_c_negatif",
+  "file": "N01.jpg",
+  "split": "pengembangan",
+  "grup": "N01",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N02": {
+  "folder": "set_c_negatif",
+  "file": "N02.jpg",
+  "split": "uji",
+  "grup": "N02",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N03": {
+  "folder": "set_c_negatif",
+  "file": "N03.jpg",
+  "split": "pengembangan",
+  "grup": "N03",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N04": {
+  "folder": "set_c_negatif",
+  "file": "N04.jpg",
+  "split": "uji",
+  "grup": "N04",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N05": {
+  "folder": "set_c_negatif",
+  "file": "N05.jpg",
+  "split": "pengembangan",
+  "grup": "N05",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N06": {
+  "folder": "set_c_negatif",
+  "file": "N06.jpg",
+  "split": "uji",
+  "grup": "N06",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N07": {
+  "folder": "set_c_negatif",
+  "file": "N07.jpg",
+  "split": "pengembangan",
+  "grup": "N07",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N08": {
+  "folder": "set_c_negatif",
+  "file": "N08.jpg",
+  "split": "uji",
+  "grup": "N08",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N09": {
+  "folder": "set_c_negatif",
+  "file": "N09.jpg",
+  "split": "pengembangan",
+  "grup": "N09",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N10": {
+  "folder": "set_c_negatif",
+  "file": "N10.jpg",
+  "split": "uji",
+  "grup": "N10",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N11": {
+  "folder": "set_c_negatif",
+  "file": "N11.jpg",
+  "split": "pengembangan",
+  "grup": "N11",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N12": {
+  "folder": "set_c_negatif",
+  "file": "N12.jpg",
+  "split": "uji",
+  "grup": "N12",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N13": {
+  "folder": "set_c_negatif",
+  "file": "N13.jpg",
+  "split": "pengembangan",
+  "grup": "N13",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N14": {
+  "folder": "set_c_negatif",
+  "file": "N14.jpg",
+  "split": "uji",
+  "grup": "N14",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N15": {
+  "folder": "set_c_negatif",
+  "file": "N15.jpg",
+  "split": "pengembangan",
+  "grup": "N15",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N16": {
+  "folder": "set_c_negatif",
+  "file": "N16.jpg",
+  "split": "uji",
+  "grup": "N16",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N17": {
+  "folder": "set_c_negatif",
+  "file": "N17.jpg",
+  "split": "pengembangan",
+  "grup": "N17",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N18": {
+  "folder": "set_c_negatif",
+  "file": "N18.jpg",
+  "split": "uji",
+  "grup": "N18",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N19": {
+  "folder": "set_c_negatif",
+  "file": "N19.jpg",
+  "split": "pengembangan",
+  "grup": "N19",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ },
+ "N20": {
+  "folder": "set_c_negatif",
+  "file": "N20.jpg",
+  "split": "uji",
+  "grup": "N20",
+  "jenis": "negatif",
+  "hias": false,
+  "kotak": null
+ }
+}

@@ -37,3 +37,22 @@ export function kePiksel(b: Bingkai, w: number, h: number): [number, number, num
 }
 
 export const sama = (a: Bingkai, b: Bingkai) => a.x === b.x && a.y === b.y && a.w === b.w && a.h === b.h;
+
+/**
+ * Bingkai bidik di layar -> area relatif pada video yang ditampilkan dengan object-fit: cover.
+ * `kotak` = posisi bingkai relatif ke elemen video, dalam piksel layar.
+ */
+export function bingkaiDariLayar(
+  video: { w: number; h: number },
+  elemen: { w: number; h: number },
+  kotak: { x: number; y: number; w: number; h: number },
+): Bingkai {
+  const skala = Math.max(elemen.w / video.w, elemen.h / video.h); // cover: sisi lebih pendek memenuhi elemen
+  const tampilW = video.w * skala;
+  const tampilH = video.h * skala;
+  const x0 = Math.max(0, (kotak.x + (tampilW - elemen.w) / 2) / tampilW);
+  const y0 = Math.max(0, (kotak.y + (tampilH - elemen.h) / 2) / tampilH);
+  const x1 = Math.min(1, (kotak.x + kotak.w + (tampilW - elemen.w) / 2) / tampilW);
+  const y1 = Math.min(1, (kotak.y + kotak.h + (tampilH - elemen.h) / 2) / tampilH);
+  return { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
+}

@@ -42,17 +42,13 @@ export function kotakDariLogit(logit: ArrayLike<number>, h4: number, w4: number,
   return kotak.sort((a, b) => a[1] - b[1] || a[0] - b[0]);
 }
 
-/** Potongan baris dengan margin (5% tinggi atas-bawah, 30% tinggi kiri-kanan). */
-export function potongBaris(gray: Gray, kotak: Kotak[]): Gray[] {
-  const hasil: Gray[] = [];
-  for (const [x0, y0, x1, y1] of kotak) {
-    const h = y1 - y0;
-    const m = 0.05 * h;
-    const a = Math.trunc(Math.max(0, y0 - m));
-    const b = Math.trunc(Math.min(gray.h, y1 + m));
-    const c = Math.trunc(Math.max(0, x0 - h * 0.3));
-    const d = Math.trunc(Math.min(gray.w, x1 + h * 0.3));
-    if (b - a >= 8 && d - c >= 8) hasil.push(potong(gray, c, a, d, b));
-  }
-  return hasil;
+/** Potongan satu baris dengan margin (5% tinggi atas-bawah, 30% tinggi kiri-kanan); null bila terlalu kecil. */
+export function potongSatu(gray: Gray, [x0, y0, x1, y1]: Kotak): Gray | null {
+  const h = y1 - y0;
+  const m = 0.05 * h;
+  const a = Math.trunc(Math.max(0, y0 - m));
+  const b = Math.trunc(Math.min(gray.h, y1 + m));
+  const c = Math.trunc(Math.max(0, x0 - h * 0.3));
+  const d = Math.trunc(Math.min(gray.w, x1 + h * 0.3));
+  return b - a >= 8 && d - c >= 8 ? potong(gray, c, a, d, b) : null;
 }
