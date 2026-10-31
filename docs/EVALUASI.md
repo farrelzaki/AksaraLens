@@ -85,6 +85,27 @@ dari 65 ke 11, tetapi persentasenya hampir sama karena baris benar yang tampil j
 **Kesimpulan.** Tahap 1 belum mencapai target apa pun di tabel. Hasil terbesar ada pada foto yang dibingkai pengguna.
 Foto utuh tetap terhambat detektor (recall tidak naik) dan font hias tetap 0%, keduanya butuh latih ulang (Tahap 2–3).
 
+### Pemeriksaan tambahan: foto dari pencarian Google
+
+31 Okt 2026, dihitung terpisah dari C-uji: 6 gambar berisi aksara Jawa (5 papan, 1 tabel grafis) dan 3 papan tanpa aksara Jawa
+(2 Lontara, 1 Sunda). Gambar berupa screenshot, tidak di-commit, dan tidak ada ambang yang disetel darinya.
+
+| Metrik | Produksi | Tahap 1 |
+| --- | --- | --- |
+| Foto utuh CER ≤ 0,2 | 0/6 | 1/6 |
+| Foto utuh CER ≤ 0,5 | 0/6 | 3/6 |
+| Foto utuh akurasi suku kata | 8,6% | 54,3% |
+| Dibingkai CER ≤ 0,2 | 2/6 | 2/6 |
+| Dibingkai CER ≤ 0,5 | 2/6 | 3/6 |
+| Dibingkai akurasi suku kata | 45,7% | 64,2% |
+| Recall baris Jawa | 3/10 | 6/10 |
+| Baris sampah | 43/68 | 2/8 |
+| Foto tanpa aksara ditolak | 0/3 | 3/3 |
+
+Batas bukti: 1 gambar positif bernilai 16,7 poin, dan gambar dipilih agar tulisannya terbaca oleh agen sehingga lebih mudah
+daripada foto acak. Kunci jawaban ditulis agen; 4 dari 6 berkeyakinan sedang. Angka ini tidak mewakili kamera aplikasi dan
+tidak menggantikan uji di ponsel.
+
 ### Penjaga regresi NusaAksara
 
 | Metrik | Produksi | Tahap 1 | Syarat |
