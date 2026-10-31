@@ -1,14 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { MODE_DEMO, PENUH, bacaFoto, siapkanScanner, type Bingkai, type HasilScan } from '../../ml/model2/scanner';
+import { bingkaiDariLayar } from '../../ml/model2/bingkai';
 import { tautanMateri, urai, type SukuKata } from '../../aksara/urai';
 import { simpanHasilSementara } from './hasilScan';
 import { BingkaiPotong } from './BingkaiPotong';
 import './scan.css';
 
 // Lensa Aksara — tampilan sesuai CAMERA 1–4.png (Choirun).
-// Kamera live tampil terus. Tombol rana mengambil satu foto dan membacanya di latar belakang
-// dengan garis pemindaian; foto jepretan tidak ditampilkan. Hasil muncul sebagai lembar di atas kamera.
+// Kamera live tampil terus. Tombol rana mengambil satu foto dan membaca isi bingkai bidik di latar
+// belakang dengan garis pemindaian; foto jepretan tidak ditampilkan. Hasil muncul sebagai lembar di atas kamera.
 // Galeri: gambar dipilih lalu bisa diatur area bacanya (bingkai potong).
 // Foto tidak disimpan dan tidak dikirim ke server.
 
@@ -81,6 +82,34 @@ function tangkapVideo(v: HTMLVideoElement | null, maks: number): Promise<Blob | 
   });
 }
 
+/** Area bingkai bidik pada video; seluruh video bila elemennya belum terukur. */
+function areaBidik(v: HTMLVideoElement, bingkaiBidik: HTMLElement | null): Bingkai {
+  const e = v.getBoundingClientRect();
+  const r = bingkaiBidik?.getBoundingClientRect();
+  if (!r || !e.width || !e.height) return PENUH;
+  return bingkaiDariLayar(
+    { w: v.videoWidth, h: v.videoHeight },
+    { w: e.width, h: e.height },
+    { x: r.left - e.left, y: r.top - e.top, w: r.width, h: r.height },
+  );
+}
+
+/** Pesan saat tidak ada aksara Jawa yang terbaca (PRD F5). */
+function pesanKosong(h: HasilScan): string {
+  if (h.kualitas === 'gelap') return 'Foto terlalu gelap. Cari tempat lebih terang lalu coba lagi.';
+  if (h.kualitas === 'silau') return 'Foto terlalu silau. Ubah sudut agar tidak memantul.';
+  if (h.kualitas === 'buram') return 'Foto buram. Tahan kamera lebih stabil lalu coba lagi.';
+  if (h.diabaikan > 0) return 'Tidak ada aksara Jawa yang terbaca jelas. Teks lain diabaikan.';
+  return 'Tidak ada tulisan aksara terbaca. Coba foto lebih dekat dan terang.';
+}
+
+/** Ringkasan bawah judul hasil. */
+function ringkasHasil(h: HasilScan): string {
+  const bagian = [`${h.baris.length} baris terbaca`];
+  if (h.diabaikan > 0) bagian.push(`${h.diabaikan} teks lain diabaikan`);
+  return `${bagian.join(' · ')}.${h.kurangYakin ? ' Hasil mungkin kurang tepat.' : ''}`;
+}
+
 /** Teks Latin dari seluruh hasil, dipisah per kata. */
 const judulLatin = (h: HasilScan) =>
   h.baris
@@ -99,6 +128,7 @@ export function ScanPage() {
   const video = useRef<HTMLVideoElement>(null);
   const aliran = useRef<MediaStream | null>(null);
   const inputGaleri = useRef<HTMLInputElement>(null);
+  const bidik = useRef<HTMLDivElement>(null);
 
   const [siap, setSiap] = useState(false);
   const [kameraAktif, setKameraAktif] = useState(false);
@@ -120,7 +150,10 @@ export function ScanPage() {
       return;
     }
     try {
-      const s = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } }, audio: false });
+      const s = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: { ideal: 'environment' }, width: { ideal: 1920 }, height: { ideal: 1080 } },
+        audio: false,
+      });
       aliran.current?.getTracks().forEach((t) => t.stop());
       aliran.current = s;
       setKameraGagal(false);
@@ -160,17 +193,17 @@ export function ScanPage() {
   }, [foto]);
 
   // Membaca satu gambar di latar belakang, lalu menampilkan lembar hasil.
-  const bacaGambar = async (gambar: Blob, area: Bingkai) => {
+  const bacaGambar = async (gambar: Blob, area: Bingkai, mode?: 'foto' | 'area') => {
     setMemproses(true);
     setGalat(null);
     setHasil(null);
     setDetail(false);
     setTerpilih(0);
     try {
-      const h = await bacaFoto(gambar, area);
+      const h = await bacaFoto(gambar, area, mode);
       if (import.meta.env.DEV) console.info('[scanner]', h.info);
       simpanHasilSementara(h);
-      if (h.baris.length === 0) setGalat('Tidak ada tulisan aksara terbaca. Coba foto lebih dekat dan terang.');
+      if (h.baris.length === 0) setGalat(pesanKosong(h));
       else setHasil(h);
     } catch (e) {
       setGalat(e instanceof Error ? e.message : String(e));
@@ -186,8 +219,9 @@ export function ScanPage() {
       return;
     }
     if (kameraAktif) {
-      const b = await tangkapVideo(video.current, 1600);
-      if (b) await bacaGambar(b, PENUH);
+      const v = video.current;
+      const b = await tangkapVideo(v, 2048);
+      if (b && v) await bacaGambar(b, areaBidik(v, bidik.current), 'area');
       else setGalat('Kamera belum siap. Coba lagi.');
       return;
     }
@@ -213,7 +247,7 @@ export function ScanPage() {
     const b = await buatContoh();
     setAdalahContoh(true);
     setFoto(b);
-    await bacaGambar(b, PENUH);
+    await bacaGambar(b, PENUH, 'area');
   };
 
   const kembaliKamera = () => {
@@ -262,7 +296,7 @@ export function ScanPage() {
       )}
 
       {/* Bingkai bidik aksara */}
-      <div className="scan-frame">
+      <div className="scan-frame" ref={bidik}>
         <i className="scan-corner lt" />
         <i className="scan-corner rt" />
         <i className="scan-corner lb" />
@@ -353,7 +387,7 @@ export function ScanPage() {
 
           <h2 className="scan-sheet-title">{judulLatin(hasil)}</h2>
           <p className="scan-sheet-sub">
-            {detail ? 'Pilih suku kata untuk melihat komponennya.' : 'Bedah suku kata untuk melihat tiap komponen.'}
+            {detail ? 'Pilih suku kata untuk melihat komponennya.' : ringkasHasil(hasil)}
           </p>
 
           <button type="button" className="scan-bedah" onClick={() => setDetail((d) => !d)} aria-expanded={detail}>

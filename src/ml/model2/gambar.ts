@@ -225,6 +225,13 @@ export function otsu(g: Gray): number {
 }
 
 /** normalisasi_polaritas: balik bila mayoritas piksel gelap (tulisan terang di latar gelap). */
+/** Negatif gambar (255 - nilai). */
+export function balik(g: Gray): Gray {
+  const d = new Float32Array(g.d.length);
+  for (let i = 0; i < d.length; i++) d[i] = 255 - g.d[i];
+  return { w: g.w, h: g.h, d };
+}
+
 export function normalisasiPolaritas(g: Gray): Gray {
   const b = blur5(g);
   const t = otsu(b);
