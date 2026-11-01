@@ -2,6 +2,7 @@
 // Halaman memakai modul ini, bukan scan.ts langsung.
 
 import type { Bingkai } from './bingkai';
+import type { Mode } from './saring';
 import type { HasilScan } from './scan';
 import type { Jawaban, Pesan, Permintaan } from './scan.worker';
 import { urai } from '../../aksara/urai';
@@ -58,12 +59,12 @@ export const siapkanScanner = () => (MODE_DEMO ? Promise.resolve() : kirim<void>
 const UNICODE_DEMO = ['ꦥꦤꦺꦴꦫꦩꦗꦮ', 'ꦧꦸꦏꦸꦱꦼꦏꦺꦴꦭꦃ', 'ꦗꦭꦤ꧀ꦩꦭꦶꦪꦺꦴꦧꦺꦴꦫꦺꦴ'];
 
 function hasilDemo(): HasilScan {
-  const baris = UNICODE_DEMO.map((u) => ({ unicode: u, keyakinan: 0.95, sukuKata: urai(u) }));
-  return { baris, kurangYakin: false, info: { waktuMs: 1500, sudut: 0, kotak: [] } };
+  const baris = UNICODE_DEMO.map((u) => ({ unicode: u, keyakinan: 0.95, status: 'TERIMA' as const, sukuKata: urai(u) }));
+  return { baris, kurangYakin: false, diabaikan: 0, kualitas: 'baik', info: { waktuMs: 1500, sudut: 0, kotak: [] } };
 }
 
 /** Membaca foto (hanya area `bingkai`) di worker. Foto tidak disimpan dan tidak dikirim ke server. */
-export const bacaFoto = (foto: Blob, bingkai?: Bingkai) =>
+export const bacaFoto = (foto: Blob, bingkai?: Bingkai, mode?: Mode) =>
   MODE_DEMO
     ? new Promise<HasilScan>((selesai) => setTimeout(() => selesai(hasilDemo()), 1500))
-    : kirim<HasilScan>({ jenis: 'baca', foto, bingkai });
+    : kirim<HasilScan>({ jenis: 'baca', foto, bingkai, mode });

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { bulat, buatGray, cariSudut, komponenTerhubung, normalisasiPolaritas, otsu, persentil, putar, resize } from './gambar';
-import { kotakDariLogit, potongBaris } from './detektor';
+import { kotakDariLogit, potongSatu } from './detektor';
 
 describe('bulat', () => {
   it('setengah ke genap seperti Python/cvRound', () => {
@@ -92,11 +92,8 @@ describe('detektor', () => {
 
   it('memotong baris dengan margin dan membuang potongan < 8 px', () => {
     const g = buatGray(100, 50, 255);
-    const hasil = potongBaris(g, [
-      [20, 10, 80, 30],
-      [0, 0, 5, 3],
-    ]);
-    expect(hasil).toHaveLength(1);
-    expect([hasil[0].w, hasil[0].h]).toEqual([72, 22]);
+    const hasil = potongSatu(g, [20, 10, 80, 30]);
+    expect([hasil?.w, hasil?.h]).toEqual([72, 22]);
+    expect(potongSatu(g, [0, 0, 5, 3])).toBeNull();
   });
 });

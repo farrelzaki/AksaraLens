@@ -1,8 +1,10 @@
 # Pipeline scanner persis notebook Model 2 (sel 11, 14, 23, 36, 39), memakai ONNX yang sama.
 # Pakai: python -I -X utf8 scripts/rujukan_scanner.py <akar-repo> <gambar>
 # Butuh: numpy, opencv-python, onnxruntime. Keluaran JSON: sudut, kotak baris, teks + keyakinan.
-import sys, json, re, cv2, numpy as np, onnxruntime as ort
-R = sys.argv[1]; IMG = sys.argv[2]
+import sys, os, json, re, cv2, numpy as np, onnxruntime as ort
+# Bisa diimpor (scripts/uji_set_c.py); AKSARALENS_MODEL = folder ONNX lain untuk membandingkan versi model.
+R = sys.argv[1] if __name__ == '__main__' else os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODEL = os.environ.get('AKSARALENS_MODEL') or R + '/public/models'
 meta = json.load(open(R + '/src/ml/model2/scanner_charset.json', encoding='utf-8'))
 VOCAB = meta['charset'][1:]; IDX2CHAR = {i + 1: c for i, c in enumerate(VOCAB)}
 LINE_H = 64; DET_SISI = 1024; DET_SKALA = 4; INTI = 0.5
@@ -27,8 +29,8 @@ def cari_sudut(mask):
         v = putar(small, a, 0).sum(1).astype(np.float64).var()
         if v > best: best, best_a = v, a
     return best_a
-det = ort.InferenceSession(R + '/public/models/aksaralens_detektor_baris.onnx')
-crnn = ort.InferenceSession(R + '/public/models/aksaralens_scanner.onnx')
+det = ort.InferenceSession(MODEL + '/aksaralens_detektor_baris.onnx')
+crnn = ort.InferenceSession(MODEL + '/aksaralens_scanner.onnx')
 def kotak_detektor(gray, ambang=0.5):
     s = DET_SISI / max(gray.shape)
     g = cv2.resize(gray, None, fx=s, fy=s, interpolation=cv2.INTER_AREA)
@@ -49,19 +51,20 @@ def ke_input(gray, max_w=4000):
     g = cv2.resize(gray, (nw, LINE_H), interpolation=cv2.INTER_AREA).astype(np.float32)
     lo, hi = np.percentile(g, 2), np.percentile(g, 98)
     return np.clip((hi - g) / max(hi - lo, 1.0), 0, 1).astype(np.float32)
-img = cv2.imread(IMG); gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-gray = normalisasi_polaritas(gray); ang = cari_sudut(masker_tinta(gray)); gray = putar(gray, ang, 255)
-kotak = kotak_detektor(gray); H, W = gray.shape; out = []
-for x0, y0, x1, y1 in kotak:
-    h = y1 - y0; m = 0.05 * h
-    a, b = int(max(0, y0 - m)), int(min(H, y1 + m)); c, d = int(max(0, x0 - h * 0.3)), int(min(W, x1 + h * 0.3))
-    if b - a < 8 or d - c < 8: continue
-    lg = crnn.run(None, {'gambar': ke_input(gray[a:b, c:d])[None, None]})[0][0]
-    e = np.exp(lg - lg.max(-1, keepdims=True)); prob = e / e.sum(-1, keepdims=True); best = prob.argmax(-1)
-    ids, prev = [], 0
-    for t in best:
-        if t != prev and t != 0: ids.append(int(t))
-        prev = t
-    yakin = float(prob.max(-1)[best != 0].mean()) if (best != 0).any() else 0.0
-    out.append([to_logical(''.join(IDX2CHAR[i] for i in ids)), round(yakin, 3)])
-print(json.dumps(dict(sudut=float(ang), kotak=[[round(float(v)) for v in k] for k in kotak], baris=out), ensure_ascii=False, indent=1))
+if __name__ == '__main__':
+    img = cv2.imread(sys.argv[2]); gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = normalisasi_polaritas(gray); ang = cari_sudut(masker_tinta(gray)); gray = putar(gray, ang, 255)
+    kotak = kotak_detektor(gray); H, W = gray.shape; out = []
+    for x0, y0, x1, y1 in kotak:
+        h = y1 - y0; m = 0.05 * h
+        a, b = int(max(0, y0 - m)), int(min(H, y1 + m)); c, d = int(max(0, x0 - h * 0.3)), int(min(W, x1 + h * 0.3))
+        if b - a < 8 or d - c < 8: continue
+        lg = crnn.run(None, {'gambar': ke_input(gray[a:b, c:d])[None, None]})[0][0]
+        e = np.exp(lg - lg.max(-1, keepdims=True)); prob = e / e.sum(-1, keepdims=True); best = prob.argmax(-1)
+        ids, prev = [], 0
+        for t in best:
+            if t != prev and t != 0: ids.append(int(t))
+            prev = t
+        yakin = float(prob.max(-1)[best != 0].mean()) if (best != 0).any() else 0.0
+        out.append([to_logical(''.join(IDX2CHAR[i] for i in ids)), round(yakin, 3)])
+    print(json.dumps(dict(sudut=float(ang), kotak=[[round(float(v)) for v in k] for k in kotak], baris=out), ensure_ascii=False, indent=1))
