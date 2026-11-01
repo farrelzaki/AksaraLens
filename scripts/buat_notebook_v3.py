@@ -40,7 +40,7 @@ Melanjutkan bobot v2, **tidak melatih dari nol**. Tujuannya membaca aksara di pa
 **Cara pakai**
 1. Runtime → Change runtime type → **T4 GPU**.
 2. Pastikan Drive berisi `aksaralens/model2_v2/crnn_finetune.pt` dan `detektor_baris.pt`.
-3. Runtime → **Run all**. Perkiraan total 1 sampai 2 jam.
+3. Runtime → **Run all**. Latihan pembaca sekitar 30 menit (terukur dari putaran 1); detektor belum terukur.
 4. Di bagian **Pratinjau data adegan**, tangkap layar 24 contohnya dan kirim ke agen.
 5. Hasil tersimpan di `aksaralens/model2_v3`. Kirim tiga berkas ini: `aksaralens_scanner.onnx`, `aksaralens_detektor_baris.onnx`, `hasil_v3.json`.
 
@@ -159,9 +159,15 @@ print('Potongan foto nyata:', len(nyata_foto))
 ''')
 
 FT2 = kode('''
-FT_LANGKAH = 6000
+import shutil
+# Fase 1 mempelajari adegan; fase 2 mengembalikan akurasi buku dengan lr kecil dan batch didominasi buku.
+# Putaran 1 (hanya fase 1, 6000 langkah): adegan 94%, tetapi buku stabil di sekitar 87% saat lr sudah kecil, dari v2 90,5%.
+FT_LANGKAH = 4000
 FT_LR = 1.5e-4
-FT_NYATA, FT_SINTETIS, FT_ADEGAN, FT_NEGATIF = 11, 6, 10, 5    # isi tiap batch; negatif sekitar 15%
+KONSOL_LANGKAH = 3000
+KONSOL_LR = 5e-5
+FT_CAMPUR = (11, 6, 10, 5)                                      # buku nyata, buku sintetis, adegan, negatif per batch
+KONSOL_CAMPUR = (20, 2, 7, 3)
 TURUN_BUKU = 0.01                                               # akurasi buku boleh turun sebanyak ini dari v2
 
 class NyataDS(Dataset):
@@ -183,36 +189,52 @@ def tanpa_henti(dl):
         if not ada: raise RuntimeError('DataLoader kosong: data terlalu sedikit untuk ukuran batch')
 
 latih_nyata = nyata_latih + nyata_foto * 5                       # foto nyata sedikit, jadi lebih sering muncul
-dl_nyata = tanpa_henti(DataLoader(NyataDS(latih_nyata), min(FT_NYATA, len(latih_nyata)), shuffle=True, drop_last=True, num_workers=WORKERS, collate_fn=list))
-dl_sint = tanpa_henti(DataLoader(LatihDS(SAMPEL_EPOCH, seed=123), FT_SINTETIS, shuffle=True, num_workers=WORKERS, collate_fn=list))
-dl_adegan = tanpa_henti(DataLoader(AdeganDS(SAMPEL_EPOCH), FT_ADEGAN, shuffle=True, num_workers=WORKERS, collate_fn=list))
-dl_neg = tanpa_henti(DataLoader(NegatifDS(SAMPEL_EPOCH), FT_NEGATIF, shuffle=True, num_workers=WORKERS, collate_fn=list))
+def muat_campuran(nyata, sint, adegan, neg):
+    return (tanpa_henti(DataLoader(NyataDS(latih_nyata), min(nyata, len(latih_nyata)), shuffle=True, drop_last=True, num_workers=WORKERS, collate_fn=list)),
+            tanpa_henti(DataLoader(LatihDS(SAMPEL_EPOCH, seed=123), sint, shuffle=True, num_workers=WORKERS, collate_fn=list)),
+            tanpa_henti(DataLoader(AdeganDS(SAMPEL_EPOCH), adegan, shuffle=True, num_workers=WORKERS, collate_fn=list)),
+            tanpa_henti(DataLoader(NegatifDS(SAMPEL_EPOCH), neg, shuffle=True, num_workers=WORKERS, collate_fn=list)))
 
+for f in ('crnn_finetune.pt', 'crnn_cadangan.pt'):
+    if os.path.exists(f'{OUT_DIR}/{f}'): os.remove(f'{OUT_DIR}/{f}')
 model.load_state_dict(torch.load(BOBOT_V2, map_location=dev))
 awal = nilai_v3(model)
 print('v2 di validasi:', awal)
-opt = torch.optim.AdamW(model.parameters(), lr=FT_LR, weight_decay=1e-4)
-sched = torch.optim.lr_scheduler.LambdaLR(opt, lambda s: min(1, (s + 1) / 100) * 0.5 * (1 + np.cos(np.pi * min(s, FT_LANGKAH) / FT_LANGKAH)))
-scaler = torch.amp.GradScaler(enabled=(dev == 'cuda'))
-terbaik_ft, riwayat_ft, t0 = -1, [], time.time()
-for step in range(1, FT_LANGKAH + 1):
-    model.train()
-    X, Y, LI, LY, S = gabung(next(dl_nyata) + next(dl_sint) + next(dl_adegan) + next(dl_neg))
-    with torch.autocast(device_type='cuda', enabled=(dev == 'cuda')):
-        logits = model(X.to(dev))
-    loss = ctc(logits.float().log_softmax(-1).permute(1, 0, 2), Y, LI, LY)
-    opt.zero_grad(set_to_none=True); scaler.scale(loss).backward()
-    scaler.unscale_(opt); nn.utils.clip_grad_norm_(model.parameters(), 5)
-    scaler.step(opt); scaler.update(); sched.step()
-    if step % 500 == 0 or step == FT_LANGKAH:
-        m = nilai_v3(model)
-        riwayat_ft.append(dict(langkah=step, loss=loss.item(), **m))
-        print(f"langkah {step}/{FT_LANGKAH}  loss {loss.item():.3f}  buku {m['buku']:.2%}  adegan {m['adegan']:.2%}  negatif ditolak {m['negatif']:.1%}  ({time.time()-t0:.0f} dtk)")
-        skor = m['adegan'] + m['negatif'] if m['buku'] >= awal['buku'] - TURUN_BUKU else -1   # buku bersih tidak boleh dikorbankan
-        if skor > terbaik_ft:
-            terbaik_ft = skor; torch.save(model.state_dict(), f'{OUT_DIR}/crnn_finetune.pt')
+terbaik_ft, terbaik_buku, riwayat_ft, t0 = -1, -1, [], time.time()
 
-assert os.path.exists(f'{OUT_DIR}/crnn_finetune.pt'), 'Tidak ada langkah yang menjaga akurasi buku: laporkan riwayat di atas ke agen.'
+def latih_fase(nama, langkah, lr, campur, tiap):
+    global terbaik_ft, terbaik_buku
+    pemuat = muat_campuran(*campur)
+    opt = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=1e-4)
+    sched = torch.optim.lr_scheduler.LambdaLR(opt, lambda s: min(1, (s + 1) / 100) * 0.5 * (1 + np.cos(np.pi * min(s, langkah) / langkah)))
+    scaler = torch.amp.GradScaler(enabled=(dev == 'cuda'))
+    for step in range(1, langkah + 1):
+        model.train()
+        X, Y, LI, LY, S = gabung(sum((next(d) for d in pemuat), []))
+        with torch.autocast(device_type='cuda', enabled=(dev == 'cuda')):
+            logits = model(X.to(dev))
+        loss = ctc(logits.float().log_softmax(-1).permute(1, 0, 2), Y, LI, LY)
+        opt.zero_grad(set_to_none=True); scaler.scale(loss).backward()
+        scaler.unscale_(opt); nn.utils.clip_grad_norm_(model.parameters(), 5)
+        scaler.step(opt); scaler.update(); sched.step()
+        if step % tiap == 0 or step == langkah:
+            m = nilai_v3(model)
+            riwayat_ft.append(dict(fase=nama, langkah=step, loss=loss.item(), **m))
+            print(f"{nama} {step}/{langkah}  loss {loss.item():.3f}  buku {m['buku']:.2%}  adegan {m['adegan']:.2%}  negatif ditolak {m['negatif']:.1%}  ({time.time()-t0:.0f} dtk)")
+            if m['buku'] > terbaik_buku:
+                terbaik_buku = m['buku']; torch.save(model.state_dict(), f'{OUT_DIR}/crnn_cadangan.pt')
+            skor = m['adegan'] + m['negatif'] if m['buku'] >= awal['buku'] - TURUN_BUKU else -1   # buku bersih tidak boleh dikorbankan
+            if skor > terbaik_ft:
+                terbaik_ft = skor; torch.save(model.state_dict(), f'{OUT_DIR}/crnn_finetune.pt')
+
+latih_fase('fase1', FT_LANGKAH, FT_LR, FT_CAMPUR, 500)
+latih_fase('fase2', KONSOL_LANGKAH, KONSOL_LR, KONSOL_CAMPUR, 250)
+
+# Gagal penjaga tidak menghentikan latihan: gerbang rilis diukur agen, dan detektor tetap perlu dilatih.
+lolos_buku = os.path.exists(f'{OUT_DIR}/crnn_finetune.pt')
+if not lolos_buku:
+    print('PERINGATAN: tidak ada langkah yang menjaga akurasi buku; memakai bobot dengan buku tertinggi. Laporkan ke agen.')
+    shutil.copy(f'{OUT_DIR}/crnn_cadangan.pt', f'{OUT_DIR}/crnn_finetune.pt')
 model.load_state_dict(torch.load(f'{OUT_DIR}/crnn_finetune.pt', map_location=dev))
 m_akhir, P, T = eval_nyata(model, nyata_uji)
 print(f"Buku nyata, data uji: v2 {m_awal['akurasi_suku']:.2%} -> v3 {m_akhir['akurasi_suku']:.2%} (syarat >= 88%)")
@@ -260,7 +282,9 @@ dl_det = tanpa_henti(DataLoader(DetDS(hal_latih, DET_LANGKAH * DET_BATCH), DET_B
 opt_d = torch.optim.AdamW(det.parameters(), lr=5e-4, weight_decay=1e-4)
 sch_d = torch.optim.lr_scheduler.OneCycleLR(opt_d, max_lr=5e-4, total_steps=DET_LANGKAH, pct_start=0.1)
 pos_w = torch.tensor([3.0], device=dev)
-terbaik_d, t0 = -1, time.time()
+for f in ('detektor_baris.pt', 'detektor_cadangan.pt'):
+    if os.path.exists(f'{OUT_DIR}/{f}'): os.remove(f'{OUT_DIR}/{f}')
+terbaik_d, terbaik_d_buku, t0 = -1, -1, time.time()
 for step in range(1, DET_LANGKAH + 1):
     det.train()
     X, M = next(dl_det); X, M = X.to(dev), M.to(dev)
@@ -274,9 +298,14 @@ for step in range(1, DET_LANGKAH + 1):
     if step % 500 == 0 or step == DET_LANGKAH:
         mb, ma = evaluasi_pemisah(kotak_detektor, hal_val), evaluasi_pemisah(kotak_detektor, hal_val_adegan)
         print(f"langkah {step}/{DET_LANGKAH}  loss {loss.item():.3f}  buku {mb['recall']:.1%}/{mb['presisi']:.1%}  adegan {ma['recall']:.1%}/{ma['presisi']:.1%}  ({time.time()-t0:.0f} dtk)")
+        if mb['recall'] > terbaik_d_buku:
+            terbaik_d_buku = mb['recall']; torch.save(det.state_dict(), f'{OUT_DIR}/detektor_cadangan.pt')
         skor = ma['recall'] + ma['presisi'] if mb['recall'] >= m_det_v2['recall'] - 0.01 else -1      # buku tidak boleh turun
         if skor > terbaik_d: terbaik_d = skor; torch.save(det.state_dict(), f'{OUT_DIR}/detektor_baris.pt')
-assert os.path.exists(f'{OUT_DIR}/detektor_baris.pt'), 'Tidak ada langkah yang menjaga pemisahan buku: laporkan riwayat di atas ke agen.'
+lolos_det = os.path.exists(f'{OUT_DIR}/detektor_baris.pt')
+if not lolos_det:
+    print('PERINGATAN: tidak ada langkah yang menjaga pemisahan buku; memakai bobot dengan recall buku tertinggi. Laporkan ke agen.')
+    shutil.copy(f'{OUT_DIR}/detektor_cadangan.pt', f'{OUT_DIR}/detektor_baris.pt')
 det.load_state_dict(torch.load(f'{OUT_DIR}/detektor_baris.pt', map_location=dev))
 ''')
 
@@ -285,7 +314,8 @@ RINGKAS = kode('''
 det.load_state_dict(torch.load(DET_V2, map_location=dev)); dv2 = evaluasi_pemisah(kotak_detektor, hal_uji)
 det.load_state_dict(torch.load(f'{OUT_DIR}/detektor_baris.pt', map_location=dev)); dv3 = evaluasi_pemisah(kotak_detektor, hal_uji)
 ringkas = dict(pembaca=dict(buku_uji_v2=m_awal['akurasi_suku'], buku_uji_v3=m_akhir['akurasi_suku'], validasi_v2=awal, validasi_v3=nilai_v3(model), riwayat=riwayat_ft),
-               detektor=dict(buku_uji_v2=dv2, buku_uji_v3=dv3), n_foto_nyata=len(nyata_foto))
+               detektor=dict(buku_uji_v2=dv2, buku_uji_v3=dv3), n_foto_nyata=len(nyata_foto),
+               lolos_penjaga=dict(pembaca=lolos_buku, detektor=lolos_det))
 json.dump(ringkas, open(f'{OUT_DIR}/hasil_v3.json', 'w'), indent=1, default=float)
 print(json.dumps({k: v for k, v in ringkas['pembaca'].items() if k != 'riwayat'}, indent=1, default=float))
 print('Detektor, 30 halaman uji buku: v2', round(dv2['recall'], 3), '-> v3', round(dv3['recall'], 3))
@@ -311,7 +341,7 @@ sel = [
     salin(26), salin(27), salin(28),
     salin(29, ("model.load_state_dict(torch.load(f'{OUT_DIR}/crnn_terbaik.pt', map_location=dev))\n", ''),
            ('SEBELUM fine-tune (hanya sintetis) di data uji nyata', 'v2 di data uji nyata')),
-    teks('## 11. Fine-tune v3\n\nTiap batch berisi buku nyata, buku sintetis, adegan, dan negatif. Bobot terbaik dipilih dari adegan + penolakan negatif, selama akurasi buku tidak turun lebih dari 1 poin.'),
+    teks('## 11. Fine-tune v3\n\nTiap batch berisi buku nyata, buku sintetis, adegan, dan negatif. Fase 1 mempelajari adegan; fase 2 memakai lr kecil dan batch yang didominasi buku untuk mengembalikan akurasi buku. Bobot terbaik dipilih dari adegan + penolakan negatif, selama akurasi buku tidak turun lebih dari 1 poin. Jika tidak ada yang memenuhi, latihan tetap lanjut dengan bobot berakurasi buku tertinggi, dan `hasil_v3.json` mencatatnya.'),
     FT, FT2, salin(32),
     salin(33), salin(34), salin(35), salin(36), DET_DS, DET_LATIH, salin(38), salin(39),
     salin(44),
