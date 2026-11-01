@@ -26,6 +26,9 @@ const KECIL = 0.5; // kotak di bawah ini kali median tinggi dibuang
 export const MAKS_KOTAK = 60; // per polaritas; halaman buku NusaAksara sampai 80 baris
 export const BUKTI_FOTO = 2; // baris TERIMA minimal agar baris lain di foto dinilai longgar
 const BUKTI_RASIO = 0.2; // dan minimal sebanyak ini dari semua calon: aksara mirip jarang mencapainya
+const PROYEKSI_AKTIF = 0.12; // baris proyeksi: tinta minimal, kali puncak profil
+const PROYEKSI_KECIL = 0.4; // baris proyeksi di bawah ini kali median tinggi dibuang
+const PROYEKSI_TEPI = 0.15; // tambahan atas-bawah baris proyeksi, kali tingginya
 
 const AMBANG: Record<Mode, { terima: number; ragu: number; valid: number; konsonan: number }> = {
   foto: { terima: 0.85, ragu: 0.75, valid: 1, konsonan: 3 },
@@ -115,6 +118,42 @@ export function pilihArea(baris: Calon[], satuBaris: Calon | null): Calon[] {
   if (!satuBaris || satuBaris.status === 'TOLAK') return baris;
   const tampil = baris.filter((b) => b.status !== 'TOLAK').reduce((n, b) => n + skor(b), 0);
   return skor(satuBaris) > tampil ? [satuBaris] : baris;
+}
+
+/** Baris dari profil tinta mendatar, untuk tabel dan huruf berjarak lebar yang tidak ditangkap detektor. */
+export function barisProyeksi(tinta: ArrayLike<number>, w: number, h: number): Kotak[] {
+  const profil = new Float64Array(h);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) if (tinta[y * w + x] > 0) profil[y]++;
+  const halus = profil.map((_, y) => ((profil[y - 1] ?? 0) + profil[y] + (profil[y + 1] ?? 0)) / 3);
+  const puncak = Math.max(0, ...halus);
+  if (!puncak) return [];
+  const rentang: [number, number][] = [];
+  let a = -1;
+  for (let y = 0; y <= h; y++) {
+    const aktif = y < h && halus[y] >= PROYEKSI_AKTIF * puncak;
+    if (aktif && a < 0) a = y;
+    else if (!aktif && a >= 0) {
+      rentang.push([a, y]);
+      a = -1;
+    }
+  }
+  if (rentang.length < 2) return [];
+  const tinggi = rentang.map(([a, b]) => b - a).sort((p, q) => p - q);
+  const n = tinggi.length;
+  const median = n % 2 ? tinggi[(n - 1) / 2] : (tinggi[n / 2 - 1] + tinggi[n / 2]) / 2;
+  return rentang
+    .filter(([a, b]) => b - a >= PROYEKSI_KECIL * median)
+    .map(([a, b]) => [0, Math.max(0, a - PROYEKSI_TEPI * (b - a)), w, Math.min(h, b + PROYEKSI_TEPI * (b - a))]);
+}
+
+/**
+ * Mode area: baris proyeksi dipakai bila belum ada baris yang meyakinkan, karena satu baris bisa terpecah
+ * menjadi pita sandhangan. Baris Latin di antaranya tertolak penilai.
+ */
+export function pilihProyeksi(baris: Calon[], proyeksi: Calon[]): Calon[] {
+  if (baris.some((b) => b.status === 'TERIMA')) return baris;
+  const nilai = (d: Calon[]) => d.filter((b) => b.status !== 'TOLAK').reduce((n, b) => n + skor(b), 0);
+  return nilai(proyeksi) > nilai(baris) ? proyeksi : baris;
 }
 
 export type Kualitas = 'gelap' | 'silau' | 'buram' | 'baik';

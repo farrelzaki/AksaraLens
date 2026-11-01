@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Kotak } from './detektor';
-import { MAKS_KOTAK, gabungBaris, iou, jumlahKonsonan, nilaiKualitas, nilaiStatus, pilihArea, pilihBaris, terapkanBukti, validitas, type Calon } from './saring';
+import { MAKS_KOTAK, barisProyeksi, gabungBaris, iou, jumlahKonsonan, nilaiKualitas, nilaiStatus, pilihArea, pilihBaris, pilihProyeksi, terapkanBukti, validitas, type Calon } from './saring';
 
 const calon = (unicode: string, keyakinan: number, kotak: Kotak, status: Calon['status'] = 'TERIMA'): Calon => ({ unicode, keyakinan, kotak, status });
 
@@ -111,6 +111,45 @@ describe('pilihArea', () => {
     expect(pilihArea([pendek], calon('ꦪꦪꦪ', 0.9, [0, 0, 1, 1], 'TOLAK'))).toEqual([pendek]);
     expect(pilihArea([calon('ꦫꦠꦤꦏꦩ', 0.9, [0, 0, 9, 9])], calon('ꦪꦪ', 0.7, [0, 0, 1, 1], 'RAGU'))).toHaveLength(1);
     expect(pilihArea([pendek], null)).toEqual([pendek]);
+  });
+});
+
+describe('barisProyeksi', () => {
+  const papan = (baris: [number, number][]) => {
+    const d = new Float32Array(10 * 100);
+    for (const [a, b] of baris) for (let y = a; y < b; y++) d.fill(255, y * 10, y * 10 + 10);
+    return d;
+  };
+  it('memisahkan baris tabel dan memberi tepi', () => {
+    const h = barisProyeksi(papan([[10, 30], [50, 70]]), 10, 100);
+    expect(h).toHaveLength(2);
+    // Penghalusan 3 piksel melebarkan tiap baris 1 piksel: [9, 31] dan [49, 71], lalu tepi 3,3.
+    expect(h[0][1]).toBeCloseTo(5.7);
+    expect(h[0][3]).toBeCloseTo(34.3);
+    expect(h[1][1]).toBeCloseTo(45.7);
+    expect(h[1][3]).toBeCloseTo(74.3);
+  });
+  it('kosong bila hanya satu baris atau tanpa tinta', () => {
+    expect(barisProyeksi(papan([[10, 30]]), 10, 100)).toEqual([]);
+    expect(barisProyeksi(papan([]), 10, 100)).toEqual([]);
+  });
+  it('membuang pita tipis', () => {
+    expect(barisProyeksi(papan([[10, 30], [50, 70], [90, 92]]), 10, 100)).toHaveLength(2);
+  });
+});
+
+describe('pilihProyeksi', () => {
+  const satu = calon('ꦮꦤꦶ', 0.7, [0, 0, 100, 100], 'RAGU');
+  it('memilih baris proyeksi bila lebih meyakinkan', () => {
+    const baris = [calon('ꦲꦤꦕꦫꦏ', 0.9, [0, 0, 100, 20]), calon('ꦭꦏꦠ', 0.5, [0, 30, 100, 50], 'TOLAK')];
+    expect(pilihProyeksi([satu], baris)).toEqual(baris);
+  });
+  it('tidak mengganti baris yang sudah diterima', () => {
+    const yakin = calon('ꦫꦠꦤ', 0.9, [0, 0, 100, 100]);
+    expect(pilihProyeksi([yakin], [calon('ꦲꦤꦕꦫꦏ', 0.95, [0, 0, 100, 20])])).toEqual([yakin]);
+  });
+  it('tetap memakai hasil lama bila proyeksi lebih lemah', () => {
+    expect(pilihProyeksi([satu], [calon('ꦏꦏ', 0.5, [0, 0, 9, 9], 'TOLAK')])).toEqual([satu]);
   });
 });
 

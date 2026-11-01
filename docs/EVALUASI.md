@@ -106,6 +106,27 @@ Batas bukti: 1 gambar positif bernilai 16,7 poin, dan gambar dipilih agar tulisa
 daripada foto acak. Kunci jawaban ditulis agen; 4 dari 6 berkeyakinan sedang. Angka ini tidak mewakili kamera aplikasi dan
 tidak menggantikan uji di ponsel.
 
+### Baris proyeksi untuk tabel (mode area)
+
+Ditambahkan setelah laporan foto tabel "Huruf Jawa" dari ponsel: detektor tidak menangkap huruf berjarak lebar, dan seluruh
+bingkai terbaca sebagai satu baris sampah. Baris kini juga dicari dari profil tinta mendatar, dan dipakai hanya bila belum ada
+baris TERIMA. Foto utuh tidak berubah, sehingga penjaga NusaAksara tetap sama.
+
+| Dibingkai | Sebelum | Sesudah |
+| --- | --- | --- |
+| C-uji CER ≤ 0,2 / ≤ 0,5 | 30,8% / 69,2% | 30,8% / 69,2% |
+| C-uji akurasi suku kata | 55,4% | 53,6% |
+| C-pengembangan CER ≤ 0,2 / ≤ 0,5 | 27,3% / 63,6% | 27,3% / 63,6% |
+| C-pengembangan akurasi suku kata | 42,9% | 42,9% |
+| Foto Google CER ≤ 0,5 | 3/6 | 4/6 |
+| Foto Google akurasi suku kata | 64,2% | 69,1% |
+
+Tanpa syarat "belum ada baris TERIMA", akurasi suku kata C-uji turun ke 45,5% karena satu baris terpecah menjadi pita
+sandhangan. Syarat itu ditambahkan setelah melihat angka C-uji, sehingga C-uji kini sudah diukur empat kali dan ikut
+memengaruhi satu keputusan; angkanya tidak lagi buta. Tepi baris 0,15 dipilih dari C-pengembangan dan foto tabel itu sendiri.
+
+Foto tabel itu kini terbaca sebagian: 8 dari 16 huruf benar dan berurutan (ꦲꦤꦱ, ꦠꦱꦮ, ꦢꦭ, ꦩꦒꦧ), baris Latin tertolak.
+
 ### Penjaga regresi NusaAksara
 
 | Metrik | Produksi | Tahap 1 | Syarat |

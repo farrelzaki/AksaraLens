@@ -12,7 +12,7 @@ import { CHARSET, TINGGI_BARIS, dekodeGreedy, keInputBaris } from './ctc';
 import { kotakDariLogit, masukanDetektor, potongSatu, type Kotak } from './detektor';
 import { PENUH, kePiksel, sama, type Bingkai } from './bingkai';
 import { balik, cariSudut, dariRGBA, maskerTinta, normalisasiPolaritas, persentil, potong, putar, resize, type Gray } from './gambar';
-import { gabungBaris, iou, nilaiKualitas, nilaiStatus, pilihArea, pilihBaris, terapkanBukti, type Calon, type Kualitas, type Mode } from './saring';
+import { barisProyeksi, gabungBaris, iou, nilaiKualitas, nilaiStatus, pilihArea, pilihBaris, pilihProyeksi, terapkanBukti, type Calon, type Kualitas, type Mode } from './saring';
 
 export interface BarisTerbaca {
   unicode: string;
@@ -127,6 +127,16 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
     const { teks, keyakinan } = await bacaDuaArah(luruskan(g));
     const satu: Calon | null = teks ? { unicode: teks, keyakinan, kotak: [0, 0, g.w, g.h], status: nilaiStatus(teks, keyakinan, mode) } : null;
     terpilih = pilihArea(terpilih, satu);
+    // Tabel: tiap baris proyeksi dibaca sendiri.
+    const proyeksi: Calon[] = [];
+    const tinta = maskerTinta(g);
+    for (const kotak of barisProyeksi(tinta.d, tinta.w, tinta.h)) {
+      const crop = potongSatu(g, kotak);
+      if (!crop) continue;
+      const b = await bacaDuaArah(crop);
+      if (b.teks) proyeksi.push({ unicode: b.teks, keyakinan: b.keyakinan, kotak, status: nilaiStatus(b.teks, b.keyakinan, mode) });
+    }
+    terpilih = pilihProyeksi(terpilih, proyeksi);
   } else {
     terpilih = terapkanBukti(terpilih);
   }

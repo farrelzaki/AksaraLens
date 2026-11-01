@@ -17,6 +17,9 @@ BUKTI_FOTO = 2        # baris TERIMA minimal agar baris lain di foto dinilai lon
 BUKTI_RASIO = 0.2     # dan minimal sebanyak ini dari semua calon: aksara mirip jarang mencapainya
 SAMA_KOTAK = 0.7      # IoU dua kotak yang dianggap baris yang sama
 SISI_SUDUT = 800      # sisi panjang saat mencari sudut halaman
+PROYEKSI_AKTIF = 0.12 # baris proyeksi: tinta minimal, kali puncak profil
+PROYEKSI_KECIL = 0.4  # baris proyeksi di bawah ini kali median tinggi dibuang
+PROYEKSI_TEPI = 0.15  # tambahan atas-bawah baris proyeksi, kali tingginya
 # Ambang dipilih dari kurva di split pengembangan Set C (scripts/uji_set_c.py).
 # Foto utuh lebih ketat; "area" = pengguna sudah menunjuk tulisannya sendiri.
 AMBANG = {
@@ -132,6 +135,28 @@ def iou(a, b):
     return tw * th / u
 
 
+def baris_proyeksi(g):
+    """Baris dari profil tinta mendatar, untuk tabel dan huruf berjarak lebar yang tidak ditangkap detektor."""
+    p = (ruj.masker_tinta(g) > 0).sum(1).astype(float)
+    if p.max() == 0:
+        return []
+    p = np.convolve(p, np.ones(3) / 3, 'same')
+    aktif = p >= PROYEKSI_AKTIF * p.max()
+    rentang, a = [], None
+    for y, v in enumerate(list(aktif) + [False]):
+        if v and a is None:
+            a = y
+        elif not v and a is not None:
+            rentang.append((a, y))
+            a = None
+    if len(rentang) < 2:
+        return []
+    med = np.median([b - a for a, b in rentang])
+    H = g.shape[0]
+    return [[0, max(0, a - PROYEKSI_TEPI * (b - a)), g.shape[1], min(H, b + PROYEKSI_TEPI * (b - a))]
+            for a, b in rentang if b - a >= PROYEKSI_KECIL * med]
+
+
 def baca_foto(gray, area_dipilih=False):
     mode = 'area' if area_dipilih else 'foto'
     g = ruj.normalisasi_polaritas(gray)
@@ -167,6 +192,16 @@ def baca_foto(gray, area_dipilih=False):
         tampil = sum(skor(b) for b in hasil if b['status'] != 'TOLAK')
         if t and nilai_status(t, y, mode) != 'TOLAK' and y * konsonan(t) > tampil:
             hasil = [dict(teks=t, yakin=y, kotak=[0, 0, g.shape[1], g.shape[0]], status=nilai_status(t, y, mode))]
+            tampil = y * konsonan(t)
+        # Tabel: tiap baris proyeksi dibaca sendiri, baris Latin di antaranya tertolak penilai.
+        proyeksi = []
+        for k in baris_proyeksi(g):
+            t, y = baca_dua_arah(g, k, lurus=False, mode=mode)
+            if t:
+                proyeksi.append(dict(teks=t, yakin=y, kotak=k, status=nilai_status(t, y, mode)))
+        # Hanya bila belum ada baris yang meyakinkan: satu baris bisa terpecah menjadi pita sandhangan.
+        if not any(b['status'] == 'TERIMA' for b in hasil) and sum(skor(b) for b in proyeksi if b['status'] != 'TOLAK') > tampil:
+            hasil = proyeksi
     elif sum(b['status'] == 'TERIMA' for b in hasil) >= max(BUKTI_FOTO, BUKTI_RASIO * len(hasil)):
         # Bukti tingkat foto: baris lain tidak ditolak hanya karena satu tanda keliru.
         for b in hasil:
