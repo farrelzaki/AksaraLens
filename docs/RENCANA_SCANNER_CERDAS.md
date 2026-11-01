@@ -265,6 +265,7 @@ Logika murni wajib dengan test Vitest, versi Python ikut disamakan.
 - **Data nyata latih 100–200 potongan** dari foto Commons di luar Set C (27 kandidat + kategori yang sama): aku buat draf kotak dan label, kamu cek sampel. Atribusi lisensi dicatat.
 - Negatif pembaca: Latin, angka, tekstur, aksara Sunda/Bali, berlabel kosong.
 - **Lulus:** 24 sampel kuperiksa visual; tidak ada foto C-uji di data latih.
+- **Pelaksanaan (1 Nov 2026):** putaran pertama hanya memakai data sintetis. 27 foto kandidat berupa lembar ringkasan beresolusi rendah dan sebagian sumbernya mirip Set C, jadi belum dipakai agar C-uji tidak bocor. Data nyata ditambahkan di putaran berikutnya bila gerbang pembaca gagal (`data_nyata_v3` di Drive). Generator: `scripts/adegan_v3.py`; notebook dibuat `scripts/buat_notebook_v3.py`.
 - **Mitigasi:** render rusak → cek `raqm`. Data nyata kurang dari 100 → tetap jalan, lanjutkan dengan pseudo-label di Plan B3.
 
 #### Tahap 3. Latih ulang v3 (kamu menjalankan Colab; aku siapkan semua sel)
@@ -277,9 +278,9 @@ Logika murni wajib dengan test Vitest, versi Python ikut disamakan.
 
 #### Tahap 4. Gerbang akhir dan rilis
 - Ukur C-uji **sekali** (bersama 10 foto HP, lihat bawah) dan NusaAksara.
-- Unggah ke `models/v3` di Supabase (kamu), `models/v2` tetap ada.
+- Unggah ke `models/v3` di Supabase (kamu), `models/v1` tetap ada. Folder `models/v1` berisi model yang dilatih di `model2_v2`; folder `models/v2` tidak ada.
 - Uji di URL preview Vercel dari HP, baru merge. `develop` = production.
-- **Mitigasi:** regresi di production → kembalikan `VITE_MODEL_URL` ke `models/v2` dan redeploy.
+- **Mitigasi:** regresi di production → kembalikan `VITE_MODEL_URL` ke `models/v1` dan redeploy.
 
 ### Tabel keputusan
 
