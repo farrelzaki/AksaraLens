@@ -127,6 +127,10 @@ memengaruhi satu keputusan; angkanya tidak lagi buta. Tepi baris 0,15 dipilih da
 
 Foto tabel itu kini terbaca sebagian: 8 dari 16 huruf benar dan berurutan (ꦲꦤꦱ, ꦠꦱꦮ, ꦢꦭ, ꦩꦒꦧ), baris Latin tertolak.
 
+Uji satu kali dari ponsel lewat kamera (1 Nov 2026, memotret layar berisi tabel yang sama): 2 dari 4 baris benar, 1 baris
+tambahan yang salah, dan waktu scan sekitar 10 detik menurut perkiraan pengguna. Ini di atas target ≤ 3 detik; Tahap 1
+dirilis dengan batasan ini atas keputusan pengguna. Waktu rata-rata 20 kali scan belum diukur.
+
 ### Penjaga regresi NusaAksara
 
 | Metrik | Produksi | Tahap 1 | Syarat |
