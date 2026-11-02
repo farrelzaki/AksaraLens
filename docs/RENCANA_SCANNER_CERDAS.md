@@ -267,6 +267,7 @@ Logika murni wajib dengan test Vitest, versi Python ikut disamakan.
 - **Lulus:** 24 sampel kuperiksa visual; tidak ada foto C-uji di data latih.
 - **Pelaksanaan (1 Nov 2026):** putaran pertama hanya memakai data sintetis. 27 foto kandidat berupa lembar ringkasan beresolusi rendah dan sebagian sumbernya mirip Set C, jadi belum dipakai agar C-uji tidak bocor. Data nyata ditambahkan di putaran berikutnya bila gerbang pembaca gagal (`data_nyata_v3` di Drive). Generator: `scripts/adegan_v3.py`; notebook dibuat `scripts/buat_notebook_v3.py`.
 - **Putaran 1 Colab (1 Nov 2026):** tidak menghasilkan model. Dari v2 ke langkah 6000: adegan sintetis 37,1% → 94,5%, negatif tertolak 6,5% → 100%, tetapi buku nyata 90,5% → sekitar 87% dan stabil saat lr sudah kecil, jadi penjaga buku (turun ≤ 1 poin) tidak terpenuhi. Validasi buku hanya 494 suku kata; puncak 89,47% di langkah 4000 kurang 1 suku kata dari syarat. Putaran 2 menambah fase 2 (lr kecil, batch didominasi buku) tanpa melonggarkan penjaga. Gagal penjaga kini tidak menghentikan notebook dan dicatat di `hasil_v3.json`.
+- **Putaran 2 Colab (2 Nov 2026):** gagal gerbang Tahap 3 (`docs/EVALUASI.md`), tidak dirilis. Pembaca tidak membaik pada potongan nyata walau sintetis 93%, jadi putaran terakhir menunggu potongan nyata di luar Set C.
 - **Mitigasi:** render rusak → cek `raqm`. Data nyata kurang dari 100 → tetap jalan, lanjutkan dengan pseudo-label di Plan B3.
 
 #### Tahap 3. Latih ulang v3 (kamu menjalankan Colab; aku siapkan semua sel)
