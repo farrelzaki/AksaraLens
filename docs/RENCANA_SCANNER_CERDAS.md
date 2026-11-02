@@ -341,3 +341,50 @@ Bila model belum cukup pintar membaca foto utuh, produk tetap terasa profesional
 2. Paritas Python–web pada gambar uji sebelum setiap rilis.
 3. Uji preview Vercel di HP: kamera, galeri, Atur area, foto tanpa aksara, dan pencatatan waktu 20 kali.
 4. `docs/EVALUASI.md` memuat tabel sebelum–sesudah per versi; `docs/RENCANA_SCANNER_CERDAS.md` bagian status diperbarui setiap gerbang.
+
+## 11. Revisi setelah v3 gagal gerbang (2 Nov 2026)
+
+Bagian ini mengganti urutan Tahap 2 sampai 4 di bagian 10. Target rilis di bagian 10 tetap; Farrel mengizinkan target turun sedikit bila terbukti perlu. Perubahan arsitektur sudah disetujui, dan model pihak lain boleh dipakai. Aturan privasi tetap: semua inferensi di perangkat.
+
+### Yang dipelajari
+
+| Temuan | Bukti | Akibat |
+| --- | --- | --- |
+| Detektor teks tidak bergantung aksara | Bharat Scene Text menyebut detektor modern "largely language-agnostic"; PP-OCRv3 di NusaAksara mencapai IoU .79 untuk Jawa setelah fine-tune | Tidak perlu melatih detektor sendiri dari nol |
+| Lapisan bawah pembaca bisa dipakai lintas aksara | PSMC (2026): lapisan bawah pembaca antarbahasa sangat mirip; transfer lintas aksara memberi WRR +3 sampai +8 poin (Mathew dkk.) | Mulai dari pembaca yang sudah belajar dari foto nyata, bukan dari model buku |
+| Sintetis saja tidak cukup | Bharat: PARSeq sintetis WRR 0,47, naik ke 0,73 setelah fine-tune data nyata. v3: sintetis 93%, potongan nyata 30% | Data nyata wajib ada, dan sintetis harus memakai latar nyata |
+| LLM penglihatan tidak bisa dicontek | NusaAksara: CER GPT-4o dan Gemini Flash > 1 untuk Jawa. `PaddleOCR-VL-Aksara-Jawa` menyatakan belum menghasilkan aksara Jawa; ukurannya sekitar 1 miliar parameter | Tidak dipakai, apalagi API yang menerima foto melanggar BR-01 |
+| Belum ada model Jawa siap pakai untuk foto | `aksara-jawa-ocr`: CRNN sintetis, CER 21,46% pada 745 baris buku nyata, bobot tidak tersedia | Pembaca tetap harus dilatih |
+
+### Eksperimen tanpa latihan (C-pengembangan, pembaca v2)
+
+| Susunan | Akurasi foto utuh | Adegan | Dibingkai | Recall tampil | Sampah | Negatif ditolak | NusaAksara terpisah / presisi | Waktu CPU |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Produksi | 11,2% | 10,6% | 42,9% | 3/11 | 55,6% | 12/13 | 79,4% / 95,1% | 0,7 dtk |
+| PP-OCRv5 mobile det (4,8 MB, Apache-2.0) | **44,9%** | **51,5%** | 38,1% | 6/11 | 45,5% | 8/13 | 80,0% / 50,8% | 0,9 dtk |
+| PP-OCRv5 + gerbang Latin 0,7 (8 MB) | 39,3% | 43,9% | 38,1% | 6/11 | 21,4% | 11/13 | belum diukur | 4,2 dtk |
+
+Detektor ini menemukan 10 dari 11 baris sebelum disaring, tetapi 4 hilang di tahap membaca atau menilai, jadi penghambat utama kini pembaca dan penilai. Angka ini sudah menyetel C-pengembangan, dengan sampel kecil.
+
+### Urutan baru
+
+1. **Detektor PP-OCRv5 (tanpa Colab).** Satu polaritas bila cukup, gabung pecahan menjadi baris, paritas Python dan web. Lulus: NusaAksara ≥ 81,8% dengan presisi ≥ 85%, foto utuh lebih baik dari produksi, waktu terukur di ponsel. Dirilis sendiri bila lulus. Fine-tune hanya bila gagal.
+2. **Klasifikator aksara kecil (Colab singkat, ≤ 1 MB).** Jawa lawan Latin, angka, tekstur, Sunda, Bali, dilatih dari potongan keluaran detektor. Gerbang Latin 8 MB terlalu lambat dan tidak bisa menolak Sunda atau Bali. Lulus: negatif tertolak ≥ 90%, baris Jawa terbuang ≤ 5%.
+3. **Data nyata 300 potongan atau lebih.** Kumpulkan dari foto Commons di luar Set C dan set uji, potong otomatis dengan detektor baru, agen membuat draf label, Farrel mengecek sampel. Sintetis baru: latar foto nyata, tulisan Latin papan asli diganti aksara, gaya mengikuti SynthTIGER. Diff-Text atau TextSSR hanya bila cara ini kurang.
+4. **Pembaca baru lewat transfer.** Kandidat utama `latin_PP-OCRv5_mobile_rec` (8 MB, CTC, Apache-2.0) dengan kepala diganti charset Jawa: latih pada sintetis baru, lalu fine-tune data nyata dengan lr berjenjang, tanpa negatif berlabel kosong. Pembanding bila gagal: PARSeq-Ti. CRNN v2 tetap sebagai acuan. Maksimal 3 putaran Colab. Lulus: potongan tepat ≥ 75%, NusaAksara ≥ 88%, keduanya mengalahkan v2.
+5. **Dekoder bahasa (tanpa Colab).** Beam search dengan model karakter dari korpus Jawa (Wikipedia CC BY-SA) dan nama tempat. Belum ada bukti besar manfaatnya untuk aksara langka, jadi dipakai hanya bila C-pengembangan membaik tanpa memperbanyak kata karangan.
+6. **Set uji baru dan rilis.** Minimal 40 foto baru (10 dari kamera ponsel), diukur sekali. Waktu scan di ponsel: coba WebGPU, batasi jumlah kotak.
+
+### Risiko dan batas
+
+- **Waktu ≤ 3 detik paling berisiko:** ponsel sekarang sekitar 10 detik, dan belum ada pengukuran susunan baru di ponsel.
+- **Data nyata jauh lebih sedikit** dari studi rujukan (Bharat sekitar 7.000 kata per bahasa), jadi hasil pembaca bisa di bawah target.
+- **Font hias kemungkinan tetap gagal.** Bila hanya kategori ini yang menghalangi target, usulkan pengecualiannya ke Farrel dengan bukti.
+- **Unduhan bertambah** menjadi sekitar 14 MB (detektor 4,8, pembaca 8, klasifikator ≤ 1), tetap ≤ 10 MB per model.
+- **Tanggal 5 Des 2026 tetap:** bila minimum belum tercapai, pakai Plan C dengan komponen terbaik yang lolos.
+
+### Rujukan
+
+- [NusaAksara](https://arxiv.org/abs/2502.18148), [Bharat Scene Text](https://arxiv.org/abs/2511.23071), [PSMC](https://arxiv.org/abs/2608.27753), [Transfer learning STR India](https://arxiv.org/abs/2201.03180)
+- [PP-OCRv5 mobile det](https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_det_onnx), [latin rec](https://huggingface.co/PaddlePaddle/latin_PP-OCRv5_mobile_rec_onnx), [PARSeq](https://github.com/baudm/parseq)
+- [SynthTIGER](https://arxiv.org/abs/2107.09313), [Diff-Text](https://arxiv.org/abs/2312.12232), [aksara-jawa-ocr](https://github.com/mahathirmuh/aksara-jawa-ocr), [PaddleOCR-VL-Aksara-Jawa](https://huggingface.co/setilanaji/PaddleOCR-VL-Aksara-Jawa)
