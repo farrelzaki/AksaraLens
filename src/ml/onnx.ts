@@ -3,12 +3,13 @@
 
 import type { InferenceSession } from 'onnxruntime-web';
 
-export type NamaModel = 'model1' | 'model2a' | 'model2b';
+export type NamaModel = 'model1' | 'model2a' | 'model2b' | 'model2c';
 
 const BERKAS: Record<NamaModel, string> = {
   model1: 'aksaralens_huruf.onnx',
   model2a: 'aksaralens_scanner.onnx',
   model2b: 'aksaralens_detektor_pp.onnx',
+  model2c: 'aksaralens_klasifikator.onnx',
 };
 
 /**

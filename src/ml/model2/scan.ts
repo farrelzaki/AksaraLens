@@ -11,6 +11,7 @@ import { muatModel, ortSiap } from '../onnx';
 import { CHARSET, TINGGI_BARIS, dekodeGreedy, keInputBaris } from './ctc';
 import { potongSatu, type Kotak } from './detektor';
 import { kotakDariPeta, masukanPP } from './detektorPP';
+import { LEBAR_KL, TINGGI_KL, lolosJawa, masukanKlasifikator } from './klasifikator';
 import { PENUH, kePiksel, sama, type Bingkai } from './bingkai';
 import { balik, cariSudut, dariRGBA, maskerTinta, normalisasiPolaritas, persentil, potong, putar, resize, type Gray } from './gambar';
 import { barisProyeksi, gabungBaris, iou, nilaiKualitas, nilaiStatus, pilihArea, pilihBaris, pilihProyeksi, terapkanBukti, type Calon, type Kualitas, type Mode } from './saring';
@@ -53,10 +54,11 @@ export function siapkanScanner(): Promise<void> {
 }
 
 async function panaskan(): Promise<void> {
-  const [ort, det, pembaca] = await Promise.all([ortSiap(), muatModel('model2b'), muatModel('model2a')]);
+  const [ort, det, pembaca, kl] = await Promise.all([ortSiap(), muatModel('model2b'), muatModel('model2a'), muatModel('model2c')]);
   const kosong = () => new Float32Array(TINGGI_BARIS * TINGGI_BARIS);
   await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', new Float32Array(3 * 32 * 32), [1, 3, 32, 32]) });
   await pembaca.run({ [pembaca.inputNames[0]]: new ort.Tensor('float32', kosong(), [1, 1, TINGGI_BARIS, TINGGI_BARIS]) });
+  await kl.run({ [kl.inputNames[0]]: new ort.Tensor('float32', new Float32Array(TINGGI_KL * LEBAR_KL), [1, 1, TINGGI_KL, LEBAR_KL]) });
 }
 
 /** Gambar (File/Blob) -> grayscale, latar transparan dianggap putih, sisi terpanjang ≤ 2048. */
@@ -78,7 +80,7 @@ const SAMA_KOTAK = 0.7; // IoU dua kotak yang dianggap baris yang sama
 export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilScan> {
   const mulai = performance.now();
   await siapkanScanner();
-  const [ort, det, pembaca] = await Promise.all([ortSiap(), muatModel('model2b'), muatModel('model2a')]);
+  const [ort, det, pembaca, kl] = await Promise.all([ortSiap(), muatModel('model2b'), muatModel('model2a'), muatModel('model2c')]);
 
   // 1. polaritas & deskew halaman
   let g = normalisasiPolaritas(gray);
@@ -103,6 +105,21 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
     return a.keyakinan >= b.keyakinan ? a : b;
   };
 
+  // Hanya kotak yang berisi aksara Jawa yang diteruskan; Latin, aksara lain, dan tekstur dibuang sebelum dibaca.
+  const saringJawa = async (sumber: Gray, kotak: Kotak[]) => {
+    const potongan: { kotak: Kotak; x: Float32Array }[] = [];
+    for (const k of kotak) {
+      const c = potongSatu(sumber, k);
+      if (c) potongan.push({ kotak: k, x: masukanKlasifikator(c) });
+    }
+    if (!potongan.length) return [];
+    const x = new Float32Array(potongan.length * TINGGI_KL * LEBAR_KL);
+    potongan.forEach((p, i) => x.set(p.x, i * TINGGI_KL * LEBAR_KL));
+    const keluar = await kl.run({ [kl.inputNames[0]]: new ort.Tensor('float32', x, [potongan.length, 1, TINGGI_KL, LEBAR_KL]) });
+    const logit = keluar[kl.outputNames[0]].data as Float32Array;
+    return potongan.filter((_, i) => lolosJawa(logit[i])).map((p) => p.kotak);
+  };
+
   // 2. detektor pada dua polaritas (yang kedua hanya bila belum ada baris diterima), kotak sebaris digabung
   const calon: Calon[] = [];
   const semuaKotak: Kotak[] = [];
@@ -112,7 +129,8 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
     const keluarDet = await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', m.data, [1, 3, m.H, m.W]) });
     const peta = keluarDet[det.outputNames[0]];
     const [, , h, w] = peta.dims;
-    for (const kotak of gabungBaris(kotakDariPeta(peta.data as Float32Array, h, w, sumber.w / w, sumber.h / h, sumber.w, sumber.h))) {
+    const mentah = kotakDariPeta(peta.data as Float32Array, h, w, sumber.w / w, sumber.h / h, sumber.w, sumber.h);
+    for (const kotak of gabungBaris(await saringJawa(sumber, mentah))) {
       if (semuaKotak.some((k) => iou(k, kotak) >= SAMA_KOTAK)) continue; // sudah dibaca pada polaritas lain
       semuaKotak.push(kotak);
       // 3. baca tiap baris; pelurusan per baris hanya di mode area demi target waktu

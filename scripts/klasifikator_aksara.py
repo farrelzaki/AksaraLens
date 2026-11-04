@@ -2,12 +2,13 @@
 # Dipakai sebagai penyaring setelah detektor, sebelum pembaca. Data latih: baris Jawa NusaAksara (positif) lawan
 # aksara lain NusaAksara, Latin sintetis, dan tekstur (negatif), dengan augmentasi ala foto. Folder data gitignored.
 # Pakai: python -X utf8 scripts/klasifikator_aksara.py latih [--eval eval_kotak.npz] [--keluar folder]
-import argparse, glob, os, random
+import argparse, glob, json, os, random
 import cv2, numpy as np
 
 AKAR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NUSA = os.path.join(AKAR, 'docs/random/nusa')
 KELUAR = os.path.join(AKAR, 'docs/random/klasifikator')
+NYATA = os.path.join(AKAR, 'docs/random/foto_nyata')  # potongan foto Commons + label.json (1 = Jawa, 0 = bukan)
 T, L = 32, 160  # tinggi, lebar masukan
 FONT_LATIN = ['arial', 'arialbd', 'calibri', 'calibrib', 'times', 'timesbd', 'cour', 'verdana', 'verdanab', 'tahoma', 'impact', 'segoeui', 'georgia', 'trebuc']
 KATA = ('JL JALAN KANTOR KELURAHAN KECAMATAN PEMERINTAH KOTA PASAR HOTEL TOKO BANK MUSEUM SEKOLAH Selamat Datang Yogyakarta '
@@ -84,7 +85,7 @@ def tekstur(rng):
     return np.clip(g, 0, 255)
 
 
-def susun(aug, seed=0):
+def susun(aug, seed=0, kali_nyata_j=60, kali_nyata_n=15):
     rng = random.Random(seed)
     jawa = sorted(glob.glob(f'{NUSA}/baris/*.png'))
     lain = sorted(glob.glob(f'{NUSA}/lain/*.png'))
@@ -102,6 +103,11 @@ def susun(aug, seed=0):
                 Y.append(y)
         return X, Y
 
+    # potongan foto nyata: validasi dipilih per foto sumber (awalan F###) agar tidak bocor
+    nyata = json.load(open(f'{NYATA}/label.json')) if os.path.exists(f'{NYATA}/label.json') else {}
+    foto = sorted({n.split('_')[0] for n in nyata})
+    rng.shuffle(foto)
+    foto_valid = set(foto[:len(foto) // 7])
     out = {}
     # 80 baris Jawa dan 400 baris aksara lain ditahan untuk validasi (per berkas)
     for nama, (fj, fl, kj, kl, nl, nt) in dict(latih=(jawa[80:], lain[400:], aug, 3, 9000, 2000), valid=(jawa[:80], lain[:400], 4, 2, 800, 200)).items():
@@ -109,6 +115,13 @@ def susun(aug, seed=0):
         a, b = bikin(fl, 0, kl)
         X += a
         Y += b
+        for n, y in nyata.items():
+            if (n.split('_')[0] in foto_valid) != (nama == 'valid'):
+                continue
+            g = baca(f'{NYATA}/potongan/{n}')
+            for _ in range((kali_nyata_j if y else kali_nyata_n) if nama == 'latih' else 2):
+                X.append(ke_input(augmentasi(g, rng)))
+                Y.append(y)
         for _ in range(nl):
             X.append(ke_input(augmentasi(latin(rng), rng)))
             Y.append(0)

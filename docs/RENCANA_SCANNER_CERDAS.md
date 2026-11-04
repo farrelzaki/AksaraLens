@@ -396,6 +396,25 @@ Detektor ini menemukan 10 dari 11 baris sebelum disaring, tetapi 4 hilang di tah
 - **Hasil:** di baris buku dan sintetis yang ditahan, AUC 0,999. Di **foto nyata** (595 kotak detektor C-pengembangan, 43 berlabel Jawa), AUC hanya **0,81**: pada ambang 0,5 hanya 41,9% kotak Jawa lolos dan 95,3% bukan-Jawa ditolak. Jadi belum layak dipasang; kesenjangan domain buku ke foto terbukti, sesuai temuan riset.
 - **Kesimpulan:** klasifikator butuh potongan foto nyata berlabel (langkah 3). Model belum dipasang di `scan.ts`.
 
+### Status langkah 2 dan 3 (4 Nov 2026): klasifikator dengan foto nyata terpasang
+
+- **Data nyata:** 200 foto Commons di luar Set C (131 terunduh), 927 potongan kotak PP-OCRv5; kulabeli sendiri lewat lembar kontak: 161 Jawa, 538 bukan-Jawa, 228 ambigu dibuang (naskah tulisan tangan, pecahan huruf). Skrip: `scripts/unduh_foto_nyata.py`. Foto dan label tidak di-commit (atribusi di `docs/random/foto_nyata/atribusi.csv`). Label ini draf; belum dicek Farrel.
+- **Klasifikator v2** (data buku + aksara lain + Latin sintetis + foto nyata): ukuran per-kotak di foto nyata masih AUC 0,86 karena set evaluasinya kasar (pecahan kotak dan polaritas terbalik dihitung positif), jadi keputusan diambil dari bangku uji ujung-ke-ujung, bukan AUC.
+- **Bangku uji, detektor PP + penyaring per kotak (ambang 0,5), pembaca v2, C-pengembangan:**
+
+| Ukuran | Produksi | PP tanpa saringan | **PP + klasifikator 0,5** |
+| --- | --- | --- | --- |
+| Akurasi suku foto utuh | 11,2% | 44,9% | **32,6%** |
+| Baris sampah pada keluaran | 55,6% | 45,5% | **10,0%** |
+| Foto tanpa aksara ditolak | 12 dari 13 | 8 dari 13 | **12 dari 13** (13 dari 13 di ambang 0,7) |
+| Recall baris Jawa | 3 dari 11 | 6 dari 11 | 6 dari 11 |
+| NusaAksara pemisahan baris (recall / presisi) | 82,8% / 86,9% | 80,0% / 50,8% | **91,5% / 96,6%** |
+| Waktu rata-rata di komputer | 0,7 dtk | 0,9 dtk | 1,0 dtk |
+
+- **Catatan:** saringan membuang beberapa baris benar di foto rapat (C11, C13, C28), sehingga akurasi turun dari 44,9% ke 32,6%. Pembaca baru (langkah 4) yang menaikkan akurasi. Saringan tingkat-foto (bukan per kotak) memberi 42,7% tetapi hanya 9 dari 13 negatif ditolak, jadi tidak dipilih.
+- **Terpasang di kode:** `klasifikator.ts`, `scan.ts`, model `aksaralens_klasifikator.onnx` (318 KB). Hasil di browser cocok dengan skrip Python pada 8 foto uji.
+- **Rilis:** lebih baik dari produksi di semua ukuran di atas, dan gerbang buku lulus. Syarat sebelum merge ke `develop`: Farrel mengunggah dua berkas ke `models/v1` (`aksaralens_detektor_pp.onnx`, `aksaralens_klasifikator.onnx`) dan menguji waktu scan di ponsel.
+
 ### Rujukan
 
 - [NusaAksara](https://arxiv.org/abs/2502.18148), [Bharat Scene Text](https://arxiv.org/abs/2511.23071), [PSMC](https://arxiv.org/abs/2608.27753), [Transfer learning STR India](https://arxiv.org/abs/2201.03180)
