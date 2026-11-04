@@ -8,7 +8,7 @@ export type NamaModel = 'model1' | 'model2a' | 'model2b';
 const BERKAS: Record<NamaModel, string> = {
   model1: 'aksaralens_huruf.onnx',
   model2a: 'aksaralens_scanner.onnx',
-  model2b: 'aksaralens_detektor_baris.onnx',
+  model2b: 'aksaralens_detektor_pp.onnx',
 };
 
 /**

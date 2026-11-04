@@ -34,7 +34,7 @@ ditangani Supabase) · Carakan.js (transliterasi per suku kata ditulis sendiri d
 Browser ─┬─ React SPA (konten JSON statis, logika jalur)
          ├─ ONNX Runtime Web ── /models/*.onnx (aset statis, cache browser)
          │     model1  → latihan menulis
-         │     model2b → detektor baris → model2a → CTC → urai() → Latin
+         │     model2b → detektor teks PP-OCRv5 → model2a → CTC → urai() → Latin
          └─ supabase-js ── Supabase Auth + Postgres (RLS): profil, progres, statistik
 ```
 

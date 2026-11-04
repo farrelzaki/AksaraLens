@@ -9,7 +9,8 @@
 import { urai, type SukuKata } from '../../aksara/urai';
 import { muatModel, ortSiap } from '../onnx';
 import { CHARSET, TINGGI_BARIS, dekodeGreedy, keInputBaris } from './ctc';
-import { kotakDariLogit, masukanDetektor, potongSatu, type Kotak } from './detektor';
+import { potongSatu, type Kotak } from './detektor';
+import { kotakDariPeta, masukanPP } from './detektorPP';
 import { PENUH, kePiksel, sama, type Bingkai } from './bingkai';
 import { balik, cariSudut, dariRGBA, maskerTinta, normalisasiPolaritas, persentil, potong, putar, resize, type Gray } from './gambar';
 import { barisProyeksi, gabungBaris, iou, nilaiKualitas, nilaiStatus, pilihArea, pilihBaris, pilihProyeksi, terapkanBukti, type Calon, type Kualitas, type Mode } from './saring';
@@ -54,7 +55,7 @@ export function siapkanScanner(): Promise<void> {
 async function panaskan(): Promise<void> {
   const [ort, det, pembaca] = await Promise.all([ortSiap(), muatModel('model2b'), muatModel('model2a')]);
   const kosong = () => new Float32Array(TINGGI_BARIS * TINGGI_BARIS);
-  await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', kosong(), [1, 1, TINGGI_BARIS, TINGGI_BARIS]) });
+  await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', new Float32Array(3 * 32 * 32), [1, 3, 32, 32]) });
   await pembaca.run({ [pembaca.inputNames[0]]: new ort.Tensor('float32', kosong(), [1, 1, TINGGI_BARIS, TINGGI_BARIS]) });
 }
 
@@ -107,11 +108,11 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
   const semuaKotak: Kotak[] = [];
   for (const sumber of [g, balik(g)]) {
     if (calon.some((c) => c.status === 'TERIMA')) break;
-    const m = masukanDetektor(sumber);
-    const keluarDet = await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', m.data, [1, 1, m.H, m.W]) });
+    const m = masukanPP(sumber);
+    const keluarDet = await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', m.data, [1, 3, m.H, m.W]) });
     const peta = keluarDet[det.outputNames[0]];
-    const [, , h4, w4] = peta.dims;
-    for (const kotak of gabungBaris(kotakDariLogit(peta.data as Float32Array, h4, w4, m.skala))) {
+    const [, , h, w] = peta.dims;
+    for (const kotak of gabungBaris(kotakDariPeta(peta.data as Float32Array, h, w, sumber.w / w, sumber.h / h, sumber.w, sumber.h))) {
       if (semuaKotak.some((k) => iou(k, kotak) >= SAMA_KOTAK)) continue; // sudah dibaca pada polaritas lain
       semuaKotak.push(kotak);
       // 3. baca tiap baris; pelurusan per baris hanya di mode area demi target waktu

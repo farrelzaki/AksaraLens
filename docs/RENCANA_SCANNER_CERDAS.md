@@ -136,7 +136,7 @@ Setiap fase punya **gerbang lulus**. Kalau gerbang tidak tercapai, jalankan **ta
 ### F5. Integrasi dan rilis aman
 - **Langkah:** unggah ke `models/v3` di Supabase (v2 tetap ada). Versi model ikut kunci cache. Uji paritas Python dan web, lalu `npm test`, `typecheck`, `build`. Uji di **URL preview Vercel** dari branch fitur di ponsel, **sebelum** merge. Ingat: `develop` sekarang langsung menjadi production.
 - **Gerbang:** semua uji lulus. Scan di ponsel ≤ 3 dtk. Bangku uji web sama dengan Python.
-- **Cadangan:** kalau terjadi regresi di production, kembalikan `VITE_MODEL_URL` ke `models/v2` dan redeploy. Ini rollback 1 langkah tanpa ubah kode.
+- **Cadangan:** kalau terjadi regresi di production, kembalikan `VITE_MODEL_URL` ke `models/v1` dan redeploy. Ini rollback 1 langkah tanpa ubah kode.
 
 ### F6. Uji lapangan dan iterasi
 - **Langkah:** jalankan set C. Golongkan setiap kesalahan: deteksi terlewat, sampah lolos, salah baca huruf mirip, di luar cakupan, kualitas foto. Ambil 2 golongan terbesar, lalu kembali ke F3 dengan data yang membidik golongan itu.
@@ -382,6 +382,13 @@ Detektor ini menemukan 10 dari 11 baris sebelum disaring, tetapi 4 hilang di tah
 - **Font hias kemungkinan tetap gagal.** Bila hanya kategori ini yang menghalangi target, usulkan pengecualiannya ke Farrel dengan bukti.
 - **Unduhan bertambah** menjadi sekitar 14 MB (detektor 4,8, pembaca 8, klasifikator ≤ 1), tetap ≤ 10 MB per model.
 - **Tanggal 5 Des 2026 tetap:** bila minimum belum tercapai, pakai Plan C dengan komponen terbaik yang lolos.
+
+### Status langkah 1 (4 Nov 2026)
+
+- **Kode selesai:** `src/ml/model2/detektorPP.ts` (masukan 3 kanal 960 px, ambang 0,3, skor 0,5, pelebaran 1,5) menggantikan U-Net di `scan.ts`; berkas model `aksaralens_detektor_pp.onnx` (4,8 MB, Apache-2.0). Test baru lulus, `typecheck` dan `build` lulus.
+- **Dicoba di browser** (6 foto Set C): jalan, 0,8 sampai 3,3 dtk di komputer ini. Hasil mirip skrip Python tetapi tidak identik di beberapa foto (dekode gambar browser berbeda dari OpenCV); paritas belum dibuktikan sistematis.
+- **Gerbang rilis belum lulus:** pemisahan baris buku 80,0% (penjaga: turun maksimal 1 poin dari 82,8%), ketepatan 50,8%, foto tanpa aksara ditolak 8 dari 13 (produksi 12 dari 13). Belum digabung ke `develop` dan model belum diunggah; produksi tetap memakai U-Net lama.
+- **Berikutnya:** perbaiki penggabungan kotak dan penolakan lewat langkah 2 (klasifikator aksara), lalu ukur ulang bersama dan putuskan rilis.
 
 ### Rujukan
 
