@@ -3,13 +3,13 @@ import { buatGray } from './gambar';
 import { kotakDariPeta, masukanPP } from './detektorPP';
 
 describe('masukanPP', () => {
-  it('sisi terpanjang 960, kelipatan 32, 3 kanal ternormalisasi ImageNet', () => {
+  it('sisi terpanjang 640, kelipatan 32, 3 kanal ternormalisasi ImageNet', () => {
     const m = masukanPP(buatGray(2000, 1000, 255));
-    expect([m.W, m.H]).toEqual([960, 480]);
-    expect(m.data.length).toBe(3 * 960 * 480);
+    expect([m.W, m.H]).toEqual([640, 320]);
+    expect(m.data.length).toBe(3 * 640 * 320);
     expect(m.data[0]).toBeCloseTo((1 - 0.485) / 0.229, 4);
-    expect(m.data[960 * 480]).toBeCloseTo((1 - 0.456) / 0.224, 4);
-    expect(m.fx).toBeCloseTo(2000 / 960, 6);
+    expect(m.data[640 * 320]).toBeCloseTo((1 - 0.456) / 0.224, 4);
+    expect(m.fx).toBeCloseTo(2000 / 640, 6);
   });
   it('gambar sangat sempit tetap minimal 32', () => {
     const m = masukanPP(buatGray(2000, 5, 0));

@@ -4,7 +4,7 @@
 import type { Kotak } from './detektor';
 import { resize, type Gray } from './gambar';
 
-const SISI = 960; // sisi terpanjang masukan
+const SISI = 640; // sisi terpanjang masukan; 960 sama akuratnya di Set C dan NusaAksara tetapi jauh lebih lambat di ponsel
 const KELIPATAN = 32;
 const MEAN = [0.485, 0.456, 0.406];
 const STD = [0.229, 0.224, 0.225];
@@ -21,7 +21,7 @@ export interface MasukanPP {
   fy: number;
 }
 
-/** Gray -> tensor 3 kanal; sisi terpanjang 960, tiap sisi kelipatan 32 (min 32). */
+/** Gray -> tensor 3 kanal; sisi terpanjang 640, tiap sisi kelipatan 32 (min 32). */
 export function masukanPP(gray: Gray): MasukanPP {
   const k = SISI / Math.max(gray.w, gray.h);
   const W = Math.max(KELIPATAN, Math.round((gray.w * k) / KELIPATAN) * KELIPATAN);

@@ -120,11 +120,11 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
     return potongan.filter((_, i) => lolosJawa(logit[i])).map((p) => p.kotak);
   };
 
-  // 2. detektor pada dua polaritas (yang kedua hanya bila belum ada baris diterima), kotak sebaris digabung
+  // 2. detektor pada polaritas asli; polaritas terbalik hanya bila belum ada baris yang layak tampil (hemat waktu di ponsel)
   const calon: Calon[] = [];
   const semuaKotak: Kotak[] = [];
   for (const sumber of [g, balik(g)]) {
-    if (calon.some((c) => c.status === 'TERIMA')) break;
+    if (calon.some((c) => c.status !== 'TOLAK')) break;
     const m = masukanPP(sumber);
     const keluarDet = await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', m.data, [1, 3, m.H, m.W]) });
     const peta = keluarDet[det.outputNames[0]];
