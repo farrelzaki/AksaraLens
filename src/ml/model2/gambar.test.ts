@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { bulat, buatGray, cariSudut, komponenTerhubung, normalisasiPolaritas, otsu, persentil, putar, resize } from './gambar';
+import { bulat, buatGray, cariSudut, komponenTerhubung, normalisasiPolaritas, otsu, persentil, putar, resize, terangDiGelap } from './gambar';
 import { kotakDariLogit, potongSatu } from './detektor';
 
 describe('bulat', () => {
@@ -96,4 +96,15 @@ describe('detektor', () => {
     expect([hasil?.w, hasil?.h]).toEqual([72, 22]);
     expect(potongSatu(g, [0, 0, 5, 3])).toBeNull();
   });
+});
+
+describe('terangDiGelap', () => {
+  const gambar = (latar: number, tinta: number) => {
+    const g = buatGray(40, 20, latar);
+    for (let y = 8; y < 12; y++) for (let x = 5; x < 35; x++) g.d[y * 40 + x] = tinta;
+    return g;
+  };
+  it('tulisan gelap di latar terang: false', () => expect(terangDiGelap(gambar(230, 20))).toBe(false));
+  it('tulisan terang di latar gelap: true', () => expect(terangDiGelap(gambar(20, 230))).toBe(true));
+  it('gambar rata: false', () => expect(terangDiGelap(buatGray(10, 10, 100))).toBe(false));
 });

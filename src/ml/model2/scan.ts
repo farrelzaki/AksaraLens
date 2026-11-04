@@ -13,7 +13,7 @@ import { potongSatu, type Kotak } from './detektor';
 import { kotakDariPeta, masukanPP } from './detektorPP';
 import { LEBAR_KL, TINGGI_KL, lolosJawa, masukanKlasifikator } from './klasifikator';
 import { PENUH, kePiksel, sama, type Bingkai } from './bingkai';
-import { balik, cariSudut, dariRGBA, maskerTinta, normalisasiPolaritas, persentil, potong, putar, resize, type Gray } from './gambar';
+import { balik, cariSudut, terangDiGelap, dariRGBA, maskerTinta, normalisasiPolaritas, persentil, potong, putar, resize, type Gray } from './gambar';
 import { barisProyeksi, gabungBaris, iou, nilaiKualitas, nilaiStatus, pilihArea, pilihBaris, pilihProyeksi, terapkanBukti, type Calon, type Kualitas, type Mode } from './saring';
 
 export interface BarisTerbaca {
@@ -103,7 +103,8 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
   };
   // Tulisan terang di papan gelap: polaritas ditentukan per potongan, pakai arah yang lebih yakin.
   // Arah pertama yang sudah diterima tidak perlu dibandingkan lagi.
-  const bacaDuaArah = async (crop: Gray) => {
+  const bacaDuaArah = async (asli: Gray) => {
+    const crop = terangDiGelap(asli) ? balik(asli) : asli; // tebakan arah tinta: yang pertama hampir selalu benar
     const a = await baca(crop);
     if (nilaiStatus(a.teks, a.keyakinan, mode) === 'TERIMA') return a;
     const b = await baca(balik(crop));
@@ -158,7 +159,9 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
     // Tabel: tiap baris proyeksi dibaca sendiri.
     const proyeksi: Calon[] = [];
     const tinta = maskerTinta(g);
-    for (const kotak of barisProyeksi(tinta.d, tinta.w, tinta.h)) {
+    // Baris proyeksi hanya dipakai bila belum ada baris TERIMA (pilihProyeksi); jangan dibaca percuma.
+    const butuhProyeksi = !terpilih.some((c) => c.status === 'TERIMA');
+    for (const kotak of butuhProyeksi ? barisProyeksi(tinta.d, tinta.w, tinta.h) : []) {
       const crop = potongSatu(g, kotak);
       if (!crop) continue;
       const b = await bacaDuaArah(crop);
