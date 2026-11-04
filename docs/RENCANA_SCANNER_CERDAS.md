@@ -390,6 +390,12 @@ Detektor ini menemukan 10 dari 11 baris sebelum disaring, tetapi 4 hilang di tah
 - **Gerbang rilis belum lulus:** pemisahan baris buku 80,0% (penjaga: turun maksimal 1 poin dari 82,8%), ketepatan 50,8%, foto tanpa aksara ditolak 8 dari 13 (produksi 12 dari 13). Belum digabung ke `develop` dan model belum diunggah; produksi tetap memakai U-Net lama.
 - **Berikutnya:** perbaiki penggabungan kotak dan penolakan lewat langkah 2 (klasifikator aksara), lalu ukur ulang bersama dan putuskan rilis.
 
+### Status langkah 2 (4 Nov 2026): percobaan pertama klasifikator aksara
+
+- **Skrip:** `scripts/klasifikator_aksara.py` (CNN 79 ribu parameter, ONNX 318 KB, masukan 32x160) dan `scripts/unduh_nusa_lain.py`. Positif: 816 baris Jawa NusaAksara. Negatif: 5.449 baris aksara lain NusaAksara, Latin sintetis, tekstur; semua dengan augmentasi ala foto.
+- **Hasil:** di baris buku dan sintetis yang ditahan, AUC 0,999. Di **foto nyata** (595 kotak detektor C-pengembangan, 43 berlabel Jawa), AUC hanya **0,81**: pada ambang 0,5 hanya 41,9% kotak Jawa lolos dan 95,3% bukan-Jawa ditolak. Jadi belum layak dipasang; kesenjangan domain buku ke foto terbukti, sesuai temuan riset.
+- **Kesimpulan:** klasifikator butuh potongan foto nyata berlabel (langkah 3). Model belum dipasang di `scan.ts`.
+
 ### Rujukan
 
 - [NusaAksara](https://arxiv.org/abs/2502.18148), [Bharat Scene Text](https://arxiv.org/abs/2511.23071), [PSMC](https://arxiv.org/abs/2608.27753), [Transfer learning STR India](https://arxiv.org/abs/2201.03180)
