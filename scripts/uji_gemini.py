@@ -1,7 +1,7 @@
 # Uji apakah model visi Gemini bisa membaca aksara Jawa (keputusan cadangan 5 Nov 2026, lihat docs/RENCANA_SCANNER_CERDAS.md).
 # Hanya mengirim foto Set C bagian pengembangan (foto publik Wikimedia Commons), bukan foto pengguna. Kunci dari lingkungan.
 # Pakai (PowerShell): $env:GEMINI_API_KEY='...'; python -X utf8 scripts/uji_gemini.py [model ...]
-import base64, json, os, sys, time, urllib.request
+import base64, json, os, sys, time, urllib.error, urllib.request
 import cv2, numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import uji_set_c as u
@@ -26,7 +26,14 @@ def tanya(model, jpg):
         try:
             d = json.load(urllib.request.urlopen(r, timeout=120))
             return ''.join(p.get('text', '') for p in d['candidates'][0]['content']['parts']).strip()
+        except urllib.error.HTTPError as e:
+            galat = e.read().decode()[:200].replace(chr(10), ' ')
+            print('GALAT', model, e.code, galat, flush=True)
+            if e.code == 429:  # kuota habis: mengulang hanya menghabiskan sisa kuota
+                sys.exit('Kuota habis; tunggu reset atau pakai kunci berbayar.')
+            time.sleep(5 * (coba + 1))
         except Exception as e:
+            print('GALAT jaringan', type(e).__name__, flush=True)
             time.sleep(5 * (coba + 1))
     return ''
 
