@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { buatGray } from './gambar';
-import { kotakDariPeta, masukanPP } from './detektorPP';
+import { SISI_ESKALASI, kotakDariPeta, masukanPP } from './detektorPP';
 
 describe('masukanPP', () => {
   it('sisi terpanjang 640, kelipatan 32, 3 kanal ternormalisasi ImageNet', () => {
@@ -38,5 +38,15 @@ describe('kotakDariPeta', () => {
     const k = kotakDariPeta(p, 20, 40, 1, 1, 40, 20);
     expect(k).toHaveLength(2);
     expect(k[0][1]).toBeLessThan(k[1][1]);
+  });
+});
+
+describe('masukanPP dengan sisi berbeda', () => {
+  it('960 px memberi masukan 1,5 kali lebih besar dari 640 px', () => {
+    const g = buatGray(1280, 640, 255);
+    const a = masukanPP(g);
+    const b = masukanPP(g, SISI_ESKALASI);
+    expect([a.W, a.H]).toEqual([640, 320]);
+    expect([b.W, b.H]).toEqual([960, 480]);
   });
 });

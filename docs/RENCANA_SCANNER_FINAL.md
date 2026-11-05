@@ -257,9 +257,9 @@ Legenda: `[ ]` belum · `[~]` dikerjakan · `[x]` selesai dan terverifikasi · `
 | ID | Langkah | Status | Pemilik | Hasil / bukti | Catatan |
 | --- | --- | --- | --- | --- | --- |
 | V3 | Detektor PP-OCRv5 + klasifikator aksara dirilis | `[x]` | Farrel + agen | PR #23, 5 Nov 2026. Suku kata foto utuh 11,2% → 32,6% | Lihat bagian 2 |
-| L1a | Normalisasi ketebalan goresan (Python, ukur) | `[ ]` | | | |
-| L1b | Varian kontras (CLAHE, Sauvola) + pilih lewat keyakinan | `[ ]` | | | |
-| L1c | Pindahkan varian yang terbukti ke TS (`gambar.ts`, `scan.ts`) + test + paritas | `[ ]` | | | |
+| L1a | Normalisasi ketebalan goresan (Python, ukur) | `[x]` | agen | **Tidak membantu**: 24,7% vs 22,5% di 640, dan 30,3% vs 33,7% bila bersama eskalasi (Cp, 12 foto) | Median goresan Nusa 3,6 px (p10-p90 2,8-4,6), foto nyata 3,2 px (p10-p90 2,1-6,4). `scripts/olah_goresan.py` |
+| L1b | Varian kontras (CLAHE, Sauvola) + pilih lewat keyakinan | `[x]` | agen | **Tidak membantu**: CLAHE 31,5%, Sauvola 32,6% vs eskalasi saja 33,7%; Sauvola menurunkan penolakan negatif ke 10/13 | Tidak dipasang ke TS |
+| L1c | Eskalasi resolusi detektor 640 -> 960 bila ada kotak Jawa tetapi belum ada baris TERIMA (`saring.ts`, `scan.ts`) | `[~]` | agen | Cp suku kata 22,5% -> **33,7%**, sampah 8,3%, negatif 12/13; test dan typecheck lulus | Menunggu uji waktu di ponsel dan paritas browser; belum di `develop` |
 | L2a | Transliterator Latin→Jawa (`scripts/latin_ke_jawa.py`) + test | `[ ]` | | | |
 | L2b | Pasangan kotak Latin-Jawa + baca Latin offline | `[ ]` | | | |
 | L2c | Verifikasi CTC paksa + antrean koreksi | `[ ]` | | | |
@@ -279,7 +279,12 @@ Satu baris per pengukuran. Set uji: **Cp** = C-pengembangan (15 foto), **N** = N
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 2026-11-04 | Produksi lama (U-Net) | 11,2% | 55,6% | 12/13 | 82,8% / 86,9% | 0,7 dtk (laptop) | `scripts/uji_set_c.py` |
 | 2026-11-04 | PP det tanpa saringan | 44,9% | 45,5% | 8/13 | 80,0% / 50,8% | 0,9 dtk | |
-| 2026-11-04 | **v3 = PP + klasifikator 0,5** (produksi sekarang) | 32,6% | 10,0% | 12/13 | 91,5% / 96,6% | 1,0 dtk laptop; 10-11 dtk ponsel 8 inti | bangku uji ujung-ke-ujung |
+| 2026-11-04 | v3 pada detektor **960 px** | 32,6% | 10,0% | 12/13 | belum | 4,0 dtk laptop | `PANJANG=960 python -X utf8 scripts/bangku_v3.py uji_set_c.py` (mereproduksi angka 4 Nov persis) |
+| 2026-11-05 | **v3 pada 640 px = yang sebenarnya di produksi** | **22,5%** | 0% | 13/13 | 92,1% / 97,2% | 2,0 dtk laptop; 10-11 dtk ponsel | `python -X utf8 scripts/bangku_v3.py uji_set_c.py`. Koreksi: angka 32,6% di atas diukur pada 960 px |
+| 2026-11-05 | 640 + goresan (target 3,6) | 24,7% | 0% | 13/13 | | | `VARIAN=goresan TARGET_GORESAN=3.6` |
+| 2026-11-05 | 640 + eskalasi 960 bila belum ada TERIMA (semua foto) | 33,7% | 8,3% | 12/13 | | 12 dtk laptop (diukur paralel, abaikan) | `ESKALASI=terima` |
+| 2026-11-05 | 640 + eskalasi + goresan / CLAHE / Sauvola | 30,3% / 31,5% / 32,6% | 9,1% / 15,4% / 21,4% | 12/13, 11/13, 10/13 | | | `ESKALASI=terima VARIAN=...` |
+| 2026-11-05 | **640 + eskalasi hanya bila ada kotak Jawa (`ESKALASI=ada`) = kandidat L1c** | **33,7%** | 8,3% | 12/13 | tidak berubah (jalur pemisahan baris tidak memakai eskalasi) | 4,8 dtk laptop | sama dengan di TS |
 
 ## 10. Prompt siap tempel untuk AI lain
 
@@ -322,11 +327,15 @@ Append-only. Format: `tanggal · siapa · keputusan atau temuan · alasan / sumb
 - 2026-11-05 · agen · label teks nyata dibuat lewat pasangan papan dwibahasa Latin-Jawa + transliterator buatan sendiri + verifikasi CTC paksa, bukan API · bagian 3
 - 2026-11-05 · Farrel · dokumen ini menjadi sumber kebenaran lintas AI dan harus diperbarui oleh AI mana pun yang bekerja · aturan di `AGENTS.md` bagian 13 dan `CLAUDE.md`
 
+- 2026-11-05 · agen · **koreksi baseline**: produksi memakai detektor 640 px, dan di bangku uji itu 22,5% suku kata (bukan 32,6%; angka itu diukur pada 960 px). Bangku uji kini ada di repo: `scripts/bangku_v3.py` · mereproduksi 32,6% persis pada `PANJANG=960`
+- 2026-11-05 · agen · pengolahan citra saat membaca (ketebalan goresan, CLAHE, Sauvola) **tidak membantu** pembaca v2 di Cp (12 foto); yang berhasil hanya menaikkan resolusi detektor ke 960 bila 640 belum menghasilkan baris TERIMA · penghambat ada di pembaca (data), konsisten dengan bagian 2. Sampel kecil: 1 foto = 8 poin
+
 ## 12. Log sesi (serah-terima antar AI)
 
 Append-only. Satu entri per sesi kerja. Format: `tanggal · AI/pengguna · dikerjakan · belum terverifikasi · BERIKUTNYA: perintah pertama`
 
 - 2026-11-05 · Claude + Farrel · merge v3 (PR #23); menulis rencana ini (PR #24); menambah protokol pembaruan dan papan progres · tidak ada kode scanner yang berubah sejak v3; waktu v3 di ponsel 10-11 dtk, belum ada ukuran baru · BERIKUTNYA: mulai L1a. Buat cabang dari `develop`, salin pola pembungkus di bagian 10, ukur ketebalan goresan baris NusaAksara dan potongan Cp lewat `cv2.distanceTransform`
+- 2026-11-05 · Claude + Farrel · L1 selesai di bangku uji: bangku `scripts/bangku_v3.py`, `scripts/olah_goresan.py`; eskalasi resolusi dipasang di `scan.ts`/`saring.ts`/`detektorPP.ts` (cabang `feature/scanner-l1`, PR dibuka, belum merge) · belum terverifikasi: waktu di ponsel dengan eskalasi (foto sulit bisa +5-6 dtk) dan paritas browser vs Python · BERIKUTNYA: Farrel menguji preview PR L1 di ponsel (waktu foto sulit dan foto tanpa aksara). Bila waktu dapat diterima, merge. Lalu mulai L2a: tulis `scripts/latin_ke_jawa.py` dengan test
 
 ## Rujukan
 
