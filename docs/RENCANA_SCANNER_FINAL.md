@@ -259,8 +259,8 @@ Legenda: `[ ]` belum · `[~]` dikerjakan · `[x]` selesai dan terverifikasi · `
 | V3 | Detektor PP-OCRv5 + klasifikator aksara dirilis | `[x]` | Farrel + agen | PR #23, 5 Nov 2026. Suku kata foto utuh 11,2% → 32,6% | Lihat bagian 2 |
 | L1a | Normalisasi ketebalan goresan (Python, ukur) | `[x]` | agen | **Tidak membantu**: 24,7% vs 22,5% di 640, dan 30,3% vs 33,7% bila bersama eskalasi (Cp, 12 foto) | Median goresan Nusa 3,6 px (p10-p90 2,8-4,6), foto nyata 3,2 px (p10-p90 2,1-6,4). `scripts/olah_goresan.py` |
 | L1b | Varian kontras (CLAHE, Sauvola) + pilih lewat keyakinan | `[x]` | agen | **Tidak membantu**: CLAHE 31,5%, Sauvola 32,6% vs eskalasi saja 33,7%; Sauvola menurunkan penolakan negatif ke 10/13 | Tidak dipasang ke TS |
-| L1c | Eskalasi resolusi detektor 640 -> 960 bila ada kotak Jawa tetapi belum ada baris TERIMA (`saring.ts`, `scan.ts`) | `[~]` | agen | Cp suku kata 22,5% -> **33,7%**, sampah 8,3%, negatif 12/13; test dan typecheck lulus | Menunggu uji waktu di ponsel dan paritas browser; belum di `develop` |
-| L2a | Transliterator Latin→Jawa (`scripts/latin_ke_jawa.py`) + test | `[ ]` | | | |
+| L1c | Eskalasi resolusi detektor 640 -> 960 bila ada kotak Jawa tetapi belum ada baris TERIMA (`saring.ts`, `scan.ts`) | `[x]` | agen | Cp suku kata 22,5% -> **33,7%**, sampah 8,3%, negatif 12/13; test dan typecheck lulus | Dirilis: PR #26 digabung ke `develop` 5 Nov 2026 atas persetujuan Farrel. Waktu ponsel dengan eskalasi dan paritas browser vs Python belum diukur |
+| L2a | Transliterator Latin→Jawa (`scripts/latin_ke_jawa.py`) + test | `[x]` | agen | 8 test lulus (`python -X utf8 -m unittest scripts/test_latin_ke_jawa.py`), termasuk 3 contoh demo aplikasi; keluaran hanya karakter charset | 'e' polos: pepet bila bukan suku akhir, taling bila akhir; huruf asing (f v z q x kh sy) dipetakan dan ditandai diragukan; tanpa spasi; cakra/pengkal tidak ada di charset (dipakai pangkon+konsonan) |
 | L2b | Pasangan kotak Latin-Jawa + baca Latin offline | `[ ]` | | | |
 | L2c | Verifikasi CTC paksa + antrean koreksi | `[ ]` | | | |
 | L2d | Alat koreksi (`scripts/alat_label.html`) + koreksi manusia (≥ 150 potongan, target 300) | `[ ]` | Farrel/tim | | |
@@ -325,6 +325,7 @@ Append-only. Format: `tanggal · siapa · keputusan atau temuan · alasan / sumb
 - 2026-11-05 · Farrel · login Google dicek aman di preview v3, PR #23 digabung ke `develop` (rilis produksi)
 - 2026-11-05 · agen · penghambat utama kini pembaca, bukan detektor (detektor menemukan 10 dari 11 baris; potongan tepat hanya 8/14 benar) · bagian 2
 - 2026-11-05 · agen · label teks nyata dibuat lewat pasangan papan dwibahasa Latin-Jawa + transliterator buatan sendiri + verifikasi CTC paksa, bukan API · bagian 3
+- 2026-11-05 · Farrel · PR #26 (eskalasi resolusi L1c) digabung ke `develop` tanpa menunggu ukuran waktu ponsel · risiko waktu +5-6 dtk di foto sulit diterima, akan diukur lewat `?debug`
 - 2026-11-05 · Farrel · dokumen ini menjadi sumber kebenaran lintas AI dan harus diperbarui oleh AI mana pun yang bekerja · aturan di `AGENTS.md` bagian 13 dan `CLAUDE.md`
 
 - 2026-11-05 · agen · **koreksi baseline**: produksi memakai detektor 640 px, dan di bangku uji itu 22,5% suku kata (bukan 32,6%; angka itu diukur pada 960 px). Bangku uji kini ada di repo: `scripts/bangku_v3.py` · mereproduksi 32,6% persis pada `PANJANG=960`
@@ -335,6 +336,7 @@ Append-only. Format: `tanggal · siapa · keputusan atau temuan · alasan / sumb
 Append-only. Satu entri per sesi kerja. Format: `tanggal · AI/pengguna · dikerjakan · belum terverifikasi · BERIKUTNYA: perintah pertama`
 
 - 2026-11-05 · Claude + Farrel · merge v3 (PR #23); menulis rencana ini (PR #24); menambah protokol pembaruan dan papan progres · tidak ada kode scanner yang berubah sejak v3; waktu v3 di ponsel 10-11 dtk, belum ada ukuran baru · BERIKUTNYA: mulai L1a. Buat cabang dari `develop`, salin pola pembungkus di bagian 10, ukur ketebalan goresan baris NusaAksara dan potongan Cp lewat `cv2.distanceTransform`
+- 2026-11-05 · Claude · L2a selesai (`scripts/latin_ke_jawa.py` + 8 test); L1c sudah di `develop` (PR #26) · tidak ada pengukuran ke ponsel · BERIKUTNYA: L2b. Tulis `scripts/pasang_latin_jawa.py`: untuk tiap foto di `docs/random/foto_nyata/foto`, ambil kotak PP (`bangku_v3.kotak_pp`), pisahkan Jawa/bukan dengan klasifikator, pasangkan kotak Latin terdekat di atas/bawah, baca Latin dengan `latin_PP-OCRv5_mobile_rec` (ada di folder ppdet scratchpad lama; unduh ulang dari Hugging Face PaddlePaddle/latin_PP-OCRv5_mobile_rec_onnx bila hilang), simpan usulan label lewat `ke_jawa`
 - 2026-11-05 · Claude + Farrel · L1 selesai di bangku uji: bangku `scripts/bangku_v3.py`, `scripts/olah_goresan.py`; eskalasi resolusi dipasang di `scan.ts`/`saring.ts`/`detektorPP.ts` (cabang `feature/scanner-l1`, PR dibuka, belum merge) · belum terverifikasi: waktu di ponsel dengan eskalasi (foto sulit bisa +5-6 dtk) dan paritas browser vs Python · BERIKUTNYA: Farrel menguji preview PR L1 di ponsel (waktu foto sulit dan foto tanpa aksara). Bila waktu dapat diterima, merge. Lalu mulai L2a: tulis `scripts/latin_ke_jawa.py` dengan test
 
 ## Rujukan
