@@ -205,6 +205,7 @@ Format: `- YYYY-MM-DD · T-xx · apa yang dikerjakan · hasil/verifikasi · cata
 - 2026-10-19 · T-11 · bingkai potong "Atur area" (F5 langkah 2): `ml/model2/bingkai.ts` (murni, dites) + `BingkaiPotong.tsx`; `bacaFoto(foto, bingkai)` hanya membaca area pilihan · 50 tes; di browser bingkai dipersempit ke baris 1 → hanya baris 1 terbaca · Choirun: gaya bingkai/pegangan bebas diubah, logika di `ubahBingkai`
 
 - 2026-10-31 · T-11 · pipeline scanner cerdas (Tahap 1 `docs/RENCANA_SCANNER_CERDAS.md`): polaritas per baris, penilai TERIMA/RAGU/TOLAK, kamera hanya baca isi bingkai, pesan gagal spesifik; bangku uji Set C dan NusaAksara · C-uji: dibingkai CER ≤ 0,5 15,4% → 69,2%, negatif 16,7% → 58,3%; NusaAksara pemisahan 82,8% → 79,4%, presisi 86,9% → 95,1% (`docs/EVALUASI.md` bagian 3) · belum diuji di ponsel; `soal.test.ts` masih gagal (pepet, milik Emil)
+- 2026-11-05 · T-11 · scanner v3 dirilis (PR #23): detektor PP-OCRv5 + klasifikator aksara; `vercel.json` ikut diubah (COOP/COEP untuk wasm berutas) · C-pengembangan suku kata 11,2% → 32,6%, sampah 55,6% → 10%; NusaAksara 91,5%/96,6%; login Google dicek Farrel · rencana lanjutan tanpa API berbayar: `docs/RENCANA_SCANNER_FINAL.md`
 
 ### Log Emil
 
