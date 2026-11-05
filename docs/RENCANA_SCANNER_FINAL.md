@@ -13,6 +13,25 @@
 4. Kerjakan langkah berurutan dari bagian 5. Setiap langkah berdiri sendiri dan boleh dirilis sendiri bila lebih baik dari produksi.
 5. Catat hasil setiap langkah di bagian 9 dokumen ini (tabel status) dan di `docs/EVALUASI.md`. Jangan mengarang angka.
 
+### Protokol pembaruan (wajib untuk semua AI, apa pun mereknya)
+
+Dokumen ini adalah **satu-satunya sumber kebenaran** untuk scanner. Tujuannya: Claude, Codex, Cursor, Gemini, atau manusia yang menggantikan
+yang lain bisa langsung paham keadaan terakhir tanpa membaca percakapan. Karena itu:
+
+| Kapan | Apa yang diperbarui | Di mana |
+| --- | --- | --- |
+| Awal sesi | Baca bagian 9 (papan) dan 11-12 (log); mulai dari "BERIKUTNYA" di log sesi terakhir | dokumen ini |
+| Mulai sebuah langkah | Ubah status papan ke `[~]`, isi pemilik | bagian 9 |
+| Ada angka ukuran baru | Tambah baris di tabel hasil dan di `docs/EVALUASI.md`, lengkap dengan perintah dan set uji | bagian 9 dan `docs/EVALUASI.md` |
+| Farrel memutuskan sesuatu, atau ada temuan penting | Tambah satu baris di log keputusan (alasan + sumber) | bagian 11 |
+| Rencana berubah | Ubah bagian 5 dan catat alasannya di bagian 11; jangan menghapus riwayat | bagian 5 dan 11 |
+| Sebelum berhenti (selesai, kehabisan token, atau ganti AI) | Tambah entri log sesi: apa yang dikerjakan, apa yang belum terverifikasi, **perintah pertama untuk sesi berikutnya** | bagian 12 |
+| Setelah merge ke `develop` | Satu baris di `KOLABORASI.md` bagian 8 (Log Farrel) dan ringkasan di `PROJECT_STATE.md` (pribadi) | keduanya |
+
+Aturan format: log **append-only**, terbaru di bawah, satu baris per entri, tanggal ISO. Tulis angka dengan satuan dan set ujinya.
+Tulis juga apa yang gagal (hasil negatif sama berharganya). Jangan menulis kunci API, kata sandi, atau jalur foto pengguna.
+Pembaruan dokumen ikut dalam commit yang sama dengan perubahan kodenya.
+
 ## 1. Batasan yang sudah diputuskan Farrel
 
 | Batasan | Arti praktis |
@@ -231,18 +250,36 @@ Target akhir tetap dari `RENCANA_SCANNER_CERDAS.md` bagian 10. **Minimum rilis:*
 
 **Tidak dipakai:** API berbayar, LLM yang menerima foto pengguna, scan live (non-goal PRD).
 
-## 9. Status langkah
+## 9. Papan progres
 
-| Langkah | Status | Hasil | Tanggal |
-| --- | --- | --- | --- |
-| v3 (detektor PP + klasifikator) | Dirilis, PR #23 | Lihat bagian 2 | 5 Nov 2026 |
-| L1 Pengolahan citra saat membaca | Belum | | |
-| L2 Mesin data | Belum | | |
-| L3 Sintetis v4 | Belum | | |
-| L4 Pembaca v4 | Belum | | |
-| L5 Dekoder bahasa | Belum | | |
-| L6 Waktu | Belum | | |
-| L7 Set uji baru dan rilis | Belum | | |
+Legenda: `[ ]` belum · `[~]` dikerjakan · `[x]` selesai dan terverifikasi · `[!]` terblokir (tulis sebabnya di kolom catatan).
+
+| ID | Langkah | Status | Pemilik | Hasil / bukti | Catatan |
+| --- | --- | --- | --- | --- | --- |
+| V3 | Detektor PP-OCRv5 + klasifikator aksara dirilis | `[x]` | Farrel + agen | PR #23, 5 Nov 2026. Suku kata foto utuh 11,2% → 32,6% | Lihat bagian 2 |
+| L1a | Normalisasi ketebalan goresan (Python, ukur) | `[ ]` | | | |
+| L1b | Varian kontras (CLAHE, Sauvola) + pilih lewat keyakinan | `[ ]` | | | |
+| L1c | Pindahkan varian yang terbukti ke TS (`gambar.ts`, `scan.ts`) + test + paritas | `[ ]` | | | |
+| L2a | Transliterator Latin→Jawa (`scripts/latin_ke_jawa.py`) + test | `[ ]` | | | |
+| L2b | Pasangan kotak Latin-Jawa + baca Latin offline | `[ ]` | | | |
+| L2c | Verifikasi CTC paksa + antrean koreksi | `[ ]` | | | |
+| L2d | Alat koreksi (`scripts/alat_label.html`) + koreksi manusia (≥ 150 potongan, target 300) | `[ ]` | Farrel/tim | | |
+| L3 | Sintetis v4 (latar nyata, goresan tebal, relief) + lembar kontak | `[ ]` | | | |
+| L4a | Fine-tune pembaca v4, putaran 1 (Colab/Kaggle) | `[ ]` | Farrel menjalankan | | |
+| L4b | Putaran 2-3 / self-training | `[ ]` | | | |
+| L5 | Dekoder bahasa (kamus + n-gram + beam search) | `[ ]` | | | |
+| L6 | Waktu scan (uraikan ±3 dtk, batas kotak, WebGPU) | `[ ]` | | | |
+| L7 | Set uji baru ≥ 40 foto, ukur sekali, rilis `models/v2` | `[ ]` | Farrel + agen | | |
+
+### Tabel hasil terukur
+
+Satu baris per pengukuran. Set uji: **Cp** = C-pengembangan (15 foto), **N** = NusaAksara. Jangan menimpa baris lama.
+
+| Tanggal | Susunan | Suku kata foto utuh (Cp) | Sampah | Negatif ditolak | NusaAksara (recall / presisi) | Waktu | Perintah / catatan |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 2026-11-04 | Produksi lama (U-Net) | 11,2% | 55,6% | 12/13 | 82,8% / 86,9% | 0,7 dtk (laptop) | `scripts/uji_set_c.py` |
+| 2026-11-04 | PP det tanpa saringan | 44,9% | 45,5% | 8/13 | 80,0% / 50,8% | 0,9 dtk | |
+| 2026-11-04 | **v3 = PP + klasifikator 0,5** (produksi sekarang) | 32,6% | 10,0% | 12/13 | 91,5% / 96,6% | 1,0 dtk laptop; 10-11 dtk ponsel 8 inti | bangku uji ujung-ke-ujung |
 
 ## 10. Prompt siap tempel untuk AI lain
 
@@ -266,6 +303,30 @@ cerdas.baca_potongan = baca_varian
 sys.argv = ['uji_set_c.py']
 runpy.run_path('scripts/uji_set_c.py', run_name='__main__')
 ```
+
+## 11. Log keputusan dan diskusi
+
+Append-only. Format: `tanggal · siapa · keputusan atau temuan · alasan / sumber`
+
+- 2026-10-29 · Farrel · scanner hanya membaca aksara Jawa, utuh dan berurutan, dan jujur saat ragu · tujuan produk (`docs/PRD.md`)
+- 2026-11-02 · Farrel · perubahan arsitektur disetujui, model pihak lain boleh dipakai, target boleh turun sedikit bila terbukti perlu; foto tetap tidak keluar perangkat · v3 sintetis gagal gerbang (sintetis 93%, nyata 30%)
+- 2026-11-04 · agen · detektor U-Net diganti PP-OCRv5 mobile (4,8 MB, Apache-2.0); klasifikator aksara 79 ribu parameter menyaring kotak · bangku uji: sampah 55,6% → 10%, NusaAksara 91,5%/96,6%
+- 2026-11-04 · agen · resolusi detektor 640 px dipilih (sapuan resolusi bergoyang karena sampel kecil) · NusaAksara 92,1%/97,2% di 640
+- 2026-11-04 · agen · kuantisasi int8 pembaca ditolak · ukuran 8,2 → 4,9 MB dan keluaran cocok, tetapi lebih lambat di CPU desktop
+- 2026-11-05 · Farrel · **tenggat scanner Jumat 6 Nov 2026**, karena token mingguan hampir habis
+- 2026-11-05 · Farrel · pengolahan citra, pembuatan model, dan pemrosesan data wajib buatan sendiri (kebutuhan mata kuliah); bantuan luar boleh sebagai pembantu data/citra, tidak harus membaca aksara
+- 2026-11-05 · agen · uji Gemini tidak terukur: model 2.5 tidak tersedia untuk akun baru, kuota gratis habis (429); riset NusaAksara menunjukkan Gemini lama gagal di aksara Jawa · `scripts/uji_gemini.py`
+- 2026-11-05 · Farrel · **tidak memakai penagihan Gemini**; rencana tidak boleh bergantung pada API berbayar · kunci Gemini yang sempat tertempel di chat harus di-rotate
+- 2026-11-05 · Farrel · login Google dicek aman di preview v3, PR #23 digabung ke `develop` (rilis produksi)
+- 2026-11-05 · agen · penghambat utama kini pembaca, bukan detektor (detektor menemukan 10 dari 11 baris; potongan tepat hanya 8/14 benar) · bagian 2
+- 2026-11-05 · agen · label teks nyata dibuat lewat pasangan papan dwibahasa Latin-Jawa + transliterator buatan sendiri + verifikasi CTC paksa, bukan API · bagian 3
+- 2026-11-05 · Farrel · dokumen ini menjadi sumber kebenaran lintas AI dan harus diperbarui oleh AI mana pun yang bekerja · aturan di `AGENTS.md` bagian 13 dan `CLAUDE.md`
+
+## 12. Log sesi (serah-terima antar AI)
+
+Append-only. Satu entri per sesi kerja. Format: `tanggal · AI/pengguna · dikerjakan · belum terverifikasi · BERIKUTNYA: perintah pertama`
+
+- 2026-11-05 · Claude + Farrel · merge v3 (PR #23); menulis rencana ini (PR #24); menambah protokol pembaruan dan papan progres · tidak ada kode scanner yang berubah sejak v3; waktu v3 di ponsel 10-11 dtk, belum ada ukuran baru · BERIKUTNYA: mulai L1a. Buat cabang dari `develop`, salin pola pembungkus di bagian 10, ukur ketebalan goresan baris NusaAksara dan potongan Cp lewat `cv2.distanceTransform`
 
 ## Rujukan
 
