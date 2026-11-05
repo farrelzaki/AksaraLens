@@ -224,6 +224,24 @@ export function otsu(g: Gray): number {
   return t;
 }
 
+/** Tinta (sisi piksel yang lebih sedikit menurut Otsu) lebih terang dari latarnya: tulisan terang di latar gelap. */
+export function terangDiGelap(g: Gray): boolean {
+  const t = otsu(g);
+  let [nAtas, jAtas, nBawah, jBawah] = [0, 0, 0, 0];
+  for (const v of g.d) {
+    if (v > t) {
+      nAtas++;
+      jAtas += v;
+    } else {
+      nBawah++;
+      jBawah += v;
+    }
+  }
+  if (!nAtas || !nBawah) return false;
+  const tintaAtas = nAtas < nBawah;
+  return tintaAtas ? jAtas / nAtas > jBawah / nBawah : jBawah / nBawah > jAtas / nAtas;
+}
+
 /** normalisasi_polaritas: balik bila mayoritas piksel gelap (tulisan terang di latar gelap). */
 /** Negatif gambar (255 - nilai). */
 export function balik(g: Gray): Gray {

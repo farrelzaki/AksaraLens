@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
+import { tampilDebug } from '../../ml/model2/debug';
 import { MODE_DEMO, PENUH, bacaFoto, siapkanScanner, type Bingkai, type HasilScan } from '../../ml/model2/scanner';
 import { bingkaiDariLayar } from '../../ml/model2/bingkai';
 import { tautanMateri, urai, type SukuKata } from '../../aksara/urai';
@@ -202,6 +203,7 @@ export function ScanPage() {
     try {
       const h = await bacaFoto(gambar, area, mode);
       if (import.meta.env.DEV) console.info('[scanner]', h.info);
+      if (new URLSearchParams(location.search).has('debug')) tampilDebug(h.info);
       simpanHasilSementara(h);
       if (h.baris.length === 0) setGalat(pesanKosong(h));
       else setHasil(h);

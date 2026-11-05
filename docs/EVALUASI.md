@@ -145,6 +145,29 @@ Angka notebook 82,8% / 86,9% terulang persis. Pembaca tertulis 91,2% di sini, se
 pemecah suku kata bangku uji berbeda; bandingkan hanya antarversi pada bangku yang sama. Baris yang hilang sebagian besar
 ditolak penilai (tiga baris pendek atau satu tanda salah), bukan gagal terdeteksi: detektor + gabung baris tetap 81,7%.
 
+### Model v3, putaran 2 Colab (C-pengembangan, 2 Nov 2026): tidak dirilis
+
+Pipeline cerdas, 12 foto positif, 13 foto tanpa aksara. Sampel kecil: 1 baris kebenaran = 9 poin recall.
+
+| Metrik | v2 (produksi) | v3 | Pembaca v3, detektor v2 | Pembaca v2, detektor v3 | Syarat |
+| --- | --- | --- | --- | --- | --- |
+| Akurasi suku, foto utuh | 11,2% | 27,0% | 13,5% | 25,8% | |
+| Akurasi suku, dibingkai pengguna | 42,9% | 38,1% | 38,1% | 44,4% | |
+| Recall baris Jawa | 3/11 | 6/11 | 3/11 | 5/11 | ≥ 70%: **gagal** |
+| Presisi baris (1 − sampah) | 44,4% | 55,6% | 40,0% | 71,4% | ≥ 80%: **gagal** |
+| Foto tanpa aksara ditolak | 12/13 | 10/13 | 12/13 | 11/13 | ≥ 90%: **gagal** untuk v3 |
+| NusaAksara, baris terpisah benar (pipeline cerdas) | 79,4% | 60,3% | 78,9% | 57,5% | turun ≤ 1 poin: **gagal** untuk detektor v3 |
+| NusaAksara, pembaca saja | 91,2% | 90,5% | 90,5% | 91,2% | |
+
+Pembaca pada potongan tepat (11 foto, dua polaritas, pilih yang lebih yakin): v2 **39,7%**, v3 **30,2%**, syarat ≥ 75%.
+Validasi sintetis v3 93,4%, jadi data sintetis putaran ini tidak terbawa ke foto nyata; v3 juga cenderung menghilangkan
+huruf. Perbaikan foto utuh berasal dari detektor, bukan pembaca, dan terutama di foto rapat (65,2% untuk v3, adegan 13,6%).
+Notebook: pembaca lolos data uji buku (89,0% → 88,6%) tetapi validasi buku turun 2 poin; detektor buku uji 82,8% → 61,7%.
+Kedua penjaga di `hasil_v3.json` tercatat gagal.
+
+Gabungan detektor v2 + v3 dengan pembaca v2 (prototipe di komputer): akurasi foto 19,1%, recall 6/11, NusaAksara 78,9%,
+tetapi waktu naik dari 0,7 ke 1,9 dtk per foto di komputer, padahal waktu di ponsel sudah sekitar 10 detik.
+
 ### Keputusan pipeline yang terbukti lewat pengukuran
 
 | Keputusan | Bukti |

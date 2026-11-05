@@ -3,9 +3,10 @@
 
 import type { Bingkai } from './bingkai';
 import type { Mode } from './saring';
+import { paksaEp } from '../onnx';
 import { bacaFoto, siapkanScanner } from './scan';
 
-export type Pesan = { jenis: 'siapkan' } | { jenis: 'baca'; foto: Blob; bingkai?: Bingkai; mode?: Mode };
+export type Pesan = { jenis: 'siapkan'; ep?: string } | { jenis: 'baca'; foto: Blob; bingkai?: Bingkai; mode?: Mode };
 export type Permintaan = Pesan & { id: number };
 export type Jawaban = { id: number; ok: true; hasil?: unknown } | { id: number; ok: false; galat: string };
 
@@ -22,7 +23,7 @@ ctx.onmessage = (e) => {
   const p = e.data;
   antrean = antrean.then(async () => {
     try {
-      const hasil = p.jenis === 'siapkan' ? (await siapkanScanner(), undefined) : await bacaFoto(p.foto, p.bingkai, p.mode);
+      const hasil = p.jenis === 'siapkan' ? (paksaEp(p.ep), await siapkanScanner(), undefined) : await bacaFoto(p.foto, p.bingkai, p.mode);
       ctx.postMessage({ id: p.id, ok: true, hasil });
     } catch (err) {
       ctx.postMessage({ id: p.id, ok: false, galat: err instanceof Error ? err.message : String(err) });

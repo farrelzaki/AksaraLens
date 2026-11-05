@@ -3,12 +3,13 @@
 
 import type { InferenceSession } from 'onnxruntime-web';
 
-export type NamaModel = 'model1' | 'model2a' | 'model2b';
+export type NamaModel = 'model1' | 'model2a' | 'model2b' | 'model2c';
 
 const BERKAS: Record<NamaModel, string> = {
   model1: 'aksaralens_huruf.onnx',
   model2a: 'aksaralens_scanner.onnx',
-  model2b: 'aksaralens_detektor_baris.onnx',
+  model2b: 'aksaralens_detektor_pp.onnx',
+  model2c: 'aksaralens_klasifikator.onnx',
 };
 
 /**
@@ -49,13 +50,20 @@ export async function ambilModel(url: string): Promise<Uint8Array> {
   return new Uint8Array(await res.arrayBuffer());
 }
 
+/** Penyedia eksekusi yang dipaksa lewat `?ep=wasm|webgpu` (diagnosis kecepatan di ponsel); kosong = otomatis. */
+let epPaksa: string | undefined;
+export const paksaEp = (ep?: string) => {
+  epPaksa = ep === 'wasm' || ep === 'webgpu' ? ep : undefined;
+};
+const pilihEp = () => (epPaksa ? (epPaksa === 'webgpu' ? ['webgpu', 'wasm'] : ['wasm']) : 'gpu' in navigator ? ['webgpu', 'wasm'] : ['wasm']);
+export const infoOrt = () => ({ ep: pilihEp()[0], terisolasi: self.crossOriginIsolated, inti: navigator.hardwareConcurrency });
+
 /** Membuat sesi sekali per model; WebGPU bila ada, cadangan WASM (F5). */
 export function muatModel(nama: NamaModel): Promise<InferenceSession> {
   let sesi = cache.get(nama);
   if (!sesi) {
     sesi = Promise.all([ortSiap(), ambilModel(urlAbsolut(nama))]).then(([ort, bytes]) => {
-      const ep = 'gpu' in navigator ? ['webgpu', 'wasm'] : ['wasm'];
-      return ort.InferenceSession.create(bytes, { executionProviders: ep });
+      return ort.InferenceSession.create(bytes, { executionProviders: pilihEp() });
     });
     sesi.catch(() => cache.delete(nama));
     cache.set(nama, sesi);

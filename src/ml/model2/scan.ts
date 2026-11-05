@@ -7,11 +7,13 @@
 // - sudut deskew dicari pada gambar ≤ 800 px (notebook: masker resolusi penuh lalu diperkecil).
 
 import { urai, type SukuKata } from '../../aksara/urai';
-import { muatModel, ortSiap } from '../onnx';
+import { infoOrt, muatModel, ortSiap } from '../onnx';
 import { CHARSET, TINGGI_BARIS, dekodeGreedy, keInputBaris } from './ctc';
-import { kotakDariLogit, masukanDetektor, potongSatu, type Kotak } from './detektor';
+import { potongSatu, type Kotak } from './detektor';
+import { kotakDariPeta, masukanPP } from './detektorPP';
+import { LEBAR_KL, TINGGI_KL, lolosJawa, masukanKlasifikator } from './klasifikator';
 import { PENUH, kePiksel, sama, type Bingkai } from './bingkai';
-import { balik, cariSudut, dariRGBA, maskerTinta, normalisasiPolaritas, persentil, potong, putar, resize, type Gray } from './gambar';
+import { balik, cariSudut, terangDiGelap, dariRGBA, maskerTinta, normalisasiPolaritas, persentil, potong, putar, resize, type Gray } from './gambar';
 import { barisProyeksi, gabungBaris, iou, nilaiKualitas, nilaiStatus, pilihArea, pilihBaris, pilihProyeksi, terapkanBukti, type Calon, type Kualitas, type Mode } from './saring';
 
 export interface BarisTerbaca {
@@ -31,7 +33,7 @@ export interface HasilScan {
   /** Petunjuk pesan saat tidak ada yang terbaca. */
   kualitas: Kualitas;
   /** Untuk uji kinerja (T-02); tidak ditampilkan di produksi. */
-  info: { waktuMs: number; sudut: number; kotak: Kotak[] };
+  info: { waktuMs: number; sudut: number; kotak: Kotak[]; tahap?: Record<string, number | string | boolean> };
 }
 
 const SISI_MAKS = 2048;
@@ -52,10 +54,11 @@ export function siapkanScanner(): Promise<void> {
 }
 
 async function panaskan(): Promise<void> {
-  const [ort, det, pembaca] = await Promise.all([ortSiap(), muatModel('model2b'), muatModel('model2a')]);
+  const [ort, det, pembaca, kl] = await Promise.all([ortSiap(), muatModel('model2b'), muatModel('model2a'), muatModel('model2c')]);
   const kosong = () => new Float32Array(TINGGI_BARIS * TINGGI_BARIS);
-  await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', kosong(), [1, 1, TINGGI_BARIS, TINGGI_BARIS]) });
+  await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', new Float32Array(3 * 32 * 32), [1, 3, 32, 32]) });
   await pembaca.run({ [pembaca.inputNames[0]]: new ort.Tensor('float32', kosong(), [1, 1, TINGGI_BARIS, TINGGI_BARIS]) });
+  await kl.run({ [kl.inputNames[0]]: new ort.Tensor('float32', new Float32Array(TINGGI_KL * LEBAR_KL), [1, 1, TINGGI_KL, LEBAR_KL]) });
 }
 
 /** Gambar (File/Blob) -> grayscale, latar transparan dianggap putih, sisi terpanjang ≤ 2048. */
@@ -77,7 +80,7 @@ const SAMA_KOTAK = 0.7; // IoU dua kotak yang dianggap baris yang sama
 export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilScan> {
   const mulai = performance.now();
   await siapkanScanner();
-  const [ort, det, pembaca] = await Promise.all([ortSiap(), muatModel('model2b'), muatModel('model2a')]);
+  const [ort, det, pembaca, kl] = await Promise.all([ortSiap(), muatModel('model2b'), muatModel('model2a'), muatModel('model2c')]);
 
   // 1. polaritas & deskew halaman
   let g = normalisasiPolaritas(gray);
@@ -86,32 +89,58 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
   const sudut = cariSudut(maskerTinta(kecil));
   if (sudut !== 0) g = putar(g, sudut, 255);
 
+  const praMs = performance.now() - mulai;
+  const waktu = { deteksi: 0, saring: 0, baca: 0, kotak: 0, dibaca: 0 };
   const baca = async (crop: Gray) => {
+    const t0 = performance.now();
     const { data, lebar } = keInputBaris(crop);
     const keluar = await pembaca.run({
       [pembaca.inputNames[0]]: new ort.Tensor('float32', data, [1, 1, TINGGI_BARIS, lebar]),
     });
+    waktu.baca += performance.now() - t0;
+    waktu.dibaca++;
     return dekodeGreedy(keluar[pembaca.outputNames[0]].data as Float32Array, CHARSET.length);
   };
   // Tulisan terang di papan gelap: polaritas ditentukan per potongan, pakai arah yang lebih yakin.
   // Arah pertama yang sudah diterima tidak perlu dibandingkan lagi.
-  const bacaDuaArah = async (crop: Gray) => {
+  const bacaDuaArah = async (asli: Gray) => {
+    const crop = terangDiGelap(asli) ? balik(asli) : asli; // tebakan arah tinta: yang pertama hampir selalu benar
     const a = await baca(crop);
     if (nilaiStatus(a.teks, a.keyakinan, mode) === 'TERIMA') return a;
     const b = await baca(balik(crop));
     return a.keyakinan >= b.keyakinan ? a : b;
   };
 
-  // 2. detektor pada dua polaritas (yang kedua hanya bila belum ada baris diterima), kotak sebaris digabung
+  // Hanya kotak yang berisi aksara Jawa yang diteruskan; Latin, aksara lain, dan tekstur dibuang sebelum dibaca.
+  const saringJawa = async (sumber: Gray, kotak: Kotak[]) => {
+    const potongan: { kotak: Kotak; x: Float32Array }[] = [];
+    for (const k of kotak) {
+      const c = potongSatu(sumber, k);
+      if (c) potongan.push({ kotak: k, x: masukanKlasifikator(c) });
+    }
+    if (!potongan.length) return [];
+    const x = new Float32Array(potongan.length * TINGGI_KL * LEBAR_KL);
+    potongan.forEach((p, i) => x.set(p.x, i * TINGGI_KL * LEBAR_KL));
+    const t0 = performance.now();
+    const keluar = await kl.run({ [kl.inputNames[0]]: new ort.Tensor('float32', x, [potongan.length, 1, TINGGI_KL, LEBAR_KL]) });
+    waktu.saring += performance.now() - t0;
+    const logit = keluar[kl.outputNames[0]].data as Float32Array;
+    return potongan.filter((_, i) => lolosJawa(logit[i])).map((p) => p.kotak);
+  };
+
+  // 2. detektor pada polaritas asli; polaritas terbalik hanya bila belum ada baris yang layak tampil (hemat waktu di ponsel)
   const calon: Calon[] = [];
   const semuaKotak: Kotak[] = [];
   for (const sumber of [g, balik(g)]) {
-    if (calon.some((c) => c.status === 'TERIMA')) break;
-    const m = masukanDetektor(sumber);
-    const keluarDet = await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', m.data, [1, 1, m.H, m.W]) });
+    if (calon.some((c) => c.status !== 'TOLAK')) break;
+    const t0 = performance.now();
+    const m = masukanPP(sumber);
+    const keluarDet = await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', m.data, [1, 3, m.H, m.W]) });
+    waktu.deteksi += performance.now() - t0;
     const peta = keluarDet[det.outputNames[0]];
-    const [, , h4, w4] = peta.dims;
-    for (const kotak of gabungBaris(kotakDariLogit(peta.data as Float32Array, h4, w4, m.skala))) {
+    const [, , h, w] = peta.dims;
+    const mentah = kotakDariPeta(peta.data as Float32Array, h, w, sumber.w / w, sumber.h / h, sumber.w, sumber.h);
+    for (const kotak of gabungBaris(await saringJawa(sumber, mentah))) {
       if (semuaKotak.some((k) => iou(k, kotak) >= SAMA_KOTAK)) continue; // sudah dibaca pada polaritas lain
       semuaKotak.push(kotak);
       // 3. baca tiap baris; pelurusan per baris hanya di mode area demi target waktu
@@ -130,7 +159,9 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
     // Tabel: tiap baris proyeksi dibaca sendiri.
     const proyeksi: Calon[] = [];
     const tinta = maskerTinta(g);
-    for (const kotak of barisProyeksi(tinta.d, tinta.w, tinta.h)) {
+    // Baris proyeksi hanya dipakai bila belum ada baris TERIMA (pilihProyeksi); jangan dibaca percuma.
+    const butuhProyeksi = !terpilih.some((c) => c.status === 'TERIMA');
+    for (const kotak of butuhProyeksi ? barisProyeksi(tinta.d, tinta.w, tinta.h) : []) {
       const crop = potongSatu(g, kotak);
       if (!crop) continue;
       const b = await bacaDuaArah(crop);
@@ -141,7 +172,12 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
     terpilih = terapkanBukti(terpilih);
   }
 
-  return rakitHasil(terpilih, nilaiKualitas(kecil.d, kecil.w, kecil.h), { waktuMs: performance.now() - mulai, sudut, kotak: semuaKotak });
+  return rakitHasil(terpilih, nilaiKualitas(kecil.d, kecil.w, kecil.h), {
+    waktuMs: performance.now() - mulai,
+    sudut,
+    kotak: semuaKotak,
+    tahap: { praMs: Math.round(praMs), deteksiMs: Math.round(waktu.deteksi), saringMs: Math.round(waktu.saring), bacaMs: Math.round(waktu.baca), potonganDibaca: waktu.dibaca, kotakDeteksi: semuaKotak.length, ...infoOrt() },
+  });
 }
 
 /** Pelurusan lokal: papan miring tidak ikut sudut halaman. */
