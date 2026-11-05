@@ -415,6 +415,10 @@ Detektor ini menemukan 10 dari 11 baris sebelum disaring, tetapi 4 hilang di tah
 - **Terpasang di kode:** `klasifikator.ts`, `scan.ts`, model `aksaralens_klasifikator.onnx` (318 KB). Hasil di browser cocok dengan skrip Python pada 8 foto uji.
 - **Rilis:** lebih baik dari produksi di semua ukuran di atas, dan gerbang buku lulus. Syarat sebelum merge ke `develop`: Farrel mengunggah dua berkas ke `models/v1` (`aksaralens_detektor_pp.onnx`, `aksaralens_klasifikator.onnx`) dan menguji waktu scan di ponsel.
 
+### Lanjutan (5 Nov 2026)
+
+v3 dirilis lewat PR #23. Langkah 4 sampai 6 dilanjutkan di `docs/RENCANA_SCANNER_FINAL.md` (tanpa API berbayar).
+
 ### Rujukan
 
 - [NusaAksara](https://arxiv.org/abs/2502.18148), [Bharat Scene Text](https://arxiv.org/abs/2511.23071), [PSMC](https://arxiv.org/abs/2608.27753), [Transfer learning STR India](https://arxiv.org/abs/2201.03180)
