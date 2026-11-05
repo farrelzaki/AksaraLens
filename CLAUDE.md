@@ -12,7 +12,8 @@ Belum punya `AGENTS.md`, `TASK.md`, `PROJECT_STATE.md` di root? Salin dari `docs
 1. `KOLABORASI.md` — jalankan Protokol Agen (bagian 0): tanya identitas, kerjakan hanya task & wilayah pengguna aktif.
 2. `AGENTS.md` → `TASK.md` → `PROJECT_STATE.md`.
 3. `docs/PRD.md` (apa) dan `docs/ARSITEKTUR.md` (bagaimana) sesuai kebutuhan task.
-4. Desain & aset: token visual di `docs/DESIGN_SYSTEM.md`, aset `.csv` desain di `design/assets-csv/`, dan hasil final UI/UX di `design/uiux/`.
+4. Scanner/model: `docs/RENCANA_SCANNER_FINAL.md` adalah dokumen hidup (papan progres, log keputusan, log sesi). Baca sebelum bekerja dan perbarui sebelum berhenti, siapa pun AI-nya.
+5. Desain & aset: token visual di `docs/DESIGN_SYSTEM.md`, aset `.csv` desain di `design/assets-csv/`, dan hasil final UI/UX di `design/uiux/`.
 
 ## Aturan yang tidak boleh dilanggar
 
