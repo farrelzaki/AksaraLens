@@ -1,0 +1,97 @@
+<!doctype html>
+<!-- Alat koreksi label (L2d, docs/RENCANA_SCANNER_FINAL.md). Jalankan dari akar repo:
+       python -m http.server 8000     lalu buka  http://localhost:8000/scripts/alat_label.html
+     Menampilkan potongan foto nyata hasil scripts/pasang_latin_jawa.py. Ketik bacaan LATIN dari aksara pada gambar
+     (usulan sudah terisi bila ada); aksara dibuat otomatis oleh latin_ke_jawa. Kemajuan tersimpan di browser (localStorage)
+     dan diekspor sebagai label_teks.json. Foto tidak dikirim ke mana pun. -->
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alat label aksara</title>
+<style>
+  :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+  body { max-width: 760px; margin: 0 auto; padding: 16px; }
+  #gambar { width: 100%; max-height: 220px; object-fit: contain; background: #8884; border-radius: 8px; image-rendering: auto; }
+  input[type=text] { width: 100%; font-size: 1.3rem; padding: 8px; box-sizing: border-box; margin: 8px 0; }
+  #aksara { font-family: 'Javanese Text', 'Noto Sans Javanese', 'Tuladha Jejeg', serif; font-size: 2rem; min-height: 3rem; word-break: break-all; }
+  button { font-size: 1rem; padding: 10px 14px; margin: 4px 4px 4px 0; }
+  .meta { opacity: .7; font-size: .9rem; }
+  #kemajuan { font-weight: 600; }
+</style>
+</head>
+<body>
+<p id="kemajuan">Memuat…</p>
+<img id="gambar" alt="potongan aksara">
+<p class="meta" id="meta"></p>
+<label for="latin">Bacaan Latin (tanpa spasi pun boleh; kata dipisah spasi)</label>
+<input id="latin" type="text" autocomplete="off" autofocus>
+<div id="aksara" aria-live="polite"></div>
+<button id="simpan"><b>Enter</b> Simpan &amp; lanjut</button>
+<button id="lewati"><b>Tab</b> Lewati</button>
+<button id="buang"><b>Esc</b> Bukan aksara Jawa / rusak</button>
+<button id="mundur">Kembali</button>
+<hr>
+<button id="ekspor">Unduh label_teks.json</button>
+<button id="hapus">Hapus kemajuan</button>
+<p class="meta">Aturan baca: <i>e</i> di tengah kata = pepet (ê), di akhir = taling (é); tulis <i>é</i> atau <i>ê</i> untuk memaksa. <i>dh</i>, <i>th</i>, <i>ny</i>, <i>ng</i> satu huruf. Singkatan (JL.) tulis penuh (jalan).</p>
+<script type="module">
+import { keJawa } from './latin_ke_jawa.mjs';
+const DIR = '/docs/random/foto_nyata/draf/';
+const KUNCI = 'aksaralens-label-teks-v1';
+const $ = (id) => document.getElementById(id);
+let daftar = [], i = 0, label = {};
+try { label = JSON.parse(localStorage.getItem(KUNCI) || '{}'); } catch { label = {}; }
+const simpanLokal = () => { try { localStorage.setItem(KUNCI, JSON.stringify(label)); } catch { /* abaikan */ } };
+
+function tampil() {
+  while (i < daftar.length && label[daftar[i].berkas]) i++;
+  const selesai = Object.keys(label).length;
+  $('kemajuan').textContent = `${selesai} dari ${daftar.length} sudah dinilai (${Object.values(label).filter((l) => l.status === 'ok').length} berlabel)`;
+  if (i >= daftar.length) { $('meta').textContent = 'Semua sudah dinilai. Unduh hasilnya di bawah.'; $('gambar').removeAttribute('src'); return; }
+  const r = daftar[i];
+  $('gambar').src = DIR + 'potongan/' + r.berkas;
+  $('meta').textContent = `${r.berkas}` + (r.latin ? ` · usulan dari papan Latin: “${r.latin}” (yakin ${r.yakin_latin}, cocok-CTC ${r.skor_ctc})` : ' · tanpa usulan');
+  $('latin').value = r.latin && r.yakin_latin >= 0.8 ? r.latin.toLowerCase().replace(/[^a-zéèê ]/g, '').trim() : '';
+  pratinjau();
+  $('latin').focus();
+}
+function pratinjau() {
+  try { $('aksara').textContent = keJawa($('latin').value)[0]; } catch (e) { $('aksara').textContent = '⚠ ' + e.message; }
+}
+function simpan(status) {
+  const r = daftar[i];
+  if (!r) return;
+  const latin = $('latin').value.trim();
+  if (status === 'ok' && !latin) return;
+  label[r.berkas] = { status, latin: status === 'ok' ? latin : '', aksara: status === 'ok' ? keJawa(latin)[0] : '', foto: r.foto, kotak: r.kotak };
+  simpanLokal();
+  i++;
+  tampil();
+}
+$('latin').addEventListener('input', pratinjau);
+$('simpan').onclick = () => simpan('ok');
+$('lewati').onclick = () => simpan('lewati');
+$('buang').onclick = () => simpan('buang');
+$('mundur').onclick = () => { for (let j = i - 1; j >= 0; j--) if (label[daftar[j].berkas]) { delete label[daftar[j].berkas]; i = j; simpanLokal(); break; } tampil(); };
+$('hapus').onclick = () => { if (confirm('Hapus semua kemajuan di browser ini?')) { label = {}; i = 0; simpanLokal(); tampil(); } };
+$('ekspor').onclick = () => {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(label, null, 1)], { type: 'application/json' }));
+  a.download = 'label_teks.json';
+  a.click();
+};
+addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { e.preventDefault(); simpan('ok'); }
+  else if (e.key === 'Escape') { e.preventDefault(); simpan('buang'); }
+  else if (e.key === 'Tab') { e.preventDefault(); simpan('lewati'); }
+});
+fetch(DIR + 'draf.json').then((r) => r.json()).then((d) => {
+  // Usulan paling meyakinkan dulu (Latin yakin, cocok-CTC kecil), lalu yang tanpa usulan.
+  const nilai = (r) => (r.draf ? (r.yakin_latin >= 0.8 ? 0 : 1) * 1000 + r.skor_ctc : 5000);
+  daftar = d.sort((a, b) => nilai(a) - nilai(b));
+  tampil();
+}).catch(() => { $('kemajuan').textContent = 'Gagal memuat draf.json. Jalankan scripts/pasang_latin_jawa.py dan buka lewat python -m http.server dari akar repo.'; });
+</script>
+</body>
+</html>
