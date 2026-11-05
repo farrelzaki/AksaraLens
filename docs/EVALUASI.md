@@ -180,3 +180,15 @@ tetapi waktu naik dari 0,7 ke 1,9 dtk per foto di komputer, padahal waktu di pon
 **Paritas web–Python.** Tiga foto diperiksa di browser (C03, C13, N03): C03 dan C13 identik; N03 berbeda pada beberapa
 baris pendek (web 6 baris, Python 4), kemungkinan dari perbedaan decode dan resize gambar. Waktu di browser komputer
 3–6 dtk (panel preview), jadi target ≤ 3 dtk di ponsel berisiko dan belum terukur.
+
+## Scanner v3 pada 640 px dan eskalasi resolusi (5 Nov 2026)
+
+Bangku uji: `python -X utf8 scripts/bangku_v3.py uji_set_c.py` (C-pengembangan, 12 foto positif, 13 negatif). Rincian dan semua varian ada di `docs/RENCANA_SCANNER_FINAL.md` bagian 9.
+
+| Susunan | Suku kata foto utuh | Sampah | Negatif ditolak |
+| --- | --- | --- | --- |
+| v3, detektor 960 px | 32,6% | 10,0% | 12/13 |
+| v3, detektor 640 px (produksi) | 22,5% | 0% | 13/13 |
+| 640 + eskalasi ke 960 bila ada kotak Jawa tanpa baris TERIMA | 33,7% | 8,3% | 12/13 |
+
+Catatan: sampel 12 foto, satu foto = sekitar 8 poin. Pengolahan citra tambahan (penyamaan goresan, CLAHE, Sauvola) tidak menaikkan hasil.

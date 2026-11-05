@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Kotak } from './detektor';
-import { MAKS_KOTAK, barisProyeksi, gabungBaris, iou, jumlahKonsonan, nilaiKualitas, nilaiStatus, pilihArea, pilihBaris, pilihProyeksi, terapkanBukti, validitas, type Calon } from './saring';
+import { MAKS_KOTAK, barisProyeksi, gabungBaris, iou, jumlahKonsonan, nilaiKualitas, nilaiStatus, perluEskalasi, pilihArea, pilihBaris, pilihEskalasi, pilihProyeksi, skorHasil, terapkanBukti, validitas, type Calon } from './saring';
 
 const calon = (unicode: string, keyakinan: number, kotak: Kotak, status: Calon['status'] = 'TERIMA'): Calon => ({ unicode, keyakinan, kotak, status });
 
@@ -160,5 +160,25 @@ describe('nilaiKualitas', () => {
     expect(nilaiKualitas(papan(() => 250), 20, 20)).toBe('silau');
     expect(nilaiKualitas(papan(() => 128), 20, 20)).toBe('buram');
     expect(nilaiKualitas(papan((x, y) => ((x + y) % 2 ? 40 : 220)), 20, 20)).toBe('baik');
+  });
+});
+
+describe('eskalasi resolusi', () => {
+  const a = calon('ꦫꦠꦤꦏꦩ', 0.9, [0, 0, 9, 9], 'TERIMA');
+  const b = calon('ꦫꦠꦤꦏꦩ', 0.8, [0, 0, 9, 9], 'RAGU');
+  it('perlu eskalasi hanya bila belum ada baris TERIMA', () => {
+    expect(perluEskalasi([])).toBe(false);
+    expect(perluEskalasi([b])).toBe(true);
+    expect(perluEskalasi([b, a])).toBe(false);
+  });
+  it('baris TOLAK tidak menambah skor', () => {
+    expect(skorHasil([calon('ꦫꦠꦤꦏꦩ', 0.9, [0, 0, 9, 9], 'TOLAK')])).toBe(0);
+    expect(skorHasil([a])).toBeGreaterThan(skorHasil([b]));
+  });
+  it('hasil resolusi tinggi dipakai hanya bila lebih meyakinkan; seri tetap hasil awal', () => {
+    expect(pilihEskalasi([b], [a])).toEqual([a]);
+    expect(pilihEskalasi([a], [b])).toEqual([a]);
+    expect(pilihEskalasi([b], [b])).toEqual([b]);
+    expect(pilihEskalasi([], [])).toEqual([]);
   });
 });

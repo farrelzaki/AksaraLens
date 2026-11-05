@@ -10,11 +10,11 @@ import { urai, type SukuKata } from '../../aksara/urai';
 import { infoOrt, muatModel, ortSiap } from '../onnx';
 import { CHARSET, TINGGI_BARIS, dekodeGreedy, keInputBaris } from './ctc';
 import { potongSatu, type Kotak } from './detektor';
-import { kotakDariPeta, masukanPP } from './detektorPP';
+import { SISI, SISI_ESKALASI, kotakDariPeta, masukanPP } from './detektorPP';
 import { LEBAR_KL, TINGGI_KL, lolosJawa, masukanKlasifikator } from './klasifikator';
 import { PENUH, kePiksel, sama, type Bingkai } from './bingkai';
 import { balik, cariSudut, terangDiGelap, dariRGBA, maskerTinta, normalisasiPolaritas, persentil, potong, putar, resize, type Gray } from './gambar';
-import { barisProyeksi, gabungBaris, iou, nilaiKualitas, nilaiStatus, pilihArea, pilihBaris, pilihProyeksi, terapkanBukti, type Calon, type Kualitas, type Mode } from './saring';
+import { barisProyeksi, gabungBaris, iou, nilaiKualitas, nilaiStatus, perluEskalasi, pilihArea, pilihBaris, pilihEskalasi, pilihProyeksi, terapkanBukti, type Calon, type Kualitas, type Mode } from './saring';
 
 export interface BarisTerbaca {
   unicode: string;
@@ -129,29 +129,42 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
   };
 
   // 2. detektor pada polaritas asli; polaritas terbalik hanya bila belum ada baris yang layak tampil (hemat waktu di ponsel)
-  const calon: Calon[] = [];
-  const semuaKotak: Kotak[] = [];
-  for (const sumber of [g, balik(g)]) {
-    if (calon.some((c) => c.status !== 'TOLAK')) break;
-    const t0 = performance.now();
-    const m = masukanPP(sumber);
-    const keluarDet = await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', m.data, [1, 3, m.H, m.W]) });
-    waktu.deteksi += performance.now() - t0;
-    const peta = keluarDet[det.outputNames[0]];
-    const [, , h, w] = peta.dims;
-    const mentah = kotakDariPeta(peta.data as Float32Array, h, w, sumber.w / w, sumber.h / h, sumber.w, sumber.h);
-    for (const kotak of gabungBaris(await saringJawa(sumber, mentah))) {
-      if (semuaKotak.some((k) => iou(k, kotak) >= SAMA_KOTAK)) continue; // sudah dibaca pada polaritas lain
-      semuaKotak.push(kotak);
-      // 3. baca tiap baris; pelurusan per baris hanya di mode area demi target waktu
-      const crop = potongSatu(g, kotak);
-      if (!crop) continue;
-      const { teks, keyakinan } = await bacaDuaArah(mode === 'area' ? luruskan(crop) : crop);
-      if (teks) calon.push({ unicode: teks, keyakinan, kotak, status: nilaiStatus(teks, keyakinan, mode) });
+  const deteksiDanBaca = async (sisi: number) => {
+    const calon: Calon[] = [];
+    const semuaKotak: Kotak[] = [];
+    for (const sumber of [g, balik(g)]) {
+      if (calon.some((c) => c.status !== 'TOLAK')) break;
+      const t0 = performance.now();
+      const m = masukanPP(sumber, sisi);
+      const keluarDet = await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', m.data, [1, 3, m.H, m.W]) });
+      waktu.deteksi += performance.now() - t0;
+      const peta = keluarDet[det.outputNames[0]];
+      const [, , h, w] = peta.dims;
+      const mentah = kotakDariPeta(peta.data as Float32Array, h, w, sumber.w / w, sumber.h / h, sumber.w, sumber.h);
+      for (const kotak of gabungBaris(await saringJawa(sumber, mentah))) {
+        if (semuaKotak.some((k) => iou(k, kotak) >= SAMA_KOTAK)) continue; // sudah dibaca pada polaritas lain
+        semuaKotak.push(kotak);
+        // 3. baca tiap baris; pelurusan per baris hanya di mode area demi target waktu
+        const crop = potongSatu(g, kotak);
+        if (!crop) continue;
+        const { teks, keyakinan } = await bacaDuaArah(mode === 'area' ? luruskan(crop) : crop);
+        if (teks) calon.push({ unicode: teks, keyakinan, kotak, status: nilaiStatus(teks, keyakinan, mode) });
+      }
     }
-  }
+    return { calon, semuaKotak };
+  };
 
-  let terpilih = pilihBaris(calon);
+  const dasar = await deteksiDanBaca(SISI);
+  let semuaKotak = dasar.semuaKotak;
+  let terpilih = pilihBaris(dasar.calon);
+  // Eskalasi resolusi (hanya mode foto): bila belum ada baris TERIMA, ulangi pada 960 px dan pakai hasil yang lebih meyakinkan.
+  if (mode === 'foto' && perluEskalasi(terapkanBukti(terpilih))) {
+    const ulang = await deteksiDanBaca(SISI_ESKALASI);
+    const awal = terapkanBukti(terpilih);
+    const baru = terapkanBukti(pilihBaris(ulang.calon));
+    semuaKotak = [...semuaKotak, ...ulang.semuaKotak];
+    terpilih = pilihEskalasi(awal, baru);
+  }
   if (mode === 'area') {
     const { teks, keyakinan } = await bacaDuaArah(luruskan(g));
     const satu: Calon | null = teks ? { unicode: teks, keyakinan, kotak: [0, 0, g.w, g.h], status: nilaiStatus(teks, keyakinan, mode) } : null;

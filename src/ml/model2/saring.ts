@@ -120,6 +120,20 @@ export function pilihArea(baris: Calon[], satuBaris: Calon | null): Calon[] {
   return skor(satuBaris) > tampil ? [satuBaris] : baris;
 }
 
+/** Jumlah keyakinan x konsonan dari baris yang tidak ditolak: ukuran seberapa meyakinkan sebuah hasil. */
+export const skorHasil = (h: readonly Calon[]) => h.filter((c) => c.status !== 'TOLAK').reduce((n, c) => n + skor(c), 0);
+
+/**
+ * Ada kotak Jawa yang terbaca tetapi belum satu pun TERIMA: layak dicoba lagi pada resolusi lebih tinggi.
+ * Tanpa kotak Jawa sama sekali (mis. foto tanpa aksara) tidak dieskalasi, demi waktu.
+ */
+export const perluEskalasi = (h: readonly Calon[]) => h.length > 0 && !h.some((c) => c.status === 'TERIMA');
+
+/** Pilih hasil resolusi tinggi hanya bila benar-benar lebih meyakinkan (seri = tetap hasil awal). */
+export function pilihEskalasi(awal: Calon[], ulang: Calon[]): Calon[] {
+  return skorHasil(ulang) > skorHasil(awal) ? ulang : awal;
+}
+
 /** Baris dari profil tinta mendatar, untuk tabel dan huruf berjarak lebar yang tidak ditangkap detektor. */
 export function barisProyeksi(tinta: ArrayLike<number>, w: number, h: number): Kotak[] {
   const profil = new Float64Array(h);
