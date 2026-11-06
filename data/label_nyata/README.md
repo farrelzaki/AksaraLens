@@ -17,3 +17,12 @@
 - `potongan/`: gambar potongan. `draf.json`: kotak asal dan usulan label otomatis. `atribusi.csv`: sumber foto.
 - Potongan adalah hasil pemotongan (turunan) dari foto Commons dan tetap di bawah lisensi aslinya: CC BY-SA 3.0 dan 4.0, CC BY 4.0, CC0, atau domain publik. Atribusi lengkap ada di `atribusi.csv`. Foto utuh tidak disertakan.
 - Foto Set C (uji) tidak termasuk dan tidak boleh ditambahkan ke data latih.
+
+## Bila melabeli dengan AI lain (Gemini, ChatGPT, dst.)
+
+Boleh, tetapi jawaban AI **tidak dipercaya begitu saja**: AI sering mengarang bacaan aksara Jawa. Simpan hasilnya sebagai JSON `{"F131_00.png": "bakpia kukus", ...}` (nama berkas potongan: bacaan Latin) atau CSV `berkas,latin`, di `data/label_nyata/hasil/`. Lalu:
+
+1. `python -X utf8 scripts/periksa_label.py data/label_nyata/hasil/*.json` memberi tiap label tingkat **terpercaya / periksa / buang** berdasarkan bukti yang saling bebas (lihat kepala berkasnya).
+2. Yang berstatus **periksa**: buka `http://localhost:8000/scripts/periksa_visual.html?bagian=N&dari=M`. Anda hanya mencocokkan BENTUK (jumlah huruf, tanda atas/bawah/samping) antara gambar dan tulisan label; tidak perlu bisa membaca. Simpan hasilnya `hasil/visual_<nama>.json`.
+3. Jalankan ulang langkah 1 dengan `--visual data/label_nyata/hasil/visual_*.json`. Hanya label **terpercaya** dipakai melatih.
+4. Dua AI berbeda yang diminta membaca potongan yang sama dan memberi jawaban sama menambah bukti. Simpan masing-masing di berkas terpisah.

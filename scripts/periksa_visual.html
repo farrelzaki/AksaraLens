@@ -1,0 +1,73 @@
+<!doctype html>
+<!-- Pencocokan BENTUK label (tidak perlu bisa membaca aksara). Jalankan dari akar repo setelah scripts/periksa_label.py:
+       python -m http.server 8000    lalu buka   http://localhost:8000/scripts/periksa_visual.html?bagian=1&dari=3
+     Menampilkan potongan foto di atas dan tulisan aksara dari label di bawahnya. Bandingkan bentuknya: jumlah huruf, tanda di atas,
+     bawah, dan samping harus sama. Y = cocok, N = tidak cocok, Spasi = ragu. Unduh hasilnya, simpan di data/label_nyata/hasil/visual_<nama>.json,
+     lalu jalankan ulang periksa_label.py dengan --visual. -->
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pencocokan bentuk label</title>
+<style>
+  :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+  body { max-width: 760px; margin: 0 auto; padding: 16px; }
+  #gambar { width: 100%; max-height: 200px; object-fit: contain; background: #8884; border-radius: 8px; }
+  #aksara { font-family: 'Javanese Text', 'Noto Sans Javanese', 'Tuladha Jejeg', serif; font-size: 2.4rem; padding: 12px; margin: 8px 0; background: #8882; border-radius: 8px; word-break: break-all; min-height: 3.5rem; }
+  button { font-size: 1.05rem; padding: 12px 18px; margin: 4px 4px 4px 0; }
+  .meta { opacity: .7; font-size: .9rem; }
+</style>
+</head>
+<body>
+<p id="kemajuan">Memuat…</p>
+<p class="meta">Apakah bentuk aksara di bawah SAMA dengan yang ada di gambar? (jumlah huruf, tanda atas/bawah/samping)</p>
+<img id="gambar" alt="potongan aksara">
+<div id="aksara"></div>
+<p class="meta" id="meta"></p>
+<button id="cocok"><b>Y</b> Cocok</button>
+<button id="tidak"><b>N</b> Tidak cocok</button>
+<button id="ragu"><b>Spasi</b> Ragu</button>
+<button id="mundur">Kembali</button>
+<hr>
+<button id="ekspor">Unduh hasil (.json)</button>
+<script type="module">
+const DIR = '/data/label_nyata/';
+const q = new URLSearchParams(location.search);
+const DARI = Math.max(1, +q.get('dari') || 1);
+const BAGIAN = Math.min(DARI, Math.max(1, +q.get('bagian') || 1));
+const KUNCI = `aksaralens-visual-v1-${BAGIAN}-${DARI}`;
+const $ = (id) => document.getElementById(id);
+let daftar = [], i = 0, hasil = {};
+try { hasil = JSON.parse(localStorage.getItem(KUNCI) || '{}'); } catch { hasil = {}; }
+const simpanLokal = () => { try { localStorage.setItem(KUNCI, JSON.stringify(hasil)); } catch { /* abaikan */ } };
+function tampil() {
+  while (i < daftar.length && hasil[daftar[i][0]]) i++;
+  $('kemajuan').textContent = `${Object.keys(hasil).length} dari ${daftar.length} sudah dinilai`;
+  if (i >= daftar.length) { $('meta').textContent = 'Selesai. Unduh hasilnya.'; $('aksara').textContent = ''; $('gambar').removeAttribute('src'); return; }
+  const [b, v] = daftar[i];
+  $('gambar').src = DIR + 'potongan/' + b;
+  $('aksara').textContent = v.aksara;
+  $('meta').textContent = `${b} · bukti sejauh ini: ${v.bukti.join(', ') || 'belum ada'}`;
+}
+function nilai(s) { if (i >= daftar.length) return; hasil[daftar[i][0]] = s; simpanLokal(); i++; tampil(); }
+$('cocok').onclick = () => nilai('cocok');
+$('tidak').onclick = () => nilai('tidak');
+$('ragu').onclick = () => nilai('ragu');
+$('mundur').onclick = () => { for (let j = i - 1; j >= 0; j--) if (hasil[daftar[j][0]]) { delete hasil[daftar[j][0]]; i = j; simpanLokal(); break; } tampil(); };
+$('ekspor').onclick = () => {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(hasil, null, 1)], { type: 'application/json' }));
+  a.download = `visual_bagian${BAGIAN}dari${DARI}.json`;
+  a.click();
+};
+addEventListener('keydown', (e) => {
+  const k = e.key.toLowerCase();
+  if (k === 'y') nilai('cocok'); else if (k === 'n') nilai('tidak'); else if (k === ' ') { e.preventDefault(); nilai('ragu'); }
+});
+fetch(DIR + 'hasil_diperiksa.json').then((r) => r.json()).then((d) => {
+  daftar = Object.entries(d).filter(([, v]) => v.tier === 'periksa').sort(([a], [b]) => (a < b ? -1 : 1)).filter((_, n) => n % DARI === BAGIAN - 1);
+  tampil();
+}).catch(() => { $('kemajuan').textContent = 'Gagal memuat hasil_diperiksa.json. Jalankan scripts/periksa_label.py dulu.'; });
+</script>
+</body>
+</html>
