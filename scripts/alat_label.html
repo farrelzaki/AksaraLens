@@ -1,6 +1,7 @@
 <!doctype html>
 <!-- Alat koreksi label (L2d, docs/RENCANA_SCANNER_FINAL.md). Jalankan dari akar repo:
-       python -m http.server 8000     lalu buka  http://localhost:8000/scripts/alat_label.html
+       python -m http.server 8000     lalu buka  http://localhost:8000/scripts/alat_label.html?bagian=1&dari=3
+     (bagian = nomor kamu, dari = jumlah orang; data ada di data/label_nyata/, lihat README-nya)
      Menampilkan potongan foto nyata hasil scripts/pasang_latin_jawa.py. Ketik bacaan LATIN dari aksara pada gambar
      (usulan sudah terisi bila ada); aksara dibuat otomatis oleh latin_ke_jawa. Kemajuan tersimpan di browser (localStorage)
      dan diekspor sebagai label_teks.json. Foto tidak dikirim ke mana pun. -->
@@ -32,13 +33,16 @@
 <button id="buang"><b>Esc</b> Bukan aksara Jawa / rusak</button>
 <button id="mundur">Kembali</button>
 <hr>
-<button id="ekspor">Unduh label_teks.json</button>
+<button id="ekspor">Unduh hasil (.json)</button>
 <button id="hapus">Hapus kemajuan</button>
 <p class="meta">Aturan baca: <i>e</i> di tengah kata = pepet (ê), di akhir = taling (é); tulis <i>é</i> atau <i>ê</i> untuk memaksa. <i>dh</i>, <i>th</i>, <i>ny</i>, <i>ng</i> satu huruf. Singkatan (JL.) tulis penuh (jalan).</p>
 <script type="module">
 import { keJawa } from './latin_ke_jawa.mjs';
-const DIR = '/docs/random/foto_nyata/draf/';
-const KUNCI = 'aksaralens-label-teks-v1';
+const DIR = '/data/label_nyata/';
+const q = new URLSearchParams(location.search);
+const DARI = Math.max(1, +q.get('dari') || 1);
+const BAGIAN = Math.min(DARI, Math.max(1, +q.get('bagian') || 1));  // bagi kerja: ?bagian=2&dari=4 = bagian ke-2 dari 4 orang
+const KUNCI = `aksaralens-label-teks-v1-${BAGIAN}-${DARI}`;
 const $ = (id) => document.getElementById(id);
 let daftar = [], i = 0, label = {};
 try { label = JSON.parse(localStorage.getItem(KUNCI) || '{}'); } catch { label = {}; }
@@ -78,7 +82,7 @@ $('hapus').onclick = () => { if (confirm('Hapus semua kemajuan di browser ini?')
 $('ekspor').onclick = () => {
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([JSON.stringify(label, null, 1)], { type: 'application/json' }));
-  a.download = 'label_teks.json';
+  a.download = `label_teks_bagian${BAGIAN}dari${DARI}.json`;
   a.click();
 };
 addEventListener('keydown', (e) => {
@@ -89,9 +93,9 @@ addEventListener('keydown', (e) => {
 fetch(DIR + 'draf.json').then((r) => r.json()).then((d) => {
   // Usulan paling meyakinkan dulu (Latin yakin, cocok-CTC kecil), lalu yang tanpa usulan.
   const nilai = (r) => (r.draf ? (r.yakin_latin >= 0.8 ? 0 : 1) * 1000 + r.skor_ctc : 5000);
-  daftar = d.sort((a, b) => nilai(a) - nilai(b));
+  daftar = d.sort((a, b) => nilai(a) - nilai(b)).filter((_, n) => n % DARI === BAGIAN - 1);
   tampil();
-}).catch(() => { $('kemajuan').textContent = 'Gagal memuat draf.json. Jalankan scripts/pasang_latin_jawa.py dan buka lewat python -m http.server dari akar repo.'; });
+}).catch(() => { $('kemajuan').textContent = 'Gagal memuat draf.json. Buka lewat python -m http.server dari akar repo.'; });
 </script>
 </body>
 </html>
