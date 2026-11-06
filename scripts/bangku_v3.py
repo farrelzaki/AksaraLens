@@ -10,6 +10,8 @@
 #   ESKALASI=          terima|pakai|ada: bila hasil pada PANJANG belum punya baris TERIMA (terima) / baris non-TOLAK (pakai),
 #                      ulangi pada ESKALASI_PANJANG (bawaan 960) dan ambil hasil yang lebih meyakinkan
 #   TARGET_GORESAN=    lebar goresan sasaran (piksel pada tinggi 64) untuk varian "goresan"
+#   BAHASA=1           dekoder bahasa L5 (model_bahasa.py, sama dengan bahasa.ts): teks baris yang lolos dibetulkan
+#                      beam search + model bahasa; status tetap dari bacaan greedy. BAHASA=0 mematikan.
 # Model dibaca dari public/models (atau AKSARALENS_MODEL) dan docs/random/klasifikator.
 import os, runpy, sys
 AKAR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -150,6 +152,36 @@ def baca_foto(gray, area_dipilih=False):
 ruj.kotak_detektor = kotak_detektor
 cerdas.baca_dua_arah = baca_dua_arah
 cerdas.baca_foto = baca_foto
+
+# ---------- L5 dekoder bahasa (meniru scan.ts: baca() + rakitHasil) ----------
+if os.environ.get('BAHASA', '1') != '0':
+    import json as _json
+    import model_bahasa as _mb
+    _MODEL = _json.load(open(_mb.JSON_MODEL, encoding='utf8'))
+    _CS = [''] + ruj.VOCAB
+    _KOREKSI = {}  # bacaan greedy -> koreksi (kunci teks: cukup untuk bangku uji)
+    _baca_potongan_asli = cerdas.baca_potongan
+
+    def _baca_potongan(crop):
+        teks, yakin = _baca_potongan_asli(crop)
+        if cerdas.nilai_status(teks, yakin, 'area') != 'TOLAK':
+            lg = ruj.crnn.run(None, {'gambar': ruj.ke_input(crop)[None, None]})[0][0]
+            beam = _mb.dekode_beam(_mb.log_softmax(lg.astype(float).ravel().tolist(), lg.shape[1]), _CS, _MODEL)
+            _KOREKSI[teks] = _mb.pilih_koreksi(teks, ruj.to_logical(beam), yakin, cerdas.nilai_status)
+        return teks, yakin
+
+    _baca_foto_l5 = cerdas.baca_foto
+
+    def _baca_foto_bahasa(gray, area_dipilih=False):
+        h = _baca_foto_l5(gray, area_dipilih)
+        for b in h:
+            if b['status'] != 'TOLAK' and _KOREKSI.get(b['teks']):
+                b['teks'] = _KOREKSI[b['teks']]
+        return h
+
+    cerdas.baca_potongan = _baca_potongan
+    cerdas.baca_foto = _baca_foto_bahasa
+    cerdas.koreksi_bahasa = _KOREKSI.get  # dipakai uji_nusa.py
 
 if __name__ == '__main__':
     skrip = sys.argv[1]
