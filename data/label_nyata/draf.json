@@ -1,0 +1,7577 @@
+[
+ {
+  "foto": "F001.jpg",
+  "kotak": [
+   471,
+   695,
+   1316,
+   1050
+  ],
+  "berkas": "F001_00.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F002.jpg",
+  "kotak": [
+   373,
+   1307,
+   1180,
+   1419
+  ],
+  "berkas": "F002_00.png",
+  "latin": "313",
+  "yakin_latin": 0.606,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F003.jpg",
+  "kotak": [
+   324,
+   454,
+   1668,
+   776
+  ],
+  "berkas": "F003_00.png",
+  "latin": "CYNT",
+  "yakin_latin": 0.301,
+  "draf": "ꦕ꧀ꦪ꧀ꦤ꧀ꦠ꧀",
+  "skor_ctc": 5.697,
+  "diragukan": false
+ },
+ {
+  "foto": "F005.jpg",
+  "kotak": [
+   144,
+   231,
+   1772,
+   462
+  ],
+  "berkas": "F005_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F006.jpg",
+  "kotak": [
+   920,
+   275,
+   955,
+   287
+  ],
+  "berkas": "F006_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F006.jpg",
+  "kotak": [
+   718,
+   309,
+   998,
+   343
+  ],
+  "berkas": "F006_01.png",
+  "latin": "a",
+  "yakin_latin": 0.837,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F006.jpg",
+  "kotak": [
+   723,
+   345,
+   1113,
+   381
+  ],
+  "berkas": "F006_02.png",
+  "latin": "a",
+  "yakin_latin": 0.837,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F006.jpg",
+  "kotak": [
+   689,
+   382,
+   1121,
+   423
+  ],
+  "berkas": "F006_03.png",
+  "latin": "0",
+  "yakin_latin": 0.409,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F006.jpg",
+  "kotak": [
+   1031,
+   421,
+   1105,
+   446
+  ],
+  "berkas": "F006_04.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F006.jpg",
+  "kotak": [
+   694,
+   428,
+   914,
+   462
+  ],
+  "berkas": "F006_05.png",
+  "latin": "0",
+  "yakin_latin": 0.409,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F006.jpg",
+  "kotak": [
+   689,
+   462,
+   1077,
+   499
+  ],
+  "berkas": "F006_06.png",
+  "latin": "BCO",
+  "yakin_latin": 0.325,
+  "draf": "ꦧ꧀ꦕꦺꦴ",
+  "skor_ctc": 14.952,
+  "diragukan": false
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1129,
+   11,
+   1158,
+   30
+  ],
+  "berkas": "F007_00.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1278,
+   150,
+   1455,
+   194
+  ],
+  "berkas": "F007_01.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1522,
+   153,
+   1535,
+   164
+  ],
+  "berkas": "F007_02.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1486,
+   181,
+   1527,
+   203
+  ],
+  "berkas": "F007_03.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1450,
+   187,
+   1513,
+   223
+  ],
+  "berkas": "F007_04.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1188,
+   202,
+   1216,
+   229
+  ],
+  "berkas": "F007_05.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   351,
+   362,
+   679,
+   483
+  ],
+  "berkas": "F007_06.png",
+  "latin": ".",
+  "yakin_latin": 0.853,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1226,
+   383,
+   1415,
+   432
+  ],
+  "berkas": "F007_07.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1222,
+   407,
+   1422,
+   461
+  ],
+  "berkas": "F007_08.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1215,
+   431,
+   1457,
+   503
+  ],
+  "berkas": "F007_09.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1412,
+   449,
+   1498,
+   494
+  ],
+  "berkas": "F007_10.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   369,
+   509,
+   560,
+   581
+  ],
+  "berkas": "F007_11.png",
+  "latin": "X",
+  "yakin_latin": 0.283,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   280,
+   559,
+   597,
+   674
+  ],
+  "berkas": "F007_12.png",
+  "latin": "S",
+  "yakin_latin": 0.199,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   340,
+   623,
+   525,
+   691
+  ],
+  "berkas": "F007_13.png",
+  "latin": "S",
+  "yakin_latin": 0.199,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1329,
+   654,
+   1360,
+   668
+  ],
+  "berkas": "F007_14.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1338,
+   677,
+   1365,
+   697
+  ],
+  "berkas": "F007_15.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1404,
+   695,
+   1427,
+   709
+  ],
+  "berkas": "F007_16.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1451,
+   708,
+   1512,
+   732
+  ],
+  "berkas": "F007_17.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   317,
+   709,
+   508,
+   776
+  ],
+  "berkas": "F007_18.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1300,
+   749,
+   1363,
+   778
+  ],
+  "berkas": "F007_19.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1482,
+   765,
+   1529,
+   792
+  ],
+  "berkas": "F007_20.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1090,
+   771,
+   1215,
+   822
+  ],
+  "berkas": "F007_21.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1065,
+   863,
+   1198,
+   905
+  ],
+  "berkas": "F007_22.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1514,
+   868,
+   1533,
+   883
+  ],
+  "berkas": "F007_23.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1361,
+   885,
+   1474,
+   930
+  ],
+  "berkas": "F007_24.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1277,
+   885,
+   1439,
+   943
+  ],
+  "berkas": "F007_25.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1052,
+   887,
+   1196,
+   929
+  ],
+  "berkas": "F007_26.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1271,
+   909,
+   1434,
+   962
+  ],
+  "berkas": "F007_27.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1048,
+   910,
+   1190,
+   956
+  ],
+  "berkas": "F007_28.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1464,
+   917,
+   1541,
+   951
+  ],
+  "berkas": "F007_29.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1427,
+   928,
+   1541,
+   980
+  ],
+  "berkas": "F007_30.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1046,
+   932,
+   1186,
+   980
+  ],
+  "berkas": "F007_31.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1268,
+   932,
+   1378,
+   971
+  ],
+  "berkas": "F007_32.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1038,
+   953,
+   1179,
+   1001
+  ],
+  "berkas": "F007_33.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1260,
+   974,
+   1439,
+   1016
+  ],
+  "berkas": "F007_34.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1031,
+   978,
+   1176,
+   1032
+  ],
+  "berkas": "F007_35.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   589,
+   986,
+   645,
+   1028
+  ],
+  "berkas": "F007_36.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   645,
+   999,
+   923,
+   1094
+  ],
+  "berkas": "F007_37.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1027,
+   1002,
+   1171,
+   1048
+  ],
+  "berkas": "F007_38.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1433,
+   1003,
+   1532,
+   1041
+  ],
+  "berkas": "F007_39.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1368,
+   1008,
+   1446,
+   1040
+  ],
+  "berkas": "F007_40.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1251,
+   1027,
+   1320,
+   1055
+  ],
+  "berkas": "F007_41.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1434,
+   1030,
+   1539,
+   1069
+  ],
+  "berkas": "F007_42.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1014,
+   1053,
+   1163,
+   1102
+  ],
+  "berkas": "F007_43.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1013,
+   1081,
+   1156,
+   1127
+  ],
+  "berkas": "F007_44.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1000,
+   1104,
+   1151,
+   1157
+  ],
+  "berkas": "F007_45.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   999,
+   1133,
+   1145,
+   1182
+  ],
+  "berkas": "F007_46.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1232,
+   1153,
+   1413,
+   1207
+  ],
+  "berkas": "F007_47.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   9,
+   1161,
+   188,
+   1226
+  ],
+  "berkas": "F007_48.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1418,
+   1195,
+   1540,
+   1243
+  ],
+  "berkas": "F007_49.png",
+  "latin": "E",
+  "yakin_latin": 0.262,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   10,
+   1256,
+   315,
+   1362
+  ],
+  "berkas": "F007_50.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   991,
+   1300,
+   1040,
+   1327
+  ],
+  "berkas": "F007_51.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1,
+   1305,
+   302,
+   1398
+  ],
+  "berkas": "F007_52.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   942,
+   1322,
+   1035,
+   1366
+  ],
+  "berkas": "F007_53.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   398,
+   1338,
+   827,
+   1444
+  ],
+  "berkas": "F007_54.png",
+  "latin": "y",
+  "yakin_latin": 0.481,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   932,
+   1362,
+   986,
+   1390
+  ],
+  "berkas": "F007_55.png",
+  "latin": ".",
+  "yakin_latin": 0.258,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   976,
+   1370,
+   1024,
+   1414
+  ],
+  "berkas": "F007_56.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   380,
+   1381,
+   814,
+   1495
+  ],
+  "berkas": "F007_57.png",
+  "latin": "gig",
+  "yakin_latin": 0.421,
+  "draf": "ꦒꦶꦒ꧀",
+  "skor_ctc": 9.827,
+  "diragukan": false
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1494,
+   1388,
+   1531,
+   1411
+  ],
+  "berkas": "F007_58.png",
+  "latin": "y",
+  "yakin_latin": 0.707,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   0,
+   1390,
+   269,
+   1473
+  ],
+  "berkas": "F007_59.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   924,
+   1396,
+   1017,
+   1441
+  ],
+  "berkas": "F007_60.png",
+  "latin": ".",
+  "yakin_latin": 0.258,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   913,
+   1429,
+   1011,
+   1489
+  ],
+  "berkas": "F007_61.png",
+  "latin": ".",
+  "yakin_latin": 0.258,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   0,
+   1438,
+   254,
+   1528
+  ],
+  "berkas": "F007_62.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   927,
+   1473,
+   1002,
+   1511
+  ],
+  "berkas": "F007_63.png",
+  "latin": ".",
+  "yakin_latin": 0.258,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   0,
+   1488,
+   244,
+   1563
+  ],
+  "berkas": "F007_64.png",
+  "latin": "d",
+  "yakin_latin": 0.972,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   894,
+   1508,
+   993,
+   1557
+  ],
+  "berkas": "F007_65.png",
+  "latin": ".",
+  "yakin_latin": 0.258,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   0,
+   1532,
+   224,
+   1600
+  ],
+  "berkas": "F007_66.png",
+  "latin": "d",
+  "yakin_latin": 0.972,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   883,
+   1546,
+   983,
+   1590
+  ],
+  "berkas": "F007_67.png",
+  "latin": ".",
+  "yakin_latin": 0.258,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   504,
+   1565,
+   959,
+   1675
+  ],
+  "berkas": "F007_68.png",
+  "latin": ".",
+  "yakin_latin": 0.258,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   0,
+   1577,
+   204,
+   1657
+  ],
+  "berkas": "F007_69.png",
+  "latin": "d",
+  "yakin_latin": 0.972,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   0,
+   1620,
+   189,
+   1686
+  ],
+  "berkas": "F007_70.png",
+  "latin": "d",
+  "yakin_latin": 0.59,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   476,
+   1641,
+   943,
+   1748
+  ],
+  "berkas": "F007_71.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   0,
+   1666,
+   172,
+   1743
+  ],
+  "berkas": "F007_72.png",
+  "latin": "d",
+  "yakin_latin": 0.59,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1128,
+   1670,
+   1508,
+   1754
+  ],
+  "berkas": "F007_73.png",
+  "latin": "g.",
+  "yakin_latin": 0.316,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1122,
+   1709,
+   1501,
+   1805
+  ],
+  "berkas": "F007_74.png",
+  "latin": "y ",
+  "yakin_latin": 0.481,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   0,
+   1719,
+   160,
+   1778
+  ],
+  "berkas": "F007_75.png",
+  "latin": "d",
+  "yakin_latin": 0.59,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   449,
+   1729,
+   925,
+   1836
+  ],
+  "berkas": "F007_76.png",
+  "latin": ".",
+  "yakin_latin": 0.237,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1116,
+   1749,
+   1495,
+   1839
+  ],
+  "berkas": "F007_77.png",
+  "latin": ".",
+  "yakin_latin": 0.402,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   0,
+   1763,
+   142,
+   1819
+  ],
+  "berkas": "F007_78.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   431,
+   1781,
+   913,
+   1879
+  ],
+  "berkas": "F007_79.png",
+  "latin": ".",
+  "yakin_latin": 0.237,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   0,
+   1811,
+   126,
+   1867
+  ],
+  "berkas": "F007_80.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   422,
+   1825,
+   899,
+   1921
+  ],
+  "berkas": "F007_81.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   0,
+   1858,
+   109,
+   1912
+  ],
+  "berkas": "F007_82.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   404,
+   1869,
+   888,
+   1982
+  ],
+  "berkas": "F007_83.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1091,
+   1869,
+   1478,
+   1956
+  ],
+  "berkas": "F007_84.png",
+  "latin": ".",
+  "yakin_latin": 0.402,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   0,
+   1909,
+   92,
+   1965
+  ],
+  "berkas": "F007_85.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1080,
+   1909,
+   1476,
+   1991
+  ],
+  "berkas": "F007_86.png",
+  "latin": "y",
+  "yakin_latin": 0.272,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   426,
+   1921,
+   884,
+   2028
+  ],
+  "berkas": "F007_87.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   892,
+   1941,
+   917,
+   1992
+  ],
+  "berkas": "F007_88.png",
+  "latin": ".",
+  "yakin_latin": 0.237,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1070,
+   1952,
+   1476,
+   2031
+  ],
+  "berkas": "F007_89.png",
+  "latin": "e",
+  "yakin_latin": 0.567,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   0,
+   1959,
+   81,
+   2011
+  ],
+  "berkas": "F007_90.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1040,
+   1989,
+   1058,
+   2034
+  ],
+  "berkas": "F007_91.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F007.jpg",
+  "kotak": [
+   1061,
+   1996,
+   1406,
+   2048
+  ],
+  "berkas": "F007_92.png",
+  "latin": "y",
+  "yakin_latin": 0.272,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F008.jpg",
+  "kotak": [
+   291,
+   363,
+   1319,
+   430
+  ],
+  "berkas": "F008_00.png",
+  "latin": "U",
+  "yakin_latin": 0.872,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F008.jpg",
+  "kotak": [
+   298,
+   412,
+   1317,
+   473
+  ],
+  "berkas": "F008_01.png",
+  "latin": "U",
+  "yakin_latin": 0.872,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F008.jpg",
+  "kotak": [
+   302,
+   461,
+   1311,
+   521
+  ],
+  "berkas": "F008_02.png",
+  "latin": "n",
+  "yakin_latin": 0.172,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F008.jpg",
+  "kotak": [
+   304,
+   509,
+   1316,
+   565
+  ],
+  "berkas": "F008_03.png",
+  "latin": "C6",
+  "yakin_latin": 0.911,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F008.jpg",
+  "kotak": [
+   308,
+   557,
+   1309,
+   609
+  ],
+  "berkas": "F008_04.png",
+  "latin": "00",
+  "yakin_latin": 0.537,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F008.jpg",
+  "kotak": [
+   311,
+   603,
+   1314,
+   658
+  ],
+  "berkas": "F008_05.png",
+  "latin": "HMEN",
+  "yakin_latin": 0.493,
+  "draf": "ꦃꦩꦺꦤ꧀",
+  "skor_ctc": 14.932,
+  "diragukan": false
+ },
+ {
+  "foto": "F008.jpg",
+  "kotak": [
+   315,
+   648,
+   1315,
+   704
+  ],
+  "berkas": "F008_06.png",
+  "latin": "HMEN",
+  "yakin_latin": 0.493,
+  "draf": "ꦃꦩꦺꦤ꧀",
+  "skor_ctc": 19.667,
+  "diragukan": false
+ },
+ {
+  "foto": "F008.jpg",
+  "kotak": [
+   316,
+   696,
+   1313,
+   748
+  ],
+  "berkas": "F008_07.png",
+  "latin": "HMEN",
+  "yakin_latin": 0.493,
+  "draf": "ꦃꦩꦺꦤ꧀",
+  "skor_ctc": 18.344,
+  "diragukan": false
+ },
+ {
+  "foto": "F008.jpg",
+  "kotak": [
+   317,
+   740,
+   1307,
+   794
+  ],
+  "berkas": "F008_08.png",
+  "latin": "HMEN",
+  "yakin_latin": 0.493,
+  "draf": "ꦃꦩꦺꦤ꧀",
+  "skor_ctc": 20.621,
+  "diragukan": false
+ },
+ {
+  "foto": "F009.jpg",
+  "kotak": [
+   250,
+   202,
+   1682,
+   444
+  ],
+  "berkas": "F009_00.png",
+  "latin": "09.",
+  "yakin_latin": 0.591,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F009.jpg",
+  "kotak": [
+   532,
+   358,
+   1498,
+   525
+  ],
+  "berkas": "F009_01.png",
+  "latin": "09.",
+  "yakin_latin": 0.591,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F009.jpg",
+  "kotak": [
+   489,
+   649,
+   1563,
+   795
+  ],
+  "berkas": "F009_02.png",
+  "latin": "BADAN PENGEL",
+  "yakin_latin": 0.863,
+  "draf": "ꦧꦢꦤ꧀ꦥꦼꦔꦺꦭ꧀",
+  "skor_ctc": 5.026,
+  "diragukan": false
+ },
+ {
+  "foto": "F009.jpg",
+  "kotak": [
+   317,
+   933,
+   1697,
+   1063
+  ],
+  "berkas": "F009_03.png",
+  "latin": "DIY DI KOTA YOGYAKARTA",
+  "yakin_latin": 0.988,
+  "draf": "ꦢꦶꦪ꧀ꦢꦶꦏꦺꦴꦠꦪꦺꦴꦒ꧀ꦪꦏꦂꦠ",
+  "skor_ctc": 7.2,
+  "diragukan": false
+ },
+ {
+  "foto": "F010.jpg",
+  "kotak": [
+   1290,
+   229,
+   1574,
+   280
+  ],
+  "berkas": "F010_00.png",
+  "latin": "JL. MALIOBORO",
+  "yakin_latin": 0.997,
+  "draf": "ꦗ꧀ꦭ꧀ꦩꦭꦶꦪꦺꦴꦧꦺꦴꦫꦺꦴ",
+  "skor_ctc": 5.227,
+  "diragukan": true
+ },
+ {
+  "foto": "F022.jpg",
+  "kotak": [
+   597,
+   737,
+   1147,
+   785
+  ],
+  "berkas": "F022_00.png",
+  "latin": "YOGYAKARTA INTERNATIONAL AIRPORT",
+  "yakin_latin": 0.989,
+  "draf": "ꦪꦺꦴꦒ꧀ꦪꦏꦂꦠꦲꦶꦤ꧀ꦠꦼꦂꦤꦠꦶꦪꦺꦴꦤꦭ꧀ꦲꦲꦶꦂꦥꦺꦴꦂꦠ꧀",
+  "skor_ctc": 4.548,
+  "diragukan": false
+ },
+ {
+  "foto": "F024.jpg",
+  "kotak": [
+   598,
+   411,
+   1194,
+   538
+  ],
+  "berkas": "F024_00.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F024.jpg",
+  "kotak": [
+   407,
+   581,
+   1291,
+   703
+  ],
+  "berkas": "F024_01.png",
+  "latin": "PEMERINTAH KOTA SURAKARTA",
+  "yakin_latin": 0.981,
+  "draf": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
+  "skor_ctc": 5.767,
+  "diragukan": false
+ },
+ {
+  "foto": "F025.jpg",
+  "kotak": [
+   484,
+   291,
+   1190,
+   411
+  ],
+  "berkas": "F025_00.png",
+  "latin": "207",
+  "yakin_latin": 0.651,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F025.jpg",
+  "kotak": [
+   273,
+   441,
+   1269,
+   549
+  ],
+  "berkas": "F025_01.png",
+  "latin": "207",
+  "yakin_latin": 0.651,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F025.jpg",
+  "kotak": [
+   431,
+   516,
+   497,
+   560
+  ],
+  "berkas": "F025_02.png",
+  "latin": "207",
+  "yakin_latin": 0.651,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F025.jpg",
+  "kotak": [
+   447,
+   564,
+   1071,
+   655
+  ],
+  "berkas": "F025_03.png",
+  "latin": "PEMERINTAH KOTA SURAKARTA",
+  "yakin_latin": 0.995,
+  "draf": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
+  "skor_ctc": 5.326,
+  "diragukan": false
+ },
+ {
+  "foto": "F026.jpg",
+  "kotak": [
+   530,
+   403,
+   1292,
+   521
+  ],
+  "berkas": "F026_00.png",
+  "latin": "PERAWATAN",
+  "yakin_latin": 0.996,
+  "draf": "ꦥꦼꦫꦮꦠꦤ꧀",
+  "skor_ctc": 10.269,
+  "diragukan": false
+ },
+ {
+  "foto": "F027.jpg",
+  "kotak": [
+   178,
+   435,
+   1506,
+   520
+  ],
+  "berkas": "F027_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F028.jpg",
+  "kotak": [
+   683,
+   539,
+   1049,
+   631
+  ],
+  "berkas": "F028_00.png",
+  "latin": "JALAN WALET I",
+  "yakin_latin": 0.83,
+  "draf": "ꦗꦭꦤ꧀ꦮꦭꦺꦠ꧀ꦲꦶ",
+  "skor_ctc": 4.43,
+  "diragukan": false
+ },
+ {
+  "foto": "F029.jpg",
+  "kotak": [
+   648,
+   509,
+   1176,
+   585
+  ],
+  "berkas": "F029_00.png",
+  "latin": "JL. BRIGJEND. SLAMET RIYADI",
+  "yakin_latin": 0.899,
+  "draf": "ꦗ꧀ꦭ꧀ꦧ꧀ꦫꦶꦒ꧀ꦗꦺꦤ꧀ꦢ꧀ꦱ꧀ꦭꦩꦺꦠ꧀ꦫꦶꦪꦢꦶ",
+  "skor_ctc": 4.103,
+  "diragukan": true
+ },
+ {
+  "foto": "F030.jpg",
+  "kotak": [
+   302,
+   612,
+   1412,
+   745
+  ],
+  "berkas": "F030_00.png",
+  "latin": "PT. PLN (Persero)",
+  "yakin_latin": 0.941,
+  "draf": "ꦥ꧀ꦠ꧀ꦥ꧀ꦭ꧀ꦤ꧀ꦥꦼꦂꦱꦼꦫꦺꦴ",
+  "skor_ctc": 5.408,
+  "diragukan": true
+ },
+ {
+  "foto": "F030.jpg",
+  "kotak": [
+   559,
+   760,
+   1225,
+   840
+  ],
+  "berkas": "F030_01.png",
+  "latin": "PT. PLN (Persero)",
+  "yakin_latin": 0.941,
+  "draf": "ꦥ꧀ꦠ꧀ꦥ꧀ꦭ꧀ꦤ꧀ꦥꦼꦂꦱꦼꦫꦺꦴ",
+  "skor_ctc": 3.75,
+  "diragukan": true
+ },
+ {
+  "foto": "F032.jpg",
+  "kotak": [
+   902,
+   597,
+   1136,
+   655
+  ],
+  "berkas": "F032_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F032.jpg",
+  "kotak": [
+   1192,
+   615,
+   1342,
+   643
+  ],
+  "berkas": "F032_01.png",
+  "latin": "PUTIH",
+  "yakin_latin": 0.995,
+  "draf": "ꦥꦸꦠꦶꦃ",
+  "skor_ctc": 13.728,
+  "diragukan": false
+ },
+ {
+  "foto": "F032.jpg",
+  "kotak": [
+   980,
+   661,
+   1178,
+   699
+  ],
+  "berkas": "F032_02.png",
+  "latin": "0-0",
+  "yakin_latin": 0.39,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F041.jpg",
+  "kotak": [
+   299,
+   143,
+   1032,
+   258
+  ],
+  "berkas": "F041_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F041.jpg",
+  "kotak": [
+   374,
+   251,
+   976,
+   323
+  ],
+  "berkas": "F041_01.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F041.jpg",
+  "kotak": [
+   523,
+   336,
+   826,
+   413
+  ],
+  "berkas": "F041_02.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F041.jpg",
+  "kotak": [
+   534,
+   1709,
+   670,
+   1741
+  ],
+  "berkas": "F041_03.png",
+  "latin": "Kawedalaken Comité ingkang ngathah-",
+  "yakin_latin": 0.986,
+  "draf": "ꦏꦮꦼꦢꦭꦏꦺꦤ꧀ꦕꦺꦴꦩꦶꦠꦺꦲꦶꦁꦏꦁꦔꦛꦃ",
+  "skor_ctc": 5.561,
+  "diragukan": true
+ },
+ {
+  "foto": "F053.jpg",
+  "kotak": [
+   744,
+   698,
+   1178,
+   765
+  ],
+  "berkas": "F053_00.png",
+  "latin": "JL. KEMUNING",
+  "yakin_latin": 0.996,
+  "draf": "ꦗ꧀ꦭ꧀ꦏꦼꦩꦸꦤꦶꦁ",
+  "skor_ctc": 3.004,
+  "diragukan": true
+ },
+ {
+  "foto": "F054.jpg",
+  "kotak": [
+   1129,
+   915,
+   1605,
+   975
+  ],
+  "berkas": "F054_00.png",
+  "latin": "e",
+  "yakin_latin": 0.504,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F055.jpg",
+  "kotak": [
+   262,
+   857,
+   1068,
+   974
+  ],
+  "berkas": "F055_00.png",
+  "latin": "Telp. (0271 716525",
+  "yakin_latin": 0.887,
+  "draf": "ꦠꦺꦭ꧀ꦥ꧀",
+  "skor_ctc": 5.65,
+  "diragukan": true
+ },
+ {
+  "foto": "F056.jpg",
+  "kotak": [
+   954,
+   614,
+   1370,
+   708
+  ],
+  "berkas": "F056_00.png",
+  "latin": "JL. MENUR I",
+  "yakin_latin": 0.959,
+  "draf": "ꦗ꧀ꦭ꧀ꦩꦼꦤꦸꦂꦲꦶ",
+  "skor_ctc": 4.351,
+  "diragukan": true
+ },
+ {
+  "foto": "F056.jpg",
+  "kotak": [
+   618,
+   622,
+   942,
+   716
+  ],
+  "berkas": "F056_01.png",
+  "latin": "JL. MENUR I",
+  "yakin_latin": 0.959,
+  "draf": "ꦗ꧀ꦭ꧀ꦩꦼꦤꦸꦂꦲꦶ",
+  "skor_ctc": 5.258,
+  "diragukan": true
+ },
+ {
+  "foto": "F057.jpg",
+  "kotak": [
+   470,
+   388,
+   734,
+   479
+  ],
+  "berkas": "F057_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F058.jpg",
+  "kotak": [
+   296,
+   524,
+   1172,
+   695
+  ],
+  "berkas": "F058_00.png",
+  "latin": " 2  2 GI",
+  "yakin_latin": 0.458,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F058.jpg",
+  "kotak": [
+   439,
+   793,
+   497,
+   836
+  ],
+  "berkas": "F058_01.png",
+  "latin": " 2  2 GI",
+  "yakin_latin": 0.458,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F059.jpg",
+  "kotak": [
+   978,
+   485,
+   1422,
+   569
+  ],
+  "berkas": "F059_00.png",
+  "latin": "OCBC NISP",
+  "yakin_latin": 0.988,
+  "draf": "ꦲꦺꦴꦕ꧀ꦧ꧀ꦕ꧀ꦤꦶꦱ꧀ꦥ꧀",
+  "skor_ctc": 3.881,
+  "diragukan": false
+ },
+ {
+  "foto": "F060.jpg",
+  "kotak": [
+   952,
+   937,
+   1348,
+   1041
+  ],
+  "berkas": "F060_00.png",
+  "latin": "Reypd Palas Hetel",
+  "yakin_latin": 0.682,
+  "draf": "ꦫꦺꦪ꧀ꦥ꧀ꦢ꧀ꦥꦭꦱ꧀ꦲꦼꦠꦺꦭ꧀",
+  "skor_ctc": 5.927,
+  "diragukan": false
+ },
+ {
+  "foto": "F060.jpg",
+  "kotak": [
+   298,
+   982,
+   622,
+   1069
+  ],
+  "berkas": "F060_01.png",
+  "latin": "Reypd Palas Hetel",
+  "yakin_latin": 0.682,
+  "draf": "ꦫꦺꦪ꧀ꦥ꧀ꦢ꧀ꦥꦭꦱ꧀ꦲꦼꦠꦺꦭ꧀",
+  "skor_ctc": 6.704,
+  "diragukan": false
+ },
+ {
+  "foto": "F061.jpg",
+  "kotak": [
+   199,
+   684,
+   1503,
+   821
+  ],
+  "berkas": "F061_00.png",
+  "latin": "ASURANSI JASINDO",
+  "yakin_latin": 0.999,
+  "draf": "ꦲꦱꦸꦫꦤ꧀ꦱꦶꦗꦱꦶꦤ꧀ꦢꦺꦴ",
+  "skor_ctc": 2.286,
+  "diragukan": false
+ },
+ {
+  "foto": "F062.jpg",
+  "kotak": [
+   589,
+   623,
+   1363,
+   739
+  ],
+  "berkas": "F062_00.png",
+  "latin": "D. SLAMETRIYADI3PHONE 7SOLO",
+  "yakin_latin": 0.778,
+  "draf": "ꦢ꧀ꦱ꧀ꦭꦩꦼꦠ꧀ꦫꦶꦪꦢꦶꦥ꧀ꦲꦺꦴꦤꦺꦱꦺꦴꦭꦺꦴ",
+  "skor_ctc": 5.069,
+  "diragukan": true
+ },
+ {
+  "foto": "F062.jpg",
+  "kotak": [
+   1529,
+   850,
+   1603,
+   879
+  ],
+  "berkas": "F062_01.png",
+  "latin": "731218",
+  "yakin_latin": 0.997,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F063.jpg",
+  "kotak": [
+   487,
+   911,
+   1361,
+   1005
+  ],
+  "berkas": "F063_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F064.jpg",
+  "kotak": [
+   744,
+   567,
+   1088,
+   620
+  ],
+  "berkas": "F064_00.png",
+  "latin": "BANK MEGA",
+  "yakin_latin": 0.996,
+  "draf": "ꦧꦤ꧀ꦏ꧀ꦩꦼꦒ",
+  "skor_ctc": 5.931,
+  "diragukan": false
+ },
+ {
+  "foto": "F064.jpg",
+  "kotak": [
+   653,
+   580,
+   737,
+   621
+  ],
+  "berkas": "F064_01.png",
+  "latin": "BANK MEGA",
+  "yakin_latin": 0.996,
+  "draf": "ꦧꦤ꧀ꦏ꧀ꦩꦼꦒ",
+  "skor_ctc": 8.594,
+  "diragukan": false
+ },
+ {
+  "foto": "F064.jpg",
+  "kotak": [
+   411,
+   579,
+   619,
+   660
+  ],
+  "berkas": "F064_02.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F065.jpg",
+  "kotak": [
+   720,
+   669,
+   1334,
+   759
+  ],
+  "berkas": "F065_00.png",
+  "latin": "HOUSE",
+  "yakin_latin": 1.0,
+  "draf": "ꦲꦺꦴꦮꦸꦱꦺ",
+  "skor_ctc": 4.055,
+  "diragukan": false
+ },
+ {
+  "foto": "F065.jpg",
+  "kotak": [
+   1304,
+   1177,
+   1602,
+   1262
+  ],
+  "berkas": "F065_01.png",
+  "latin": "1sH qsits",
+  "yakin_latin": 0.425,
+  "draf": "ꦱ꧀ꦃꦏ꧀ꦱꦶꦠ꧀ꦱ꧀",
+  "skor_ctc": 3.472,
+  "diragukan": true
+ },
+ {
+  "foto": "F066.jpg",
+  "kotak": [
+   1098,
+   443,
+   1676,
+   551
+  ],
+  "berkas": "F066_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F066.jpg",
+  "kotak": [
+   939,
+   588,
+   1767,
+   688
+  ],
+  "berkas": "F066_01.png",
+  "latin": "PEMERINTAH KOTA SURAKARTA",
+  "yakin_latin": 0.999,
+  "draf": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
+  "skor_ctc": 7.435,
+  "diragukan": false
+ },
+ {
+  "foto": "F067.jpg",
+  "kotak": [
+   206,
+   485,
+   1328,
+   722
+  ],
+  "berkas": "F067_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F068.jpg",
+  "kotak": [
+   272,
+   270,
+   1540,
+   341
+  ],
+  "berkas": "F068_00.png",
+  "latin": "YAYASAN PEMBINAAN ANAK CACAT ( YPAC)",
+  "yakin_latin": 0.954,
+  "draf": "ꦪꦪꦱꦤ꧀ꦥꦼꦩ꧀ꦧꦶꦤꦲꦤ꧀ꦲꦤꦏ꧀ꦕꦕꦠ꧀ꦪ꧀ꦥꦕ꧀",
+  "skor_ctc": 3.825,
+  "diragukan": true
+ },
+ {
+  "foto": "F068.jpg",
+  "kotak": [
+   1851,
+   291,
+   1920,
+   353
+  ],
+  "berkas": "F068_01.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F068.jpg",
+  "kotak": [
+   750,
+   342,
+   1054,
+   409
+  ],
+  "berkas": "F068_02.png",
+  "latin": "YAYASAN PEMBINAAN ANAK CACAT ( YPAC)",
+  "yakin_latin": 0.954,
+  "draf": "ꦪꦪꦱꦤ꧀ꦥꦼꦩ꧀ꦧꦶꦤꦲꦤ꧀ꦲꦤꦏ꧀ꦕꦕꦠ꧀ꦪ꧀ꦥꦕ꧀",
+  "skor_ctc": 7.614,
+  "diragukan": true
+ },
+ {
+  "foto": "F069.jpg",
+  "kotak": [
+   382,
+   265,
+   1180,
+   352
+  ],
+  "berkas": "F069_00.png",
+  "latin": "PUSAT REHABILITASI ANAK (PR.A)",
+  "yakin_latin": 0.926,
+  "draf": "ꦥꦸꦱꦠ꧀ꦫꦼꦲꦧꦶꦭꦶꦠꦱꦶꦲꦤꦏ꧀ꦥ꧀ꦫ",
+  "skor_ctc": 3.369,
+  "diragukan": true
+ },
+ {
+  "foto": "F069.jpg",
+  "kotak": [
+   607,
+   343,
+   1239,
+   422
+  ],
+  "berkas": "F069_01.png",
+  "latin": "PUSAT REHABILITASI ANAK (PR.A)",
+  "yakin_latin": 0.926,
+  "draf": "ꦥꦸꦱꦠ꧀ꦫꦼꦲꦧꦶꦭꦶꦠꦱꦶꦲꦤꦏ꧀ꦥ꧀ꦫ",
+  "skor_ctc": 6.286,
+  "diragukan": true
+ },
+ {
+  "foto": "F070.jpg",
+  "kotak": [
+   478,
+   624,
+   1058,
+   740
+  ],
+  "berkas": "F070_00.png",
+  "latin": "SOLOGRAND",
+  "yakin_latin": 0.985,
+  "draf": "ꦱꦺꦴꦭꦺꦴꦒ꧀ꦫꦤ꧀ꦢ꧀",
+  "skor_ctc": 4.349,
+  "diragukan": false
+ },
+ {
+  "foto": "F071.jpg",
+  "kotak": [
+   469,
+   876,
+   1159,
+   963
+  ],
+  "berkas": "F071_00.png",
+  "latin": "Slamet Riyadi So Tlp,F",
+  "yakin_latin": 0.773,
+  "draf": "ꦱ꧀ꦭꦩꦺꦠ꧀ꦫꦶꦪꦢꦶꦱꦺꦴꦠ꧀ꦭ꧀ꦥ꧀ꦥ꧀",
+  "skor_ctc": 5.331,
+  "diragukan": true
+ },
+ {
+  "foto": "F072.jpg",
+  "kotak": [
+   385,
+   660,
+   849,
+   764
+  ],
+  "berkas": "F072_00.png",
+  "latin": "BTN",
+  "yakin_latin": 0.955,
+  "draf": "ꦧ꧀ꦠ꧀ꦤ꧀",
+  "skor_ctc": 3.395,
+  "diragukan": false
+ },
+ {
+  "foto": "F073.jpg",
+  "kotak": [
+   643,
+   304,
+   1625,
+   481
+  ],
+  "berkas": "F073_00.png",
+  "latin": "c",
+  "yakin_latin": 0.391,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F073.jpg",
+  "kotak": [
+   308,
+   522,
+   1770,
+   661
+  ],
+  "berkas": "F073_01.png",
+  "latin": "c",
+  "yakin_latin": 0.391,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F073.jpg",
+  "kotak": [
+   1429,
+   627,
+   1555,
+   674
+  ],
+  "berkas": "F073_02.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F073.jpg",
+  "kotak": [
+   758,
+   691,
+   1374,
+   786
+  ],
+  "berkas": "F073_03.png",
+  "latin": "PEMERINTAH KOTA SURAKARTA",
+  "yakin_latin": 0.982,
+  "draf": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
+  "skor_ctc": 5.509,
+  "diragukan": false
+ },
+ {
+  "foto": "F073.jpg",
+  "kotak": [
+   487,
+   1224,
+   651,
+   1321
+  ],
+  "berkas": "F073_04.png",
+  "latin": "VCASILA",
+  "yakin_latin": 0.928,
+  "draf": "ꦮ꧀ꦕꦱꦶꦭ",
+  "skor_ctc": 4.109,
+  "diragukan": true
+ },
+ {
+  "foto": "F074.jpg",
+  "kotak": [
+   162,
+   487,
+   1356,
+   687
+  ],
+  "berkas": "F074_00.png",
+  "latin": "DHARMA",
+  "yakin_latin": 0.999,
+  "draf": "ꦝꦂꦩ",
+  "skor_ctc": 23.742,
+  "diragukan": false
+ },
+ {
+  "foto": "F074.jpg",
+  "kotak": [
+   121,
+   662,
+   1419,
+   821
+  ],
+  "berkas": "F074_01.png",
+  "latin": "DHARMA",
+  "yakin_latin": 0.999,
+  "draf": "ꦝꦂꦩ",
+  "skor_ctc": 44.851,
+  "diragukan": false
+ },
+ {
+  "foto": "F074.jpg",
+  "kotak": [
+   1119,
+   772,
+   1185,
+   817
+  ],
+  "berkas": "F074_02.png",
+  "latin": "PERSATUAN",
+  "yakin_latin": 1.0,
+  "draf": "ꦥꦼꦂꦱꦠꦸꦮꦤ꧀",
+  "skor_ctc": 7.991,
+  "diragukan": false
+ },
+ {
+  "foto": "F074.jpg",
+  "kotak": [
+   508,
+   796,
+   1076,
+   898
+  ],
+  "berkas": "F074_03.png",
+  "latin": "WANITA",
+  "yakin_latin": 0.999,
+  "draf": "ꦮꦤꦶꦠ",
+  "skor_ctc": 11.709,
+  "diragukan": false
+ },
+ {
+  "foto": "F075.jpg",
+  "kotak": [
+   480,
+   806,
+   1008,
+   892
+  ],
+  "berkas": "F075_00.png",
+  "latin": "S0",
+  "yakin_latin": 0.235,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F076.jpg",
+  "kotak": [
+   789,
+   520,
+   995,
+   590
+  ],
+  "berkas": "F076_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F076.jpg",
+  "kotak": [
+   1015,
+   522,
+   1347,
+   591
+  ],
+  "berkas": "F076_01.png",
+  "latin": "152",
+  "yakin_latin": 0.781,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F077.jpg",
+  "kotak": [
+   843,
+   228,
+   1009,
+   281
+  ],
+  "berkas": "F077_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F077.jpg",
+  "kotak": [
+   1058,
+   229,
+   1300,
+   285
+  ],
+  "berkas": "F077_01.png",
+  "latin": "72",
+  "yakin_latin": 0.521,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F078.jpg",
+  "kotak": [
+   851,
+   103,
+   1107,
+   167
+  ],
+  "berkas": "F078_00.png",
+  "latin": "152",
+  "yakin_latin": 0.593,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F078.jpg",
+  "kotak": [
+   647,
+   112,
+   815,
+   170
+  ],
+  "berkas": "F078_01.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F079.jpg",
+  "kotak": [
+   109,
+   516,
+   591,
+   642
+  ],
+  "berkas": "F079_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F079.jpg",
+  "kotak": [
+   231,
+   637,
+   445,
+   733
+  ],
+  "berkas": "F079_01.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F080.jpg",
+  "kotak": [
+   366,
+   655,
+   1102,
+   740
+  ],
+  "berkas": "F080_00.png",
+  "latin": "TOKO BUKU",
+  "yakin_latin": 0.932,
+  "draf": "ꦠꦺꦴꦏꦺꦴꦧꦸꦏꦸ",
+  "skor_ctc": 4.954,
+  "diragukan": false
+ },
+ {
+  "foto": "F081.jpg",
+  "kotak": [
+   779,
+   737,
+   971,
+   781
+  ],
+  "berkas": "F081_00.png",
+  "latin": "RiaF",
+  "yakin_latin": 0.926,
+  "draf": "ꦫꦶꦪꦥ꧀",
+  "skor_ctc": 5.59,
+  "diragukan": true
+ },
+ {
+  "foto": "F081.jpg",
+  "kotak": [
+   247,
+   735,
+   613,
+   872
+  ],
+  "berkas": "F081_01.png",
+  "latin": "RiaF",
+  "yakin_latin": 0.926,
+  "draf": "ꦫꦶꦪꦥ꧀",
+  "skor_ctc": 5.201,
+  "diragukan": true
+ },
+ {
+  "foto": "F081.jpg",
+  "kotak": [
+   632,
+   765,
+   1012,
+   853
+  ],
+  "berkas": "F081_02.png",
+  "latin": "RiaF",
+  "yakin_latin": 0.926,
+  "draf": "ꦫꦶꦪꦥ꧀",
+  "skor_ctc": 6.394,
+  "diragukan": true
+ },
+ {
+  "foto": "F082.jpg",
+  "kotak": [
+   272,
+   649,
+   1412,
+   846
+  ],
+  "berkas": "F082_00.png",
+  "latin": "FREE",
+  "yakin_latin": 0.99,
+  "draf": "ꦥ꧀ꦫꦼꦲꦺ",
+  "skor_ctc": 4.753,
+  "diragukan": true
+ },
+ {
+  "foto": "F082.jpg",
+  "kotak": [
+   711,
+   797,
+   1009,
+   878
+  ],
+  "berkas": "F082_01.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F083.jpg",
+  "kotak": [
+   416,
+   388,
+   1060,
+   505
+  ],
+  "berkas": "F083_00.png",
+  "latin": "P.BANK PERKREDITA",
+  "yakin_latin": 0.89,
+  "draf": "ꦥ꧀ꦧꦤ꧀ꦏ꧀ꦥꦼꦂꦏ꧀ꦫꦼꦢꦶꦠ",
+  "skor_ctc": 5.557,
+  "diragukan": true
+ },
+ {
+  "foto": "F084.jpg",
+  "kotak": [
+   1022,
+   752,
+   1408,
+   931
+  ],
+  "berkas": "F084_00.png",
+  "latin": "KAMPUNGTIMURAN",
+  "yakin_latin": 0.887,
+  "draf": "ꦏꦩ꧀ꦥꦸꦁꦠꦶꦩꦸꦫꦤ꧀",
+  "skor_ctc": 4.54,
+  "diragukan": false
+ },
+ {
+  "foto": "F088.jpg",
+  "kotak": [
+   423,
+   424,
+   955,
+   488
+  ],
+  "berkas": "F088_00.png",
+  "latin": "m",
+  "yakin_latin": 0.318,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F088.jpg",
+  "kotak": [
+   437,
+   484,
+   1097,
+   561
+  ],
+  "berkas": "F088_01.png",
+  "latin": "m",
+  "yakin_latin": 0.318,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F088.jpg",
+  "kotak": [
+   233,
+   498,
+   405,
+   547
+  ],
+  "berkas": "F088_02.png",
+  "latin": "maianzaan",
+  "yakin_latin": 0.496,
+  "draf": "ꦩꦲꦶꦪꦤ꧀ꦗꦲꦤ꧀",
+  "skor_ctc": 6.183,
+  "diragukan": true
+ },
+ {
+  "foto": "F088.jpg",
+  "kotak": [
+   467,
+   694,
+   815,
+   795
+  ],
+  "berkas": "F088_03.png",
+  "latin": "RINTAH KOTA SURA",
+  "yakin_latin": 0.984,
+  "draf": "ꦫꦶꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫ",
+  "skor_ctc": 6.819,
+  "diragukan": false
+ },
+ {
+  "foto": "F088.jpg",
+  "kotak": [
+   133,
+   936,
+   183,
+   964
+  ],
+  "berkas": "F088_04.png",
+  "latin": "SEKOLAH MENENGAH PERTAMA",
+  "yakin_latin": 0.953,
+  "draf": "ꦱꦼꦏꦺꦴꦭꦃꦩꦼꦤꦼꦔꦃꦥꦼꦂꦠꦩ",
+  "skor_ctc": 7.655,
+  "diragukan": false
+ },
+ {
+  "foto": "F089.jpg",
+  "kotak": [
+   569,
+   471,
+   621,
+   505
+  ],
+  "berkas": "F089_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F089.jpg",
+  "kotak": [
+   0,
+   532,
+   1444,
+   681
+  ],
+  "berkas": "F089_01.png",
+  "latin": "2l",
+  "yakin_latin": 0.235,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F089.jpg",
+  "kotak": [
+   478,
+   722,
+   968,
+   806
+  ],
+  "berkas": "F089_02.png",
+  "latin": "PEMERNTA",
+  "yakin_latin": 0.951,
+  "draf": "ꦥꦼꦩꦼꦂꦤ꧀ꦠ",
+  "skor_ctc": 6.65,
+  "diragukan": false
+ },
+ {
+  "foto": "F090.jpg",
+  "kotak": [
+   439,
+   477,
+   1189,
+   568
+  ],
+  "berkas": "F090_00.png",
+  "latin": "PEMERN",
+  "yakin_latin": 0.941,
+  "draf": "ꦥꦼꦩꦺꦂꦤ꧀",
+  "skor_ctc": 14.419,
+  "diragukan": false
+ },
+ {
+  "foto": "F090.jpg",
+  "kotak": [
+   707,
+   580,
+   797,
+   623
+  ],
+  "berkas": "F090_01.png",
+  "latin": "PEMERN",
+  "yakin_latin": 0.941,
+  "draf": "ꦥꦼꦩꦺꦂꦤ꧀",
+  "skor_ctc": 4.45,
+  "diragukan": false
+ },
+ {
+  "foto": "F090.jpg",
+  "kotak": [
+   845,
+   584,
+   929,
+   622
+  ],
+  "berkas": "F090_02.png",
+  "latin": "SURAK",
+  "yakin_latin": 0.99,
+  "draf": "ꦱꦸꦫꦏ꧀",
+  "skor_ctc": 6.928,
+  "diragukan": false
+ },
+ {
+  "foto": "F091.jpg",
+  "kotak": [
+   289,
+   317,
+   821,
+   479
+  ],
+  "berkas": "F091_00.png",
+  "latin": "CBNA",
+  "yakin_latin": 0.666,
+  "draf": "ꦕ꧀ꦧ꧀ꦤ",
+  "skor_ctc": 5.384,
+  "diragukan": false
+ },
+ {
+  "foto": "F092.jpg",
+  "kotak": [
+   1049,
+   312,
+   1183,
+   349
+  ],
+  "berkas": "F092_00.png",
+  "latin": "173 (0271) 646770",
+  "yakin_latin": 0.937,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F092.jpg",
+  "kotak": [
+   628,
+   1051,
+   1328,
+   1132
+  ],
+  "berkas": "F092_01.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F094.jpg",
+  "kotak": [
+   151,
+   441,
+   625,
+   571
+  ],
+  "berkas": "F094_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F095.jpg",
+  "kotak": [
+   1201,
+   275,
+   1665,
+   334
+  ],
+  "berkas": "F095_00.png",
+  "latin": ". CIPTO MANGUNKUSUMO",
+  "yakin_latin": 0.873,
+  "draf": "ꦕꦶꦥ꧀ꦠꦺꦴꦩꦔꦸꦤ꧀ꦏꦸꦱꦸꦩꦺꦴ",
+  "skor_ctc": 3.717,
+  "diragukan": true
+ },
+ {
+  "foto": "F096.jpg",
+  "kotak": [
+   931,
+   615,
+   1197,
+   703
+  ],
+  "berkas": "F096_00.png",
+  "latin": "BONJOL",
+  "yakin_latin": 0.861,
+  "draf": "ꦧꦺꦴꦤ꧀ꦗꦺꦴꦭ꧀",
+  "skor_ctc": 3.863,
+  "diragukan": false
+ },
+ {
+  "foto": "F097.jpg",
+  "kotak": [
+   434,
+   511,
+   1264,
+   591
+  ],
+  "berkas": "F097_00.png",
+  "latin": "KUSUMA SAHID PRINCE HOTEL",
+  "yakin_latin": 0.995,
+  "draf": "ꦏꦸꦱꦸꦩꦱꦲꦶꦢ꧀ꦥ꧀ꦫꦶꦤ꧀ꦕꦺꦲꦺꦴꦠꦺꦭ꧀",
+  "skor_ctc": 4.184,
+  "diragukan": false
+ },
+ {
+  "foto": "F098.jpg",
+  "kotak": [
+   196,
+   660,
+   1462,
+   749
+  ],
+  "berkas": "F098_00.png",
+  "latin": "RAHAN KAMPUNG BARU",
+  "yakin_latin": 0.951,
+  "draf": "ꦫꦲꦤ꧀ꦏꦩ꧀ꦥꦸꦁꦧꦫꦸ",
+  "skor_ctc": 4.674,
+  "diragukan": false
+ },
+ {
+  "foto": "F098.jpg",
+  "kotak": [
+   256,
+   738,
+   1412,
+   827
+  ],
+  "berkas": "F098_01.png",
+  "latin": "RAHAN KAMPUNG BARU",
+  "yakin_latin": 0.951,
+  "draf": "ꦫꦲꦤ꧀ꦏꦩ꧀ꦥꦸꦁꦧꦫꦸ",
+  "skor_ctc": 4.463,
+  "diragukan": false
+ },
+ {
+  "foto": "F098.jpg",
+  "kotak": [
+   529,
+   959,
+   1397,
+   1068
+  ],
+  "berkas": "F098_02.png",
+  "latin": "RAHAN KAMPUNG BARU",
+  "yakin_latin": 0.951,
+  "draf": "ꦫꦲꦤ꧀ꦏꦩ꧀ꦥꦸꦁꦧꦫꦸ",
+  "skor_ctc": 4.326,
+  "diragukan": false
+ },
+ {
+  "foto": "F099.jpg",
+  "kotak": [
+   439,
+   284,
+   885,
+   494
+  ],
+  "berkas": "F099_00.png",
+  "latin": "omy",
+  "yakin_latin": 0.483,
+  "draf": "ꦲꦺꦴꦩ꧀ꦪ꧀",
+  "skor_ctc": 5.691,
+  "diragukan": false
+ },
+ {
+  "foto": "F100.jpg",
+  "kotak": [
+   171,
+   286,
+   1183,
+   413
+  ],
+  "berkas": "F100_00.png",
+  "latin": "1C6",
+  "yakin_latin": 0.359,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F104.jpg",
+  "kotak": [
+   774,
+   898,
+   972,
+   945
+  ],
+  "berkas": "F104_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F105.jpg",
+  "kotak": [
+   231,
+   792,
+   777,
+   939
+  ],
+  "berkas": "F105_00.png",
+  "latin": "(",
+  "yakin_latin": 0.746,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F108.jpg",
+  "kotak": [
+   1053,
+   481,
+   1196,
+   528
+  ],
+  "berkas": "F108_00.png",
+  "latin": "CAKEACO",
+  "yakin_latin": 0.878,
+  "draf": "ꦕꦏꦼꦲꦕꦺꦴ",
+  "skor_ctc": 4.992,
+  "diragukan": false
+ },
+ {
+  "foto": "F108.jpg",
+  "kotak": [
+   100,
+   627,
+   376,
+   713
+  ],
+  "berkas": "F108_01.png",
+  "latin": "AARA JAWA",
+  "yakin_latin": 0.818,
+  "draf": "ꦲꦲꦫꦗꦮ",
+  "skor_ctc": 5.533,
+  "diragukan": false
+ },
+ {
+  "foto": "F108.jpg",
+  "kotak": [
+   1017,
+   617,
+   1278,
+   693
+  ],
+  "berkas": "F108_02.png",
+  "latin": "Cs",
+  "yakin_latin": 0.613,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F108.jpg",
+  "kotak": [
+   394,
+   699,
+   453,
+   733
+  ],
+  "berkas": "F108_03.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F108.jpg",
+  "kotak": [
+   64,
+   775,
+   120,
+   804
+  ],
+  "berkas": "F108_04.png",
+  "latin": "AARA JAWA",
+  "yakin_latin": 0.818,
+  "draf": "ꦲꦲꦫꦗꦮ",
+  "skor_ctc": 6.99,
+  "diragukan": false
+ },
+ {
+  "foto": "F108.jpg",
+  "kotak": [
+   414,
+   780,
+   477,
+   816
+  ],
+  "berkas": "F108_05.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F108.jpg",
+  "kotak": [
+   351,
+   887,
+   408,
+   920
+  ],
+  "berkas": "F108_06.png",
+  "latin": "AARA JAWA",
+  "yakin_latin": 0.818,
+  "draf": "ꦲꦲꦫꦗꦮ",
+  "skor_ctc": 6.925,
+  "diragukan": false
+ },
+ {
+  "foto": "F108.jpg",
+  "kotak": [
+   109,
+   951,
+   147,
+   971
+  ],
+  "berkas": "F108_07.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F111.jpg",
+  "kotak": [
+   745,
+   475,
+   949,
+   502
+  ],
+  "berkas": "F111_00.png",
+  "latin": "LOKET",
+  "yakin_latin": 0.932,
+  "draf": "ꦭꦺꦴꦏꦺꦠ꧀",
+  "skor_ctc": 0.873,
+  "diragukan": false
+ },
+ {
+  "foto": "F114.jpg",
+  "kotak": [
+   182,
+   600,
+   1732,
+   729
+  ],
+  "berkas": "F114_00.png",
+  "latin": "000",
+  "yakin_latin": 0.429,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F114.jpg",
+  "kotak": [
+   464,
+   665,
+   612,
+   725
+  ],
+  "berkas": "F114_01.png",
+  "latin": "PEMERINTAH KALURAHAN BANYURADEN",
+  "yakin_latin": 0.997,
+  "draf": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦭꦸꦫꦲꦤ꧀ꦧꦚꦸꦫꦢꦺꦤ꧀",
+  "skor_ctc": 8.491,
+  "diragukan": false
+ },
+ {
+  "foto": "F115.jpg",
+  "kotak": [
+   536,
+   398,
+   1480,
+   704
+  ],
+  "berkas": "F115_00.png",
+  "latin": "S",
+  "yakin_latin": 0.228,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F115.jpg",
+  "kotak": [
+   638,
+   629,
+   1434,
+   806
+  ],
+  "berkas": "F115_01.png",
+  "latin": "S",
+  "yakin_latin": 0.228,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F120.jpg",
+  "kotak": [
+   384,
+   481,
+   866,
+   613
+  ],
+  "berkas": "F120_00.png",
+  "latin": "e",
+  "yakin_latin": 0.628,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F120.jpg",
+  "kotak": [
+   401,
+   574,
+   935,
+   727
+  ],
+  "berkas": "F120_01.png",
+  "latin": "o",
+  "yakin_latin": 0.678,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F120.jpg",
+  "kotak": [
+   659,
+   684,
+   989,
+   805
+  ],
+  "berkas": "F120_02.png",
+  "latin": "4",
+  "yakin_latin": 0.258,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F120.jpg",
+  "kotak": [
+   846,
+   757,
+   924,
+   804
+  ],
+  "berkas": "F120_03.png",
+  "latin": "m",
+  "yakin_latin": 0.403,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F120.jpg",
+  "kotak": [
+   540,
+   824,
+   1068,
+   1021
+  ],
+  "berkas": "F120_04.png",
+  "latin": "4",
+  "yakin_latin": 0.258,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F120.jpg",
+  "kotak": [
+   647,
+   1237,
+   709,
+   1295
+  ],
+  "berkas": "F120_05.png",
+  "latin": "m",
+  "yakin_latin": 0.403,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F122.jpg",
+  "kotak": [
+   1169,
+   428,
+   1361,
+   519
+  ],
+  "berkas": "F122_00.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F122.jpg",
+  "kotak": [
+   502,
+   493,
+   734,
+   562
+  ],
+  "berkas": "F122_01.png",
+  "latin": "n",
+  "yakin_latin": 0.311,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F122.jpg",
+  "kotak": [
+   497,
+   526,
+   735,
+   614
+  ],
+  "berkas": "F122_02.png",
+  "latin": "n",
+  "yakin_latin": 0.311,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F122.jpg",
+  "kotak": [
+   1264,
+   574,
+   1292,
+   605
+  ],
+  "berkas": "F122_03.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F122.jpg",
+  "kotak": [
+   1175,
+   579,
+   1263,
+   623
+  ],
+  "berkas": "F122_04.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F122.jpg",
+  "kotak": [
+   500,
+   586,
+   738,
+   657
+  ],
+  "berkas": "F122_05.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F122.jpg",
+  "kotak": [
+   499,
+   645,
+   739,
+   709
+  ],
+  "berkas": "F122_06.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F122.jpg",
+  "kotak": [
+   1226,
+   671,
+   1372,
+   730
+  ],
+  "berkas": "F122_07.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F122.jpg",
+  "kotak": [
+   1167,
+   701,
+   1239,
+   743
+  ],
+  "berkas": "F122_08.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F122.jpg",
+  "kotak": [
+   496,
+   710,
+   742,
+   774
+  ],
+  "berkas": "F122_09.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F123.jpg",
+  "kotak": [
+   506,
+   692,
+   910,
+   801
+  ],
+  "berkas": "F123_00.png",
+  "latin": "150",
+  "yakin_latin": 0.451,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F123.jpg",
+  "kotak": [
+   474,
+   800,
+   953,
+   859
+  ],
+  "berkas": "F123_01.png",
+  "latin": "150",
+  "yakin_latin": 0.451,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F123.jpg",
+  "kotak": [
+   423,
+   1005,
+   1014,
+   1075
+  ],
+  "berkas": "F123_02.png",
+  "latin": "4",
+  "yakin_latin": 0.189,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F123.jpg",
+  "kotak": [
+   417,
+   1078,
+   1016,
+   1143
+  ],
+  "berkas": "F123_03.png",
+  "latin": "4",
+  "yakin_latin": 0.189,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F123.jpg",
+  "kotak": [
+   454,
+   1180,
+   974,
+   1244
+  ],
+  "berkas": "F123_04.png",
+  "latin": "a",
+  "yakin_latin": 0.398,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F123.jpg",
+  "kotak": [
+   473,
+   1299,
+   840,
+   1342
+  ],
+  "berkas": "F123_05.png",
+  "latin": "a",
+  "yakin_latin": 0.398,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F123.jpg",
+  "kotak": [
+   839,
+   1299,
+   956,
+   1344
+  ],
+  "berkas": "F123_06.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F123.jpg",
+  "kotak": [
+   495,
+   1405,
+   557,
+   1507
+  ],
+  "berkas": "F123_07.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F123.jpg",
+  "kotak": [
+   644,
+   1399,
+   907,
+   1498
+  ],
+  "berkas": "F123_08.png",
+  "latin": "Cna",
+  "yakin_latin": 0.291,
+  "draf": "ꦕ꧀ꦤ",
+  "skor_ctc": 4.599,
+  "diragukan": false
+ },
+ {
+  "foto": "F123.jpg",
+  "kotak": [
+   543,
+   1404,
+   656,
+   1452
+  ],
+  "berkas": "F123_09.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   1052,
+   141,
+   1770,
+   196
+  ],
+  "berkas": "F124_00.png",
+  "latin": "?",
+  "yakin_latin": 0.767,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   1056,
+   193,
+   1772,
+   246
+  ],
+  "berkas": "F124_01.png",
+  "latin": "Wangsulan:",
+  "yakin_latin": 0.962,
+  "draf": "ꦮꦁꦱꦸꦭꦤ꧀",
+  "skor_ctc": 13.839,
+  "diragukan": true
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   1055,
+   246,
+   1707,
+   296
+  ],
+  "berkas": "F124_02.png",
+  "latin": "O",
+  "yakin_latin": 0.416,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   203,
+   256,
+   977,
+   304
+  ],
+  "berkas": "F124_03.png",
+  "latin": "Wangsulan:",
+  "yakin_latin": 0.899,
+  "draf": "ꦮꦁꦱꦸꦭꦤ꧀",
+  "skor_ctc": 18.2,
+  "diragukan": true
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   1055,
+   297,
+   1743,
+   348
+  ],
+  "berkas": "F124_04.png",
+  "latin": "O",
+  "yakin_latin": 0.416,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   193,
+   306,
+   985,
+   354
+  ],
+  "berkas": "F124_05.png",
+  "latin": "Wangsulan:",
+  "yakin_latin": 0.899,
+  "draf": "ꦮꦁꦱꦸꦭꦤ꧀",
+  "skor_ctc": 15.376,
+  "diragukan": true
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   1057,
+   354,
+   1539,
+   396
+  ],
+  "berkas": "F124_06.png",
+  "latin": "O",
+  "yakin_latin": 0.416,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   193,
+   356,
+   989,
+   406
+  ],
+  "berkas": "F124_07.png",
+  "latin": "w",
+  "yakin_latin": 0.53,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   194,
+   405,
+   990,
+   458
+  ],
+  "berkas": "F124_08.png",
+  "latin": "w",
+  "yakin_latin": 0.53,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   193,
+   455,
+   979,
+   506
+  ],
+  "berkas": "F124_09.png",
+  "latin": "m keaaagak?",
+  "yakin_latin": 0.678,
+  "draf": "ꦩ꧀ꦏꦼꦲꦲꦲꦒꦏ꧀",
+  "skor_ctc": 11.521,
+  "diragukan": true
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   195,
+   512,
+   1619,
+   563
+  ],
+  "berkas": "F124_10.png",
+  "latin": "a",
+  "yakin_latin": 0.517,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   180,
+   589,
+   990,
+   634
+  ],
+  "berkas": "F124_11.png",
+  "latin": "Wangsulan:",
+  "yakin_latin": 0.993,
+  "draf": "ꦮꦁꦱꦸꦭꦤ꧀",
+  "skor_ctc": 13.685,
+  "diragukan": true
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   179,
+   642,
+   871,
+   695
+  ],
+  "berkas": "F124_12.png",
+  "latin": "0..4..",
+  "yakin_latin": 0.473,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   1057,
+   651,
+   1785,
+   703
+  ],
+  "berkas": "F124_13.png",
+  "latin": "alesanmu!",
+  "yakin_latin": 0.999,
+  "draf": "ꦲꦭꦼꦱꦤ꧀ꦩꦸ",
+  "skor_ctc": 16.936,
+  "diragukan": true
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   177,
+   690,
+   941,
+   744
+  ],
+  "berkas": "F124_14.png",
+  "latin": "G",
+  "yakin_latin": 0.742,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   1058,
+   708,
+   1794,
+   752
+  ],
+  "berkas": "F124_15.png",
+  "latin": "alesanmu!",
+  "yakin_latin": 0.999,
+  "draf": "ꦲꦭꦼꦱꦤ꧀ꦩꦸ",
+  "skor_ctc": 12.859,
+  "diragukan": true
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   178,
+   742,
+   978,
+   796
+  ],
+  "berkas": "F124_16.png",
+  "latin": "G",
+  "yakin_latin": 0.742,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   1063,
+   757,
+   1785,
+   809
+  ],
+  "berkas": "F124_17.png",
+  "latin": "CR",
+  "yakin_latin": 0.231,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   175,
+   790,
+   947,
+   855
+  ],
+  "berkas": "F124_18.png",
+  "latin": "G",
+  "yakin_latin": 0.742,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   1061,
+   807,
+   1785,
+   859
+  ],
+  "berkas": "F124_19.png",
+  "latin": "M",
+  "yakin_latin": 0.416,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   180,
+   848,
+   786,
+   905
+  ],
+  "berkas": "F124_20.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   1063,
+   861,
+   1785,
+   916
+  ],
+  "berkas": "F124_21.png",
+  "latin": "M",
+  "yakin_latin": 0.416,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   181,
+   926,
+   923,
+   976
+  ],
+  "berkas": "F124_22.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F124.jpg",
+  "kotak": [
+   175,
+   981,
+   1221,
+   1048
+  ],
+  "berkas": "F124_23.png",
+  "latin": "PA",
+  "yakin_latin": 0.284,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F125.jpg",
+  "kotak": [
+   1218,
+   350,
+   1294,
+   381
+  ],
+  "berkas": "F125_00.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F125.jpg",
+  "kotak": [
+   1155,
+   386,
+   1205,
+   410
+  ],
+  "berkas": "F125_01.png",
+  "latin": "9",
+  "yakin_latin": 0.127,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F125.jpg",
+  "kotak": [
+   1043,
+   439,
+   1189,
+   478
+  ],
+  "berkas": "F125_02.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F127.jpg",
+  "kotak": [
+   1502,
+   494,
+   1586,
+   548
+  ],
+  "berkas": "F127_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F127.jpg",
+  "kotak": [
+   1252,
+   502,
+   1312,
+   540
+  ],
+  "berkas": "F127_01.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F127.jpg",
+  "kotak": [
+   151,
+   615,
+   219,
+   653
+  ],
+  "berkas": "F127_02.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F127.jpg",
+  "kotak": [
+   536,
+   620,
+   600,
+   656
+  ],
+  "berkas": "F127_03.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F127.jpg",
+  "kotak": [
+   1456,
+   620,
+   1534,
+   666
+  ],
+  "berkas": "F127_04.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F127.jpg",
+  "kotak": [
+   798,
+   622,
+   860,
+   668
+  ],
+  "berkas": "F127_05.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F127.jpg",
+  "kotak": [
+   176,
+   746,
+   246,
+   784
+  ],
+  "berkas": "F127_06.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F127.jpg",
+  "kotak": [
+   1111,
+   753,
+   1163,
+   801
+  ],
+  "berkas": "F127_07.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F127.jpg",
+  "kotak": [
+   1679,
+   865,
+   1775,
+   935
+  ],
+  "berkas": "F127_08.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F127.jpg",
+  "kotak": [
+   491,
+   877,
+   553,
+   923
+  ],
+  "berkas": "F127_09.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F127.jpg",
+  "kotak": [
+   612,
+   884,
+   682,
+   930
+  ],
+  "berkas": "F127_10.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F127.jpg",
+  "kotak": [
+   744,
+   904,
+   808,
+   940
+  ],
+  "berkas": "F127_11.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F131.jpg",
+  "kotak": [
+   681,
+   1255,
+   1274,
+   1435
+  ],
+  "berkas": "F131_00.png",
+  "latin": "BAKPIA KUKUS",
+  "yakin_latin": 0.99,
+  "draf": "ꦧꦏ꧀ꦥꦶꦪꦏꦸꦏꦸꦱ꧀",
+  "skor_ctc": 0.776,
+  "diragukan": false
+ },
+ {
+  "foto": "F132.jpg",
+  "kotak": [
+   308,
+   409,
+   1682,
+   612
+  ],
+  "berkas": "F132_00.png",
+  "latin": "PRA KONGRES AKSARA JAWA I",
+  "yakin_latin": 0.941,
+  "draf": "ꦥ꧀ꦫꦏꦺꦴꦁꦫꦺꦱ꧀ꦲꦏ꧀ꦱꦫꦗꦮꦲꦶ",
+  "skor_ctc": 7.781,
+  "diragukan": false
+ },
+ {
+  "foto": "F132.jpg",
+  "kotak": [
+   891,
+   484,
+   1139,
+   592
+  ],
+  "berkas": "F132_01.png",
+  "latin": "PRA KONGRES AKSARA JAWA I",
+  "yakin_latin": 0.941,
+  "draf": "ꦥ꧀ꦫꦏꦺꦴꦁꦫꦺꦱ꧀ꦲꦏ꧀ꦱꦫꦗꦮꦲꦶ",
+  "skor_ctc": 5.932,
+  "diragukan": false
+ },
+ {
+  "foto": "F132.jpg",
+  "kotak": [
+   545,
+   678,
+   1469,
+   728
+  ],
+  "berkas": "F132_02.png",
+  "latin": "PRA KONGRES AKSARA JAWA I",
+  "yakin_latin": 0.941,
+  "draf": "ꦥ꧀ꦫꦏꦺꦴꦁꦫꦺꦱ꧀ꦲꦏ꧀ꦱꦫꦗꦮꦲꦶ",
+  "skor_ctc": 4.715,
+  "diragukan": false
+ },
+ {
+  "foto": "F132.jpg",
+  "kotak": [
+   775,
+   729,
+   1241,
+   779
+  ],
+  "berkas": "F132_03.png",
+  "latin": "PRA KONGRES AKSARA JAWA I",
+  "yakin_latin": 0.941,
+  "draf": "ꦥ꧀ꦫꦏꦺꦴꦁꦫꦺꦱ꧀ꦲꦏ꧀ꦱꦫꦗꦮꦲꦶ",
+  "skor_ctc": 4.339,
+  "diragukan": false
+ },
+ {
+  "foto": "F133.jpg",
+  "kotak": [
+   101,
+   326,
+   1683,
+   475
+  ],
+  "berkas": "F133_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F133.jpg",
+  "kotak": [
+   81,
+   493,
+   1577,
+   620
+  ],
+  "berkas": "F133_01.png",
+  "latin": "In",
+  "yakin_latin": 0.527,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F133.jpg",
+  "kotak": [
+   942,
+   575,
+   998,
+   618
+  ],
+  "berkas": "F133_02.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F133.jpg",
+  "kotak": [
+   703,
+   645,
+   753,
+   692
+  ],
+  "berkas": "F133_03.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F133.jpg",
+  "kotak": [
+   70,
+   675,
+   1920,
+   770
+  ],
+  "berkas": "F133_04.png",
+  "latin": "In",
+  "yakin_latin": 0.527,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F134.jpg",
+  "kotak": [
+   592,
+   301,
+   1196,
+   465
+  ],
+  "berkas": "F134_00.png",
+  "latin": "m",
+  "yakin_latin": 0.188,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F134.jpg",
+  "kotak": [
+   596,
+   406,
+   1158,
+   541
+  ],
+  "berkas": "F134_01.png",
+  "latin": "m",
+  "yakin_latin": 0.188,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F134.jpg",
+  "kotak": [
+   607,
+   511,
+   1275,
+   631
+  ],
+  "berkas": "F134_02.png",
+  "latin": "m",
+  "yakin_latin": 0.188,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F135.jpg",
+  "kotak": [
+   179,
+   0,
+   1205,
+   262
+  ],
+  "berkas": "F135_00.png",
+  "latin": "2n",
+  "yakin_latin": 0.834,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F139.jpg",
+  "kotak": [
+   1489,
+   750,
+   1526,
+   790
+  ],
+  "berkas": "F139_00.png",
+  "latin": "He",
+  "yakin_latin": 0.902,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F141.jpg",
+  "kotak": [
+   717,
+   1202,
+   944,
+   1281
+  ],
+  "berkas": "F141_00.png",
+  "latin": "Helsinki",
+  "yakin_latin": 0.998,
+  "draf": "ꦲꦼꦭ꧀ꦱꦶꦤ꧀ꦏꦶ",
+  "skor_ctc": 4.405,
+  "diragukan": false
+ },
+ {
+  "foto": "F142.jpg",
+  "kotak": [
+   401,
+   495,
+   1068,
+   580
+  ],
+  "berkas": "F142_00.png",
+  "latin": "JL. ABU BAKAR ALI",
+  "yakin_latin": 0.945,
+  "draf": "ꦗ꧀ꦭ꧀ꦲꦧꦸꦧꦏꦂꦲꦭꦶ",
+  "skor_ctc": 2.5,
+  "diragukan": true
+ },
+ {
+  "foto": "F143.jpg",
+  "kotak": [
+   481,
+   645,
+   1191,
+   1484
+  ],
+  "berkas": "F143_00.png",
+  "latin": "2",
+  "yakin_latin": 0.216,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F144.jpg",
+  "kotak": [
+   1138,
+   327,
+   1580,
+   382
+  ],
+  "berkas": "F144_00.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F144.jpg",
+  "kotak": [
+   384,
+   396,
+   768,
+   427
+  ],
+  "berkas": "F144_01.png",
+  "latin": "ac",
+  "yakin_latin": 0.337,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F144.jpg",
+  "kotak": [
+   1166,
+   439,
+   1622,
+   498
+  ],
+  "berkas": "F144_02.png",
+  "latin": "O0",
+  "yakin_latin": 0.354,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F144.jpg",
+  "kotak": [
+   305,
+   460,
+   763,
+   501
+  ],
+  "berkas": "F144_03.png",
+  "latin": "8",
+  "yakin_latin": 0.428,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F144.jpg",
+  "kotak": [
+   1168,
+   526,
+   1312,
+   575
+  ],
+  "berkas": "F144_04.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F144.jpg",
+  "kotak": [
+   380,
+   586,
+   768,
+   642
+  ],
+  "berkas": "F144_05.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F144.jpg",
+  "kotak": [
+   1153,
+   857,
+   1603,
+   915
+  ],
+  "berkas": "F144_06.png",
+  "latin": "59",
+  "yakin_latin": 0.78,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F144.jpg",
+  "kotak": [
+   317,
+   936,
+   701,
+   978
+  ],
+  "berkas": "F144_07.png",
+  "latin": "a",
+  "yakin_latin": 0.304,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F148.jpg",
+  "kotak": [
+   1025,
+   71,
+   1071,
+   101
+  ],
+  "berkas": "F148_00.png",
+  "latin": "Exspectata  karŞllama",
+  "yakin_latin": 0.947,
+  "draf": "ꦲꦼꦏ꧀ꦱ꧀ꦱ꧀ꦥꦼꦕ꧀ꦠꦠꦏꦂꦭ꧀ꦭꦩ",
+  "skor_ctc": 5.98,
+  "diragukan": true
+ },
+ {
+  "foto": "F148.jpg",
+  "kotak": [
+   1771,
+   523,
+   1829,
+   552
+  ],
+  "berkas": "F148_01.png",
+  "latin": "}",
+  "yakin_latin": 0.472,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F148.jpg",
+  "kotak": [
+   1761,
+   899,
+   1825,
+   927
+  ],
+  "berkas": "F148_02.png",
+  "latin": "encontraron lBuda EsmeraldaDespués acambiado l",
+  "yakin_latin": 0.857,
+  "draf": "ꦲꦼꦤ꧀ꦕꦺꦴꦤ꧀ꦠ꧀ꦫꦫꦺꦴꦤ꧀ꦭ꧀ꦧꦸꦢꦲꦼꦱ꧀ꦩꦼꦫꦭ꧀ꦢꦢꦼꦱ꧀ꦥꦸꦮꦺꦱ꧀ꦲꦕꦩ꧀ꦧꦶꦪꦢꦺꦴꦭ꧀",
+  "skor_ctc": 99.0,
+  "diragukan": false
+ },
+ {
+  "foto": "F148.jpg",
+  "kotak": [
+   1298,
+   943,
+   1794,
+   978
+  ],
+  "berkas": "F148_03.png",
+  "latin": "G",
+  "yakin_latin": 0.623,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F148.jpg",
+  "kotak": [
+   1295,
+   979,
+   1793,
+   1011
+  ],
+  "berkas": "F148_04.png",
+  "latin": " ",
+  "yakin_latin": 0.5,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F148.jpg",
+  "kotak": [
+   557,
+   1141,
+   629,
+   1195
+  ],
+  "berkas": "F148_05.png",
+  "latin": "TOYOTA",
+  "yakin_latin": 0.888,
+  "draf": "ꦠꦺꦴꦪꦺꦴꦠ",
+  "skor_ctc": 6.123,
+  "diragukan": false
+ },
+ {
+  "foto": "F150.jpg",
+  "kotak": [
+   370,
+   102,
+   720,
+   177
+  ],
+  "berkas": "F150_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F150.jpg",
+  "kotak": [
+   395,
+   174,
+   779,
+   240
+  ],
+  "berkas": "F150_01.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F150.jpg",
+  "kotak": [
+   1014,
+   953,
+   1124,
+   997
+  ],
+  "berkas": "F150_02.png",
+  "latin": "7",
+  "yakin_latin": 0.264,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F150.jpg",
+  "kotak": [
+   1006,
+   1003,
+   1064,
+   1041
+  ],
+  "berkas": "F150_03.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   247,
+   342,
+   1047,
+   407
+  ],
+  "berkas": "F151_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   241,
+   388,
+   1061,
+   479
+  ],
+  "berkas": "F151_01.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   241,
+   462,
+   1050,
+   540
+  ],
+  "berkas": "F151_02.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   239,
+   518,
+   1061,
+   598
+  ],
+  "berkas": "F151_03.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   242,
+   596,
+   1055,
+   673
+  ],
+  "berkas": "F151_04.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   238,
+   649,
+   1062,
+   729
+  ],
+  "berkas": "F151_05.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   834,
+   716,
+   856,
+   728
+  ],
+  "berkas": "F151_06.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   235,
+   716,
+   1059,
+   788
+  ],
+  "berkas": "F151_07.png",
+  "latin": "e",
+  "yakin_latin": 0.192,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   237,
+   770,
+   1065,
+   850
+  ],
+  "berkas": "F151_08.png",
+  "latin": "e",
+  "yakin_latin": 0.192,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   233,
+   834,
+   668,
+   900
+  ],
+  "berkas": "F151_09.png",
+  "latin": "mm",
+  "yakin_latin": 0.765,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   843,
+   864,
+   1069,
+   934
+  ],
+  "berkas": "F151_10.png",
+  "latin": "D",
+  "yakin_latin": 0.647,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   255,
+   1032,
+   1050,
+   1097
+  ],
+  "berkas": "F151_11.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   246,
+   1094,
+   1056,
+   1171
+  ],
+  "berkas": "F151_12.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   242,
+   1150,
+   1069,
+   1231
+  ],
+  "berkas": "F151_13.png",
+  "latin": "Ey",
+  "yakin_latin": 0.36,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   238,
+   1217,
+   1066,
+   1296
+  ],
+  "berkas": "F151_14.png",
+  "latin": "o",
+  "yakin_latin": 0.349,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   240,
+   1338,
+   1073,
+   1420
+  ],
+  "berkas": "F151_15.png",
+  "latin": "Ey",
+  "yakin_latin": 0.36,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   239,
+   1406,
+   1059,
+   1487
+  ],
+  "berkas": "F151_16.png",
+  "latin": "0.",
+  "yakin_latin": 0.503,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   233,
+   1464,
+   1058,
+   1551
+  ],
+  "berkas": "F151_17.png",
+  "latin": "0.",
+  "yakin_latin": 0.503,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   234,
+   1518,
+   1059,
+   1609
+  ],
+  "berkas": "F151_18.png",
+  "latin": "e",
+  "yakin_latin": 0.451,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   236,
+   1597,
+   1059,
+   1682
+  ],
+  "berkas": "F151_19.png",
+  "latin": "e",
+  "yakin_latin": 0.451,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F151.jpg",
+  "kotak": [
+   232,
+   1648,
+   1068,
+   1751
+  ],
+  "berkas": "F151_20.png",
+  "latin": "e",
+  "yakin_latin": 0.451,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F155.jpg",
+  "kotak": [
+   410,
+   151,
+   928,
+   224
+  ],
+  "berkas": "F155_00.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F163.jpg",
+  "kotak": [
+   644,
+   356,
+   782,
+   393
+  ],
+  "berkas": "F163_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F163.jpg",
+  "kotak": [
+   546,
+   387,
+   903,
+   420
+  ],
+  "berkas": "F163_01.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F163.jpg",
+  "kotak": [
+   625,
+   428,
+   866,
+   468
+  ],
+  "berkas": "F163_02.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F163.jpg",
+  "kotak": [
+   588,
+   436,
+   633,
+   459
+  ],
+  "berkas": "F163_03.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F163.jpg",
+  "kotak": [
+   636,
+   451,
+   797,
+   501
+  ],
+  "berkas": "F163_04.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F164.jpg",
+  "kotak": [
+   1056,
+   293,
+   1280,
+   368
+  ],
+  "berkas": "F164_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F164.jpg",
+  "kotak": [
+   1120,
+   378,
+   1280,
+   458
+  ],
+  "berkas": "F164_01.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F165.jpg",
+  "kotak": [
+   1010,
+   274,
+   1190,
+   312
+  ],
+  "berkas": "F165_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F165.jpg",
+  "kotak": [
+   553,
+   291,
+   691,
+   318
+  ],
+  "berkas": "F165_01.png",
+  "latin": "GEKBANGPRAJA",
+  "yakin_latin": 0.871,
+  "draf": "ꦒꦼꦏ꧀ꦧꦁꦥ꧀ꦫꦗ",
+  "skor_ctc": 4.653,
+  "diragukan": false
+ },
+ {
+  "foto": "F165.jpg",
+  "kotak": [
+   886,
+   305,
+   1278,
+   343
+  ],
+  "berkas": "F165_02.png",
+  "latin": "d",
+  "yakin_latin": 0.298,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F165.jpg",
+  "kotak": [
+   993,
+   357,
+   1232,
+   389
+  ],
+  "berkas": "F165_03.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F165.jpg",
+  "kotak": [
+   1001,
+   383,
+   1207,
+   436
+  ],
+  "berkas": "F165_04.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F169.jpg",
+  "kotak": [
+   662,
+   743,
+   1548,
+   837
+  ],
+  "berkas": "F169_00.png",
+  "latin": "CLASS 8 F",
+  "yakin_latin": 0.939,
+  "draf": "ꦕ꧀ꦭꦱ꧀ꦱ꧀ꦥ꧀",
+  "skor_ctc": 5.047,
+  "diragukan": true
+ },
+ {
+  "foto": "F172.jpg",
+  "kotak": [
+   110,
+   15,
+   1802,
+   140
+  ],
+  "berkas": "F172_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F172.jpg",
+  "kotak": [
+   106,
+   128,
+   1794,
+   237
+  ],
+  "berkas": "F172_01.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F172.jpg",
+  "kotak": [
+   105,
+   239,
+   1801,
+   344
+  ],
+  "berkas": "F172_02.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F172.jpg",
+  "kotak": [
+   105,
+   338,
+   1799,
+   439
+  ],
+  "berkas": "F172_03.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F172.jpg",
+  "kotak": [
+   104,
+   447,
+   1800,
+   554
+  ],
+  "berkas": "F172_04.png",
+  "latin": "a",
+  "yakin_latin": 0.395,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F172.jpg",
+  "kotak": [
+   104,
+   559,
+   1794,
+   646
+  ],
+  "berkas": "F172_05.png",
+  "latin": "a",
+  "yakin_latin": 0.395,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F172.jpg",
+  "kotak": [
+   107,
+   767,
+   1787,
+   865
+  ],
+  "berkas": "F172_06.png",
+  "latin": "a",
+  "yakin_latin": 0.395,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F172.jpg",
+  "kotak": [
+   104,
+   866,
+   1788,
+   966
+  ],
+  "berkas": "F172_07.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F173.jpg",
+  "kotak": [
+   40,
+   31,
+   1882,
+   194
+  ],
+  "berkas": "F173_00.png",
+  "latin": "W",
+  "yakin_latin": 0.539,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F173.jpg",
+  "kotak": [
+   50,
+   187,
+   1872,
+   354
+  ],
+  "berkas": "F173_01.png",
+  "latin": "W",
+  "yakin_latin": 0.539,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F173.jpg",
+  "kotak": [
+   1244,
+   293,
+   1360,
+   354
+  ],
+  "berkas": "F173_02.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F173.jpg",
+  "kotak": [
+   36,
+   358,
+   1878,
+   506
+  ],
+  "berkas": "F173_03.png",
+  "latin": "C",
+  "yakin_latin": 0.278,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F173.jpg",
+  "kotak": [
+   28,
+   506,
+   1884,
+   694
+  ],
+  "berkas": "F173_04.png",
+  "latin": "C",
+  "yakin_latin": 0.278,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F173.jpg",
+  "kotak": [
+   34,
+   674,
+   1870,
+   836
+  ],
+  "berkas": "F173_05.png",
+  "latin": "CO",
+  "yakin_latin": 0.643,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F173.jpg",
+  "kotak": [
+   30,
+   831,
+   1864,
+   994
+  ],
+  "berkas": "F173_06.png",
+  "latin": "CO",
+  "yakin_latin": 0.643,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F173.jpg",
+  "kotak": [
+   42,
+   998,
+   1868,
+   1143
+  ],
+  "berkas": "F173_07.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F174.jpg",
+  "kotak": [
+   433,
+   367,
+   525,
+   425
+  ],
+  "berkas": "F174_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F174.jpg",
+  "kotak": [
+   596,
+   624,
+   756,
+   1122
+  ],
+  "berkas": "F174_01.png",
+  "latin": "0",
+  "yakin_latin": 0.256,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F174.jpg",
+  "kotak": [
+   700,
+   840,
+   1196,
+   889
+  ],
+  "berkas": "F174_02.png",
+  "latin": "Wd",
+  "yakin_latin": 0.626,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F175.jpg",
+  "kotak": [
+   610,
+   232,
+   704,
+   296
+  ],
+  "berkas": "F175_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F175.jpg",
+  "kotak": [
+   1141,
+   366,
+   1177,
+   405
+  ],
+  "berkas": "F175_01.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F175.jpg",
+  "kotak": [
+   1016,
+   404,
+   1056,
+   467
+  ],
+  "berkas": "F175_02.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F175.jpg",
+  "kotak": [
+   1214,
+   431,
+   1242,
+   483
+  ],
+  "berkas": "F175_03.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F175.jpg",
+  "kotak": [
+   946,
+   698,
+   998,
+   739
+  ],
+  "berkas": "F175_04.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F175.jpg",
+  "kotak": [
+   989,
+   699,
+   1049,
+   738
+  ],
+  "berkas": "F175_05.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F175.jpg",
+  "kotak": [
+   1207,
+   695,
+   1359,
+   752
+  ],
+  "berkas": "F175_06.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F175.jpg",
+  "kotak": [
+   1042,
+   703,
+   1070,
+   735
+  ],
+  "berkas": "F175_07.png",
+  "latin": "W",
+  "yakin_latin": 0.618,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F175.jpg",
+  "kotak": [
+   1138,
+   698,
+   1220,
+   753
+  ],
+  "berkas": "F175_08.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F175.jpg",
+  "kotak": [
+   869,
+   702,
+   953,
+   739
+  ],
+  "berkas": "F175_09.png",
+  "latin": "W",
+  "yakin_latin": 0.884,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F175.jpg",
+  "kotak": [
+   1083,
+   701,
+   1155,
+   752
+  ],
+  "berkas": "F175_10.png",
+  "latin": "W",
+  "yakin_latin": 0.618,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F176.jpg",
+  "kotak": [
+   508,
+   476,
+   628,
+   553
+  ],
+  "berkas": "F176_00.png",
+  "latin": "4400",
+  "yakin_latin": 0.529,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F176.jpg",
+  "kotak": [
+   661,
+   882,
+   1221,
+   970
+  ],
+  "berkas": "F176_01.png",
+  "latin": "C",
+  "yakin_latin": 0.269,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F177.jpg",
+  "kotak": [
+   636,
+   756,
+   1240,
+   811
+  ],
+  "berkas": "F177_00.png",
+  "latin": "  ",
+  "yakin_latin": 0.593,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F177.jpg",
+  "kotak": [
+   724,
+   805,
+   844,
+   856
+  ],
+  "berkas": "F177_01.png",
+  "latin": "  ",
+  "yakin_latin": 0.593,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F178.jpg",
+  "kotak": [
+   498,
+   386,
+   616,
+   464
+  ],
+  "berkas": "F178_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F178.jpg",
+  "kotak": [
+   937,
+   741,
+   1011,
+   812
+  ],
+  "berkas": "F178_01.png",
+  "latin": "GULDEN.",
+  "yakin_latin": 0.959,
+  "draf": "ꦒꦸꦭ꧀ꦢꦺꦤ꧀",
+  "skor_ctc": 7.675,
+  "diragukan": true
+ },
+ {
+  "foto": "F178.jpg",
+  "kotak": [
+   636,
+   839,
+   1106,
+   898
+  ],
+  "berkas": "F178_02.png",
+  "latin": "wd",
+  "yakin_latin": 0.465,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F178.jpg",
+  "kotak": [
+   1075,
+   846,
+   1239,
+   897
+  ],
+  "berkas": "F178_03.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F178.jpg",
+  "kotak": [
+   1221,
+   854,
+   1283,
+   904
+  ],
+  "berkas": "F178_04.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F178.jpg",
+  "kotak": [
+   1132,
+   1359,
+   1482,
+   1409
+  ],
+  "berkas": "F178_05.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F179.jpg",
+  "kotak": [
+   260,
+   1553,
+   771,
+   1587
+  ],
+  "berkas": "F179_00.png",
+  "latin": "a 1817°4, 1822 °.  1859 °. 58.",
+  "yakin_latin": 0.758,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F179.jpg",
+  "kotak": [
+   259,
+   1577,
+   770,
+   1610
+  ],
+  "berkas": "F179_01.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F179.jpg",
+  "kotak": [
+   258,
+   1598,
+   773,
+   1634
+  ],
+  "berkas": "F179_02.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F179.jpg",
+  "kotak": [
+   260,
+   1627,
+   771,
+   1659
+  ],
+  "berkas": "F179_03.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F179.jpg",
+  "kotak": [
+   259,
+   1648,
+   770,
+   1683
+  ],
+  "berkas": "F179_04.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F179.jpg",
+  "kotak": [
+   258,
+   1670,
+   766,
+   1709
+  ],
+  "berkas": "F179_05.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   178,
+   161,
+   438,
+   258
+  ],
+  "berkas": "F195_00.png",
+  "latin": "9",
+  "yakin_latin": 0.581,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   466,
+   168,
+   686,
+   244
+  ],
+  "berkas": "F195_01.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   701,
+   182,
+   929,
+   241
+  ],
+  "berkas": "F195_02.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   175,
+   251,
+   415,
+   304
+  ],
+  "berkas": "F195_03.png",
+  "latin": "9",
+  "yakin_latin": 0.581,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   469,
+   253,
+   687,
+   306
+  ],
+  "berkas": "F195_04.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   706,
+   256,
+   948,
+   336
+  ],
+  "berkas": "F195_05.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   186,
+   327,
+   414,
+   394
+  ],
+  "berkas": "F195_06.png",
+  "latin": "9",
+  "yakin_latin": 0.581,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   458,
+   325,
+   662,
+   405
+  ],
+  "berkas": "F195_07.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   701,
+   327,
+   877,
+   409
+  ],
+  "berkas": "F195_08.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   184,
+   399,
+   280,
+   480
+  ],
+  "berkas": "F195_09.png",
+  "latin": "0",
+  "yakin_latin": 0.105,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   182,
+   517,
+   382,
+   567
+  ],
+  "berkas": "F195_10.png",
+  "latin": "a",
+  "yakin_latin": 0.393,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   683,
+   513,
+   931,
+   605
+  ],
+  "berkas": "F195_11.png",
+  "latin": "mm",
+  "yakin_latin": 0.447,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   173,
+   576,
+   395,
+   670
+  ],
+  "berkas": "F195_12.png",
+  "latin": "a",
+  "yakin_latin": 0.393,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   176,
+   652,
+   432,
+   751
+  ],
+  "berkas": "F195_13.png",
+  "latin": "a",
+  "yakin_latin": 0.393,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   678,
+   667,
+   828,
+   750
+  ],
+  "berkas": "F195_14.png",
+  "latin": "mm",
+  "yakin_latin": 0.447,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   168,
+   786,
+   446,
+   887
+  ],
+  "berkas": "F195_15.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   444,
+   809,
+   630,
+   864
+  ],
+  "berkas": "F195_16.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   451,
+   873,
+   679,
+   969
+  ],
+  "berkas": "F195_17.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   170,
+   879,
+   378,
+   953
+  ],
+  "berkas": "F195_18.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   691,
+   881,
+   933,
+   955
+  ],
+  "berkas": "F195_19.png",
+  "latin": "-",
+  "yakin_latin": 0.442,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   1238,
+   896,
+   1380,
+   950
+  ],
+  "berkas": "F195_20.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F195.jpg",
+  "kotak": [
+   686,
+   962,
+   792,
+   1030
+  ],
+  "berkas": "F195_21.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   93,
+   244,
+   153,
+   288
+  ],
+  "berkas": "F197_00.png",
+  "latin": "Antiqua",
+  "yakin_latin": 0.994,
+  "draf": "ꦲꦤ꧀ꦠꦶꦏꦸꦮ",
+  "skor_ctc": 5.168,
+  "diragukan": true
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   327,
+   253,
+   383,
+   299
+  ],
+  "berkas": "F197_01.png",
+  "latin": "Antiqua",
+  "yakin_latin": 0.978,
+  "draf": "ꦲꦤ꧀ꦠꦶꦏꦸꦮ",
+  "skor_ctc": 4.706,
+  "diragukan": true
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   100,
+   319,
+   150,
+   364
+  ],
+  "berkas": "F197_02.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   663,
+   321,
+   713,
+   363
+  ],
+  "berkas": "F197_03.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   781,
+   325,
+   821,
+   364
+  ],
+  "berkas": "F197_04.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   656,
+   391,
+   718,
+   435
+  ],
+  "berkas": "F197_05.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   890,
+   410,
+   949,
+   454
+  ],
+  "berkas": "F197_06.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   654,
+   466,
+   725,
+   505
+  ],
+  "berkas": "F197_07.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   775,
+   468,
+   833,
+   509
+  ],
+  "berkas": "F197_08.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   1111,
+   528,
+   1170,
+   575
+  ],
+  "berkas": "F197_09.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   212,
+   541,
+   265,
+   581
+  ],
+  "berkas": "F197_10.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   782,
+   542,
+   826,
+   582
+  ],
+  "berkas": "F197_11.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   96,
+   609,
+   148,
+   654
+  ],
+  "berkas": "F197_12.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   656,
+   608,
+   721,
+   652
+  ],
+  "berkas": "F197_13.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   782,
+   615,
+   830,
+   650
+  ],
+  "berkas": "F197_14.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   894,
+   635,
+   951,
+   679
+  ],
+  "berkas": "F197_15.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   656,
+   678,
+   719,
+   723
+  ],
+  "berkas": "F197_16.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   780,
+   685,
+   830,
+   725
+  ],
+  "berkas": "F197_17.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   779,
+   757,
+   825,
+   807
+  ],
+  "berkas": "F197_18.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   1110,
+   816,
+   1164,
+   863
+  ],
+  "berkas": "F197_19.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   220,
+   831,
+   262,
+   869
+  ],
+  "berkas": "F197_20.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   97,
+   897,
+   157,
+   940
+  ],
+  "berkas": "F197_21.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   662,
+   896,
+   715,
+   962
+  ],
+  "berkas": "F197_22.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   781,
+   898,
+   825,
+   950
+  ],
+  "berkas": "F197_23.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   541,
+   963,
+   592,
+   1016
+  ],
+  "berkas": "F197_24.png",
+  "latin": "Vokale und Lesezeichen (Sańan Bekleidungen).",
+  "yakin_latin": 0.974,
+  "draf": "ꦮꦺꦴꦏꦭꦺꦲꦸꦤ꧀ꦢ꧀ꦭꦼꦱꦼꦗꦼꦲꦶꦕ꧀ꦲꦺꦤ꧀ꦱꦲꦤ꧀ꦧꦼꦏ꧀ꦭꦼꦲꦶꦢꦸꦔꦺꦤ꧀",
+  "skor_ctc": 99.0,
+  "diragukan": true
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   766,
+   963,
+   825,
+   1016
+  ],
+  "berkas": "F197_25.png",
+  "latin": "Vokale und Lesezeichen (Sańan Bekleidungen).",
+  "yakin_latin": 0.974,
+  "draf": "ꦮꦺꦴꦏꦭꦺꦲꦸꦤ꧀ꦢ꧀ꦭꦼꦱꦼꦗꦼꦲꦶꦕ꧀ꦲꦺꦤ꧀ꦱꦲꦤ꧀ꦧꦼꦏ꧀ꦭꦼꦲꦶꦢꦸꦔꦺꦤ꧀",
+  "skor_ctc": 99.0,
+  "diragukan": true
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   664,
+   967,
+   715,
+   1026
+  ],
+  "berkas": "F197_26.png",
+  "latin": "Vokale und Lesezeichen (Sańan Bekleidungen).",
+  "yakin_latin": 0.974,
+  "draf": "ꦮꦺꦴꦏꦭꦺꦲꦸꦤ꧀ꦢ꧀ꦭꦼꦱꦼꦗꦼꦲꦶꦕ꧀ꦲꦺꦤ꧀ꦱꦲꦤ꧀ꦧꦼꦏ꧀ꦭꦼꦲꦶꦢꦸꦔꦺꦤ꧀",
+  "skor_ctc": 99.0,
+  "diragukan": true
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   228,
+   1439,
+   258,
+   1471
+  ],
+  "berkas": "F197_27.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   340,
+   1440,
+   372,
+   1479
+  ],
+  "berkas": "F197_28.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   223,
+   1493,
+   257,
+   1532
+  ],
+  "berkas": "F197_29.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   331,
+   1497,
+   371,
+   1537
+  ],
+  "berkas": "F197_30.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   239,
+   1554,
+   295,
+   1612
+  ],
+  "berkas": "F197_31.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   852,
+   1810,
+   915,
+   1891
+  ],
+  "berkas": "F197_32.png",
+  "latin": "Antiqua",
+  "yakin_latin": 1.0,
+  "draf": "ꦲꦤ꧀ꦠꦶꦏꦸꦮ",
+  "skor_ctc": 5.52,
+  "diragukan": true
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   472,
+   1812,
+   537,
+   1893
+  ],
+  "berkas": "F197_33.png",
+  "latin": "Antiqua",
+  "yakin_latin": 0.906,
+  "draf": "ꦲꦤ꧀ꦠꦶꦏꦸꦮ",
+  "skor_ctc": 6.243,
+  "diragukan": true
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   604,
+   1819,
+   651,
+   1874
+  ],
+  "berkas": "F197_34.png",
+  "latin": "Cursiv",
+  "yakin_latin": 0.999,
+  "draf": "ꦕꦸꦂꦱꦶꦮ꧀",
+  "skor_ctc": 9.059,
+  "diragukan": true
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   987,
+   1821,
+   1033,
+   1872
+  ],
+  "berkas": "F197_35.png",
+  "latin": "Cursiv",
+  "yakin_latin": 0.947,
+  "draf": "ꦕꦸꦂꦱꦶꦮ꧀",
+  "skor_ctc": 6.877,
+  "diragukan": true
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   482,
+   1899,
+   525,
+   1943
+  ],
+  "berkas": "F197_36.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F197.jpg",
+  "kotak": [
+   98,
+   1898,
+   161,
+   1966
+  ],
+  "berkas": "F197_37.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   195,
+   313,
+   265,
+   352
+  ],
+  "berkas": "F198_00.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   764,
+   313,
+   827,
+   353
+  ],
+  "berkas": "F198_01.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   870,
+   429,
+   904,
+   467
+  ],
+  "berkas": "F198_02.png",
+  "latin": "mn",
+  "yakin_latin": 0.173,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   773,
+   430,
+   821,
+   487
+  ],
+  "berkas": "F198_03.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   769,
+   486,
+   824,
+   525
+  ],
+  "berkas": "F198_04.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   306,
+   489,
+   348,
+   528
+  ],
+  "berkas": "F198_05.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   952,
+   509,
+   1009,
+   547
+  ],
+  "berkas": "F198_06.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   208,
+   542,
+   261,
+   582
+  ],
+  "berkas": "F198_07.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   81,
+   793,
+   144,
+   852
+  ],
+  "berkas": "F198_08.png",
+  "latin": "Antiqua",
+  "yakin_latin": 0.997,
+  "draf": "ꦲꦤ꧀ꦠꦶꦏꦸꦮ",
+  "skor_ctc": 5.825,
+  "diragukan": true
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   846,
+   796,
+   895,
+   853
+  ],
+  "berkas": "F198_09.png",
+  "latin": "Antiqua",
+  "yakin_latin": 0.966,
+  "draf": "ꦲꦤ꧀ꦠꦶꦏꦸꦮ",
+  "skor_ctc": 6.759,
+  "diragukan": true
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   83,
+   867,
+   146,
+   925
+  ],
+  "berkas": "F198_10.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   565,
+   877,
+   614,
+   922
+  ],
+  "berkas": "F198_11.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   91,
+   939,
+   143,
+   996
+  ],
+  "berkas": "F198_12.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   466,
+   938,
+   530,
+   997
+  ],
+  "berkas": "F198_13.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   568,
+   950,
+   614,
+   994
+  ],
+  "berkas": "F198_14.png",
+  "latin": "Ziffern:",
+  "yakin_latin": 0.991,
+  "draf": "ꦗꦶꦥ꧀ꦥꦺꦂꦤ꧀",
+  "skor_ctc": 5.996,
+  "diragukan": true
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   655,
+   1097,
+   693,
+   1143
+  ],
+  "berkas": "F198_15.png",
+  "latin": "Ziffern:",
+  "yakin_latin": 0.991,
+  "draf": "ꦗꦶꦥ꧀ꦥꦺꦂꦤ꧀",
+  "skor_ctc": 6.353,
+  "diragukan": true
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   284,
+   1101,
+   345,
+   1137
+  ],
+  "berkas": "F198_16.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   815,
+   1100,
+   875,
+   1138
+  ],
+  "berkas": "F198_17.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   998,
+   1101,
+   1055,
+   1137
+  ],
+  "berkas": "F198_18.png",
+  "latin": null,
+  "yakin_latin": null,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   475,
+   1098,
+   539,
+   1172
+  ],
+  "berkas": "F198_19.png",
+  "latin": "Interpunktionen:",
+  "yakin_latin": 1.0,
+  "draf": "ꦲꦶꦤ꧀ꦠꦼꦂꦥꦸꦤ꧀ꦏ꧀ꦠꦶꦪꦺꦴꦤꦺꦤ꧀",
+  "skor_ctc": 99.0,
+  "diragukan": true
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   283,
+   1424,
+   396,
+   1460
+  ],
+  "berkas": "F198_20.png",
+  "latin": "H",
+  "yakin_latin": 0.412,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   211,
+   1428,
+   296,
+   1463
+  ],
+  "berkas": "F198_21.png",
+  "latin": "G",
+  "yakin_latin": 0.993,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   395,
+   1429,
+   467,
+   1459
+  ],
+  "berkas": "F198_22.png",
+  "latin": "GH",
+  "yakin_latin": 0.792,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   820,
+   1425,
+   1013,
+   1491
+  ],
+  "berkas": "F198_23.png",
+  "latin": "ganze Pause,",
+  "yakin_latin": 0.982,
+  "draf": "ꦒꦤ꧀ꦗꦺꦥꦲꦸꦱꦺ",
+  "skor_ctc": 7.006,
+  "diragukan": true
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   759,
+   1432,
+   805,
+   1463
+  ],
+  "berkas": "F198_24.png",
+  "latin": "ganze Pause,",
+  "yakin_latin": 0.982,
+  "draf": "ꦒꦤ꧀ꦗꦺꦥꦲꦸꦱꦺ",
+  "skor_ctc": 11.048,
+  "diragukan": true
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   242,
+   1500,
+   433,
+   1557
+  ],
+  "berkas": "F198_25.png",
+  "latin": "H",
+  "yakin_latin": 0.412,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F198.jpg",
+  "kotak": [
+   793,
+   1500,
+   983,
+   1555
+  ],
+  "berkas": "F198_26.png",
+  "latin": "Schrift der malayischen Völker). Durch",
+  "yakin_latin": 0.985,
+  "draf": "ꦱ꧀ꦕ꧀ꦃꦫꦶꦥ꧀ꦠ꧀ꦢꦺꦂꦩꦭꦪꦶꦱ꧀ꦕ꧀ꦲꦺꦤ꧀ꦮ꧀ꦭ꧀ꦏꦺꦂꦢꦸꦂꦕ꧀ꦃ",
+  "skor_ctc": 8.583,
+  "diragukan": true
+ },
+ {
+  "foto": "F199.jpg",
+  "kotak": [
+   1540,
+   1160,
+   1616,
+   1222
+  ],
+  "berkas": "F199_00.png",
+  "latin": "",
+  "yakin_latin": 0.0,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F199.jpg",
+  "kotak": [
+   293,
+   1150,
+   1379,
+   1282
+  ],
+  "berkas": "F199_01.png",
+  "latin": "m",
+  "yakin_latin": 0.406,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ },
+ {
+  "foto": "F199.jpg",
+  "kotak": [
+   167,
+   1168,
+   251,
+   1240
+  ],
+  "berkas": "F199_02.png",
+  "latin": "m",
+  "yakin_latin": 0.406,
+  "draf": null,
+  "skor_ctc": null,
+  "diragukan": null
+ }
+]
