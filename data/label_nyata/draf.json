@@ -12,7 +12,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦶꦸꦤ",
+  "model_latin": "na",
+  "model_yakin": 0.574
  },
  {
   "foto": "F002.jpg",
@@ -27,7 +30,10 @@
   "yakin_latin": 0.606,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦸꦗꦲꦤꦱꦲꦥꦃꦲꦠꦩꦤ꧀ꦫ",
+  "model_latin": "jahanasahapahhatamanra",
+  "model_yakin": 0.848
  },
  {
   "foto": "F003.jpg",
@@ -42,7 +48,10 @@
   "yakin_latin": 0.301,
   "draf": "ꦕ꧀ꦪ꧀ꦤ꧀ꦠ꧀",
   "skor_ctc": 5.697,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦱ꧀ꦶꦱꦼꦪ꧀ꦸꦤ꧀ꦴ꧀ꦲ꧀ꦶ",
+  "model_latin": "ssêynh",
+  "model_yakin": 0.859
  },
  {
   "foto": "F005.jpg",
@@ -57,7 +66,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝ꧈ꦧ꧈ꦩ꧈ꦧ꧈ꦤꦶꦂꦱ꧀ꦱꦒ꧉",
+  "model_latin": "dha ba ma ba nirssaga",
+  "model_yakin": 0.909
  },
  {
   "foto": "F006.jpg",
@@ -72,7 +84,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦸꦩ",
+  "model_latin": "ma",
+  "model_yakin": 0.754
  },
  {
   "foto": "F006.jpg",
@@ -87,7 +102,10 @@
   "yakin_latin": 0.837,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦁꦒ꧀ꦝꦼꦁꦩꦫꦫꦮ꧀ꦥ꧀ꦧꦶꦭ꧀ꦸꦥꦶꦠ",
+  "model_latin": "nggdhêngmararawpbilpita",
+  "model_yakin": 0.738
  },
  {
   "foto": "F006.jpg",
@@ -102,7 +120,10 @@
   "yakin_latin": 0.837,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀ꦝꦺ꧀ꦁꦢꦁ꧉ꦶꦤ꧀ꦺ꧉ꦭ꧀ꦸꦭꦸꦢ꧀ꦩ꧀꧀ꦝ",
+  "model_latin": "ndhéngdang n lludmdha",
+  "model_yakin": 0.748
  },
  {
   "foto": "F006.jpg",
@@ -117,7 +138,10 @@
   "yakin_latin": 0.409,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦢ꧀ꦧꦁꦭꦶꦭ꧀ꦠꦼꦩꦸ꧀ꦏ꧀ꦤꦼ꧀ꦤ꧀ꦥꦁꦫ꧀ꦤꦫꦝꦸ",
+  "model_latin": "dbangliltêmuknênpangrnaradhu",
+  "model_yakin": 0.798
  },
  {
   "foto": "F006.jpg",
@@ -132,7 +156,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦱꦸꦮꦩ꧈",
+  "model_latin": "masuwama",
+  "model_yakin": 0.683
  },
  {
   "foto": "F006.jpg",
@@ -147,7 +174,10 @@
   "yakin_latin": 0.409,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦭꦺꦲ꧀ꦗꦺꦪꦼꦒ꧀",
+  "model_latin": "léhjéyêg",
+  "model_yakin": 0.714
  },
  {
   "foto": "F006.jpg",
@@ -162,7 +192,10 @@
   "yakin_latin": 0.325,
   "draf": "ꦧ꧀ꦕꦺꦴ",
   "skor_ctc": 14.952,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦮꦸꦩꦫꦺꦴꦏꦭꦥ꧀ꦧꦁꦭꦩ꧀ꦸ",
+  "model_latin": "wumarokalapbanglam",
+  "model_yakin": 0.718
  },
  {
   "foto": "F007.jpg",
@@ -177,7 +210,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀ꦭꦏ",
+  "model_latin": "nlaka",
+  "model_yakin": 0.64
  },
  {
   "foto": "F007.jpg",
@@ -192,7 +228,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦴꦭꦶ꧉ꦃꦤ꧀",
+  "model_latin": "li hn",
+  "model_yakin": 0.595
  },
  {
   "foto": "F007.jpg",
@@ -207,7 +246,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ",
+  "model_latin": "na",
+  "model_yakin": 0.935
  },
  {
   "foto": "F007.jpg",
@@ -222,7 +264,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦫ꧈",
+  "model_latin": "ra",
+  "model_yakin": 0.395
  },
  {
   "foto": "F007.jpg",
@@ -237,7 +282,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦏꦏꦶ",
+  "model_latin": "nakaki",
+  "model_yakin": 0.632
  },
  {
   "foto": "F007.jpg",
@@ -252,7 +300,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀ꦩꦼ",
+  "model_latin": "nmê",
+  "model_yakin": 0.628
  },
  {
   "foto": "F007.jpg",
@@ -267,7 +318,10 @@
   "yakin_latin": 0.853,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦱꦶ",
+  "model_latin": "si",
+  "model_yakin": 0.563
  },
  {
   "foto": "F007.jpg",
@@ -282,7 +336,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗꦁꦏꦸꦸꦤꦤ꧀ꦤꦏꦼ",
+  "model_latin": "jangkunannakê",
+  "model_yakin": 0.548
  },
  {
   "foto": "F007.jpg",
@@ -297,7 +354,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦤꦤꦤꦤꦁꦤꦤꦤꦼ꧀ꦠꦸ",
+  "model_latin": "mananananangnananêtu",
+  "model_yakin": 0.692
  },
  {
   "foto": "F007.jpg",
@@ -312,7 +372,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦤꦶꦶꦤꦶꦼ꧀ꦤ꧀ꦼ",
+  "model_latin": "maninin",
+  "model_yakin": 0.588
  },
  {
   "foto": "F007.jpg",
@@ -327,7 +390,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏ꧀ꦤꦼꦁꦏ꧀ꦼ",
+  "model_latin": "knêngk",
+  "model_yakin": 0.618
  },
  {
   "foto": "F007.jpg",
@@ -342,7 +408,10 @@
   "yakin_latin": 0.283,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠ",
+  "model_latin": "ta",
+  "model_yakin": 0.678
  },
  {
   "foto": "F007.jpg",
@@ -357,7 +426,10 @@
   "yakin_latin": 0.199,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦺꦺ꧀ꦱꦲꦠ",
+  "model_latin": "sahata",
+  "model_yakin": 0.563
  },
  {
   "foto": "F007.jpg",
@@ -372,7 +444,10 @@
   "yakin_latin": 0.199,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠꦼ",
+  "model_latin": "tê",
+  "model_yakin": 0.615
  },
  {
   "foto": "F007.jpg",
@@ -387,7 +462,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒꦺꦴ",
+  "model_latin": "go",
+  "model_yakin": 0.638
  },
  {
   "foto": "F007.jpg",
@@ -402,7 +480,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦤ꧀",
+  "model_latin": "nan",
+  "model_yakin": 0.951
  },
  {
   "foto": "F007.jpg",
@@ -417,7 +498,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦢ",
+  "model_latin": "sada",
+  "model_yakin": 0.923
  },
  {
   "foto": "F007.jpg",
@@ -432,7 +516,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦏ꧀ꦏꦼ",
+  "model_latin": "nakkê",
+  "model_yakin": 0.642
  },
  {
   "foto": "F007.jpg",
@@ -447,7 +534,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀ꦠꦱꦱ꧈",
+  "model_latin": "ntasasa",
+  "model_yakin": 0.705
  },
  {
   "foto": "F007.jpg",
@@ -462,7 +552,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦼꦩ꧀ꦸꦥꦶꦲ꧀ꦸ",
+  "model_latin": "mpih",
+  "model_yakin": 0.663
  },
  {
   "foto": "F007.jpg",
@@ -477,7 +570,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦤ꧀ꦭ",
+  "model_latin": "nanla",
+  "model_yakin": 0.579
  },
  {
   "foto": "F007.jpg",
@@ -492,7 +588,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗꦤꦮꦶꦱꦁꦺ꧀ꦤꦸꦱ꧀ꦭꦶ",
+  "model_latin": "janawisangnusli",
+  "model_yakin": 0.639
  },
  {
   "foto": "F007.jpg",
@@ -507,7 +606,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀꧀ꦱꦤꦶꦕꦩꦺꦱꦠ",
+  "model_latin": "sanicamésata",
+  "model_yakin": 0.716
  },
  {
   "foto": "F007.jpg",
@@ -522,7 +624,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦫꦁꦱ꧀ꦩꦁꦫꦸ꧉",
+  "model_latin": "rangsmangru",
+  "model_yakin": 0.743
  },
  {
   "foto": "F007.jpg",
@@ -537,7 +642,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦕꦴꦁꦠ꧀ꦱ꧀ꦠꦃꦱ꧀꧀ꦶꦸ",
+  "model_latin": "congtstahs",
+  "model_yakin": 0.71
  },
  {
   "foto": "F007.jpg",
@@ -552,7 +660,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦸꦶꦁ꧀ꦏꦂ꧀ꦱꦱꦺꦱ",
+  "model_latin": "ngkarsasésa",
+  "model_yakin": 0.63
  },
  {
   "foto": "F007.jpg",
@@ -567,7 +678,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦏꦸꦠ꧀ꦠꦴ꧉ꦸꦠ꧀ꦫꦂꦠꦲ",
+  "model_latin": "kutto trartaha",
+  "model_yakin": 0.591
  },
  {
   "foto": "F007.jpg",
@@ -582,7 +696,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦝ꧀ꦕ꧀ꦂꦱ꧀ꦱ꧀ꦝꦸꦃꦝ꧀ꦱꦃ",
+  "model_latin": "dhcrssdhuhdhsah",
+  "model_yakin": 0.642
  },
  {
   "foto": "F007.jpg",
@@ -597,7 +714,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦶ꧀ꦱ꧀ꦠꦸꦱꦲ꧀ꦏ꧀ꦼ",
+  "model_latin": "stusahk",
+  "model_yakin": 0.673
  },
  {
   "foto": "F007.jpg",
@@ -612,7 +732,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦤꦶꦠꦤꦺꦤ꧀꧈ꦱ꧀ꦏ",
+  "model_latin": "nanitanén ska",
+  "model_yakin": 0.651
  },
  {
   "foto": "F007.jpg",
@@ -627,7 +750,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏꦤ꧀ꦤ꧀ꦛꦱ꧀ꦤ",
+  "model_latin": "kannthasna",
+  "model_yakin": 0.514
  },
  {
   "foto": "F007.jpg",
@@ -642,7 +768,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦼ꧀ꦏꦚꦸꦧ꧀ꦏꦸ",
+  "model_latin": "kanyubku",
+  "model_yakin": 0.679
  },
  {
   "foto": "F007.jpg",
@@ -657,7 +786,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦝꦸꦁꦏ꧀ꦱꦱ꧀꧀ꦃ",
+  "model_latin": "dhungksash",
+  "model_yakin": 0.654
  },
  {
   "foto": "F007.jpg",
@@ -672,7 +804,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝ꧀ꦠꦶ꧀ꦱ꧀ꦤ꧀ꦼ",
+  "model_latin": "dhtisn",
+  "model_yakin": 0.617
  },
  {
   "foto": "F007.jpg",
@@ -687,7 +822,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠꦕ꧀ꦼ꧀ꦤ꧀ꦕꦴꦱꦏꦶꦺꦺ꧀ꦏꦠ꧀ꦸ",
+  "model_latin": "tacncosakikat",
+  "model_yakin": 0.651
  },
  {
   "foto": "F007.jpg",
@@ -702,7 +840,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦝ꧀ꦤ꧀ꦤꦥꦤꦶꦃꦒ꧀ꦱ꧀ꦸ꧈",
+  "model_latin": "dhnnapanihgs",
+  "model_yakin": 0.515
  },
  {
   "foto": "F007.jpg",
@@ -717,7 +858,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒ꧀ꦤꦼꦫꦼꦁꦤꦶ꧈",
+  "model_latin": "gnêrêngni",
+  "model_yakin": 0.862
  },
  {
   "foto": "F007.jpg",
@@ -732,7 +876,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱ꧀ꦤꦤꦤꦼꦁꦩꦶ",
+  "model_latin": "snananêngmi",
+  "model_yakin": 0.566
  },
  {
   "foto": "F007.jpg",
@@ -747,7 +894,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦮꦴꦁ꧀꧀ꦤꦼ",
+  "model_latin": "wongnê",
+  "model_yakin": 0.669
  },
  {
   "foto": "F007.jpg",
@@ -762,7 +912,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱ꧀ꦸꦭꦁꦱꦸꦏꦺꦫꦶꦁꦏꦸ",
+  "model_latin": "slangsukéringku",
+  "model_yakin": 0.707
  },
  {
   "foto": "F007.jpg",
@@ -777,7 +930,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦺꦸꦴꦸꦫ꧀ꦥꦶꦃꦤ꧀ꦱ꧀ꦧꦸꦭ",
+  "model_latin": "rpihnsbula",
+  "model_yakin": 0.662
  },
  {
   "foto": "F007.jpg",
@@ -792,7 +948,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏꦁꦏꦺꦴꦺ꧀ꦥ",
+  "model_latin": "kangkopa",
+  "model_yakin": 0.798
  },
  {
   "foto": "F007.jpg",
@@ -807,7 +966,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀ꦤ꧀ꦶꦢꦶꦤ꧀ꦤꦶꦸꦁꦏ꧀ꦴꦸ",
+  "model_latin": "nndinningk",
+  "model_yakin": 0.601
  },
  {
   "foto": "F007.jpg",
@@ -822,7 +984,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩ꧀ꦠꦸꦱꦸꦃꦃꦠꦴꦱꦃ꧀ꦠ",
+  "model_latin": "mtusuhhtosahta",
+  "model_yakin": 0.603
  },
  {
   "foto": "F007.jpg",
@@ -837,7 +1002,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠꦶ꧀ꦱ꧀ꦕꦶꦁꦮꦤ꧀ꦥꦤ",
+  "model_latin": "tiscingwanpana",
+  "model_yakin": 0.674
  },
  {
   "foto": "F007.jpg",
@@ -852,7 +1020,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦃ꧀ꦱꦠ꧀ꦱꦭ꧀ꦤ꧀ꦤꦺꦶ꧀꧉",
+  "model_latin": "hsatsalnné",
+  "model_yakin": 0.604
  },
  {
   "foto": "F007.jpg",
@@ -867,7 +1038,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝ꧀ꦱꦱ꧀ꦱꦢꦶꦶ꧀ꦶꦸꦁ",
+  "model_latin": "dhsassading",
+  "model_yakin": 0.735
  },
  {
   "foto": "F007.jpg",
@@ -882,7 +1056,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠꦠ꧀ꦱꦶꦱꦺ꧀꧀ꦠꦸꦱ꧀꧉",
+  "model_latin": "tatsisétus",
+  "model_yakin": 0.703
  },
  {
   "foto": "F007.jpg",
@@ -897,7 +1074,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦶꦠꦥ꧀ꦱ꧉ꦸ",
+  "model_latin": "tapsa",
+  "model_yakin": 0.874
  },
  {
   "foto": "F007.jpg",
@@ -912,7 +1092,10 @@
   "yakin_latin": 0.262,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀ꦤ꧀ꦩꦥ꧀ꦤ꧀ꦢꦸꦠꦁꦤꦺꦤꦺꦴꦺ꧈",
+  "model_latin": "nnmapndutangnéno",
+  "model_yakin": 0.597
  },
  {
   "foto": "F007.jpg",
@@ -927,7 +1110,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠ꧀ꦠꦼꦼꦤ꧀ꦤꦤ",
+  "model_latin": "ttênnana",
+  "model_yakin": 0.599
  },
  {
   "foto": "F007.jpg",
@@ -942,7 +1128,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦔꦶꦲ",
+  "model_latin": "ngiha",
+  "model_yakin": 0.832
  },
  {
   "foto": "F007.jpg",
@@ -957,7 +1146,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏ꧀ꦴꦝꦺꦝ꧀ꦕꦭꦤꦱꦮ꧀ꦸꦱꦏꦕ꧀ꦸ",
+  "model_latin": "kdhédhcalanasawsakac",
+  "model_yakin": 0.63
  },
  {
   "foto": "F007.jpg",
@@ -972,7 +1164,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦂꦱꦸꦃꦲꦼꦤ꧈",
+  "model_latin": "parsuhhêna",
+  "model_yakin": 0.918
  },
  {
   "foto": "F007.jpg",
@@ -987,7 +1182,10 @@
   "yakin_latin": 0.481,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦤꦤꦤꦤꦤ꧀ꦤꦶꦁ",
+  "model_latin": "manananananning",
+  "model_yakin": 0.577
  },
  {
   "foto": "F007.jpg",
@@ -1002,7 +1200,10 @@
   "yakin_latin": 0.258,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒꦪ꧈",
+  "model_latin": "gaya",
+  "model_yakin": 0.819
  },
  {
   "foto": "F007.jpg",
@@ -1017,7 +1218,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀",
+  "model_latin": "",
+  "model_yakin": 0.793
  },
  {
   "foto": "F007.jpg",
@@ -1032,7 +1236,10 @@
   "yakin_latin": 0.421,
   "draf": "ꦒꦶꦒ꧀",
   "skor_ctc": 9.827,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦶꦁꦕꦺꦴꦱꦕꦤꦴꦭꦱꦢꦴꦫ꧀ꦶꦒ꧀ꦶꦁ",
+  "model_latin": "ngcosacanolasadorgng",
+  "model_yakin": 0.597
  },
  {
   "foto": "F007.jpg",
@@ -1047,7 +1254,10 @@
   "yakin_latin": 0.707,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒ꧀ꦭꦺꦒ",
+  "model_latin": "gléga",
+  "model_yakin": 0.92
  },
  {
   "foto": "F007.jpg",
@@ -1062,7 +1272,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦼꦶꦃꦶꦱ꧀ꦥꦸꦺ꧀꧀ꦤꦕꦧ꧀ꦴꦁꦫ꧀ꦶꦼꦤ",
+  "model_latin": "hspunacabngrna",
+  "model_yakin": 0.652
  },
  {
   "foto": "F007.jpg",
@@ -1077,7 +1290,10 @@
   "yakin_latin": 0.258,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝꦕꦪꦲꦺ",
+  "model_latin": "dhacayahé",
+  "model_yakin": 0.705
  },
  {
   "foto": "F007.jpg",
@@ -1092,7 +1308,10 @@
   "yakin_latin": 0.258,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦭꦶꦤꦺ꧀",
+  "model_latin": "liné",
+  "model_yakin": 0.726
  },
  {
   "foto": "F007.jpg",
@@ -1107,7 +1326,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦶꦤꦱꦶꦠ꧀ꦃꦶ꧀ꦱ꧀ꦶ",
+  "model_latin": "nasiths",
+  "model_yakin": 0.683
  },
  {
   "foto": "F007.jpg",
@@ -1122,7 +1344,10 @@
   "yakin_latin": 0.258,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦼꦲꦶꦧꦂꦮ",
+  "model_latin": "hibarwa",
+  "model_yakin": 0.727
  },
  {
   "foto": "F007.jpg",
@@ -1137,7 +1362,10 @@
   "yakin_latin": 0.972,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦠ꧀ꦤ",
+  "model_latin": "natna",
+  "model_yakin": 0.815
  },
  {
   "foto": "F007.jpg",
@@ -1152,7 +1380,10 @@
   "yakin_latin": 0.258,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦸꦤ꧀ꦲꦗ",
+  "model_latin": "munhaja",
+  "model_yakin": 0.834
  },
  {
   "foto": "F007.jpg",
@@ -1167,7 +1398,10 @@
   "yakin_latin": 0.972,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦱꦤꦶꦁꦠ꧀ꦠꦼꦫꦺꦶ꧀ꦶꦪ",
+  "model_latin": "sasaningttêréya",
+  "model_yakin": 0.783
  },
  {
   "foto": "F007.jpg",
@@ -1182,7 +1416,10 @@
   "yakin_latin": 0.258,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦸꦤ꧀ꦱꦶꦫ",
+  "model_latin": "munsira",
+  "model_yakin": 0.926
  },
  {
   "foto": "F007.jpg",
@@ -1197,7 +1434,10 @@
   "yakin_latin": 0.258,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦸꦤꦤ꧀ꦶ",
+  "model_latin": "sunan",
+  "model_yakin": 0.739
  },
  {
   "foto": "F007.jpg",
@@ -1212,7 +1452,10 @@
   "yakin_latin": 0.972,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝꦝ꧀ꦝꦶ꧀ꦼꦒꦼꦤꦶꦁ",
+  "model_latin": "dhadhdhigêning",
+  "model_yakin": 0.772
  },
  {
   "foto": "F007.jpg",
@@ -1227,7 +1470,10 @@
   "yakin_latin": 0.59,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝꦶꦱꦏꦏꦲꦤꦤꦶꦤꦶꦥ",
+  "model_latin": "dhisakakahananinipa",
+  "model_yakin": 0.82
  },
  {
   "foto": "F007.jpg",
@@ -1242,7 +1488,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦤꦤꦤꦤꦤꦱ꧀ꦤꦶ",
+  "model_latin": "sanananananasni",
+  "model_yakin": 0.737
  },
  {
   "foto": "F007.jpg",
@@ -1257,7 +1506,10 @@
   "yakin_latin": 0.59,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦶ꧀ꦝꦤꦩ꧀ꦺ꧀ꦶ",
+  "model_latin": "dhanam",
+  "model_yakin": 0.685
  },
  {
   "foto": "F007.jpg",
@@ -1272,7 +1524,10 @@
   "yakin_latin": 0.316,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦁꦲ꧀ꦠꦺꦴꦏꦺꦸꦺꦴꦕꦸꦃꦢ꧀꧀ꦶ",
+  "model_latin": "nghtokécuhd",
+  "model_yakin": 0.575
  },
  {
   "foto": "F007.jpg",
@@ -1287,7 +1542,10 @@
   "yakin_latin": 0.481,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦔꦶꦃꦱꦔ꧀ꦏꦴꦱꦠꦸ꧀ꦱ꧀ꦸꦕ",
+  "model_latin": "ngihsangkosatusca",
+  "model_yakin": 0.59
  },
  {
   "foto": "F007.jpg",
@@ -1302,7 +1560,10 @@
   "yakin_latin": 0.59,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠꦼꦱ꧀ꦱꦺꦏꦲꦭꦸꦃ",
+  "model_latin": "têssékahaluh",
+  "model_yakin": 0.886
  },
  {
   "foto": "F007.jpg",
@@ -1317,7 +1578,10 @@
   "yakin_latin": 0.237,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦭꦺꦶ꧀ꦱꦶꦕꦃꦠꦴꦚꦕꦭꦴꦸꦁꦃ",
+  "model_latin": "lésicahtonyacalongh",
+  "model_yakin": 0.558
  },
  {
   "foto": "F007.jpg",
@@ -1332,7 +1596,10 @@
   "yakin_latin": 0.402,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦤꦶꦤ꧀",
+  "model_latin": "nanin",
+  "model_yakin": 0.685
  },
  {
   "foto": "F007.jpg",
@@ -1347,7 +1614,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦭꦭꦶꦗ꧈ꦼꦒꦼ",
+  "model_latin": "lalija gê",
+  "model_yakin": 0.884
  },
  {
   "foto": "F007.jpg",
@@ -1362,7 +1632,10 @@
   "yakin_latin": 0.237,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦶꦁꦶ꧀ꦕꦸꦱꦠꦠꦃꦕꦃꦴꦃꦫ꧀ꦏꦕ",
+  "model_latin": "ngcusatatahcahhrkaca",
+  "model_yakin": 0.628
  },
  {
   "foto": "F007.jpg",
@@ -1377,7 +1650,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦫꦩ꧈ꦠꦼꦒꦼ",
+  "model_latin": "rama têgê",
+  "model_yakin": 0.851
  },
  {
   "foto": "F007.jpg",
@@ -1392,7 +1668,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦤꦶꦠ꧀ꦏꦤ꧀ꦤꦸꦁꦤꦤꦤꦶꦤꦶ",
+  "model_latin": "sanitkannungnananini",
+  "model_yakin": 0.624
  },
  {
   "foto": "F007.jpg",
@@ -1407,7 +1686,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏꦼꦱ꧀ꦱꦺꦒꦁ",
+  "model_latin": "kêsségang",
+  "model_yakin": 0.904
  },
  {
   "foto": "F007.jpg",
@@ -1422,7 +1704,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦸꦱꦤꦠ꧀ꦩꦤꦤꦶꦁ",
+  "model_latin": "sanatmananing",
+  "model_yakin": 0.613
  },
  {
   "foto": "F007.jpg",
@@ -1437,7 +1722,10 @@
   "yakin_latin": 0.402,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦱꦶꦃꦱꦠꦸꦴꦕꦕꦃꦃꦤ꧀ꦤꦶꦫꦫ꧀ꦸꦃ",
+  "model_latin": "sihsatucacahhnnirarh",
+  "model_yakin": 0.604
  },
  {
   "foto": "F007.jpg",
@@ -1452,7 +1740,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦶꦱꦏꦥꦸꦂ",
+  "model_latin": "nisakapur",
+  "model_yakin": 0.915
  },
  {
   "foto": "F007.jpg",
@@ -1467,7 +1758,10 @@
   "yakin_latin": 0.272,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠꦶꦤꦤꦤꦶꦭꦸ",
+  "model_latin": "tinananilu",
+  "model_yakin": 0.554
  },
  {
   "foto": "F007.jpg",
@@ -1482,7 +1776,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦸ꧀ꦩꦱꦤꦤꦤꦶ",
+  "model_latin": "mumasananani",
+  "model_yakin": 0.643
  },
  {
   "foto": "F007.jpg",
@@ -1497,7 +1794,10 @@
   "yakin_latin": 0.237,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦶ",
+  "model_latin": "si",
+  "model_yakin": 0.745
  },
  {
   "foto": "F007.jpg",
@@ -1512,7 +1812,10 @@
   "yakin_latin": 0.567,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦼꦁꦏ꧀ꦶ꧀ꦥꦸꦧꦶꦮꦶꦺꦁ꧀ꦤꦱꦲ꧀꧈ꦚ꧀ꦕꦶ",
+  "model_latin": "ngkpubiwingnasah nyci",
+  "model_yakin": 0.595
  },
  {
   "foto": "F007.jpg",
@@ -1527,7 +1830,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦕꦶꦪꦩꦼ",
+  "model_latin": "ciyamê",
+  "model_yakin": 0.888
  },
  {
   "foto": "F007.jpg",
@@ -1542,7 +1848,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦶꦁ",
+  "model_latin": "ng",
+  "model_yakin": 0.687
  },
  {
   "foto": "F007.jpg",
@@ -1557,7 +1866,10 @@
   "yakin_latin": 0.272,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦛꦶꦁꦱꦒ꧀ꦝꦁꦔꦺꦫꦸꦱꦏ꧀꧀ꦝꦃꦫꦸ꧀ꦛꦤꦼꦁꦭꦛꦶ",
+  "model_latin": "thingsagdhangngérusakdhahruthanênglathi",
+  "model_yakin": 0.789
  },
  {
   "foto": "F008.jpg",
@@ -1572,7 +1884,10 @@
   "yakin_latin": 0.872,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦸꦒ꧀ꦭ꧀ꦭꦪꦤ꧀ꦏꦏꦺꦮ꧀ꦗꦩ꧀ꦧꦭ꧀ꦩꦶꦤꦁꦔꦸ꧀ꦤ꧀ꦠꦩ꧀ꦩꦤ꧀ꦱꦶꦂꦫꦶꦏ",
+  "model_latin": "mugllayankakéwjambalminangnguntammansirrika",
+  "model_yakin": 0.881
  },
  {
   "foto": "F008.jpg",
@@ -1587,7 +1902,10 @@
   "yakin_latin": 0.872,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦢ꧀ꦤꦏ꧀ꦱꦤ꧀ꦮꦏ꧀ꦏꦏꦼꦤ꧀ꦭꦤ꧀ꦛꦶꦥꦚꦶꦏꦸꦪꦸꦁꦮꦶꦥꦸꦤ꧀ꦪ",
+  "model_latin": "dnaksanwakkakênlanthipanyikuyungwipunya",
+  "model_yakin": 0.886
  },
  {
   "foto": "F008.jpg",
@@ -1602,7 +1920,10 @@
   "yakin_latin": 0.172,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦪꦱ꧀ꦱꦤ꧀ꦏꦭ꧀ꦭꦲꦸꦱ꧀ꦠꦶꦁꦒꦸꦭ꧀ꦧꦼꦤ꧀ꦏꦶꦲꦤ꧀ꦱꦲꦏꦁ",
+  "model_latin": "yassankallahustinggulbênkihansahakang",
+  "model_yakin": 0.911
  },
  {
   "foto": "F008.jpg",
@@ -1617,7 +1938,10 @@
   "yakin_latin": 0.911,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦱ꧀ꦩꦺꦏ꧀ꦏꦏꦶꦤꦤ꧀ꦢꦶꦤꦶꦁꦲꦼꦁꦏꦁꦩꦶꦤꦸꦭ꧀ꦪꦕꦶꦱ꧀ꦭ꧀ꦠ",
+  "model_latin": "pasmékkakinandininghêngkangminulyacislta",
+  "model_yakin": 0.9
  },
  {
   "foto": "F008.jpg",
@@ -1632,7 +1956,10 @@
   "yakin_latin": 0.537,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀ꦲꦩꦁꦏꦸꦲꦸꦮꦤꦒꦢꦒꦸꦠꦶꦂꦤꦸꦝꦃꦲꦺꦫꦴ",
+  "model_latin": "nhamangkuhuwanagadagutirnudhahhéro",
+  "model_yakin": 0.895
  },
  {
   "foto": "F008.jpg",
@@ -1647,7 +1974,10 @@
   "yakin_latin": 0.493,
   "draf": "ꦃꦩꦺꦤ꧀",
   "skor_ctc": 14.932,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦠꦱ꧀ꦠꦶꦩꦺꦮꦃꦪꦺꦴꦒ꧀ꦩꦏꦂꦠꦠꦸꦮꦶꦤ꧀ꦲꦶꦁꦏꦁ",
+  "model_latin": "tastiméwahyogmakartatuwinhingkang",
+  "model_yakin": 0.936
  },
  {
   "foto": "F008.jpg",
@@ -1662,7 +1992,10 @@
   "yakin_latin": 0.493,
   "draf": "ꦃꦩꦺꦤ꧀",
   "skor_ctc": 19.667,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦩꦶꦏꦸꦭ꧀ꦪꦠꦸꦮꦤ꧀ꦪꦺꦴꦱ꧀ꦭꦺꦤ꧀ꦒꦺ꧈ꦩꦶꦤꦺꦁꦏ",
+  "model_latin": "mikulyatuwanyosléngé minéngka",
+  "model_yakin": 0.89
  },
  {
   "foto": "F008.jpg",
@@ -1677,7 +2010,10 @@
   "yakin_latin": 0.493,
   "draf": "ꦃꦩꦺꦤ꧀",
   "skor_ctc": 18.344,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦮꦏꦶꦭ꧀ꦧꦪꦱꦤ꧀ꦏꦭ꧀ꦭꦺꦴꦲꦸꦱ꧀ꦠꦶꦒꦸꦭ꧀ꦧꦺꦏꦶꦲꦤ꧀ꦮꦴ",
+  "model_latin": "wakilbayasankallohustigulbékihanwo",
+  "model_yakin": 0.903
  },
  {
   "foto": "F008.jpg",
@@ -1692,7 +2028,10 @@
   "yakin_latin": 0.493,
   "draf": "ꦃꦩꦺꦤ꧀",
   "skor_ctc": 20.621,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦝꦭꦺꦴꦠꦸꦒꦭ꧀ꦲꦶꦁꦱꦸꦪꦏꦭꦶꦴꦁꦔ꧀ꦮꦔ꧀ꦮꦴꦩ꧀ꦱꦒꦸꦱ꧀ꦠꦸꦱ꧀ꦢꦴꦢ꧀ꦮꦴ",
+  "model_latin": "dhalotugalhingsuyakalingngwangwomsagustusdodwo",
+  "model_yakin": 0.891
  },
  {
   "foto": "F009.jpg",
@@ -1707,7 +2046,10 @@
   "yakin_latin": 0.591,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦁꦼꦁꦠ",
+  "model_latin": "mangngta",
+  "model_yakin": 0.597
  },
  {
   "foto": "F009.jpg",
@@ -1722,7 +2064,10 @@
   "yakin_latin": 0.591,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦼꦚꦁ꧀ꦠꦔꦚꦃꦠꦚꦲ꧀ꦩꦸꦩꦲ꧀ꦏꦭꦥ",
+  "model_latin": "pênyangtanganyahtanyahmumahkalapa",
+  "model_yakin": 0.634
  },
  {
   "foto": "F009.jpg",
@@ -1737,7 +2082,10 @@
   "yakin_latin": 0.863,
   "draf": "ꦧꦢꦤ꧀ꦥꦼꦔꦺꦭ꧀",
   "skor_ctc": 5.026,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦮꦮꦤ꧀ꦁꦲꦭꦺꦃꦭꦏꦼꦲꦸꦲꦥꦮꦕꦲ꧀ꦲꦧꦸ",
+  "model_latin": "wawannghaléhlakêhuhapawacahhabu",
+  "model_yakin": 0.796
  },
  {
   "foto": "F009.jpg",
@@ -1752,7 +2100,10 @@
   "yakin_latin": 0.988,
   "draf": "ꦢꦶꦪ꧀ꦢꦶꦏꦺꦴꦠꦪꦺꦴꦒ꧀ꦪꦏꦂꦠ",
   "skor_ctc": 7.2,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦏ꧀ꦥ꧀ꦥꦝ꧀ꦝ꧀ꦲꦶꦪꦝꦶꦏꦺꦃꦏꦪꦺꦃꦒ꧀ꦤꦏꦂꦠ",
+  "model_latin": "kppadhdhhiyadhikéhkayéhgnakarta",
+  "model_yakin": 0.89
  },
  {
   "foto": "F010.jpg",
@@ -1767,7 +2118,10 @@
   "yakin_latin": 0.997,
   "draf": "ꦗ꧀ꦭ꧀ꦩꦭꦶꦪꦺꦴꦧꦺꦴꦫꦺꦴ",
   "skor_ctc": 5.227,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦢꦭꦤ꧀ꦩꦭꦶꦪꦧꦫ",
+  "model_latin": "dalanmaliyabara",
+  "model_yakin": 0.951
  },
  {
   "foto": "F022.jpg",
@@ -1782,7 +2136,10 @@
   "yakin_latin": 0.989,
   "draf": "ꦪꦺꦴꦒ꧀ꦪꦏꦂꦠꦲꦶꦤ꧀ꦠꦼꦂꦤꦠꦶꦪꦺꦴꦤꦭ꧀ꦲꦲꦶꦂꦥꦺꦴꦂꦠ꧀",
   "skor_ctc": 4.548,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦧꦤ꧀ꦗꦂꦲꦸꦲꦶꦤ꧀ꦠꦼꦂꦏꦶꦭꦺꦴꦤꦭ꧀ꦧꦺꦴꦒ꧀ꦏꦂꦠ꧉",
+  "model_latin": "banjarhuhintêrkilonalbogkarta",
+  "model_yakin": 0.931
  },
  {
   "foto": "F024.jpg",
@@ -1797,7 +2154,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦭꦥꦼꦩꦼꦫꦁꦏ꧀ꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ꧉",
+  "model_latin": "lapêmêrangkhkotasurakarta",
+  "model_yakin": 0.942
  },
  {
   "foto": "F024.jpg",
@@ -1812,7 +2172,10 @@
   "yakin_latin": 0.981,
   "draf": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
   "skor_ctc": 5.767,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦝꦶꦤꦱ꧀ꦥꦼꦂꦲꦸꦧꦸꦁꦔꦤ꧀ꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ꧉",
+  "model_latin": "dhinaspêrhubungngankotasurakarta",
+  "model_yakin": 0.948
  },
  {
   "foto": "F025.jpg",
@@ -1827,7 +2190,10 @@
   "yakin_latin": 0.651,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦼꦩꦼꦫꦶꦁꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ꧉",
+  "model_latin": "pêmêringntahkotasurakarta",
+  "model_yakin": 0.926
  },
  {
   "foto": "F025.jpg",
@@ -1842,7 +2208,10 @@
   "yakin_latin": 0.651,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝꦶꦤꦱ꧀ꦠꦼꦧꦼꦂꦱꦶꦃꦲꦤ꧀ꦛꦤ꧀ꦥꦼꦂꦠꦩꦤ꧀ꦤꦤ꧀",
+  "model_latin": "dhinastêbêrsihhanthanpêrtamannan",
+  "model_yakin": 0.925
  },
  {
   "foto": "F025.jpg",
@@ -1857,7 +2226,10 @@
   "yakin_latin": 0.651,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ",
+  "model_latin": "na",
+  "model_yakin": 0.992
  },
  {
   "foto": "F025.jpg",
@@ -1872,7 +2244,10 @@
   "yakin_latin": 0.995,
   "draf": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
   "skor_ctc": 5.326,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ꧉",
+  "model_latin": "kotasurakarta",
+  "model_yakin": 0.963
  },
  {
   "foto": "F026.jpg",
@@ -1887,7 +2262,10 @@
   "yakin_latin": 0.996,
   "draf": "ꦥꦼꦫꦮꦠꦤ꧀",
   "skor_ctc": 10.269,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦩꦺꦴꦁꦒꦺꦴꦥꦶꦤꦫꦏ꧀꧉",
+  "model_latin": "monggopinarak",
+  "model_yakin": 0.925
  },
  {
   "foto": "F027.jpg",
@@ -1902,7 +2280,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦮꦺꦁꦏꦼꦤ",
+  "model_latin": "wéngkêna",
+  "model_yakin": 0.71
  },
  {
   "foto": "F028.jpg",
@@ -1917,7 +2298,10 @@
   "yakin_latin": 0.83,
   "draf": "ꦗꦭꦤ꧀ꦮꦭꦺꦠ꧀ꦲꦶ",
   "skor_ctc": 4.43,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦫꦠꦤ꧀ꦮꦭꦺꦠ꧀꧈ꦮ꧀ꦩꦸ",
+  "model_latin": "ratanwalét wmu",
+  "model_yakin": 0.888
  },
  {
   "foto": "F029.jpg",
@@ -1932,7 +2316,10 @@
   "yakin_latin": 0.899,
   "draf": "ꦗ꧀ꦭ꧀ꦧ꧀ꦫꦶꦒ꧀ꦗꦺꦤ꧀ꦢ꧀ꦱ꧀ꦭꦩꦺꦠ꧀ꦫꦶꦪꦢꦶ",
   "skor_ctc": 4.103,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦫꦠꦤ꧀ꦧ꧀ꦶꦒ꧀ꦤꦼꦤ꧀ꦱ꧀ꦭꦩꦼꦠ꧀ꦫꦼꦪꦢꦶ",
+  "model_latin": "ratanbgnênslamêtrêyadi",
+  "model_yakin": 0.913
  },
  {
   "foto": "F030.jpg",
@@ -1947,7 +2334,10 @@
   "yakin_latin": 0.941,
   "draf": "ꦥ꧀ꦠ꧀ꦥ꧀ꦭ꧀ꦤ꧀ꦥꦼꦂꦱꦼꦫꦺꦴ",
   "skor_ctc": 5.408,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦥ꧈ꦠ꧉ꦥ꧈ꦭ꧈ꦤ꧈ꦁꦥꦼꦂꦱꦺꦺꦫꦺꦒꦴꦸꦁꦲ",
+  "model_latin": "pa ta pa la na ngpêrsérégongha",
+  "model_yakin": 0.896
  },
  {
   "foto": "F030.jpg",
@@ -1962,7 +2352,10 @@
   "yakin_latin": 0.941,
   "draf": "ꦥ꧀ꦠ꧀ꦥ꧀ꦭ꧀ꦤ꧀ꦥꦼꦂꦱꦼꦫꦺꦴ",
   "skor_ctc": 3.75,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦢꦱꦫꦺꦴꦶ꧀ꦱꦱꦸꦫꦏꦠ꧉",
+  "model_latin": "dasarosasurakata",
+  "model_yakin": 0.948
  },
  {
   "foto": "F032.jpg",
@@ -1977,7 +2370,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦭ꧀ꦮꦥꦔ꧀ꦤꦩ꧀ꦩꦤ꧀ꦤꦶꦁꦱꦸꦤ꧀ꦱꦶꦤꦶ",
+  "model_latin": "lwapangnammanningsunsini",
+  "model_yakin": 0.864
  },
  {
   "foto": "F032.jpg",
@@ -1992,7 +2388,10 @@
   "yakin_latin": 0.995,
   "draf": "ꦥꦸꦠꦶꦃ",
   "skor_ctc": 13.728,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦠ꧀ꦲꦩ꧀꧀ꦥꦩ꧀ꦸꦁ",
+  "model_latin": "thampamng",
+  "model_yakin": 0.832
  },
  {
   "foto": "F032.jpg",
@@ -2007,7 +2406,10 @@
   "yakin_latin": 0.39,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗꦼꦭꦭꦺꦴꦗꦤ꧀꧈",
+  "model_latin": "jêlalojan",
+  "model_yakin": 0.827
  },
  {
   "foto": "F041.jpg",
@@ -2022,7 +2424,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠꦒꦮꦸꦥ꧀ꦁꦧ꧀ꦝꦱ꧀ꦭꦩ꧀꧈",
+  "model_latin": "tagawupngbdhaslam",
+  "model_yakin": 0.884
  },
  {
   "foto": "F041.jpg",
@@ -2037,7 +2442,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗꦶꦭꦶꦢ꧀ꦒ꧈ꦱꦶꦛꦏ꧀ꦱꦱꦶꦱꦤ꧀",
+  "model_latin": "jilidga sithaksasisan",
+  "model_yakin": 0.92
  },
  {
   "foto": "F041.jpg",
@@ -2052,7 +2460,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦼꦗꦁꦔꦤ꧀ꦤꦶꦥꦸꦤ꧀",
+  "model_latin": "jangngannipun",
+  "model_yakin": 0.918
  },
  {
   "foto": "F041.jpg",
@@ -2067,7 +2478,10 @@
   "yakin_latin": 0.986,
   "draf": "ꦏꦮꦼꦢꦭꦏꦺꦤ꧀ꦕꦺꦴꦩꦶꦠꦺꦲꦶꦁꦏꦁꦔꦛꦃ",
   "skor_ctc": 5.561,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦼꦩꦸꦃ",
+  "model_latin": "muh",
+  "model_yakin": 0.714
  },
  {
   "foto": "F053.jpg",
@@ -2082,7 +2496,10 @@
   "yakin_latin": 0.996,
   "draf": "ꦗ꧀ꦭ꧀ꦏꦼꦩꦸꦤꦶꦁ",
   "skor_ctc": 3.004,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦫꦠꦤ꧀ꦏꦼꦩꦸꦤꦶꦁ",
+  "model_latin": "ratankêmuning",
+  "model_yakin": 0.954
  },
  {
   "foto": "F054.jpg",
@@ -2097,7 +2514,10 @@
   "yakin_latin": 0.504,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦤ꧀ꦝꦭꦮꦶꦱꦠ꧉",
+  "model_latin": "mandhalawisata",
+  "model_yakin": 0.951
  },
  {
   "foto": "F055.jpg",
@@ -2112,7 +2532,10 @@
   "yakin_latin": 0.887,
   "draf": "ꦠꦺꦭ꧀ꦥ꧀",
   "skor_ctc": 5.65,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦲꦺꦼ꧀ꦁ꧀ꦠꦼꦭ꧀ꦶ꧀ꦱꦤ꧀ꦸ꧀ꦶ",
+  "model_latin": "héngtêlsan",
+  "model_yakin": 0.732
  },
  {
   "foto": "F056.jpg",
@@ -2127,7 +2550,10 @@
   "yakin_latin": 0.959,
   "draf": "ꦗ꧀ꦭ꧀ꦩꦼꦤꦸꦂꦲꦶ",
   "skor_ctc": 4.351,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦩꦼꦤꦸꦒ",
+  "model_latin": "mênuga",
+  "model_yakin": 0.947
  },
  {
   "foto": "F056.jpg",
@@ -2142,7 +2568,10 @@
   "yakin_latin": 0.959,
   "draf": "ꦗ꧀ꦭ꧀ꦩꦼꦤꦸꦂꦲꦶ",
   "skor_ctc": 5.258,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦫꦠꦤ꧀",
+  "model_latin": "ratan",
+  "model_yakin": 0.907
  },
  {
   "foto": "F057.jpg",
@@ -2157,7 +2586,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗ꧀꧀",
+  "model_latin": "j",
+  "model_yakin": 0.735
  },
  {
   "foto": "F058.jpg",
@@ -2172,7 +2604,10 @@
   "yakin_latin": 0.458,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦮꦺꦶꦱ꧀ꦥꦢꦩꦭ",
+  "model_latin": "wéspadamala",
+  "model_yakin": 0.779
  },
  {
   "foto": "F058.jpg",
@@ -2187,7 +2622,10 @@
   "yakin_latin": 0.458,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗ꧀ꦧꦁ",
+  "model_latin": "jbang",
+  "model_yakin": 0.777
  },
  {
   "foto": "F059.jpg",
@@ -2202,7 +2640,10 @@
   "yakin_latin": 0.988,
   "draf": "ꦲꦺꦴꦕ꧀ꦧ꧀ꦕ꧀ꦤꦶꦱ꧀ꦥ꧀",
   "skor_ctc": 3.881,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "꧀ꦱ꧀ꦥ꧈ꦲꦸ꧈꧈",
+  "model_latin": "spa hu",
+  "model_yakin": 0.763
  },
  {
   "foto": "F060.jpg",
@@ -2217,7 +2658,10 @@
   "yakin_latin": 0.682,
   "draf": "ꦫꦺꦪ꧀ꦥ꧀ꦢ꧀ꦥꦭꦱ꧀ꦲꦼꦠꦺꦭ꧀",
   "skor_ctc": 5.927,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "꧀ꦲꦴꦠꦺꦭꦫ",
+  "model_latin": "hotélara",
+  "model_yakin": 0.779
  },
  {
   "foto": "F060.jpg",
@@ -2232,7 +2676,10 @@
   "yakin_latin": 0.682,
   "draf": "ꦫꦺꦪ꧀ꦥ꧀ꦢ꧀ꦥꦭꦱ꧀ꦲꦼꦠꦺꦭ꧀",
   "skor_ctc": 6.704,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦥꦢꦼꦭ",
+  "model_latin": "padêla",
+  "model_yakin": 0.846
  },
  {
   "foto": "F061.jpg",
@@ -2247,7 +2694,10 @@
   "yakin_latin": 0.999,
   "draf": "ꦲꦱꦸꦫꦤ꧀ꦱꦶꦗꦱꦶꦤ꧀ꦢꦺꦴ",
   "skor_ctc": 2.286,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦶ꧀ꦱꦱꦸꦫꦤ꧀ꦱꦶꦗꦱꦔꦤ꧀ꦴꦂꦃ",
+  "model_latin": "sasuransijasanganrh",
+  "model_yakin": 0.877
  },
  {
   "foto": "F062.jpg",
@@ -2262,7 +2712,10 @@
   "yakin_latin": 0.778,
   "draf": "ꦢ꧀ꦱ꧀ꦭꦩꦼꦠ꧀ꦫꦶꦪꦢꦶꦥ꧀ꦲꦺꦴꦤꦺꦱꦺꦴꦭꦺꦴ",
   "skor_ctc": 5.069,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "꧀ꦸꦲꦺꦴꦠꦺꦭ꧀ꦂꦱꦤꦸꦒꦼꦫꦃꦥꦭꦱꦺ꧉",
+  "model_latin": "hotélrsanugêrahpalasé",
+  "model_yakin": 0.869
  },
  {
   "foto": "F062.jpg",
@@ -2277,7 +2730,10 @@
   "yakin_latin": 0.997,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ",
+  "model_latin": "na",
+  "model_yakin": 0.769
  },
  {
   "foto": "F063.jpg",
@@ -2292,7 +2748,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦧ꧈ꦱ꧀ꦫꦶꦩꦶ꧀ꦱꦃꦩꦤ꧀ꦝꦶꦫꦶ꧉",
+  "model_latin": "ba srimisahmandhiri",
+  "model_yakin": 0.928
  },
  {
   "foto": "F064.jpg",
@@ -2307,7 +2766,10 @@
   "yakin_latin": 0.996,
   "draf": "ꦧꦤ꧀ꦏ꧀ꦩꦼꦒ",
   "skor_ctc": 5.931,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦒꦫ꧉",
+  "model_latin": "gara",
+  "model_yakin": 0.77
  },
  {
   "foto": "F064.jpg",
@@ -2322,7 +2784,10 @@
   "yakin_latin": 0.996,
   "draf": "ꦧꦤ꧀ꦏ꧀ꦩꦼꦒ",
   "skor_ctc": 8.594,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦔ",
+  "model_latin": "nga",
+  "model_yakin": 0.77
  },
  {
   "foto": "F064.jpg",
@@ -2337,7 +2802,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦁ",
+  "model_latin": "ng",
+  "model_yakin": 0.797
  },
  {
   "foto": "F065.jpg",
@@ -2352,7 +2820,10 @@
   "yakin_latin": 1.0,
   "draf": "ꦲꦺꦴꦮꦸꦱꦺ",
   "skor_ctc": 4.055,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦠꦁꦠ",
+  "model_latin": "tangta",
+  "model_yakin": 0.535
  },
  {
   "foto": "F065.jpg",
@@ -2367,7 +2838,10 @@
   "yakin_latin": 0.425,
   "draf": "ꦱ꧀ꦃꦏ꧀ꦱꦶꦠ꧀ꦱ꧀",
   "skor_ctc": 3.472,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦢ",
+  "model_latin": "da",
+  "model_yakin": 0.331
  },
  {
   "foto": "F066.jpg",
@@ -2382,7 +2856,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ꧉",
+  "model_latin": "pêmêrintahkotasurakarta",
+  "model_yakin": 0.927
  },
  {
   "foto": "F066.jpg",
@@ -2397,7 +2874,10 @@
   "yakin_latin": 0.999,
   "draf": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
   "skor_ctc": 7.435,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦏꦤ꧀ꦠꦺꦴꦏꦼꦠꦲꦤ꧀ꦤꦤ꧀ꦥꦔꦤ꧀꧈",
+  "model_latin": "kantokêtahannanpangan",
+  "model_yakin": 0.954
  },
  {
   "foto": "F067.jpg",
@@ -2412,7 +2892,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦺꦴꦠꦺꦤ꧀ꦮꦏꦺꦭꦺꦔꦏꦸ",
+  "model_latin": "hoténwakéléngaku",
+  "model_yakin": 0.678
  },
  {
   "foto": "F068.jpg",
@@ -2427,7 +2910,10 @@
   "yakin_latin": 0.954,
   "draf": "ꦪꦪꦱꦤ꧀ꦥꦼꦩ꧀ꦧꦶꦤꦲꦤ꧀ꦲꦤꦏ꧀ꦕꦕꦠ꧀ꦪ꧀ꦥꦕ꧀",
   "skor_ctc": 3.825,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦪꦪꦱꦤ꧀ꦥꦼꦩ꧀ꦧꦶꦤꦩ꧀ꦱꦏ꧀ꦱ꧀ꦱꦤꦏ꧀ꦕꦱꦠ꧀꧉ꦪ꧈ꦥ꧈꧀ꦱ꧈ꦕ꧈",
+  "model_latin": "yayasanpêmbinamsakssanakcasat ya pa sa ca",
+  "model_yakin": 0.919
  },
  {
   "foto": "F068.jpg",
@@ -2442,7 +2928,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥ",
+  "model_latin": "pa",
+  "model_yakin": 0.98
  },
  {
   "foto": "F068.jpg",
@@ -2457,7 +2946,10 @@
   "yakin_latin": 0.954,
   "draf": "ꦪꦪꦱꦤ꧀ꦥꦼꦩ꧀ꦧꦶꦤꦲꦤ꧀ꦲꦤꦏ꧀ꦕꦕꦠ꧀ꦪ꧀ꦥꦕ꧀",
   "skor_ctc": 7.614,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦸꦫꦏꦂꦠ꧉",
+  "model_latin": "rakarta",
+  "model_yakin": 0.968
  },
  {
   "foto": "F069.jpg",
@@ -2472,7 +2964,10 @@
   "yakin_latin": 0.926,
   "draf": "ꦥꦸꦱꦠ꧀ꦫꦼꦲꦧꦶꦭꦶꦠꦱꦶꦲꦤꦏ꧀ꦥ꧀ꦫ",
   "skor_ctc": 3.369,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦥꦸꦱꦠ꧀ꦫꦺꦲꦧꦶꦭꦶꦠꦱꦶꦩ꧀ꦱꦤꦶꦏ꧀",
+  "model_latin": "pusatréhabilitasimsanik",
+  "model_yakin": 0.951
  },
  {
   "foto": "F069.jpg",
@@ -2487,7 +2982,10 @@
   "yakin_latin": 0.926,
   "draf": "ꦥꦸꦱꦠ꧀ꦫꦼꦲꦧꦶꦭꦶꦠꦱꦶꦲꦤꦏ꧀ꦥ꧀ꦫ",
   "skor_ctc": 6.286,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦪ꧈ꦥ꧈ꦱꦶ꧀ꦱ꧈ꦕ꧈ꦱꦸꦫꦏ꧀ꦂꦠ",
+  "model_latin": "ya pa sisa ca surakrta",
+  "model_yakin": 0.908
  },
  {
   "foto": "F070.jpg",
@@ -2502,7 +3000,10 @@
   "yakin_latin": 0.985,
   "draf": "ꦱꦺꦴꦭꦺꦴꦒ꧀ꦫꦤ꧀ꦢ꧀",
   "skor_ctc": 4.349,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦺꦸꦱꦴꦤ꧀ꦭꦺꦴꦭ꧀",
+  "model_latin": "sonlol",
+  "model_yakin": 0.759
  },
  {
   "foto": "F071.jpg",
@@ -2517,7 +3018,10 @@
   "yakin_latin": 0.773,
   "draf": "ꦱ꧀ꦭꦩꦺꦠ꧀ꦫꦶꦪꦢꦶꦱꦺꦴꦠ꧀ꦭ꧀ꦥ꧀ꦥ꧀",
   "skor_ctc": 5.331,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦲꦝꦶꦩ꧀ꦲꦪꦶꦩ꧀꧀꧉",
+  "model_latin": "hadhimhayim",
+  "model_yakin": 0.936
  },
  {
   "foto": "F072.jpg",
@@ -2532,7 +3036,10 @@
   "yakin_latin": 0.955,
   "draf": "ꦧ꧀ꦠ꧀ꦤ꧀",
   "skor_ctc": 3.395,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦂꦂ꧈ꦤ꧀꧈",
+  "model_latin": "rr n",
+  "model_yakin": 0.684
  },
  {
   "foto": "F073.jpg",
@@ -2547,7 +3054,10 @@
   "yakin_latin": 0.391,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦼꦩꦼꦫꦁꦤ꧀ꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ꧉",
+  "model_latin": "pêmêrangnhkotasurakarta",
+  "model_yakin": 0.969
  },
  {
   "foto": "F073.jpg",
@@ -2562,7 +3072,10 @@
   "yakin_latin": 0.391,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝꦶꦤꦱ꧀ꦲꦺꦴꦥꦶꦱꦭ꧀ꦠꦼꦤꦒꦏꦼꦂꦗꦝꦤ꧀ꦠꦤ꧀ꦲ꧀ꦚꦶꦱꦶ",
+  "model_latin": "dhinashopisaltênagakêrjadhantanhnyisi",
+  "model_yakin": 0.878
  },
  {
   "foto": "F073.jpg",
@@ -2577,7 +3090,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠ",
+  "model_latin": "ta",
+  "model_yakin": 0.997
  },
  {
   "foto": "F073.jpg",
@@ -2592,7 +3108,10 @@
   "yakin_latin": 0.982,
   "draf": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
   "skor_ctc": 5.509,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ꧉",
+  "model_latin": "kotasurakarta",
+  "model_yakin": 0.972
  },
  {
   "foto": "F073.jpg",
@@ -2607,7 +3126,10 @@
   "yakin_latin": 0.928,
   "draf": "ꦮ꧀ꦕꦱꦶꦭ",
   "skor_ctc": 4.109,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦮ꧉",
+  "model_latin": "wa",
+  "model_yakin": 0.547
  },
  {
   "foto": "F074.jpg",
@@ -2622,7 +3144,10 @@
   "yakin_latin": 0.999,
   "draf": "ꦝꦂꦩ",
   "skor_ctc": 23.742,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦝꦁꦩꦮꦤꦶꦠꦥꦼꦁꦱꦠꦸꦩ꧀ꦱ꧀꧉",
+  "model_latin": "dhangmawanitapêngsatums",
+  "model_yakin": 0.911
  },
  {
   "foto": "F074.jpg",
@@ -2637,7 +3162,10 @@
   "yakin_latin": 0.999,
   "draf": "ꦝꦂꦩ",
   "skor_ctc": 44.851,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦮꦝꦶꦤꦱ꧀ꦱꦺꦴꦱꦶꦱꦭ꧀ꦠꦼꦁꦤꦒꦏꦼꦂꦗꦝꦤ꧀ꦩꦸꦤ꧀ꦱ꧀ꦝꦒ꧀ꦱꦶ",
+  "model_latin": "wadhinassosisaltêngnagakêrjadhanmunsdhagsi",
+  "model_yakin": 0.895
  },
  {
   "foto": "F074.jpg",
@@ -2652,7 +3180,10 @@
   "yakin_latin": 1.0,
   "draf": "ꦥꦼꦂꦱꦠꦸꦮꦤ꧀",
   "skor_ctc": 7.991,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦠ",
+  "model_latin": "ta",
+  "model_yakin": 0.998
  },
  {
   "foto": "F074.jpg",
@@ -2667,7 +3198,10 @@
   "yakin_latin": 0.999,
   "draf": "ꦮꦤꦶꦠ",
   "skor_ctc": 11.709,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦏꦺꦴꦠꦱꦸꦫꦏꦠ꧉",
+  "model_latin": "kotasurakata",
+  "model_yakin": 0.968
  },
  {
   "foto": "F075.jpg",
@@ -2682,7 +3216,10 @@
   "yakin_latin": 0.235,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦼꦔꦢꦶꦭꦤ꧀ꦩꦼꦒꦼꦫꦶꦱꦸꦫꦏꦠ꧀",
+  "model_latin": "pêngadilanmêgêrisurakat",
+  "model_yakin": 0.908
  },
  {
   "foto": "F076.jpg",
@@ -2697,7 +3234,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩ꧀ꦭ꧀",
+  "model_latin": "ml",
+  "model_yakin": 0.743
  },
  {
   "foto": "F076.jpg",
@@ -2712,7 +3252,10 @@
   "yakin_latin": 0.781,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦱꦏ",
+  "model_latin": "sasaka",
+  "model_yakin": 0.887
  },
  {
   "foto": "F077.jpg",
@@ -2727,7 +3270,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩ꧀ꦭ꧀",
+  "model_latin": "ml",
+  "model_yakin": 0.878
  },
  {
   "foto": "F077.jpg",
@@ -2742,7 +3288,10 @@
   "yakin_latin": 0.521,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦸꦱ꧀ꦤꦩ꧀",
+  "model_latin": "musnam",
+  "model_yakin": 0.689
  },
  {
   "foto": "F078.jpg",
@@ -2757,7 +3306,10 @@
   "yakin_latin": 0.593,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦸꦱꦏ",
+  "model_latin": "saka",
+  "model_yakin": 0.813
  },
  {
   "foto": "F078.jpg",
@@ -2772,7 +3324,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦶ꧀ꦭ꧀",
+  "model_latin": "mil",
+  "model_yakin": 0.861
  },
  {
   "foto": "F079.jpg",
@@ -2787,7 +3342,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦺꦴꦧꦺꦠ꧀ꦝꦠ꧉",
+  "model_latin": "hobétdhata",
+  "model_yakin": 0.781
  },
  {
   "foto": "F079.jpg",
@@ -2802,7 +3360,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦺꦺ꧀ꦺꦺ꧀ꦲ",
+  "model_latin": "ha",
+  "model_yakin": 0.681
  },
  {
   "foto": "F080.jpg",
@@ -2817,7 +3378,10 @@
   "yakin_latin": 0.932,
   "draf": "ꦠꦺꦴꦏꦺꦴꦧꦸꦏꦸ",
   "skor_ctc": 4.954,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦠꦺꦴꦏꦺꦴꦧꦸꦏꦸꦒꦩꦺꦝꦶꦲ",
+  "model_latin": "tokobukugamédhiha",
+  "model_yakin": 0.972
  },
  {
   "foto": "F081.jpg",
@@ -2832,7 +3396,10 @@
   "yakin_latin": 0.926,
   "draf": "ꦫꦶꦪꦥ꧀",
   "skor_ctc": 5.59,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦤ꧀ꦺ꧀꧀ꦁ",
+  "model_latin": "nng",
+  "model_yakin": 0.669
  },
  {
   "foto": "F081.jpg",
@@ -2847,7 +3414,10 @@
   "yakin_latin": 0.926,
   "draf": "ꦫꦶꦪꦥ꧀",
   "skor_ctc": 5.201,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦏꦼꦁꦭꦁ",
+  "model_latin": "kênglang",
+  "model_yakin": 0.611
  },
  {
   "foto": "F081.jpg",
@@ -2862,7 +3432,10 @@
   "yakin_latin": 0.926,
   "draf": "ꦫꦶꦪꦥ꧀",
   "skor_ctc": 6.394,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦝꦺ꧀ꦁ",
+  "model_latin": "dhéng",
+  "model_yakin": 0.556
  },
  {
   "foto": "F082.jpg",
@@ -2877,7 +3450,10 @@
   "yakin_latin": 0.99,
   "draf": "ꦥ꧀ꦫꦼꦲꦺ",
   "skor_ctc": 4.753,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦩꦱꦮ꧀ꦤꦸꦶꦮꦕꦢꦩꦸꦩꦸ",
+  "model_latin": "masawnuwacadamumu",
+  "model_yakin": 0.658
  },
  {
   "foto": "F082.jpg",
@@ -2892,7 +3468,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦫꦫꦸ꧀ꦂꦢꦺꦤꦂꦲꦢꦶ꧀ꦱ",
+  "model_latin": "rarurdénarhadisa",
+  "model_yakin": 0.835
  },
  {
   "foto": "F083.jpg",
@@ -2907,7 +3486,10 @@
   "yakin_latin": 0.89,
   "draf": "ꦥ꧀ꦧꦤ꧀ꦏ꧀ꦥꦼꦂꦏ꧀ꦫꦼꦢꦶꦠ",
   "skor_ctc": 5.557,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦥ꧈ꦲ꧈ꦧ꧈ꦥ꧉ꦸꦏꦢꦤ꧀ꦏꦸ꧈",
+  "model_latin": "pa ha ba pa kadanku",
+  "model_yakin": 0.735
  },
  {
   "foto": "F084.jpg",
@@ -2922,7 +3504,10 @@
   "yakin_latin": 0.887,
   "draf": "ꦏꦩ꧀ꦥꦸꦁꦠꦶꦩꦸꦫꦤ꧀",
   "skor_ctc": 4.54,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦮꦶꦸꦺ꧀",
+  "model_latin": "wi",
+  "model_yakin": 0.785
  },
  {
   "foto": "F088.jpg",
@@ -2937,7 +3522,10 @@
   "yakin_latin": 0.318,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦩꦼꦫꦶꦤ꧀ꦤꦃꦥꦸꦏꦲꦴꦂꦠꦱꦸꦫꦏꦂꦠ꧉",
+  "model_latin": "mamêrinnahpukahortasurakarta",
+  "model_yakin": 0.888
  },
  {
   "foto": "F088.jpg",
@@ -2952,7 +3540,10 @@
   "yakin_latin": 0.318,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦸꦤ꧀ꦭꦶꦮꦶꦲꦭ꧀ꦏꦏ꧀ꦥꦼꦱ꧀ꦸꦮꦮꦏ꧀ꦮ꧀ꦢꦪꦃꦫꦂꦲ꧉",
+  "model_latin": "nunliwihalkakpêswawakwdayahrarha",
+  "model_yakin": 0.887
  },
  {
   "foto": "F088.jpg",
@@ -2967,7 +3558,10 @@
   "yakin_latin": 0.496,
   "draf": "ꦩꦲꦶꦪꦤ꧀ꦗꦲꦤ꧀",
   "skor_ctc": 6.183,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦠꦶꦁꦸ꧀",
+  "model_latin": "ting",
+  "model_yakin": 0.673
  },
  {
   "foto": "F088.jpg",
@@ -2982,7 +3576,10 @@
   "yakin_latin": 0.984,
   "draf": "ꦫꦶꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫ",
   "skor_ctc": 6.819,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦱꦸꦫꦏꦂꦠ꧉",
+  "model_latin": "surakarta",
+  "model_yakin": 0.969
  },
  {
   "foto": "F088.jpg",
@@ -2997,7 +3594,10 @@
   "yakin_latin": 0.953,
   "draf": "ꦱꦼꦏꦺꦴꦭꦃꦩꦼꦤꦼꦔꦃꦥꦼꦂꦠꦩ",
   "skor_ctc": 7.655,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦥꦔꦴ",
+  "model_latin": "pango",
+  "model_yakin": 0.654
  },
  {
   "foto": "F089.jpg",
@@ -3012,7 +3612,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏ",
+  "model_latin": "ka",
+  "model_yakin": 0.974
  },
  {
   "foto": "F089.jpg",
@@ -3027,7 +3630,10 @@
   "yakin_latin": 0.235,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦼꦂꦏꦺꦤ꧀ꦭꦺꦃꦩꦼꦥ꧀ꦫꦶꦁꦺꦸꦃꦂꦠꦂꦩꦤ꧀ꦼꦏꦼ꧉ꦒꦏ",
+  "model_latin": "rkénléhmêpringhrtarmankê gaka",
+  "model_yakin": 0.836
  },
  {
   "foto": "F089.jpg",
@@ -3042,7 +3648,10 @@
   "yakin_latin": 0.951,
   "draf": "ꦥꦼꦩꦼꦂꦤ꧀ꦠ",
   "skor_ctc": 6.65,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦱꦸꦂꦫꦸꦏꦠ꧀ꦂ꧉꧈",
+  "model_latin": "surrukatr",
+  "model_yakin": 0.859
  },
  {
   "foto": "F090.jpg",
@@ -3057,7 +3666,10 @@
   "yakin_latin": 0.941,
   "draf": "ꦥꦼꦩꦺꦂꦤ꧀",
   "skor_ctc": 14.419,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "꧀ꦼꦂꦏꦺꦤ꧀ꦭꦃꦩꦼꦩ꧀ꦶꦺꦂꦠꦂꦩꦤ꧀ꦼꦒꦼꦂ꧉ꦒꦤ",
+  "model_latin": "rkénlahmêmrtarmangêr gana",
+  "model_yakin": 0.82
  },
  {
   "foto": "F090.jpg",
@@ -3072,7 +3684,10 @@
   "yakin_latin": 0.941,
   "draf": "ꦥꦼꦩꦺꦂꦤ꧀",
   "skor_ctc": 4.45,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦱꦫꦸ",
+  "model_latin": "saru",
+  "model_yakin": 0.879
  },
  {
   "foto": "F090.jpg",
@@ -3087,7 +3702,10 @@
   "yakin_latin": 0.99,
   "draf": "ꦱꦸꦫꦏ꧀",
   "skor_ctc": 6.928,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "꧀ꦠꦺ꧀ꦂ",
+  "model_latin": "tér",
+  "model_yakin": 0.681
  },
  {
   "foto": "F091.jpg",
@@ -3102,7 +3720,10 @@
   "yakin_latin": 0.666,
   "draf": "ꦕ꧀ꦧ꧀ꦤ",
   "skor_ctc": 5.384,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦕꦧ꧀ꦩ꧈ꦧꦱ",
+  "model_latin": "cabma basa",
+  "model_yakin": 0.718
  },
  {
   "foto": "F092.jpg",
@@ -3117,7 +3738,10 @@
   "yakin_latin": 0.937,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦪꦺꦠ",
+  "model_latin": "yéta",
+  "model_yakin": 0.395
  },
  {
   "foto": "F092.jpg",
@@ -3132,7 +3756,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦺꦴꦠꦺꦪ꧀ꦮꦶꦱꦠꦚ꧀ꦤ꧀ꦝꦃ꧈",
+  "model_latin": "hotéywisatanyndhah",
+  "model_yakin": 0.946
  },
  {
   "foto": "F094.jpg",
@@ -3147,7 +3774,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦱꦸꦩꦸꦂꦥꦼꦔꦂꦱꦶꦠ꧀ꦸꦤ꧀",
+  "model_latin": "sasumurpêngarsitn",
+  "model_yakin": 0.882
  },
  {
   "foto": "F095.jpg",
@@ -3162,7 +3792,10 @@
   "yakin_latin": 0.873,
   "draf": "ꦕꦶꦥ꧀ꦠꦺꦴꦩꦔꦸꦤ꧀ꦏꦸꦱꦸꦩꦺꦴ",
   "skor_ctc": 3.717,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦔꦏꦸ꧉ꦕꦼꦥ꧀ꦗꦥꦔꦸꦠ꧀ꦱꦸꦥ꧉",
+  "model_latin": "ngaku cêpjapangutsupa",
+  "model_yakin": 0.887
  },
  {
   "foto": "F096.jpg",
@@ -3177,7 +3810,10 @@
   "yakin_latin": 0.861,
   "draf": "ꦧꦺꦴꦤ꧀ꦗꦺꦴꦭ꧀",
   "skor_ctc": 3.863,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦭ",
+  "model_latin": "la",
+  "model_yakin": 0.541
  },
  {
   "foto": "F097.jpg",
@@ -3192,7 +3828,10 @@
   "yakin_latin": 0.995,
   "draf": "ꦏꦸꦱꦸꦩꦱꦲꦶꦢ꧀ꦥ꧀ꦫꦶꦤ꧀ꦕꦺꦲꦺꦴꦠꦺꦭ꧀",
   "skor_ctc": 4.184,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦏꦸꦱꦸꦩꦱꦲꦶꦢ꧀ꦥꦶꦤ꧀ꦲꦺꦴꦠꦺꦭ꧀ꦱꦺꦴꦭꦺꦴ꧉",
+  "model_latin": "kusumasahidpinhotélsolo",
+  "model_yakin": 0.964
  },
  {
   "foto": "F098.jpg",
@@ -3207,7 +3846,10 @@
   "yakin_latin": 0.951,
   "draf": "ꦫꦲꦤ꧀ꦏꦩ꧀ꦥꦸꦁꦧꦫꦸ",
   "skor_ctc": 4.674,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦩꦥꦩꦸꦩ꧀ꦸ꧀ꦭꦶꦗꦤ꧀ꦤꦱꦶꦁꦲ꧀ꦤꦁꦤꦱꦁꦤ꧀ꦏꦁ",
+  "model_latin": "mapamumlijannasinghnangnasangnkang",
+  "model_yakin": 0.578
  },
  {
   "foto": "F098.jpg",
@@ -3222,7 +3864,10 @@
   "yakin_latin": 0.951,
   "draf": "ꦫꦲꦤ꧀ꦏꦩ꧀ꦥꦸꦁꦧꦫꦸ",
   "skor_ctc": 4.463,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦱ꧀꧀ꦱꦁꦃ꧀ꦱꦤ",
+  "model_latin": "ssanghsana",
+  "model_yakin": 0.584
  },
  {
   "foto": "F098.jpg",
@@ -3237,7 +3882,10 @@
   "yakin_latin": 0.951,
   "draf": "ꦫꦲꦤ꧀ꦏꦩ꧀ꦥꦸꦁꦧꦫꦸ",
   "skor_ctc": 4.326,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "꧀ꦲꦩ꧀ꦥꦸꦧꦱꦸ꧈",
+  "model_latin": "hampubasu",
+  "model_yakin": 0.865
  },
  {
   "foto": "F099.jpg",
@@ -3252,7 +3900,10 @@
   "yakin_latin": 0.483,
   "draf": "ꦲꦺꦴꦩ꧀ꦪ꧀",
   "skor_ctc": 5.691,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦫꦫꦁ",
+  "model_latin": "rarang",
+  "model_yakin": 0.871
  },
  {
   "foto": "F100.jpg",
@@ -3267,7 +3918,10 @@
   "yakin_latin": 0.359,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦩ꧀ꦧꦺꦴꦠꦼꦤ꧀ꦥꦥꦔ꧀ꦤꦒꦃꦩ꧀ꦶꦏꦶ꧉",
+  "model_latin": "hambotênpapangnagahmki",
+  "model_yakin": 0.916
  },
  {
   "foto": "F104.jpg",
@@ -3282,7 +3936,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗꦃꦲ꧀ꦫꦶꦩꦃ꧀ꦪꦭꦁꦗꦁꦁ꧀ꦁ",
+  "model_latin": "jahhrimahyalangjangngng",
+  "model_yakin": 0.716
  },
  {
   "foto": "F105.jpg",
@@ -3297,7 +3954,10 @@
   "yakin_latin": 0.746,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦕꦶꦩꦫꦲꦭ꧀ꦧꦶꦂ",
+  "model_latin": "cimarahalbir",
+  "model_yakin": 0.912
  },
  {
   "foto": "F108.jpg",
@@ -3312,7 +3972,10 @@
   "yakin_latin": 0.878,
   "draf": "ꦕꦏꦼꦲꦕꦺꦴ",
   "skor_ctc": 4.992,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦱ꧀ꦱꦢꦶꦶꦒ꧀ꦪꦸꦒ",
+  "model_latin": "ssadigyuga",
+  "model_yakin": 0.896
  },
  {
   "foto": "F108.jpg",
@@ -3327,7 +3990,10 @@
   "yakin_latin": 0.818,
   "draf": "ꦲꦲꦫꦗꦮ",
   "skor_ctc": 5.533,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦲꦏ꧀ꦥꦫꦗꦮ",
+  "model_latin": "hakparajawa",
+  "model_yakin": 0.935
  },
  {
   "foto": "F108.jpg",
@@ -3342,7 +4008,10 @@
   "yakin_latin": 0.613,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏꦸꦁꦢ꧀ꦱ꧀ꦸꦩ꧀ꦁ",
+  "model_latin": "kungdsmng",
+  "model_yakin": 0.766
  },
  {
   "foto": "F108.jpg",
@@ -3357,7 +4026,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏꦸ",
+  "model_latin": "ku",
+  "model_yakin": 0.8
  },
  {
   "foto": "F108.jpg",
@@ -3372,7 +4044,10 @@
   "yakin_latin": 0.818,
   "draf": "ꦲꦲꦫꦗꦮ",
   "skor_ctc": 6.99,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦲ",
+  "model_latin": "ha",
+  "model_yakin": 0.995
  },
  {
   "foto": "F108.jpg",
@@ -3387,7 +4062,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦪꦱ",
+  "model_latin": "yasa",
+  "model_yakin": 0.354
  },
  {
   "foto": "F108.jpg",
@@ -3402,7 +4080,10 @@
   "yakin_latin": 0.818,
   "draf": "ꦲꦲꦫꦗꦮ",
   "skor_ctc": 6.925,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦪ",
+  "model_latin": "ya",
+  "model_yakin": 0.999
  },
  {
   "foto": "F108.jpg",
@@ -3417,7 +4098,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥ",
+  "model_latin": "pa",
+  "model_yakin": 0.995
  },
  {
   "foto": "F111.jpg",
@@ -3432,7 +4116,10 @@
   "yakin_latin": 0.932,
   "draf": "ꦭꦺꦴꦏꦺꦠ꧀",
   "skor_ctc": 0.873,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦱꦭꦴꦏꦺꦠ꧀",
+  "model_latin": "salokét",
+  "model_yakin": 0.922
  },
  {
   "foto": "F114.jpg",
@@ -3447,7 +4134,10 @@
   "yakin_latin": 0.429,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦼꦩꦼꦁꦂꦫꦶꦤ꧀ꦠꦃꦏꦭꦸꦫꦃꦲꦤ꧀ꦧꦚꦸꦫꦢꦺꦤ꧀",
+  "model_latin": "pêmêngrrintahkalurahhanbanyuradén",
+  "model_yakin": 0.954
  },
  {
   "foto": "F114.jpg",
@@ -3462,7 +4152,10 @@
   "yakin_latin": 0.997,
   "draf": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦭꦸꦫꦲꦤ꧀ꦧꦚꦸꦫꦢꦺꦤ꧀",
   "skor_ctc": 8.491,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦏ",
+  "model_latin": "ka",
+  "model_yakin": 0.874
  },
  {
   "foto": "F115.jpg",
@@ -3477,7 +4170,10 @@
   "yakin_latin": 0.228,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱ꧀꧀ꦴ",
+  "model_latin": "s",
+  "model_yakin": 0.794
  },
  {
   "foto": "F115.jpg",
@@ -3492,7 +4188,10 @@
   "yakin_latin": 0.228,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗꦢꦤ꧀ꦒꦁꦲꦁꦭꦪꦁꦲꦲ",
+  "model_latin": "jadanganghanglayanghaha",
+  "model_yakin": 0.782
  },
  {
   "foto": "F120.jpg",
@@ -3507,7 +4206,10 @@
   "yakin_latin": 0.628,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗꦴꦃꦴꦤ꧀ꦗꦏꦤ꧀",
+  "model_latin": "johnjakan",
+  "model_yakin": 0.732
  },
  {
   "foto": "F120.jpg",
@@ -3522,7 +4224,10 @@
   "yakin_latin": 0.678,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦢꦠꦩꦤ꧀",
+  "model_latin": "dataman",
+  "model_yakin": 0.64
  },
  {
   "foto": "F120.jpg",
@@ -3537,7 +4242,10 @@
   "yakin_latin": 0.258,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦃꦒꦁꦤ꧀ꦛꦸꦏꦁꦸ",
+  "model_latin": "nahgangnthukang",
+  "model_yakin": 0.804
  },
  {
   "foto": "F120.jpg",
@@ -3552,7 +4260,10 @@
   "yakin_latin": 0.403,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠ꧀",
+  "model_latin": "t",
+  "model_yakin": 0.74
  },
  {
   "foto": "F120.jpg",
@@ -3567,7 +4278,10 @@
   "yakin_latin": 0.258,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦢꦶꦁꦱꦱꦸꦱ꧀ꦗꦸꦠ꧀ꦸꦲꦫ",
+  "model_latin": "dingsasusjuthara",
+  "model_yakin": 0.737
  },
  {
   "foto": "F120.jpg",
@@ -3582,7 +4296,10 @@
   "yakin_latin": 0.403,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒ",
+  "model_latin": "ga",
+  "model_yakin": 0.751
  },
  {
   "foto": "F122.jpg",
@@ -3597,7 +4314,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦢꦒ꧀ꦏꦩ꧀",
+  "model_latin": "dagkam",
+  "model_yakin": 0.676
  },
  {
   "foto": "F122.jpg",
@@ -3612,7 +4332,10 @@
   "yakin_latin": 0.311,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀꧀ꦃ꧀ꦠꦁꦕꦁꦫꦺꦚ꧀",
+  "model_latin": "htangcangrény",
+  "model_yakin": 0.78
  },
  {
   "foto": "F122.jpg",
@@ -3627,7 +4350,10 @@
   "yakin_latin": 0.311,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦺ꧀ꦼꦕꦼꦤ꧀ꦚ꧀",
+  "model_latin": "cênny",
+  "model_yakin": 0.728
  },
  {
   "foto": "F122.jpg",
@@ -3642,7 +4368,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦸꦤ꧀꧉",
+  "model_latin": "pun",
+  "model_yakin": 0.771
  },
  {
   "foto": "F122.jpg",
@@ -3657,7 +4386,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦫꦕꦝ꧀ꦥꦸ",
+  "model_latin": "racadhpu",
+  "model_yakin": 0.773
  },
  {
   "foto": "F122.jpg",
@@ -3672,7 +4404,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦸꦂꦤꦂꦲꦂꦒꦶꦏꦢꦕ꧀꧀",
+  "model_latin": "rnarhargikadac",
+  "model_yakin": 0.753
  },
  {
   "foto": "F122.jpg",
@@ -3687,7 +4422,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦕꦼꦤ꧀ꦼꦁꦒꦔꦴꦫꦫ꧀ꦭꦺꦪ꧀ꦭꦺꦴꦲ",
+  "model_latin": "cênnggangorarléyloha",
+  "model_yakin": 0.726
  },
  {
   "foto": "F122.jpg",
@@ -3702,7 +4440,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀ꦧꦫꦶꦭ꧀ꦥꦤ꧀ꦱ꧀ꦸ",
+  "model_latin": "nbarilpans",
+  "model_yakin": 0.747
  },
  {
   "foto": "F122.jpg",
@@ -3717,7 +4458,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦩꦛꦼꦁ",
+  "model_latin": "mathêng",
+  "model_yakin": 0.686
  },
  {
   "foto": "F122.jpg",
@@ -3732,7 +4476,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀ꦸꦚ꧀ꦏꦴꦭꦕꦸꦤ꧀ꦼꦱꦩꦂꦪꦼꦕ꧀ꦸꦁ",
+  "model_latin": "nnykolacunsamaryêcng",
+  "model_yakin": 0.668
  },
  {
   "foto": "F123.jpg",
@@ -3747,7 +4494,10 @@
   "yakin_latin": 0.451,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦃꦩꦁꦏꦺꦸꦧ꧉",
+  "model_latin": "hmangkéba",
+  "model_yakin": 0.801
  },
  {
   "foto": "F123.jpg",
@@ -3762,7 +4512,10 @@
   "yakin_latin": 0.451,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦤ꧀ꦫꦶꦪꦺꦴꦱ꧀ꦱꦏꦼꦤ꧀ꦸꦃ",
+  "model_latin": "hanriyossakênh",
+  "model_yakin": 0.904
  },
  {
   "foto": "F123.jpg",
@@ -3777,7 +4530,10 @@
   "yakin_latin": 0.189,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦥꦸꦤ꧀ꦤꦥꦩꦭꦶꦃꦥꦲꦂꦒ꧀ꦤ꧀ꦱꦂꦠꦥꦩꦶꦮꦃ",
+  "model_latin": "papunnapamalihpahargnsartapamiwah",
+  "model_yakin": 0.95
  },
  {
   "foto": "F123.jpg",
@@ -3792,7 +4548,10 @@
   "yakin_latin": 0.189,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦤ꧀ꦤꦭꦶꦏꦗꦸꦩꦼꦤ꧀ꦤꦼꦁꦢꦔ꧀ꦤꦩ꧀ꦱꦶꦩꦲꦫꦗ",
+  "model_latin": "hannalikajumênnêngdangnamsimaharaja",
+  "model_yakin": 0.947
  },
  {
   "foto": "F123.jpg",
@@ -3807,7 +4566,10 @@
   "yakin_latin": 0.398,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦫꦸꦭꦱꦱꦭꦸ꧉ꦒꦴꦃ",
+  "model_latin": "marulasasalu goh",
+  "model_yakin": 0.735
  },
  {
   "foto": "F123.jpg",
@@ -3822,7 +4584,10 @@
   "yakin_latin": 0.398,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦔꦥꦸꦱꦶꦫꦤ",
+  "model_latin": "hangapusirana",
+  "model_yakin": 0.866
  },
  {
   "foto": "F123.jpg",
@@ -3837,7 +4602,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗ",
+  "model_latin": "ja",
+  "model_yakin": 0.73
  },
  {
   "foto": "F123.jpg",
@@ -3852,7 +4620,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦸ꧈",
+  "model_latin": "",
+  "model_yakin": 0.805
  },
  {
   "foto": "F123.jpg",
@@ -3867,7 +4638,10 @@
   "yakin_latin": 0.291,
   "draf": "ꦕ꧀ꦤ",
   "skor_ctc": 4.599,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦲ꧀꧀",
+  "model_latin": "h",
+  "model_yakin": 0.749
  },
  {
   "foto": "F123.jpg",
@@ -3882,7 +4656,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦸꦫꦫꦕ",
+  "model_latin": "raraca",
+  "model_yakin": 0.627
  },
  {
   "foto": "F124.jpg",
@@ -3897,7 +4674,10 @@
   "yakin_latin": 0.767,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝ꧀ꦶ꧀ꦪ꧀ꦲꦫꦶꦁꦏ꧀ꦱ꧀ꦭꦼꦤ꧀ꦲꦺꦭꦺꦃꦢꦶꦏꦺꦴꦩ꧀ꦸꦶꦤꦱꦶꦏꦏꦺ",
+  "model_latin": "dhyharingkslênhéléhdikomnasikaké",
+  "model_yakin": 0.822
  },
  {
   "foto": "F124.jpg",
@@ -3912,7 +4692,10 @@
   "yakin_latin": 0.962,
   "draf": "ꦮꦁꦱꦸꦭꦤ꧀",
   "skor_ctc": 13.839,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦫꦺꦺꦴꦏꦺꦴꦫꦴꦏ꧀ꦤꦁꦃꦱꦲꦸꦏꦫꦱꦤꦤ꧀ꦝꦔꦤ꧀ꦭꦶꦪꦤꦺ",
+  "model_latin": "rékoroknanghsahukarasanandhanganliyané",
+  "model_yakin": 0.815
  },
  {
   "foto": "F124.jpg",
@@ -3927,7 +4710,10 @@
   "yakin_latin": 0.416,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦢꦶꦂꦒꦼꦫꦺꦢꦤ꧀ꦝꦔꦤ꧀ꦏꦱꦼꦚꦒꦸꦏ꧀ꦲꦺꦶꦁꦱꦤ꧀ꦱꦏ꧀ꦢꦺ",
+  "model_latin": "dirgêrédandhangankasênyagukhéngsansakdé",
+  "model_yakin": 0.857
  },
  {
   "foto": "F124.jpg",
@@ -3942,7 +4728,10 @@
   "yakin_latin": 0.899,
   "draf": "ꦮꦁꦱꦸꦭꦤ꧀",
   "skor_ctc": 18.2,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦲꦶꦁꦥꦶꦤꦒꦶꦏ꧀ꦸꦏꦶꦗ꧀ꦠꦸꦁꦭꦸꦱ꧀ꦮꦶꦥꦢꦔꦫꦤ꧀ꦲꦢꦶꦝꦏꦶꦏꦂꦪꦩꦁꦏꦸꦒꦼꦒꦒ",
+  "model_latin": "hingpinagikkijtungluswipadangaranhadidhakikaryamangkugêgaga",
+  "model_yakin": 0.835
  },
  {
   "foto": "F124.jpg",
@@ -3957,7 +4746,10 @@
   "yakin_latin": 0.416,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀ꦲꦫꦏ꧀ꦢꦺꦴꦭꦭꦃꦚꦒꦱꦶꦏ꧀ꦢꦢꦶꦲꦺꦁꦔꦭ꧀ꦧꦼꦼꦂꦠ",
+  "model_latin": "nharakdolalahnyagasikdadihéngngalbêrta",
+  "model_yakin": 0.812
  },
  {
   "foto": "F124.jpg",
@@ -3972,7 +4764,10 @@
   "yakin_latin": 0.899,
   "draf": "ꦮꦁꦱꦸꦭꦤ꧀",
   "skor_ctc": 15.376,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦩꦒꦼꦥꦶꦗꦤꦩꦝꦼꦁꦥ꧀ꦫꦗꦲꦶꦁꦤꦼꦫꦲꦺꦤ꧀ꦕꦁꦫꦤꦁꦂꦁꦩ꧀ꦶꦁꦒꦸꦁꦤꦁꦏ",
+  "model_latin": "magêpijanamadhêngprajahingnêrahéncangranangrngmnggungnangka",
+  "model_yakin": 0.845
  },
  {
   "foto": "F124.jpg",
@@ -3987,7 +4782,10 @@
   "yakin_latin": 0.416,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦱꦶ꧈ꦁꦺꦁꦩ꧀ꦧ꧀ꦩꦤ꧀꧀꧈",
+  "model_latin": "si ngngmbman",
+  "model_yakin": 0.807
  },
  {
   "foto": "F124.jpg",
@@ -4002,7 +4800,10 @@
   "yakin_latin": 0.53,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏꦺꦱꦤ꧀ꦛꦗꦤ꧀ꦱꦺꦶꦏꦼꦶꦥꦤ꧀꧀꧉ꦢꦝꦮꦺꦺꦁꦏꦚ꧀ꦗꦸꦁꦤꦼꦂꦏꦤꦶꦲ",
+  "model_latin": "késanthajansékêpan dadhawéngkanyjungnêrkaniha",
+  "model_yakin": 0.835
  },
  {
   "foto": "F124.jpg",
@@ -4017,7 +4818,10 @@
   "yakin_latin": 0.53,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦢꦕꦫꦩ꧀ꦧꦶꦒꦶꦏꦶꦤꦶꦲꦤꦏꦏꦺꦢꦼꦱꦶꦁꦗꦏꦸꦗꦸꦫꦺ꧉ꦒꦺꦴ꧀",
+  "model_latin": "dacarambigikinihanakakédêsingjakujuré go",
+  "model_yakin": 0.866
  },
  {
   "foto": "F124.jpg",
@@ -4032,7 +4836,10 @@
   "yakin_latin": 0.678,
   "draf": "ꦩ꧀ꦏꦼꦲꦲꦲꦒꦏ꧀",
   "skor_ctc": 11.521,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦢꦶꦤꦱꦼꦭꦱꦢꦔꦺꦺꦺꦴꦢꦧꦁꦱ꧀ꦠꦱ꧀ꦠꦁꦚꦼꦤ꧀ꦲꦂꦗꦏꦁꦫꦺꦁꦱꦁꦱꦶ",
+  "model_latin": "dinasêlasadangédabangstastangnyênharjakangréngsangsi",
+  "model_yakin": 0.822
  },
  {
   "foto": "F124.jpg",
@@ -4047,7 +4854,10 @@
   "yakin_latin": 0.517,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏꦱ꧀ꦏꦥꦏꦱꦶꦭ꧀ꦥꦒꦂꦱꦤꦺꦔꦺꦁꦏꦃꦏ꧀ꦏꦩ꧀ꦧꦶꦏꦴꦴꦢꦁꦢꦶꦠ꧀ꦭꦩ꧀ꦧꦗꦪꦗꦴꦁꦠꦴꦤꦶꦏꦏꦪꦴꦱꦪꦁꦒꦴꦠꦛꦗꦴꦲꦗꦪꦴꦱꦪꦁꦁꦱꦏ꧀",
+  "model_latin": "kaskapakasilpagarsanéngéngkahkkambikodangditlambajayajongtonikakayosayanggotathajohajayosayangngsak",
+  "model_yakin": 0.747
  },
  {
   "foto": "F124.jpg",
@@ -4062,7 +4872,10 @@
   "yakin_latin": 0.993,
   "draf": "ꦮꦁꦱꦸꦭꦤ꧀",
   "skor_ctc": 13.685,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦒꦔꦫꦤꦏꦏꦺꦶꦪꦭꦝꦁꦏꦺꦶꦤꦼꦤ꧀ꦸꦔꦏꦺꦚꦸꦱꦲꦢꦏ꧀ꦗ꧀ꦪ",
+  "model_latin": "gangaranakakéyaladhangkénênngakényusahadakjya",
+  "model_yakin": 0.751
  },
  {
   "foto": "F124.jpg",
@@ -4077,7 +4890,10 @@
   "yakin_latin": 0.473,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦔ꧀ꦴꦔꦶꦒꦺꦴꦚꦸꦱꦁꦤꦲꦢꦏ꧀ꦼꦱ꧀ꦶꦲꦶꦲꦶꦤꦏꦶꦏꦼꦩ꧀ꦏꦸ꧉꧀",
+  "model_latin": "ngngigonyusangnahadakshihinakikêmku",
+  "model_yakin": 0.811
  },
  {
   "foto": "F124.jpg",
@@ -4092,7 +4908,10 @@
   "yakin_latin": 0.999,
   "draf": "ꦲꦭꦼꦱꦤ꧀ꦩꦸ",
   "skor_ctc": 16.936,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦶꦕꦴꦫꦶꦥ꧀ꦠꦶꦏꦸꦢꦸꦏꦼꦩꦼꦲꦤ꧀ꦏꦫꦺꦴꦒ꧀ꦢꦏ꧀ꦠꦱꦸꦢꦪꦲꦶꦱꦏꦼꦤꦒꦭ꧀ꦴ",
+  "model_latin": "coriptikudukêmêhankarogdaktasudayahisakênagal",
+  "model_yakin": 0.853
  },
  {
   "foto": "F124.jpg",
@@ -4107,7 +4926,10 @@
   "yakin_latin": 0.742,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦤꦼꦥꦸꦔꦏꦺꦧꦫꦸꦱꦤꦒꦢꦏ꧀ꦸꦫꦁꦏꦸꦫꦶꦱ꧀ꦩꦤ꧀ꦗꦸꦤꦶꦒ꧀ꦱ",
+  "model_latin": "nêpungakébarusanagadakrangkurismanjunigsa",
+  "model_yakin": 0.825
  },
  {
   "foto": "F124.jpg",
@@ -4122,7 +4944,10 @@
   "yakin_latin": 0.999,
   "draf": "ꦲꦭꦼꦱꦤ꧀ꦩꦸ",
   "skor_ctc": 12.859,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦫꦺꦱꦶꦢꦏ꧀ꦱꦺꦩꦼꦁꦫꦲꦺꦕꦕꦺꦕꦺꦴꦏ꧀ꦲꦫꦭꦭ꧀ꦱꦸ",
+  "model_latin": "résidaksémêngrahécacécokharalalsu",
+  "model_yakin": 0.805
  },
  {
   "foto": "F124.jpg",
@@ -4137,7 +4962,10 @@
   "yakin_latin": 0.742,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦢꦩꦫꦺꦤ꧀ꦏꦃꦲ꧀ꦝꦏꦛꦭꦼꦩ꧀ꦧꦁꦒꦏꦼꦁꦏꦶꦏꦲꦶꦱꦔꦤꦁꦏꦁꦢ",
+  "model_latin": "damarénkahhdhakathalêmbanggakêngkikahisanganangkangda",
+  "model_yakin": 0.849
  },
  {
   "foto": "F124.jpg",
@@ -4152,7 +4980,10 @@
   "yakin_latin": 0.231,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦢꦺꦶꦂ꧉ꦠ꧀ꦸꦁꦮꦩꦼꦱ꧀ꦏꦶꦩꦺꦁꦤꦺꦲꦏꦺꦢꦶꦥꦮꦶꦁꦒꦭꦶꦏ꧀ꦏꦁꦒꦺꦃ",
+  "model_latin": "dér tngwamêskiméngnéhakédipawinggalikkanggéh",
+  "model_yakin": 0.821
  },
  {
   "foto": "F124.jpg",
@@ -4167,7 +4998,10 @@
   "yakin_latin": 0.742,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦺꦏꦺꦭꦺꦴꦩ꧀ꦧꦏꦁꦒꦺꦴꦏꦏꦒꦸꦩꦁ꧀ꦲꦼꦺꦴꦩꦺꦔꦴꦒꦃꦚꦸꦱꦶ",
+  "model_latin": "kélombakanggokakagumanghêméngogahnyusi",
+  "model_yakin": 0.872
  },
  {
   "foto": "F124.jpg",
@@ -4182,7 +5016,10 @@
   "yakin_latin": 0.416,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦁꦤꦏ꧀ꦱꦺꦫꦶꦤ꧀ꦠꦶꦲꦸꦒꦏꦸꦢ꧀ꦸꦗꦶꦁꦒꦺꦴꦗꦁꦏꦼꦥ꧀ꦲꦩꦂꦒ",
+  "model_latin": "ngnaksérintihugakudjinggojangkêphamarga",
+  "model_yakin": 0.828
  },
  {
   "foto": "F124.jpg",
@@ -4197,7 +5034,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦲꦢꦏ꧀ꦩꦶꦏꦸꦭꦏ꧀ꦱꦼꦂꦏꦼꦩ꧀ꦧꦔꦤ꧀ꦗꦩꦤ꧀ꦢ꧀꧉꧀ꦲ",
+  "model_latin": "nahadakmikulaksêrkêmbanganjamand ha",
+  "model_yakin": 0.857
  },
  {
   "foto": "F124.jpg",
@@ -4212,7 +5052,10 @@
   "yakin_latin": 0.416,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦺꦁꦝꦁꦢꦺꦏꦺꦱꦩꦼꦤ꧀ꦠꦶꦤꦺꦔ꧀ꦒꦼꦫꦼꦱ꧀ꦠꦫꦶꦏꦏꦺꦧꦸꦢꦭ",
+  "model_latin": "ngdhangdékésamêntinénggêrêstarikakébudala",
+  "model_yakin": 0.865
  },
  {
   "foto": "F124.jpg",
@@ -4227,7 +5070,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝꦶꦸꦢꦸꦛꦺꦴꦒꦺꦴꦧꦺꦸꦴꦩꦺꦩꦴꦩꦼꦤꦮꦱꦤ꧀ꦝꦔꦤꦺ",
+  "model_latin": "dhiduthogobémémomênawasandhangané",
+  "model_yakin": 0.862
  },
  {
   "foto": "F124.jpg",
@@ -4242,7 +5088,10 @@
   "yakin_latin": 0.284,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦸꦩꦸꦤꦶꦚꦧꦼꦏ꧀꧀ꦱꦚꦸꦱꦤꦒꦶꦏꦚꦤ꧀ꦩꦸꦂꦲꦶꦚꦸꦱꦤꦲꦲꦏ꧀ꦕꦫꦏꦂꦲꦲ",
+  "model_latin": "muninyabêksanyusanagikanyanmurhinyusanahahakcarakarhaha",
+  "model_yakin": 0.839
  },
  {
   "foto": "F125.jpg",
@@ -4257,7 +5106,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠꦴꦁ",
+  "model_latin": "tong",
+  "model_yakin": 0.564
  },
  {
   "foto": "F125.jpg",
@@ -4272,7 +5124,10 @@
   "yakin_latin": 0.127,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧈",
+  "model_latin": "",
+  "model_yakin": 0.732
  },
  {
   "foto": "F125.jpg",
@@ -4287,7 +5142,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦸꦁꦤ꧀ꦱꦩꦺꦸ",
+  "model_latin": "ngnsamé",
+  "model_yakin": 0.597
  },
  {
   "foto": "F127.jpg",
@@ -4302,7 +5160,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦔꦔ꧀꧀",
+  "model_latin": "ngang",
+  "model_yakin": 0.809
  },
  {
   "foto": "F127.jpg",
@@ -4317,7 +5178,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦭ",
+  "model_latin": "la",
+  "model_yakin": 0.91
  },
  {
   "foto": "F127.jpg",
@@ -4332,7 +5196,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒ",
+  "model_latin": "ga",
+  "model_yakin": 0.664
  },
  {
   "foto": "F127.jpg",
@@ -4347,7 +5214,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒ",
+  "model_latin": "ga",
+  "model_yakin": 0.998
  },
  {
   "foto": "F127.jpg",
@@ -4362,7 +5232,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗ",
+  "model_latin": "ja",
+  "model_yakin": 0.99
  },
  {
   "foto": "F127.jpg",
@@ -4377,7 +5250,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦛ",
+  "model_latin": "tha",
+  "model_yakin": 0.928
  },
  {
   "foto": "F127.jpg",
@@ -4392,7 +5268,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒꦸ",
+  "model_latin": "gu",
+  "model_yakin": 0.635
  },
  {
   "foto": "F127.jpg",
@@ -4407,7 +5286,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲ",
+  "model_latin": "ha",
+  "model_yakin": 0.849
  },
  {
   "foto": "F127.jpg",
@@ -4422,7 +5304,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦔꦔ꧀ꦸ",
+  "model_latin": "ngang",
+  "model_yakin": 0.838
  },
  {
   "foto": "F127.jpg",
@@ -4437,7 +5322,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝ",
+  "model_latin": "dha",
+  "model_yakin": 0.859
  },
  {
   "foto": "F127.jpg",
@@ -4452,7 +5340,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦔꦸ",
+  "model_latin": "ngu",
+  "model_yakin": 0.958
  },
  {
   "foto": "F127.jpg",
@@ -4467,7 +5358,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦪꦸ",
+  "model_latin": "yu",
+  "model_yakin": 0.859
  },
  {
   "foto": "F131.jpg",
@@ -4482,7 +5376,10 @@
   "yakin_latin": 0.99,
   "draf": "ꦧꦏ꧀ꦥꦶꦪꦏꦸꦏꦸꦱ꧀",
   "skor_ctc": 0.776,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦧꦏ꧀ꦥꦶꦲꦏꦸꦤꦱꦲ꧀",
+  "model_latin": "bakpihakunasah",
+  "model_yakin": 0.828
  },
  {
   "foto": "F132.jpg",
@@ -4497,7 +5394,10 @@
   "yakin_latin": 0.941,
   "draf": "ꦥ꧀ꦫꦏꦺꦴꦁꦫꦺꦱ꧀ꦲꦏ꧀ꦱꦫꦗꦮꦲꦶ",
   "skor_ctc": 7.781,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦔ꧀ꦩ꧀ꦸꦒꦸꦏꦤꦶꦁꦩꦂꦱ꧀ꦲꦩ꧀ꦧꦸꦏꦧꦮꦏꦔ꧀ꦩ꧀ꦸ",
+  "model_latin": "ngmgukaningmarshambukabawakangm",
+  "model_yakin": 0.815
  },
  {
   "foto": "F132.jpg",
@@ -4512,7 +5412,10 @@
   "yakin_latin": 0.941,
   "draf": "ꦥ꧀ꦫꦏꦺꦴꦁꦫꦺꦱ꧀ꦲꦏ꧀ꦱꦫꦗꦮꦲꦶ",
   "skor_ctc": 5.932,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦥꦁꦁ꧀ꦸ",
+  "model_latin": "pangng",
+  "model_yakin": 0.743
  },
  {
   "foto": "F132.jpg",
@@ -4527,7 +5430,10 @@
   "yakin_latin": 0.941,
   "draf": "ꦥ꧀ꦫꦏꦺꦴꦁꦫꦺꦱ꧀ꦲꦏ꧀ꦱꦫꦗꦮꦲꦶ",
   "skor_ctc": 4.715,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦪꦺꦒ꧀ꦏꦂꦠꦒꦭꦒꦪꦩꦥꦠ꧀ꦮꦥꦮꦢꦱꦴꦫꦱꦝꦕꦕ",
+  "model_latin": "yégkartagalagayamapatwapawadasorasadhacaca",
+  "model_yakin": 0.888
  },
  {
   "foto": "F132.jpg",
@@ -4542,7 +5448,10 @@
   "yakin_latin": 0.941,
   "draf": "ꦥ꧀ꦫꦏꦺꦴꦁꦫꦺꦱ꧀ꦲꦏ꧀ꦱꦫꦗꦮꦲꦶ",
   "skor_ctc": 4.339,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦥꦺꦴꦂꦫꦶꦗꦺꦁ꧀ꦲꦴꦠꦺꦭ꧀ꦭꦴꦏꦩ",
+  "model_latin": "porrijénghotéllokama",
+  "model_yakin": 0.916
  },
  {
   "foto": "F133.jpg",
@@ -4557,7 +5466,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦁꦏ꧀ꦢꦫꦗꦠ꧀ꦏꦶꦁꦢꦗ꧈ꦏꦮꦸꦂꦪ꧀ꦤ꧀ꦫꦱ꧀ꦱꦸꦚꦫꦸꦫꦁꦫꦒꦃꦝꦁꦮꦺꦴꦮꦁꦸꦒꦴ",
+  "model_latin": "mangkdarajatkingdaja kawurynrassunyarurangragahdhangwowanggo",
+  "model_yakin": 0.82
  },
  {
   "foto": "F133.jpg",
@@ -4572,7 +5484,10 @@
   "yakin_latin": 0.527,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏꦫꦤꦠꦤ꧀ꦥꦥꦭꦸꦥꦶ꧈ꦲꦠꦶꦭꦂꦱꦶꦭꦱ꧀ꦠꦸꦠꦶ꧈ꦱꦸꦗꦤꦱꦂꦗꦢꦏꦺꦭꦸ꧈",
+  "model_latin": "karanatanpapalupi hatilarsilastuti sujanasarjadakélu",
+  "model_yakin": 0.954
  },
  {
   "foto": "F133.jpg",
@@ -4587,7 +5502,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝꦸ",
+  "model_latin": "dhu",
+  "model_yakin": 0.899
  },
  {
   "foto": "F133.jpg",
@@ -4602,7 +5520,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "",
+  "model_latin": "",
+  "model_yakin": 0.0
  },
  {
   "foto": "F133.jpg",
@@ -4617,7 +5538,10 @@
   "yakin_latin": 0.527,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏꦸꦁꦪꦸꦤ꧀ꦏꦭꦠꦶꦝ꧈ꦠꦶꦝꦩ꧀ꦧꦤ꧀ꦝꦤꦶꦁꦤꦸꦩꦢꦶꦲꦂꦢꦫꦪꦁꦫꦠ꧀ꦢꦺꦶꦁꦏꦫꦺꦴꦧ꧀ꦤ꧀ꦧꦧꦺꦢ꧉",
+  "model_latin": "kungyunkalatidha tidhambandhaningnumadihardarayangratdéngkarobnbabéda",
+  "model_yakin": 0.898
  },
  {
   "foto": "F134.jpg",
@@ -4632,7 +5556,10 @@
   "yakin_latin": 0.188,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦼꦁ",
+  "model_latin": "ng",
+  "model_yakin": 0.486
  },
  {
   "foto": "F134.jpg",
@@ -4647,7 +5574,10 @@
   "yakin_latin": 0.188,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒꦶꦸꦶꦁꦶꦁꦤꦲꦶ",
+  "model_latin": "gingngnahi",
+  "model_yakin": 0.522
  },
  {
   "foto": "F134.jpg",
@@ -4662,7 +5592,10 @@
   "yakin_latin": 0.188,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦭꦸꦁꦢ꧀ꦭꦲꦁꦮꦠꦶ꧀ꦮꦸꦺꦁꦢꦁꦲꦏꦺ꧀ꦮꦺ꧀",
+  "model_latin": "lungdlahangwatiwungdanghakéwé",
+  "model_yakin": 0.644
  },
  {
   "foto": "F135.jpg",
@@ -4677,7 +5610,10 @@
   "yakin_latin": 0.834,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦂꦂꦚꦸꦫꦶꦂꦸꦮꦺꦔꦼꦫꦺꦫꦫꦸ꧀ꦱ꧀",
+  "model_latin": "rrnyurirwéngêrérarus",
+  "model_yakin": 0.704
  },
  {
   "foto": "F139.jpg",
@@ -4692,7 +5628,10 @@
   "yakin_latin": 0.902,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦼ",
+  "model_latin": "",
+  "model_yakin": 0.783
  },
  {
   "foto": "F141.jpg",
@@ -4707,7 +5646,10 @@
   "yakin_latin": 0.998,
   "draf": "ꦲꦼꦭ꧀ꦱꦶꦤ꧀ꦏꦶ",
   "skor_ctc": 4.405,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦝꦴꦁꦲ꧀ꦤꦁꦫ",
+  "model_latin": "dhonghnangra",
+  "model_yakin": 0.709
  },
  {
   "foto": "F142.jpg",
@@ -4722,7 +5664,10 @@
   "yakin_latin": 0.945,
   "draf": "ꦗ꧀ꦭ꧀ꦲꦧꦸꦧꦏꦂꦲꦭꦶ",
   "skor_ctc": 2.5,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦱꦭꦤ꧀ꦲꦧꦸꦧꦏꦂꦲꦭꦁ",
+  "model_latin": "salanhabubakarhalang",
+  "model_yakin": 0.885
  },
  {
   "foto": "F143.jpg",
@@ -4737,7 +5682,10 @@
   "yakin_latin": 0.216,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦸ",
+  "model_latin": "",
+  "model_yakin": 0.838
  },
  {
   "foto": "F144.jpg",
@@ -4752,7 +5700,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗ꧀ꦧꦴꦁꦤꦸꦶꦥꦸꦤ꧀ꦱꦶꦤ꧀ꦥꦱꦸꦁꦥꦸꦤ꧀ꦭ꧀꧈",
+  "model_latin": "jbongnupunsinpasungpunl",
+  "model_yakin": 0.701
  },
  {
   "foto": "F144.jpg",
@@ -4767,7 +5718,10 @@
   "yakin_latin": 0.337,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦪꦴꦂꦥꦥꦤ꧀ꦧ꧀ꦱꦶꦱꦠꦱ꧀꧈ꦱꦱꦱꦥꦼ",
+  "model_latin": "mayorpapanbsisatas sasasapê",
+  "model_yakin": 0.684
  },
  {
   "foto": "F144.jpg",
@@ -4782,7 +5736,10 @@
   "yakin_latin": 0.354,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦕꦩꦺ꧀ꦸꦤꦂꦱ꧀ꦱꦢꦤ꧀ꦶ꧀ꦮꦸꦁꦤꦺ꧀ꦶꦱꦤ꧀ꦸ",
+  "model_latin": "caménarssadanwungnésan",
+  "model_yakin": 0.62
  },
  {
   "foto": "F144.jpg",
@@ -4797,7 +5754,10 @@
   "yakin_latin": 0.428,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦝꦺꦴꦃꦱꦒ꧀ꦕꦺꦴꦶꦥꦤꦱ꧀ꦱꦥꦴꦴꦁꦕꦂꦠꦴꦃꦠꦁ",
+  "model_latin": "padhohsagcopanassapongcartohtang",
+  "model_yakin": 0.77
  },
  {
   "foto": "F144.jpg",
@@ -4812,7 +5772,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦕ꧀ꦱ꧀ꦭꦶꦔꦃꦲꦶꦤ꧀ꦝꦸꦱ",
+  "model_latin": "cslingahhindhusa",
+  "model_yakin": 0.642
  },
  {
   "foto": "F144.jpg",
@@ -4827,7 +5790,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦢꦠꦶꦁꦸꦴ꧀ꦃꦪꦥ꧀ꦢꦴꦃꦫꦃꦪꦶꦶꦫꦠꦸ",
+  "model_latin": "datinghyapdohrahyiratu",
+  "model_yakin": 0.704
  },
  {
   "foto": "F144.jpg",
@@ -4842,7 +5808,10 @@
   "yakin_latin": 0.78,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀ꦗ꧀ꦶꦏꦲꦴꦩꦴꦤ꧀ꦢꦭꦂꦃꦲꦠꦶꦁꦤꦁꦱꦱꦏꦕꦸꦁ",
+  "model_latin": "njkahomondalarhhatingnangsasakacung",
+  "model_yakin": 0.695
  },
  {
   "foto": "F144.jpg",
@@ -4857,7 +5826,10 @@
   "yakin_latin": 0.304,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦛꦱꦶꦱꦴꦃꦕꦱ꧀ꦱꦶꦴ꧀ꦃꦃꦴꦤ꧀ꦢꦱꦥꦸꦏ꧀ꦩꦱ꧀ꦠꦗ",
+  "model_latin": "thasisohcassihhndasapukmastaja",
+  "model_yakin": 0.784
  },
  {
   "foto": "F148.jpg",
@@ -4872,7 +5844,10 @@
   "yakin_latin": 0.947,
   "draf": "ꦲꦼꦏ꧀ꦱ꧀ꦱ꧀ꦥꦼꦕ꧀ꦠꦠꦏꦂꦭ꧀ꦭꦩ",
   "skor_ctc": 5.98,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦛ",
+  "model_latin": "tha",
+  "model_yakin": 0.486
  },
  {
   "foto": "F148.jpg",
@@ -4887,7 +5862,10 @@
   "yakin_latin": 0.472,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦫꦲꦶ",
+  "model_latin": "rahi",
+  "model_yakin": 0.822
  },
  {
   "foto": "F148.jpg",
@@ -4902,7 +5880,10 @@
   "yakin_latin": 0.857,
   "draf": "ꦲꦼꦤ꧀ꦕꦺꦴꦤ꧀ꦠ꧀ꦫꦫꦺꦴꦤ꧀ꦭ꧀ꦧꦸꦢꦲꦼꦱ꧀ꦩꦼꦫꦭ꧀ꦢꦢꦼꦱ꧀ꦥꦸꦮꦺꦱ꧀ꦲꦕꦩ꧀ꦧꦶꦪꦢꦺꦴꦭ꧀",
   "skor_ctc": 99.0,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦁꦱ꧀ꦩꦩ",
+  "model_latin": "ngsmama",
+  "model_yakin": 0.865
  },
  {
   "foto": "F148.jpg",
@@ -4917,7 +5898,10 @@
   "yakin_latin": 0.623,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦶꦩꦴꦤ꧀ꦝꦤꦱꦁꦲꦩ꧀ꦝꦠꦮꦚ꧀ꦗꦗꦁꦮꦁꦗ꧀ꦩꦴꦥꦴꦭꦩꦴꦁꦩ꧀ꦶꦂꦩꦕꦩꦶꦁꦮꦠꦁ",
+  "model_latin": "mondhanasanghamdhatawanyjajangwangjmopolamongmrmacamingwatang",
+  "model_yakin": 0.755
  },
  {
   "foto": "F148.jpg",
@@ -4932,7 +5916,10 @@
   "yakin_latin": 0.5,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦫꦮ꧀ꦲꦴꦴꦩꦮ꧀ꦶꦴꦤ꧀ꦗ꧀ꦗꦴꦢꦴꦗ꧀ꦝꦸꦁꦥꦴꦴꦶꦩꦁ꧀ꦮꦮꦁ꧀ꦗꦴꦤꦩꦮ꧀ꦮꦕꦴꦁ",
+  "model_latin": "rawhomawnjjodojdhungpomangwawangjonamawwacong",
+  "model_yakin": 0.753
  },
  {
   "foto": "F148.jpg",
@@ -4947,7 +5934,10 @@
   "yakin_latin": 0.888,
   "draf": "ꦠꦺꦴꦪꦺꦴꦠ",
   "skor_ctc": 6.123,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦤꦼꦸ",
+  "model_latin": "nê",
+  "model_yakin": 0.745
  },
  {
   "foto": "F150.jpg",
@@ -4962,7 +5952,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦼ꧈ꦶꦫꦔꦺꦛꦫꦥꦏ꧀ꦗꦸ꧀ꦥ꧀ꦶꦢ",
+  "model_latin": "rangétharapakjupda",
+  "model_yakin": 0.692
  },
  {
   "foto": "F150.jpg",
@@ -4977,7 +5970,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦸꦲꦂꦺ꧀ꦏꦝꦸꦢꦢꦱꦺꦒꦫꦶ꧀ꦢꦸ",
+  "model_latin": "harkadhudadaségaridu",
+  "model_yakin": 0.784
  },
  {
   "foto": "F150.jpg",
@@ -4992,7 +5988,10 @@
   "yakin_latin": 0.264,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦤꦸꦤ꧀ꦤ",
+  "model_latin": "nanunna",
+  "model_yakin": 0.729
  },
  {
   "foto": "F150.jpg",
@@ -5007,7 +6006,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀ꦤ꧀ꦏ",
+  "model_latin": "nnka",
+  "model_yakin": 0.785
  },
  {
   "foto": "F151.jpg",
@@ -5022,7 +6024,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦸꦒꦩꦸꦁꦒꦁꦒꦏꦱꦱꦒꦲꦤ꧀ꦠꦼꦩ꧀꧀ꦛꦶꦏꦲꦒꦮꦥ",
+  "model_latin": "pugamungganggakasasagahantêmthikahagawapa",
+  "model_yakin": 0.829
  },
  {
   "foto": "F151.jpg",
@@ -5037,7 +6042,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦗꦭꦶꦂꦫꦶꦚꦶꦃꦲꦶꦫꦸꦫꦶꦃꦲꦶꦥꦸꦫꦶ꧀꧀ꦸ",
+  "model_latin": "jalirrinyihhirurihhipuri",
+  "model_yakin": 0.737
  },
  {
   "foto": "F151.jpg",
@@ -5052,7 +6060,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒꦴꦒꦱ꧀ꦧꦲꦸꦮ꧀ꦶꦃꦱꦩꦛ꧀ꦛꦶꦲꦸꦩꦴꦤ꧀ꦃꦁꦒꦶꦁ",
+  "model_latin": "gogasbahuwhsamaththihumonhngging",
+  "model_yakin": 0.693
  },
  {
   "foto": "F151.jpg",
@@ -5067,7 +6078,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦶꦲꦸꦫꦸꦒꦼ꧀꧀ꦚ꧈ꦱꦼ꧀ꦸꦲꦱꦲꦩ꧀ꦶꦠ",
+  "model_latin": "hihurugênya sêhasahamta",
+  "model_yakin": 0.774
  },
  {
   "foto": "F151.jpg",
@@ -5082,7 +6096,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦶꦫꦕꦁꦒꦴꦒꦛꦒ꧀ꦧꦭꦮꦔ꧀ꦧꦫ꧀ꦱꦴꦪꦲꦫꦠ꧀ꦶꦁ",
+  "model_latin": "miracanggogathagbalawangbarsoyaharatng",
+  "model_yakin": 0.744
  },
  {
   "foto": "F151.jpg",
@@ -5097,7 +6114,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦭ꧀ꦛꦶꦱꦱ꧀ꦃꦶꦁꦫꦴꦂꦱꦛꦒꦸꦩ꧀ꦺꦶꦲꦒꦶ꧀ꦲꦶ꧀ꦢ꧀ꦩꦶꦒꦫꦸꦃ",
+  "model_latin": "lthisashngrorsathagumhagihidmigaruh",
+  "model_yakin": 0.762
  },
  {
   "foto": "F151.jpg",
@@ -5112,7 +6132,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦼ",
+  "model_latin": "mê",
+  "model_yakin": 0.412
  },
  {
   "foto": "F151.jpg",
@@ -5127,7 +6150,10 @@
   "yakin_latin": 0.192,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦴꦴꦁꦒꦁꦱꦮꦶꦃꦪꦴꦩꦸꦁꦒꦁꦫꦶꦫꦲꦱꦫ꧀ꦭꦶꦒꦒꦥꦶ",
+  "model_latin": "monggangsawihyomunggangrirahasarligagapi",
+  "model_yakin": 0.798
  },
  {
   "foto": "F151.jpg",
@@ -5142,7 +6168,10 @@
   "yakin_latin": 0.192,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦂꦱꦕꦸꦔꦫꦶꦱꦛꦴꦶꦁꦒꦸꦃꦫꦮꦸꦫꦺꦸꦚꦫꦤ꧀ꦮꦶꦴ",
+  "model_latin": "rsacungarisathongguhrawurényaranwi",
+  "model_yakin": 0.821
  },
  {
   "foto": "F151.jpg",
@@ -5157,7 +6186,10 @@
   "yakin_latin": 0.765,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦕꦼꦥꦩ꧀ꦶꦫꦲꦶꦁꦱꦶꦩꦁꦒꦼꦒ꧀",
+  "model_latin": "cêpamrahingsimanggêg",
+  "model_yakin": 0.782
  },
  {
   "foto": "F151.jpg",
@@ -5172,7 +6204,10 @@
   "yakin_latin": 0.647,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦭ꧀ꦭꦴ",
+  "model_latin": "llo",
+  "model_yakin": 0.851
  },
  {
   "foto": "F151.jpg",
@@ -5187,7 +6222,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦁꦁꦮꦸꦥꦂꦱꦫꦒ꧀ꦱꦮꦶꦗ꧀ꦱꦒꦶꦱꦸꦁꦒꦁꦒꦲꦒꦶꦒꦶꦁꦫ",
+  "model_latin": "ngngwuparsaragsawijsagisungganggahagigingra",
+  "model_yakin": 0.812
  },
  {
   "foto": "F151.jpg",
@@ -5202,7 +6240,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦺꦂꦢꦛꦴꦒꦫꦶꦪ꧀ꦴꦃꦧꦲꦸꦂꦱꦠ꧀ꦭꦶꦫꦥꦸꦸꦫꦸ꧈",
+  "model_latin": "nérdathogariyhbahursatlirapuru",
+  "model_yakin": 0.79
  },
  {
   "foto": "F151.jpg",
@@ -5217,7 +6258,10 @@
   "yakin_latin": 0.36,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦂꦲꦶꦫꦸꦱꦫ꧀ꦢꦼꦛꦲꦁꦫꦶ꧀ꦭꦸꦴꦱꦸꦁꦒꦫꦢꦢꦫꦸꦫꦸꦲꦫꦸꦱꦼꦒꦂ",
+  "model_latin": "sarhirusardêthahangrilusunggaradadaruruharusêgar",
+  "model_yakin": 0.737
  },
  {
   "foto": "F151.jpg",
@@ -5232,7 +6276,10 @@
   "yakin_latin": 0.349,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦩꦸꦂꦫꦁꦛ꧀ꦢꦫꦩ꧀ꦶꦭꦶꦒꦒꦸꦶꦒꦭ꧀ꦲꦔꦫꦸ",
+  "model_latin": "samurrangthdaramligagugalhangaru",
+  "model_yakin": 0.774
  },
  {
   "foto": "F151.jpg",
@@ -5247,7 +6294,10 @@
   "yakin_latin": 0.36,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦭꦶ꧀ꦶꦴꦫꦢꦶꦃꦏꦲꦴꦴꦤ꧀ꦤꦶꦁꦫꦸꦴꦥꦫꦩꦸꦒ",
+  "model_latin": "liradihkahonningruparamuga",
+  "model_yakin": 0.756
  },
  {
   "foto": "F151.jpg",
@@ -5262,7 +6312,10 @@
   "yakin_latin": 0.503,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦲꦶꦧ꧀ꦮꦒꦸꦲꦸ꧀ꦱꦥꦸꦫꦶꦒꦸꦠꦸꦏꦫꦶꦁꦕꦚꦫ꧀ꦢꦶꦴꦛꦴꦁ",
+  "model_latin": "hibwaguhusapurigutukaringcanyardithong",
+  "model_yakin": 0.77
  },
  {
   "foto": "F151.jpg",
@@ -5277,7 +6330,10 @@
   "yakin_latin": 0.503,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦺꦴꦁꦭꦶꦫꦩꦱꦱꦏꦴꦺ꧀ꦲꦃꦴꦔ꧀ꦶꦫꦒꦸꦁꦫꦫꦸꦱꦲꦃ",
+  "model_latin": "ngliramasasakohahngragungrarusahah",
+  "model_yakin": 0.779
  },
  {
   "foto": "F151.jpg",
@@ -5292,7 +6348,10 @@
   "yakin_latin": 0.451,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝꦂꦼꦒ꧀ꦶꦫꦒꦢ꧀ꦢꦸꦫꦸꦫꦸꦲꦫꦤꦸꦒꦼꦶꦒꦫꦴꦤ꧀ꦤꦶ",
+  "model_latin": "dhargragaddururuharanugêgaronni",
+  "model_yakin": 0.761
  },
  {
   "foto": "F151.jpg",
@@ -5307,7 +6366,10 @@
   "yakin_latin": 0.451,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒ꧀ꦃꦢꦃꦚ꧀ꦭꦱ꧀꧀ꦱꦼ꧀ꦭ꧀ꦭꦶꦁꦭꦁꦒꦩꦲ꧀ꦭꦴ꧀ꦶꦼꦴ",
+  "model_latin": "ghdahnylassêllinglanggamahlo",
+  "model_yakin": 0.698
  },
  {
   "foto": "F151.jpg",
@@ -5322,7 +6384,10 @@
   "yakin_latin": 0.451,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗꦼ꧀ꦗꦼꦁꦲꦶꦕꦶꦫꦸꦶꦱꦶꦫ꧀ꦲꦚꦁꦏꦼ꧀ꦫ",
+  "model_latin": "jêjênghicirusirhanyangkêra",
+  "model_yakin": 0.713
  },
  {
   "foto": "F155.jpg",
@@ -5337,7 +6402,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦮ꧀ꦛꦴ꧀ꦠꦸ꧀꧀ꦸꦴꦸꦁꦂ꧀ꦱꦸꦁꦱꦱ꧀ꦸ",
+  "model_latin": "wthotungrsungsas",
+  "model_yakin": 0.659
  },
  {
   "foto": "F163.jpg",
@@ -5352,7 +6420,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦸꦒꦼꦫꦮꦸꦃꦥꦩꦸꦥꦸ",
+  "model_latin": "sugêrawuhpamupu",
+  "model_yakin": 0.957
  },
  {
   "foto": "F163.jpg",
@@ -5367,7 +6438,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦭ꧀ꦏꦺꦴꦁꦒ꧀ꦱ꧀ꦲꦺꦏ꧀ꦱꦫꦗꦮꦴꦒ",
+  "model_latin": "lkonggshéksarajawoga",
+  "model_yakin": 0.924
  },
  {
   "foto": "F163.jpg",
@@ -5382,7 +6456,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦧ꧀ꦧꦂꦠ꧀ꦒꦭꦒꦴꦩꦥ꧀ꦔꦠ꧀ꦴꦔ꧀ꦤꦏꦔ꧀ꦤꦸ",
+  "model_latin": "bbartgalagomapngatngnakangnu",
+  "model_yakin": 0.849
  },
  {
   "foto": "F163.jpg",
@@ -5397,7 +6474,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦧꦺꦮꦴ꧀ꦢ",
+  "model_latin": "béwoda",
+  "model_yakin": 0.8
  },
  {
   "foto": "F163.jpg",
@@ -5412,7 +6492,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦺꦂꦒꦶꦱ꧀ꦲꦺꦴꦠꦮ꧀",
+  "model_latin": "pérgishotaw",
+  "model_yakin": 0.874
  },
  {
   "foto": "F164.jpg",
@@ -5427,7 +6510,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦮꦏꦺꦴꦁꦠꦺ",
+  "model_latin": "wakongté",
+  "model_yakin": 0.907
  },
  {
   "foto": "F164.jpg",
@@ -5442,7 +6528,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦪꦺꦴꦒ꧀ꦏ",
+  "model_latin": "yogka",
+  "model_yakin": 0.935
  },
  {
   "foto": "F165.jpg",
@@ -5457,7 +6546,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦸꦒꦼꦁꦫꦮꦸꦃꦥꦩꦸꦥꦸ",
+  "model_latin": "sugêngrawuhpamupu",
+  "model_yakin": 0.945
  },
  {
   "foto": "F165.jpg",
@@ -5472,7 +6564,10 @@
   "yakin_latin": 0.871,
   "draf": "ꦒꦼꦏ꧀ꦧꦁꦥ꧀ꦫꦗ",
   "skor_ctc": 4.653,
-  "diragukan": false
+  "diragukan": false,
+  "model_aksara": "ꦔ꧀꧀ꦕꦸꦒꦼꦂꦧꦁꦥꦗꦔ꧀ꦤ꧀ꦒꦸ",
+  "model_latin": "ngcugêrbangpajangngu",
+  "model_yakin": 0.839
  },
  {
   "foto": "F165.jpg",
@@ -5487,7 +6582,10 @@
   "yakin_latin": 0.298,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦏꦺꦴꦁꦒꦺꦱ꧀ꦲꦏ꧀ꦱꦫꦗꦮ꧀",
+  "model_latin": "pakonggéshaksarajaw",
+  "model_yakin": 0.904
  },
  {
   "foto": "F165.jpg",
@@ -5502,7 +6600,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦏꦂꦠꦴꦒꦭꦒꦮꦮꦴꦩꦥ꧀ꦔꦠ꧀ꦮ꧀ꦴꦩꦸ",
+  "model_latin": "kartogalagawawomapngatwmu",
+  "model_yakin": 0.867
  },
  {
   "foto": "F165.jpg",
@@ -5517,7 +6618,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦺꦂꦒꦶꦔ꧀ꦲꦺꦴꦠꦺꦭꦮ꧀",
+  "model_latin": "pérginghotélaw",
+  "model_yakin": 0.864
  },
  {
   "foto": "F169.jpg",
@@ -5532,7 +6636,10 @@
   "yakin_latin": 0.939,
   "draf": "ꦕ꧀ꦭꦱ꧀ꦱ꧀ꦥ꧀",
   "skor_ctc": 5.047,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦏꦭꦱꦝꦶꦮꦶꦥꦁ꧈",
+  "model_latin": "kalasadhiwipang",
+  "model_yakin": 0.881
  },
  {
   "foto": "F172.jpg",
@@ -5547,7 +6654,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩ꧀꧀꧉ꦤ꧀ꦏ꧉ꦂꦮ꧀ꦱ꧀ꦮꦺꦴꦤ꧀ꦠꦼꦤ꧀ꦕꦫꦶꦠꦥꦶꦤꦸꦂꦮꦺꦁꦏꦥꦶꦏꦁꦫꦶꦤ꧀ꦤꦶꦥ꧀ꦭꦱꦶꦂꦫꦏꦠ꧀ꦩꦤ꧀ꦤꦶꦏ꧀ꦗꦪꦴꦏꦁꦥꦶꦤꦸ",
+  "model_latin": "m nka rwswontêncaritapinurwéngkapikangrinniplasirrakatmannikjayokangpinu",
+  "model_yakin": 0.887
  },
  {
   "foto": "F172.jpg",
@@ -5562,7 +6672,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠꦸꦂꦱꦗꦫꦃꦲꦺꦏꦒꦸꦁꦮꦂꦤꦃ꧀ꦱ꧀ꦠ꧀ꦱꦁꦝꦩꦸꦮꦤ꧀ꦤꦶꦏ꧀ꦮꦪꦲꦶꦁꦔꦥꦸꦱ꧀ꦱꦶꦁꦒꦶꦃꦥꦶꦤ꧀ꦤꦠꦸꦠ꧀ꦠꦮꦶ",
+  "model_latin": "tursajarahhékagungwarnahstsangdhamuwannikwayahingngapussinggihpinnatuttawi",
+  "model_yakin": 0.92
  },
  {
   "foto": "F172.jpg",
@@ -5577,7 +6690,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀ꦤꦶꦫꦴꦱ꧀ꦩꦁꦏꦫꦤ꧀ꦤꦶꦁꦥꦸꦥꦸꦃꦏꦶꦤ꧀ꦤꦺꦤ꧀ꦮꦤꦸꦫꦸꦤ꧀ꦏꦁꦔꦚ꧀ꦲꦥꦤ꧀ꦏꦶꦤ꧀ꦤꦺꦤ꧀ꦏꦺꦮꦭꦩꦤꦸꦫꦸꦤ꧀ꦱꦸꦁ",
+  "model_latin": "nnirosmangkaranningpupuhkinnénwanurunkangnganyhapankinnénkéwalamanurunsung",
+  "model_yakin": 0.917
  },
  {
   "foto": "F172.jpg",
@@ -5592,7 +6708,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒꦶꦁꦩꦸꦒꦶꦲꦶꦁꦔꦥꦸꦫꦲꦴꦂꦔ꧀ꦠꦩꦤꦸꦗ꧀ꦤꦤꦼꦁꦒꦶꦃꦲꦶꦁꦢꦶꦤ꧀ꦠꦼꦢ꧀ꦏꦼꦩꦶꦱ꧀ꦮꦒꦺꦮꦁꦒꦭ꧀ꦭꦶꦫꦥꦶꦁꦱ",
+  "model_latin": "gingmugihingngapurahorngtamanujnanênggihhingdintêdkêmiswagéwanggallirapingsa",
+  "model_yakin": 0.919
  },
  {
   "foto": "F172.jpg",
@@ -5607,7 +6726,10 @@
   "yakin_latin": 0.395,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦮꦼꦭꦱ꧀ꦩꦺꦴꦁꦱꦫꦺꦴꦩꦝꦁꦏꦸꦁꦔꦺꦶꦤ꧀ꦤꦗꦸꦩꦢꦶꦭꦮꦭ꧀ꦠꦺꦁꦱꦸꦲꦥꦤ꧀ꦮꦶꦤ꧀ꦸꦏꦸꦤ꧀ꦛꦫꦱꦶꦁꦒꦶꦃ",
+  "model_latin": "wêlasmongsaromadhangkungngénnajumadilawalténgsuhapanwinkuntharasinggih",
+  "model_yakin": 0.918
  },
  {
   "foto": "F172.jpg",
@@ -5622,7 +6744,10 @@
   "yakin_latin": 0.395,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠꦲꦸꦤ꧀ꦮꦮꦸꦮꦶꦤ꧀ꦤꦂꦤꦴꦲꦶꦁꦱꦁꦏꦭꦤ꧀ꦤꦶꦥꦸꦤ꧀ꦫꦸꦥꦤꦂꦤꦒꦶꦫꦶꦠꦸꦁꦒꦭ꧀ꦥꦤ꧀ꦥꦸꦤ꧀ꦤꦶꦏꦏ",
+  "model_latin": "tahunwawuwinnarnohingsangkalannipunrupanarnagiritunggalpanpunnikaka",
+  "model_yakin": 0.941
  },
  {
   "foto": "F172.jpg",
@@ -5637,7 +6762,10 @@
   "yakin_latin": 0.395,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀ꦤꦶꦤ꧀ꦠꦩꦪꦩꦪꦁꦒꦺꦁꦔꦸꦭꦃꦴꦏꦁꦫꦶꦤ꧀ꦤꦶꦥ꧀ꦠꦥꦶꦠꦸꦠꦸꦂꦫꦺꦢꦸꦲ꧀ꦩꦲ꧀ꦱꦶꦃꦲꦮꦁꦔꦸꦮꦸꦁꦢꦸꦫꦸꦁꦔ",
+  "model_latin": "nnintamayamayanggéngngulahkangrinniptapituturréduhmahsihhawangnguwungdurungnga",
+  "model_yakin": 0.937
  },
  {
   "foto": "F172.jpg",
@@ -5652,7 +6780,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦩꦸꦩꦶꦭꦤ꧀ꦭꦮꦶꦠ꧀ꦤꦔꦶꦁꦏꦁꦲ꧀ꦁꦮꦶꦮꦺꦱꦴꦲꦁꦏꦺꦴꦕꦥ꧀ꦏꦫꦸꦲꦸꦤ꧀ꦩꦼꦤ꧀ꦤꦶꦱꦩꦢ꧀ꦤ꧀ꦤꦶꦁ",
+  "model_latin": "namumilanlawitnangingkanghngwiwésohangkocapkaruhunmênnisamadnning",
+  "model_yakin": 0.923
  },
  {
   "foto": "F173.jpg",
@@ -5667,7 +6798,10 @@
   "yakin_latin": 0.539,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦮ꧀ꦫꦮꦃꦠꦸꦂꦫꦶꦥꦸꦤ꧀ꦏꦶꦠꦢꦺꦴꦁꦱ꧈ꦏꦼꦭꦼꦏ꧀ꦝꦸꦱꦸꦤ",
+  "model_latin": "wrawahturripunkitadongsa kêlêkdhusuna",
+  "model_yakin": 0.937
  },
  {
   "foto": "F173.jpg",
@@ -5682,7 +6816,10 @@
   "yakin_latin": 0.539,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦶꦁꦒꦼꦧꦺꦴꦁꦩꦺꦴꦤ꧀ꦩꦱꦼꦏꦮꦤ꧀ꦏꦥꦼꦂꦤꦃꦏꦶꦭꦺ",
+  "model_latin": "hinggêbongmonmasêkawankapêrnahkilé",
+  "model_yakin": 0.965
  },
  {
   "foto": "F173.jpg",
@@ -5697,7 +6834,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ",
+  "model_latin": "na",
+  "model_yakin": 0.955
  },
  {
   "foto": "F173.jpg",
@@ -5712,7 +6852,10 @@
   "yakin_latin": 0.278,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀꧀꧈ꦩꦼꦁꦒꦃꦥꦠꦸꦂꦫꦤ꧀ꦤꦶꦥꦸꦤ꧀ꦱꦩꦶꦏꦤꦺꦴꦥ꧀ꦥ",
+  "model_latin": "n mênggahpaturrannipunsamikanoppa",
+  "model_yakin": 0.957
  },
  {
   "foto": "F173.jpg",
@@ -5727,7 +6870,10 @@
   "yakin_latin": 0.278,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠꦸꦂꦫꦤ꧀ꦤꦶꦥꦸꦤ꧀ꦏꦶꦥꦏꦃꦩ꧈ꦏꦁꦥꦩ꧀ꦥꦸꦤ꧀ꦏꦥꦼꦠꦸꦠ",
+  "model_latin": "turrannipunkipakahma kangpampunkapêtuta",
+  "model_yakin": 0.929
  },
  {
   "foto": "F173.jpg",
@@ -5742,7 +6888,10 @@
   "yakin_latin": 0.643,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦶꦁꦔꦗꦼꦁꦮꦲꦸꦥꦸꦤ꧀ꦤꦶꦏꦥꦭꦥꦸꦫꦸꦤ꧀ꦚꦒꦶꦥꦸꦥꦺ",
+  "model_latin": "hingngajêngwahupunnikapalapurunnyagipupé",
+  "model_yakin": 0.964
  },
  {
   "foto": "F173.jpg",
@@ -5757,7 +6906,10 @@
   "yakin_latin": 0.643,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦴꦥ꧀ꦲꦶꦩ꧀ꦧꦼꦂꦫꦶꦥꦸꦤ꧀꧈ꦲꦠꦸꦂꦏꦸꦭꦏꦶꦥꦶꦫ",
+  "model_latin": "hophimbêrripun haturkulakipira",
+  "model_yakin": 0.95
  },
  {
   "foto": "F173.jpg",
@@ -5772,7 +6924,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦺꦴꦁꦥ꧈ꦠꦶꦪꦁꦲꦭꦶꦠ꧀ꦝꦸꦥꦸꦤ꧀ꦲꦶꦁꦔꦶꦔꦁ꧈ꦏꦸꦭ",
+  "model_latin": "nongpa tiyanghalitdhupunhingngingang kula",
+  "model_yakin": 0.945
  },
  {
   "foto": "F174.jpg",
@@ -5787,7 +6942,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦁ",
+  "model_latin": "hang",
+  "model_yakin": 0.676
  },
  {
   "foto": "F174.jpg",
@@ -5802,7 +6960,10 @@
   "yakin_latin": 0.256,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦸ",
+  "model_latin": "",
+  "model_yakin": 0.507
  },
  {
   "foto": "F174.jpg",
@@ -5817,7 +6978,10 @@
   "yakin_latin": 0.626,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠꦏ꧀ꦤꦶꦁꦱꦠꦸꦱ꧀꧀ꦶꦥꦼꦪꦃ꧈",
+  "model_latin": "takningsatuspêyah",
+  "model_yakin": 0.83
  },
  {
   "foto": "F175.jpg",
@@ -5832,7 +6996,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦃꦶ",
+  "model_latin": "mah",
+  "model_yakin": 0.675
  },
  {
   "foto": "F175.jpg",
@@ -5847,7 +7014,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦴ",
+  "model_latin": "so",
+  "model_yakin": 0.801
  },
  {
   "foto": "F175.jpg",
@@ -5862,7 +7032,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦮ",
+  "model_latin": "wa",
+  "model_yakin": 0.928
  },
  {
   "foto": "F175.jpg",
@@ -5877,7 +7050,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦸ",
+  "model_latin": "hu",
+  "model_yakin": 0.672
  },
  {
   "foto": "F175.jpg",
@@ -5892,7 +7068,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦸꦶꦁꦱ",
+  "model_latin": "nungsa",
+  "model_yakin": 0.647
  },
  {
   "foto": "F175.jpg",
@@ -5907,7 +7086,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦁꦱꦢ",
+  "model_latin": "ngsada",
+  "model_yakin": 0.798
  },
  {
   "foto": "F175.jpg",
@@ -5922,7 +7104,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦸꦥꦶꦪꦃ꧈",
+  "model_latin": "mupiyah",
+  "model_yakin": 0.79
  },
  {
   "foto": "F175.jpg",
@@ -5937,7 +7122,10 @@
   "yakin_latin": 0.618,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱ꧀ꦼꦁ",
+  "model_latin": "sng",
+  "model_yakin": 0.777
  },
  {
   "foto": "F175.jpg",
@@ -5952,7 +7140,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦸꦃꦫꦸꦗ",
+  "model_latin": "puhruja",
+  "model_yakin": 0.94
  },
  {
   "foto": "F175.jpg",
@@ -5967,7 +7158,10 @@
   "yakin_latin": 0.884,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦭ꧀",
+  "model_latin": "l",
+  "model_yakin": 0.774
  },
  {
   "foto": "F175.jpg",
@@ -5982,7 +7176,10 @@
   "yakin_latin": 0.618,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦸꦭꦸꦃ",
+  "model_latin": "muluh",
+  "model_yakin": 0.876
  },
  {
   "foto": "F176.jpg",
@@ -5997,7 +7194,10 @@
   "yakin_latin": 0.529,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦶ",
+  "model_latin": "mi",
+  "model_yakin": 0.767
  },
  {
   "foto": "F176.jpg",
@@ -6012,7 +7212,10 @@
   "yakin_latin": 0.269,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠꦒ꧀ꦝꦤ꧀ꦤꦁꦱꦫꦸꦥꦶꦪꦃ꧈",
+  "model_latin": "tagdhannangsarupiyah",
+  "model_yakin": 0.909
  },
  {
   "foto": "F177.jpg",
@@ -6027,7 +7230,10 @@
   "yakin_latin": 0.593,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠꦒ꧀ꦤꦶꦁꦱꦭꦤ꧀ꦸꦮꦂꦫꦸꦥꦼꦪꦃ",
+  "model_latin": "tagningsalanwarrupêyah",
+  "model_yakin": 0.86
  },
  {
   "foto": "F177.jpg",
@@ -6042,7 +7248,10 @@
   "yakin_latin": 0.593,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦸꦠ",
+  "model_latin": "suta",
+  "model_yakin": 0.828
  },
  {
   "foto": "F178.jpg",
@@ -6057,7 +7266,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦼꦁ",
+  "model_latin": "ng",
+  "model_yakin": 0.591
  },
  {
   "foto": "F178.jpg",
@@ -6072,7 +7284,10 @@
   "yakin_latin": 0.959,
   "draf": "ꦒꦸꦭ꧀ꦢꦺꦤ꧀",
   "skor_ctc": 7.675,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦶ",
+  "model_latin": "",
+  "model_yakin": 0.854
  },
  {
   "foto": "F178.jpg",
@@ -6087,7 +7302,10 @@
   "yakin_latin": 0.465,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦠꦢꦫꦤꦶꦁꦭꦼꦩ꧀ꦩꦁꦫꦥ",
+  "model_latin": "tadaraninglêmmangrapa",
+  "model_yakin": 0.768
  },
  {
   "foto": "F178.jpg",
@@ -6102,7 +7320,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦶꦝꦶꦺꦃ",
+  "model_latin": "pidhih",
+  "model_yakin": 0.832
  },
  {
   "foto": "F178.jpg",
@@ -6117,7 +7338,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦶ꧈",
+  "model_latin": "si",
+  "model_yakin": 0.722
  },
  {
   "foto": "F178.jpg",
@@ -6132,7 +7356,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦸꦼ꧀ꦗꦸꦼꦗꦗꦼ꧀ꦠꦼ꧀ꦱꦸꦼꦗ꧀ꦸꦼꦩꦸꦼꦗꦗꦼꦩ꧀ꦩꦼꦼ꧀ꦸꦱꦤꦸꦁ",
+  "model_latin": "mujujajêtêsujmujajêmmêsanung",
+  "model_yakin": 0.665
  },
  {
   "foto": "F179.jpg",
@@ -6147,7 +7374,10 @@
   "yakin_latin": 0.758,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩꦸꦏ꧀ꦲꦤꦏꦁꦮꦤ꧀ꦤꦶꦮꦤ꧀ꦤꦶꦶꦤꦶꦫꦸꦒꦮꦺꦲꦸꦠꦮꦮꦺꦴꦮꦃꦲꦺꦴꦔꦶꦃꦲꦶꦲꦸꦮꦁꦏꦼꦂꦧꦩ꧀ꦧꦁ",
+  "model_latin": "mukhanakangwanniwanninirugawéhutawawowahhongihhihuwangkêrbambang",
+  "model_yakin": 0.916
  },
  {
   "foto": "F179.jpg",
@@ -6162,7 +7392,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏꦸꦗꦮ꧈ꦲꦥꦢꦺꦤ꧀ꦤꦺꦒꦼꦩꦲꦲꦩꦪꦺꦴꦲ꧀ꦲꦏꦺꦮꦁꦏꦼꦂꦠꦱ꧀ꦠꦶꦫꦺꦴꦤ꧀ꦭꦕ꧀ꦲꦺꦴꦮꦃꦃ",
+  "model_latin": "kujawa hapadénnégêmahahamayohhakéwangkêrtastironlachowahh",
+  "model_yakin": 0.899
  },
  {
   "foto": "F179.jpg",
@@ -6177,7 +7410,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦤ꧀ꦲꦶꦏꦸ꧈ꦲꦩꦼꦛ꧀ꦛꦺꦶꦫꦺꦥꦃꦩ꧀ꦮꦥ꧀ꦥꦤ꧀ꦥꦲꦸꦏꦸꦩ꧀ꦮꦤ꧀ꦥꦮꦶꦲꦸꦠꦮꦕꦮꦶꦫꦲꦺꦒꦶ",
+  "model_latin": "hanhiku hamêththérépahmwappanpahukumwanpawihutawacawirahégi",
+  "model_yakin": 0.827
  },
  {
   "foto": "F179.jpg",
@@ -6192,7 +7428,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀ꦤꦸꦮꦺꦠꦺꦴꦤ꧀ꦠꦺꦴꦤ꧀ꦤꦤ꧀ꦤꦶꦁꦔꦏꦺꦃ꧈ꦲꦩꦩꦤ꧀ꦤꦺꦃꦏꦶꦤꦸꦚ꧀ꦗꦫꦠꦸꦥꦶ꧀ꦠꦸꦩꦁ꧈ꦲꦥꦱꦩꦸꦂꦮ",
+  "model_latin": "nnuwétontonnanningngakéh hamamannéhkinunyjaratupitumang hapasamurwa",
+  "model_yakin": 0.913
  },
  {
   "foto": "F179.jpg",
@@ -6207,7 +7446,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ꧀ꦠꦶꦁꦏꦭꦸꦥꦸꦒ꧀ꦛꦤ꧀ꦤ꧈ꦲꦪꦲꦸꦤ꧀ꦤꦶꦤ꧀ꦤꦺꦭꦢꦁꦱꦼꦠꦱ꧀ꦧ꧀ꦭꦩ꧀꧈ꦠꦲꦸꦤ꧀꧈ꦒꦢꦒꦭ",
+  "model_latin": "ntingkalupugthanna hayahunninnéladangsêtasblam tahun gadagala",
+  "model_yakin": 0.859
  },
  {
   "foto": "F179.jpg",
@@ -6222,7 +7464,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦢ꧀ꦢꦼꦏꦴꦠꦥꦸ꧀ꦥ꧈ꦒꦝꦸꦔ꧀ꦤꦔ꧀ꦮꦴꦮ꧀ꦢꦼꦏꦴ꧀ꦔ꧀ꦤ꧈ꦧꦲꦸꦭ꧈ꦒꦱꦠꦺꦴ꧈꧀ꦢꦁꦏꦴꦢꦢꦴ",
+  "model_latin": "ddêkotapupa gadhungnangwowdêkongna bahula gasato dangkodado",
+  "model_yakin": 0.81
  },
  {
   "foto": "F195.jpg",
@@ -6237,7 +7482,10 @@
   "yakin_latin": 0.581,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦶꦤꦤꦶꦏꦸ꧀ꦮ꧀ꦮꦸꦁꦤ꧀ꦩ",
+  "model_latin": "hinanikuwwungnma",
+  "model_yakin": 0.712
  },
  {
   "foto": "F195.jpg",
@@ -6252,7 +7500,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝꦶꦲꦮꦒꦥꦸꦺꦸꦏꦸ",
+  "model_latin": "dhihawagapuku",
+  "model_yakin": 0.821
  },
  {
   "foto": "F195.jpg",
@@ -6267,7 +7518,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦴꦱꦏꦭꦶꦮꦤ꧀ꦲꦂ",
+  "model_latin": "sosakaliwanhar",
+  "model_yakin": 0.94
  },
  {
   "foto": "F195.jpg",
@@ -6282,7 +7536,10 @@
   "yakin_latin": 0.581,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦫꦲꦃꦤꦠ꧀ꦝꦸꦲꦸꦂꦲꦭ꧀ꦲ",
+  "model_latin": "rahahnatdhuhurhalha",
+  "model_yakin": 0.882
  },
  {
   "foto": "F195.jpg",
@@ -6297,7 +7554,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦫꦺꦔꦤ꧀ꦲꦭꦱꦒꦶ",
+  "model_latin": "rénganhalasagi",
+  "model_yakin": 0.889
  },
  {
   "foto": "F195.jpg",
@@ -6312,7 +7572,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦸꦮꦸꦫꦤ꧀ꦶꦺ꧀ꦫꦺꦁꦗꦸꦂꦲ",
+  "model_latin": "wuranréngjurha",
+  "model_yakin": 0.726
  },
  {
   "foto": "F195.jpg",
@@ -6327,7 +7590,10 @@
   "yakin_latin": 0.581,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗꦱꦼꦱꦺꦤꦏ꧀ꦠꦫꦶꦤ꧀ꦒꦶ",
+  "model_latin": "jasêsénaktaringi",
+  "model_yakin": 0.885
  },
  {
   "foto": "F195.jpg",
@@ -6342,7 +7608,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦢ꧀ꦝꦥꦶꦲꦢꦸꦒꦺ꧈",
+  "model_latin": "ddhapihadugé",
+  "model_yakin": 0.808
  },
  {
   "foto": "F195.jpg",
@@ -6357,7 +7626,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏꦶꦏ꧀ꦸꦢꦸꦱ꧀꧈",
+  "model_latin": "kikdus",
+  "model_yakin": 0.761
  },
  {
   "foto": "F195.jpg",
@@ -6372,7 +7644,10 @@
   "yakin_latin": 0.105,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏꦼꦤ꧀ꦠꦁꦭꦢ꧀ꦸ",
+  "model_latin": "kêntanglad",
+  "model_yakin": 0.688
  },
  {
   "foto": "F195.jpg",
@@ -6387,7 +7662,10 @@
   "yakin_latin": 0.393,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦒꦫꦴꦤꦶꦱꦂꦱꦤꦒ",
+  "model_latin": "hagaronisarsanaga",
+  "model_yakin": 0.853
  },
  {
   "foto": "F195.jpg",
@@ -6402,7 +7680,10 @@
   "yakin_latin": 0.447,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦺꦪꦶꦲꦸꦩꦺꦶꦫ",
+  "model_latin": "séyihuméra",
+  "model_yakin": 0.859
  },
  {
   "foto": "F195.jpg",
@@ -6417,7 +7698,10 @@
   "yakin_latin": 0.393,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦶꦺꦕꦺ꧀ꦶꦤꦶꦕꦶ",
+  "model_latin": "cénici",
+  "model_yakin": 0.743
  },
  {
   "foto": "F195.jpg",
@@ -6432,7 +7716,10 @@
   "yakin_latin": 0.393,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦪꦸꦠꦤꦼꦠ꧀ꦸꦺꦸꦤꦠꦸ꧈",
+  "model_latin": "yutanêtnatu",
+  "model_yakin": 0.738
  },
  {
   "foto": "F195.jpg",
@@ -6447,7 +7734,10 @@
   "yakin_latin": 0.447,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝꦶꦠꦸꦤꦺ꧀꧈",
+  "model_latin": "dhituné",
+  "model_yakin": 0.881
  },
  {
   "foto": "F195.jpg",
@@ -6462,7 +7752,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦠ꧀ꦠꦶꦪ꧀ꦸꦮꦺꦶꦺꦸ",
+  "model_latin": "sattiywé",
+  "model_yakin": 0.775
  },
  {
   "foto": "F195.jpg",
@@ -6477,7 +7770,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦸꦂꦏꦥꦃꦒꦮꦱ꧀",
+  "model_latin": "surkapahgawas",
+  "model_yakin": 0.89
  },
  {
   "foto": "F195.jpg",
@@ -6492,7 +7788,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦶꦶꦤꦸꦁꦤ꧀ꦪꦸ",
+  "model_latin": "nungnyu",
+  "model_yakin": 0.789
  },
  {
   "foto": "F195.jpg",
@@ -6507,7 +7806,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝ꧀ꦩꦫꦁꦝꦝꦶꦲꦝꦸ꧈",
+  "model_latin": "dhmarangdhadhihadhu",
+  "model_yakin": 0.831
  },
  {
   "foto": "F195.jpg",
@@ -6522,7 +7824,10 @@
   "yakin_latin": 0.442,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦲꦭꦥꦸꦲꦺꦫꦝꦁꦤꦶ",
+  "model_latin": "halapuhéradhangni",
+  "model_yakin": 0.872
  },
  {
   "foto": "F195.jpg",
@@ -6537,7 +7842,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝꦸꦲꦱ꧀ꦲ꧉",
+  "model_latin": "dhuhasha",
+  "model_yakin": 0.89
  },
  {
   "foto": "F195.jpg",
@@ -6552,7 +7860,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤꦺ꧀",
+  "model_latin": "né",
+  "model_yakin": 0.804
  },
  {
   "foto": "F197.jpg",
@@ -6567,7 +7878,10 @@
   "yakin_latin": 0.994,
   "draf": "ꦲꦤ꧀ꦠꦶꦏꦸꦮ",
   "skor_ctc": 5.168,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦲ",
+  "model_latin": "ha",
+  "model_yakin": 0.998
  },
  {
   "foto": "F197.jpg",
@@ -6582,7 +7896,10 @@
   "yakin_latin": 0.978,
   "draf": "ꦲꦤ꧀ꦠꦶꦏꦸꦮ",
   "skor_ctc": 4.706,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦲ",
+  "model_latin": "ha",
+  "model_yakin": 0.98
  },
  {
   "foto": "F197.jpg",
@@ -6597,7 +7914,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦤ",
+  "model_latin": "na",
+  "model_yakin": 0.999
  },
  {
   "foto": "F197.jpg",
@@ -6612,7 +7932,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗ",
+  "model_latin": "ja",
+  "model_yakin": 0.999
  },
  {
   "foto": "F197.jpg",
@@ -6627,7 +7950,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗ",
+  "model_latin": "ja",
+  "model_yakin": 0.999
  },
  {
   "foto": "F197.jpg",
@@ -6642,7 +7968,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦪ",
+  "model_latin": "ya",
+  "model_yakin": 0.997
  },
  {
   "foto": "F197.jpg",
@@ -6657,7 +7986,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦪ",
+  "model_latin": "ya",
+  "model_yakin": 0.999
  },
  {
   "foto": "F197.jpg",
@@ -6672,7 +8004,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦚ",
+  "model_latin": "nya",
+  "model_yakin": 0.999
  },
  {
   "foto": "F197.jpg",
@@ -6687,7 +8022,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦚ",
+  "model_latin": "nya",
+  "model_yakin": 0.88
  },
  {
   "foto": "F197.jpg",
@@ -6702,7 +8040,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒꦴꦁ",
+  "model_latin": "gong",
+  "model_yakin": 0.767
  },
  {
   "foto": "F197.jpg",
@@ -6717,7 +8058,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏ",
+  "model_latin": "ka",
+  "model_yakin": 0.999
  },
  {
   "foto": "F197.jpg",
@@ -6732,7 +8076,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦩ",
+  "model_latin": "ma",
+  "model_yakin": 1.0
  },
  {
   "foto": "F197.jpg",
@@ -6747,7 +8094,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦢ",
+  "model_latin": "da",
+  "model_yakin": 0.931
  },
  {
   "foto": "F197.jpg",
@@ -6762,7 +8112,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒ",
+  "model_latin": "ga",
+  "model_yakin": 0.996
  },
  {
   "foto": "F197.jpg",
@@ -6777,7 +8130,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒ",
+  "model_latin": "ga",
+  "model_yakin": 0.998
  },
  {
   "foto": "F197.jpg",
@@ -6792,7 +8148,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒ",
+  "model_latin": "ga",
+  "model_yakin": 0.999
  },
  {
   "foto": "F197.jpg",
@@ -6807,7 +8166,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦧ",
+  "model_latin": "ba",
+  "model_yakin": 0.999
  },
  {
   "foto": "F197.jpg",
@@ -6822,7 +8184,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦧ",
+  "model_latin": "ba",
+  "model_yakin": 0.991
  },
  {
   "foto": "F197.jpg",
@@ -6837,7 +8202,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦛ꧀ꦛ",
+  "model_latin": "ththa",
+  "model_yakin": 0.764
  },
  {
   "foto": "F197.jpg",
@@ -6852,7 +8220,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏ",
+  "model_latin": "ka",
+  "model_yakin": 0.569
  },
  {
   "foto": "F197.jpg",
@@ -6867,7 +8238,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦮ",
+  "model_latin": "wa",
+  "model_yakin": 1.0
  },
  {
   "foto": "F197.jpg",
@@ -6882,7 +8256,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦭ",
+  "model_latin": "la",
+  "model_yakin": 0.88
  },
  {
   "foto": "F197.jpg",
@@ -6897,7 +8274,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥ꧀ꦩ",
+  "model_latin": "pma",
+  "model_yakin": 0.84
  },
  {
   "foto": "F197.jpg",
@@ -6912,7 +8292,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥ꧀",
+  "model_latin": "p",
+  "model_yakin": 0.99
  },
  {
   "foto": "F197.jpg",
@@ -6927,7 +8310,10 @@
   "yakin_latin": 0.974,
   "draf": "ꦮꦺꦴꦏꦭꦺꦲꦸꦤ꧀ꦢ꧀ꦭꦼꦱꦼꦗꦼꦲꦶꦕ꧀ꦲꦺꦤ꧀ꦱꦲꦤ꧀ꦧꦼꦏ꧀ꦭꦼꦲꦶꦢꦸꦔꦺꦤ꧀",
   "skor_ctc": 99.0,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦴꦁ",
+  "model_latin": "ng",
+  "model_yakin": 0.947
  },
  {
   "foto": "F197.jpg",
@@ -6942,7 +8328,10 @@
   "yakin_latin": 0.974,
   "draf": "ꦮꦺꦴꦏꦭꦺꦲꦸꦤ꧀ꦢ꧀ꦭꦼꦱꦼꦗꦼꦲꦶꦕ꧀ꦲꦺꦤ꧀ꦱꦲꦤ꧀ꦧꦼꦏ꧀ꦭꦼꦲꦶꦢꦸꦔꦺꦤ꧀",
   "skor_ctc": 99.0,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "꧀ꦤ",
+  "model_latin": "na",
+  "model_yakin": 0.873
  },
  {
   "foto": "F197.jpg",
@@ -6957,7 +8346,10 @@
   "yakin_latin": 0.974,
   "draf": "ꦮꦺꦴꦏꦭꦺꦲꦸꦤ꧀ꦢ꧀ꦭꦼꦱꦼꦗꦼꦲꦶꦕ꧀ꦲꦺꦤ꧀ꦱꦲꦤ꧀ꦧꦼꦏ꧀ꦭꦼꦲꦶꦢꦸꦔꦺꦤ꧀",
   "skor_ctc": 99.0,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦔ꧀ꦤ",
+  "model_latin": "ngna",
+  "model_yakin": 0.918
  },
  {
   "foto": "F197.jpg",
@@ -6972,7 +8364,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦸ",
+  "model_latin": "",
+  "model_yakin": 0.962
  },
  {
   "foto": "F197.jpg",
@@ -6987,7 +8382,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦺ",
+  "model_latin": "",
+  "model_yakin": 0.999
  },
  {
   "foto": "F197.jpg",
@@ -7002,7 +8400,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦺ",
+  "model_latin": "",
+  "model_yakin": 0.86
  },
  {
   "foto": "F197.jpg",
@@ -7017,7 +8418,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥꦺ",
+  "model_latin": "pé",
+  "model_yakin": 0.663
  },
  {
   "foto": "F197.jpg",
@@ -7032,7 +8436,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦥ",
+  "model_latin": "pa",
+  "model_yakin": 0.99
  },
  {
   "foto": "F197.jpg",
@@ -7047,7 +8454,10 @@
   "yakin_latin": 1.0,
   "draf": "ꦲꦤ꧀ꦠꦶꦏꦸꦮ",
   "skor_ctc": 5.52,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦥ꧀ꦢ",
+  "model_latin": "pda",
+  "model_yakin": 0.773
  },
  {
   "foto": "F197.jpg",
@@ -7062,7 +8472,10 @@
   "yakin_latin": 0.906,
   "draf": "ꦲꦤ꧀ꦠꦶꦏꦸꦮ",
   "skor_ctc": 6.243,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦔ꧀ꦢ",
+  "model_latin": "ngda",
+  "model_yakin": 0.836
  },
  {
   "foto": "F197.jpg",
@@ -7077,7 +8490,10 @@
   "yakin_latin": 0.999,
   "draf": "ꦕꦸꦂꦱꦶꦮ꧀",
   "skor_ctc": 9.059,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦛ꧀ꦢ",
+  "model_latin": "thda",
+  "model_yakin": 0.899
  },
  {
   "foto": "F197.jpg",
@@ -7092,7 +8508,10 @@
   "yakin_latin": 0.947,
   "draf": "ꦕꦸꦂꦱꦶꦮ꧀",
   "skor_ctc": 6.877,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦥ꧀ꦢ",
+  "model_latin": "pda",
+  "model_yakin": 0.796
  },
  {
   "foto": "F197.jpg",
@@ -7107,7 +8526,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "",
+  "model_latin": "",
+  "model_yakin": 0.0
  },
  {
   "foto": "F197.jpg",
@@ -7122,7 +8544,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦧ꧀ꦧ",
+  "model_latin": "bba",
+  "model_yakin": 0.782
  },
  {
   "foto": "F198.jpg",
@@ -7137,7 +8562,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦼꦁꦁꦁ",
+  "model_latin": "ngngng",
+  "model_yakin": 0.617
  },
  {
   "foto": "F198.jpg",
@@ -7152,7 +8580,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗ",
+  "model_latin": "ja",
+  "model_yakin": 0.556
  },
  {
   "foto": "F198.jpg",
@@ -7167,7 +8598,10 @@
   "yakin_latin": 0.173,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗ",
+  "model_latin": "ja",
+  "model_yakin": 0.999
  },
  {
   "foto": "F198.jpg",
@@ -7182,7 +8616,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦗ꧀ꦗ",
+  "model_latin": "jja",
+  "model_yakin": 0.946
  },
  {
   "foto": "F198.jpg",
@@ -7197,7 +8634,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦧ",
+  "model_latin": "ba",
+  "model_yakin": 0.857
  },
  {
   "foto": "F198.jpg",
@@ -7212,7 +8652,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝ",
+  "model_latin": "dha",
+  "model_yakin": 0.825
  },
  {
   "foto": "F198.jpg",
@@ -7227,7 +8670,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏ",
+  "model_latin": "ka",
+  "model_yakin": 0.405
  },
  {
   "foto": "F198.jpg",
@@ -7242,7 +8688,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦝ",
+  "model_latin": "dha",
+  "model_yakin": 0.991
  },
  {
   "foto": "F198.jpg",
@@ -7257,7 +8706,10 @@
   "yakin_latin": 0.997,
   "draf": "ꦲꦤ꧀ꦠꦶꦏꦸꦮ",
   "skor_ctc": 5.825,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦲꦶ",
+  "model_latin": "hi",
+  "model_yakin": 0.929
  },
  {
   "foto": "F198.jpg",
@@ -7272,7 +8724,10 @@
   "yakin_latin": 0.966,
   "draf": "ꦲꦤ꧀ꦠꦶꦏꦸꦮ",
   "skor_ctc": 6.759,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦮꦶ",
+  "model_latin": "wi",
+  "model_yakin": 0.998
  },
  {
   "foto": "F198.jpg",
@@ -7287,7 +8742,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦱꦼ",
+  "model_latin": "sê",
+  "model_yakin": 0.868
  },
  {
   "foto": "F198.jpg",
@@ -7302,7 +8760,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏꦶꦁ",
+  "model_latin": "king",
+  "model_yakin": 0.809
  },
  {
   "foto": "F198.jpg",
@@ -7317,7 +8778,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦢꦶ",
+  "model_latin": "di",
+  "model_yakin": 0.988
  },
  {
   "foto": "F198.jpg",
@@ -7332,7 +8796,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦶꦸ",
+  "model_latin": "",
+  "model_yakin": 0.824
  },
  {
   "foto": "F198.jpg",
@@ -7347,7 +8814,10 @@
   "yakin_latin": 0.991,
   "draf": "ꦗꦶꦥ꧀ꦥꦺꦂꦤ꧀",
   "skor_ctc": 5.996,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦒꦁ",
+  "model_latin": "gang",
+  "model_yakin": 0.943
  },
  {
   "foto": "F198.jpg",
@@ -7362,7 +8832,10 @@
   "yakin_latin": 0.991,
   "draf": "ꦗꦶꦥ꧀ꦥꦺꦂꦤ꧀",
   "skor_ctc": 6.353,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦸ",
+  "model_latin": "",
+  "model_yakin": 0.973
  },
  {
   "foto": "F198.jpg",
@@ -7377,7 +8850,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦒ",
+  "model_latin": "ga",
+  "model_yakin": 0.997
  },
  {
   "foto": "F198.jpg",
@@ -7392,7 +8868,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦭ",
+  "model_latin": "la",
+  "model_yakin": 0.998
  },
  {
   "foto": "F198.jpg",
@@ -7407,7 +8886,10 @@
   "yakin_latin": null,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦪ",
+  "model_latin": "ya",
+  "model_yakin": 0.999
  },
  {
   "foto": "F198.jpg",
@@ -7422,7 +8904,10 @@
   "yakin_latin": 1.0,
   "draf": "ꦲꦶꦤ꧀ꦠꦼꦂꦥꦸꦤ꧀ꦏ꧀ꦠꦶꦪꦺꦴꦤꦺꦤ꧀",
   "skor_ctc": 99.0,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦔ꧀",
+  "model_latin": "ng",
+  "model_yakin": 0.998
  },
  {
   "foto": "F198.jpg",
@@ -7437,7 +8922,10 @@
   "yakin_latin": 0.412,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦧ꧉",
+  "model_latin": "ba",
+  "model_yakin": 0.986
  },
  {
   "foto": "F198.jpg",
@@ -7452,7 +8940,10 @@
   "yakin_latin": 0.993,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦔꦔ꧈",
+  "model_latin": "nganga",
+  "model_yakin": 0.891
  },
  {
   "foto": "F198.jpg",
@@ -7467,7 +8958,10 @@
   "yakin_latin": 0.792,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦔ",
+  "model_latin": "nga",
+  "model_yakin": 0.983
  },
  {
   "foto": "F198.jpg",
@@ -7482,7 +8976,10 @@
   "yakin_latin": 0.982,
   "draf": "ꦒꦤ꧀ꦗꦺꦥꦲꦸꦱꦺ",
   "skor_ctc": 7.006,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦱ꧀꧉ꦧ꧀ꦩ꧉ꦔ꧀",
+  "model_latin": "s bma ng",
+  "model_yakin": 0.844
  },
  {
   "foto": "F198.jpg",
@@ -7497,7 +8994,10 @@
   "yakin_latin": 0.982,
   "draf": "ꦒꦤ꧀ꦗꦺꦥꦲꦸꦱꦺ",
   "skor_ctc": 11.048,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦔ",
+  "model_latin": "nga",
+  "model_yakin": 0.998
  },
  {
   "foto": "F198.jpg",
@@ -7512,7 +9012,10 @@
   "yakin_latin": 0.412,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "꧀ꦩ꧀꧉ꦧ꧀ꦕ꧉ꦂꦩ꧀ꦱ",
+  "model_latin": "m bca rmsa",
+  "model_yakin": 0.754
  },
  {
   "foto": "F198.jpg",
@@ -7527,7 +9030,10 @@
   "yakin_latin": 0.985,
   "draf": "ꦱ꧀ꦕ꧀ꦃꦫꦶꦥ꧀ꦠ꧀ꦢꦺꦂꦩꦭꦪꦶꦱ꧀ꦕ꧀ꦲꦺꦤ꧀ꦮ꧀ꦭ꧀ꦏꦺꦂꦢꦸꦂꦕ꧀ꦃ",
   "skor_ctc": 8.583,
-  "diragukan": true
+  "diragukan": true,
+  "model_aksara": "ꦮ꧀꧀꧉꧉ꦠ꧀ꦱ꧀",
+  "model_latin": "w  ts",
+  "model_yakin": 0.824
  },
  {
   "foto": "F199.jpg",
@@ -7542,7 +9048,10 @@
   "yakin_latin": 0.0,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦢ",
+  "model_latin": "da",
+  "model_yakin": 0.909
  },
  {
   "foto": "F199.jpg",
@@ -7557,7 +9066,10 @@
   "yakin_latin": 0.406,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏꦫꦲꦤꦴꦥꦸꦏꦥ",
+  "model_latin": "karahanopukapa",
+  "model_yakin": 0.778
  },
  {
   "foto": "F199.jpg",
@@ -7572,6 +9084,9 @@
   "yakin_latin": 0.406,
   "draf": null,
   "skor_ctc": null,
-  "diragukan": null
+  "diragukan": null,
+  "model_aksara": "ꦏ",
+  "model_latin": "ka",
+  "model_yakin": 0.994
  }
 ]

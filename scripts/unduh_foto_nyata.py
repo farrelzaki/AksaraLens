@@ -1,6 +1,8 @@
 # Unduh foto nyata beraksara Jawa dari Wikimedia Commons (di luar Set C) untuk melatih klasifikator aksara dan pembaca.
 # Foto, label, dan atribusi disimpan di docs/random/foto_nyata (gitignored); hanya skrip ini yang di-commit.
 # Pakai: python -I -X utf8 scripts/unduh_foto_nyata.py docs/random/foto_nyata [maks]
+# Gelombang kedua: KATEGORI="Kategori A|Kategori B" SUDAH=docs/random/foto_nyata/atribusi.csv AWALAN=G python -I -X utf8 scripts/unduh_foto_nyata.py docs/random/foto_nyata2 600
+# (KATEGORI mengganti daftar bawaan, SUDAH = atribusi.csv yang judulnya dilewati, AWALAN = awalan nama berkas)
 import csv, json, os, re, sys, time, urllib.error, urllib.parse, urllib.request
 
 OUT = sys.argv[1]
@@ -8,6 +10,9 @@ MAKS = int(sys.argv[2]) if len(sys.argv) > 2 else 200
 AKAR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 KATEGORI = ['Javanese script in public usage', 'Javanese script in Yogyakarta', 'Javanese script in Surakarta', 'Bilingual Indonesian-Javanese signs',
             'Javanese script', 'Javanese script in Semarang', 'Javanese script in Magelang', 'Javanese script in Malang']
+if os.environ.get('KATEGORI'):
+    KATEGORI = os.environ['KATEGORI'].split('|')
+AWALAN = os.environ.get('AWALAN', 'F')
 os.makedirs(OUT + '/foto', exist_ok=True)
 UA = {'User-Agent': 'AksaraLens-eval/1.0 (student project)'}
 
@@ -43,7 +48,10 @@ judul = []
 lihat = set()
 for k in KATEGORI:
     judul += anggota(k, 2, lihat)
-judul = [t for t in dict.fromkeys(judul) if re.search(r'\.jpe?g$', t, re.I) and urllib.parse.unquote(t) not in set_c]
+sudah = set()
+if os.environ.get('SUDAH'):
+    sudah = {r['judul'] for r in csv.DictReader(open(os.environ['SUDAH'], encoding='utf-8'))}
+judul = [t for t in dict.fromkeys(judul) if re.search(r'\.jpe?g$', t, re.I) and urllib.parse.unquote(t) not in set_c and t not in sudah]
 print('kandidat', len(judul))
 
 baris = []
@@ -61,7 +69,7 @@ with open(OUT + '/atribusi.csv', 'w', encoding='utf-8', newline='') as f:
     w = csv.DictWriter(f, ['berkas', 'judul', 'lisensi', 'pembuat', 'url'])
     w.writeheader()
     for n, b in enumerate(baris):
-        nama = f'F{n:03d}.jpg'
+        nama = f'{AWALAN}{n:03d}.jpg'
         p = f'{OUT}/foto/{nama}'
         if not os.path.exists(p):
             for coba in range(4):
