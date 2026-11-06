@@ -26,3 +26,4 @@ Boleh, tetapi jawaban AI **tidak dipercaya begitu saja**: AI sering mengarang ba
 2. Yang berstatus **periksa**: buka `http://localhost:8000/scripts/periksa_visual.html?bagian=N&dari=M`. Anda hanya mencocokkan BENTUK (jumlah huruf, tanda atas/bawah/samping) antara gambar dan tulisan label; tidak perlu bisa membaca. Simpan hasilnya `hasil/visual_<nama>.json`.
 3. Jalankan ulang langkah 1 dengan `--visual data/label_nyata/hasil/visual_*.json`. Hanya label **terpercaya** dipakai melatih.
 4. Dua AI berbeda yang diminta membaca potongan yang sama dan memberi jawaban sama menambah bukti. Simpan masing-masing di berkas terpisah.
+5. Setelah ada label terpercaya: `python -X utf8 scripts/ekspor_label_latih.py` membuat `docs/random/data_nyata_v4.zip` untuk notebook latih v4 (unggah ke Drive `aksaralens/`).
