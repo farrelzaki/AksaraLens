@@ -3,7 +3,7 @@
        python -m http.server 8000     lalu buka  http://localhost:8000/scripts/alat_label.html?bagian=1&dari=3
      (bagian = nomor kamu, dari = jumlah orang; data ada di data/label_nyata/, lihat README-nya)
      Menampilkan potongan foto nyata hasil scripts/pasang_latin_jawa.py. Ketik bacaan LATIN dari aksara pada gambar
-     (usulan sudah terisi bila ada); aksara dibuat otomatis oleh latin_ke_jawa. Kemajuan tersimpan di browser (localStorage)
+     (usulan sudah terisi bila ada; potongan yang paling mudah tampil lebih dulu); aksara dibuat otomatis oleh latin_ke_jawa. Kemajuan tersimpan di browser (localStorage)
      dan diekspor sebagai label_teks.json. Foto tidak dikirim ke mana pun. -->
 <html lang="id">
 <head>
@@ -28,6 +28,8 @@
 <label for="latin">Bacaan Latin (tanpa spasi pun boleh; kata dipisah spasi)</label>
 <input id="latin" type="text" autocomplete="off" autofocus>
 <div id="aksara" aria-live="polite"></div>
+<p class="meta" id="model"></p>
+<button id="pakaimodel" hidden>Pakai bacaan model (lalu perbaiki)</button>
 <button id="simpan"><b>Enter</b> Simpan &amp; lanjut</button>
 <button id="lewati"><b>Tab</b> Lewati</button>
 <button id="buang"><b>Esc</b> Bukan aksara Jawa / rusak</button>
@@ -56,7 +58,10 @@ function tampil() {
   const r = daftar[i];
   $('gambar').src = DIR + 'potongan/' + r.berkas;
   $('meta').textContent = `${r.berkas}` + (r.latin ? ` · usulan dari papan Latin: “${r.latin}” (yakin ${r.yakin_latin}, cocok-CTC ${r.skor_ctc})` : ' · tanpa usulan');
-  $('latin').value = r.latin && r.yakin_latin >= 0.8 ? r.latin.toLowerCase().replace(/[^a-zéèê ]/g, '').trim() : '';
+  const dariPapan = r.latin && r.yakin_latin >= 0.8 ? r.latin.toLowerCase().replace(/[^a-zéèê ]/g, '').trim() : '';
+  $('latin').value = dariPapan || (r.model_latin && r.model_yakin >= 0.6 ? r.model_latin : '');
+  $('model').textContent = r.model_latin ? `Bacaan model: “${r.model_latin}” (yakin ${r.model_yakin})` : '';
+  $('pakaimodel').hidden = !r.model_latin;
   pratinjau();
   $('latin').focus();
 }
@@ -74,6 +79,7 @@ function simpan(status) {
   tampil();
 }
 $('latin').addEventListener('input', pratinjau);
+$('pakaimodel').onclick = () => { $('latin').value = daftar[i].model_latin; pratinjau(); $('latin').focus(); };
 $('simpan').onclick = () => simpan('ok');
 $('lewati').onclick = () => simpan('lewati');
 $('buang').onclick = () => simpan('buang');
@@ -92,8 +98,10 @@ addEventListener('keydown', (e) => {
 });
 fetch(DIR + 'draf.json').then((r) => r.json()).then((d) => {
   // Usulan paling meyakinkan dulu (Latin yakin, cocok-CTC kecil), lalu yang tanpa usulan.
-  const nilai = (r) => (r.draf ? (r.yakin_latin >= 0.8 ? 0 : 1) * 1000 + r.skor_ctc : 5000);
-  daftar = d.sort((a, b) => nilai(a) - nilai(b)).filter((_, n) => n % DARI === BAGIAN - 1);
+  // Pembagian bagian memakai urutan LAMA supaya potongan tiap orang tidak berpindah; urutan tampil di dalam bagian: yang paling mudah dulu.
+  const nilaiLama = (r) => (r.draf ? (r.yakin_latin >= 0.8 ? 0 : 1) * 1000 + r.skor_ctc : 5000);
+  const mudah = (r) => (r.draf && r.yakin_latin >= 0.8 ? 0 : 1000) + (1 - (r.model_yakin ?? 0)) * 500 + (r.model_latin ? 0 : 400);
+  daftar = d.sort((a, b) => nilaiLama(a) - nilaiLama(b)).filter((_, n) => n % DARI === BAGIAN - 1).sort((a, b) => mudah(a) - mudah(b));
   tampil();
 }).catch(() => { $('kemajuan').textContent = 'Gagal memuat draf.json. Buka lewat python -m http.server dari akar repo.'; });
 </script>
