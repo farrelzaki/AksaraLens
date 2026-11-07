@@ -12,6 +12,8 @@ export interface Calon {
   keyakinan: number;
   kotak: Kotak;
   status: Status;
+  /** L5: bacaan yang dibetulkan model bahasa (bahasa.ts pilihKoreksi); hanya mengganti teks yang tampil. */
+  koreksi?: string | null;
 }
 
 const KONSONAN = new Set('ꦲꦤꦕꦫꦏꦢꦠꦱꦮꦭꦥꦝꦗꦪꦚꦩꦒꦧꦛꦔ');

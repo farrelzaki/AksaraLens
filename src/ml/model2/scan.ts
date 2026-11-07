@@ -9,6 +9,9 @@
 import { urai, type SukuKata } from '../../aksara/urai';
 import { infoOrt, muatModel, ortSiap } from '../onnx';
 import { CHARSET, TINGGI_BARIS, dekodeGreedy, keInputBaris } from './ctc';
+import { dekodeBeam, logSoftmax, pilihKoreksi, type ModelBahasa } from './bahasa';
+import modelBahasa from './model_bahasa.json';
+import { keLogis } from '../../aksara/urutan';
 import { potongSatu, type Kotak } from './detektor';
 import { SISI, SISI_ESKALASI, kotakDariPeta, masukanPP } from './detektorPP';
 import { LEBAR_KL, TINGGI_KL, lolosJawa, masukanKlasifikator } from './klasifikator';
@@ -90,7 +93,7 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
   if (sudut !== 0) g = putar(g, sudut, 255);
 
   const praMs = performance.now() - mulai;
-  const waktu = { deteksi: 0, saring: 0, baca: 0, kotak: 0, dibaca: 0 };
+  const waktu = { deteksi: 0, saring: 0, baca: 0, bahasa: 0, kotak: 0, dibaca: 0 };
   const baca = async (crop: Gray) => {
     const t0 = performance.now();
     const { data, lebar } = keInputBaris(crop);
@@ -99,7 +102,17 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
     });
     waktu.baca += performance.now() - t0;
     waktu.dibaca++;
-    return dekodeGreedy(keluar[pembaca.outputNames[0]].data as Float32Array, CHARSET.length);
+    const logit = keluar[pembaca.outputNames[0]].data as Float32Array;
+    const hasil = dekodeGreedy(logit, CHARSET.length);
+    // L5: model bahasa hanya membetulkan teks baris yang lolos penilai; status tetap dari bacaan greedy.
+    let koreksi: string | null = null;
+    if (nilaiStatus(hasil.teks, hasil.keyakinan, 'area') !== 'TOLAK') {
+      const t1 = performance.now();
+      const beam = dekodeBeam(logSoftmax(logit, CHARSET.length), CHARSET.length, CHARSET, modelBahasa as unknown as ModelBahasa);
+      koreksi = pilihKoreksi(hasil.teks, keLogis(beam), hasil.keyakinan);
+      waktu.bahasa += performance.now() - t1;
+    }
+    return { ...hasil, koreksi };
   };
   // Tulisan terang di papan gelap: polaritas ditentukan per potongan, pakai arah yang lebih yakin.
   // Arah pertama yang sudah diterima tidak perlu dibandingkan lagi.
@@ -147,8 +160,8 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
         // 3. baca tiap baris; pelurusan per baris hanya di mode area demi target waktu
         const crop = potongSatu(g, kotak);
         if (!crop) continue;
-        const { teks, keyakinan } = await bacaDuaArah(mode === 'area' ? luruskan(crop) : crop);
-        if (teks) calon.push({ unicode: teks, keyakinan, kotak, status: nilaiStatus(teks, keyakinan, mode) });
+        const { teks, keyakinan, koreksi } = await bacaDuaArah(mode === 'area' ? luruskan(crop) : crop);
+        if (teks) calon.push({ unicode: teks, keyakinan, kotak, status: nilaiStatus(teks, keyakinan, mode), koreksi });
       }
     }
     return { calon, semuaKotak };
@@ -166,8 +179,8 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
     terpilih = pilihEskalasi(awal, baru);
   }
   if (mode === 'area') {
-    const { teks, keyakinan } = await bacaDuaArah(luruskan(g));
-    const satu: Calon | null = teks ? { unicode: teks, keyakinan, kotak: [0, 0, g.w, g.h], status: nilaiStatus(teks, keyakinan, mode) } : null;
+    const { teks, keyakinan, koreksi } = await bacaDuaArah(luruskan(g));
+    const satu: Calon | null = teks ? { unicode: teks, keyakinan, kotak: [0, 0, g.w, g.h], status: nilaiStatus(teks, keyakinan, mode), koreksi } : null;
     terpilih = pilihArea(terpilih, satu);
     // Tabel: tiap baris proyeksi dibaca sendiri.
     const proyeksi: Calon[] = [];
@@ -178,7 +191,7 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
       const crop = potongSatu(g, kotak);
       if (!crop) continue;
       const b = await bacaDuaArah(crop);
-      if (b.teks) proyeksi.push({ unicode: b.teks, keyakinan: b.keyakinan, kotak, status: nilaiStatus(b.teks, b.keyakinan, mode) });
+      if (b.teks) proyeksi.push({ unicode: b.teks, keyakinan: b.keyakinan, kotak, status: nilaiStatus(b.teks, b.keyakinan, mode), koreksi: b.koreksi });
     }
     terpilih = pilihProyeksi(terpilih, proyeksi);
   } else {
@@ -189,7 +202,7 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
     waktuMs: performance.now() - mulai,
     sudut,
     kotak: semuaKotak,
-    tahap: { praMs: Math.round(praMs), deteksiMs: Math.round(waktu.deteksi), saringMs: Math.round(waktu.saring), bacaMs: Math.round(waktu.baca), potonganDibaca: waktu.dibaca, kotakDeteksi: semuaKotak.length, ...infoOrt() },
+    tahap: { praMs: Math.round(praMs), deteksiMs: Math.round(waktu.deteksi), saringMs: Math.round(waktu.saring), bacaMs: Math.round(waktu.baca), bahasaMs: Math.round(waktu.bahasa), potonganDibaca: waktu.dibaca, kotakDeteksi: semuaKotak.length, ...infoOrt() },
   });
 }
 
@@ -213,7 +226,8 @@ export function rakitHasil(calon: readonly Calon[], kualitas: Kualitas, info: Ha
   const baris: BarisTerbaca[] = [];
   for (const c of calon) {
     if (c.status === 'TOLAK') continue;
-    baris.push({ unicode: c.unicode, keyakinan: c.keyakinan, status: c.status, sukuKata: urai(c.unicode) });
+    const unicode = c.koreksi ?? c.unicode; // L5: teks yang dibetulkan model bahasa, bila ada
+    baris.push({ unicode, keyakinan: c.keyakinan, status: c.status, sukuKata: urai(unicode) });
   }
   return { baris, kurangYakin: baris.some((b) => b.status === 'RAGU'), diabaikan: calon.length - baris.length, kualitas, info };
 }

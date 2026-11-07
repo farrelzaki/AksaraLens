@@ -106,6 +106,11 @@ def main():
     print(f'\nBaris uji: {len(uji)} (notebook: 69)')
     print(f'Akurasi suku, pembaca saja: {akurasi([(t, d["teks"]) for (t, _), d in zip(tunggal, uji)]):.1%} (notebook: 89,0%)')
     print(f'Akurasi suku, baris TOLAK dihitung kosong: {akurasi([(t if s != "TOLAK" else "", d["teks"]) for (t, _), s, d in zip(tunggal, status, uji)]):.1%}')
+    koreksi = getattr(cerdas, 'koreksi_bahasa', None)  # dipasang scripts/bangku_v3.py bila BAHASA=1 (L5)
+    if koreksi:
+        tampil_l5 = [(koreksi(t) or t) if s != 'TOLAK' else t for (t, _), s in zip(tunggal, status)]
+        print(f'Akurasi suku, dengan dekoder bahasa L5: {akurasi([(t, d["teks"]) for t, d in zip(tampil_l5, uji)]):.1%} '
+              f'({sum(a != t for a, (t, _) in zip(tampil_l5, tunggal))} baris dibetulkan)')
     print('Status foto:', {k: status.count(k) for k in ('TERIMA', 'RAGU', 'TOLAK')})
     alasan = dict(valid=0, yakin=0, pendek=0)
     for (t, y), s in zip(tunggal, status):
