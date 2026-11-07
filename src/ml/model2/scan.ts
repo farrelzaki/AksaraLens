@@ -8,7 +8,8 @@
 
 import { urai, type SukuKata } from '../../aksara/urai';
 import { infoOrt, muatModel, ortSiap } from '../onnx';
-import { CHARSET, TINGGI_BARIS, dekodeGreedy, keInputBaris } from './ctc';
+import { CHARSET, dekodeGreedy } from './ctc';
+import { TINGGI_B2, keInputB2, keLogPeluang } from './pembacaB2';
 import { dekodeBeam, logSoftmax, pilihKoreksi, type ModelBahasa } from './bahasa';
 import modelBahasa from './model_bahasa.json';
 import { keLogis } from '../../aksara/urutan';
@@ -58,9 +59,8 @@ export function siapkanScanner(): Promise<void> {
 
 async function panaskan(): Promise<void> {
   const [ort, det, pembaca, kl] = await Promise.all([ortSiap(), muatModel('model2b'), muatModel('model2a'), muatModel('model2c')]);
-  const kosong = () => new Float32Array(TINGGI_BARIS * TINGGI_BARIS);
   await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', new Float32Array(3 * 32 * 32), [1, 3, 32, 32]) });
-  await pembaca.run({ [pembaca.inputNames[0]]: new ort.Tensor('float32', kosong(), [1, 1, TINGGI_BARIS, TINGGI_BARIS]) });
+  await pembaca.run({ [pembaca.inputNames[0]]: new ort.Tensor('float32', new Float32Array(3 * TINGGI_B2 * TINGGI_B2), [1, 3, TINGGI_B2, TINGGI_B2]) });
   await kl.run({ [kl.inputNames[0]]: new ort.Tensor('float32', new Float32Array(TINGGI_KL * LEBAR_KL), [1, 1, TINGGI_KL, LEBAR_KL]) });
 }
 
@@ -96,13 +96,14 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
   const waktu = { deteksi: 0, saring: 0, baca: 0, bahasa: 0, kotak: 0, dibaca: 0 };
   const baca = async (crop: Gray) => {
     const t0 = performance.now();
-    const { data, lebar } = keInputBaris(crop);
+    // Pembaca B2 (PP-OCRv5 fine-tune, int8): masukan [1, 3, 48, W], keluaran peluang -> log-peluang untuk dekoder.
+    const { data, lebar } = keInputB2(crop);
     const keluar = await pembaca.run({
-      [pembaca.inputNames[0]]: new ort.Tensor('float32', data, [1, 1, TINGGI_BARIS, lebar]),
+      [pembaca.inputNames[0]]: new ort.Tensor('float32', data, [1, 3, TINGGI_B2, lebar]),
     });
     waktu.baca += performance.now() - t0;
     waktu.dibaca++;
-    const logit = keluar[pembaca.outputNames[0]].data as Float32Array;
+    const logit = keLogPeluang(keluar[pembaca.outputNames[0]].data as Float32Array);
     const hasil = dekodeGreedy(logit, CHARSET.length);
     // L5: model bahasa hanya membetulkan teks baris yang lolos penilai; status tetap dari bacaan greedy.
     let koreksi: string | null = null;
