@@ -2106,24 +2106,6 @@
   "model_yakin": 0.89
  },
  {
-  "foto": "F010.jpg",
-  "kotak": [
-   1290,
-   229,
-   1574,
-   280
-  ],
-  "berkas": "F010_00.png",
-  "latin": "JL. MALIOBORO",
-  "yakin_latin": 0.997,
-  "draf": "ꦗ꧀ꦭ꧀ꦩꦭꦶꦪꦺꦴꦧꦺꦴꦫꦺꦴ",
-  "skor_ctc": 5.227,
-  "diragukan": true,
-  "model_aksara": "ꦢꦭꦤ꧀ꦩꦭꦶꦪꦧꦫ",
-  "model_latin": "dalanmaliyabara",
-  "model_yakin": 0.951
- },
- {
   "foto": "F022.jpg",
   "kotak": [
    597,
@@ -2484,42 +2466,6 @@
   "model_yakin": 0.714
  },
  {
-  "foto": "F053.jpg",
-  "kotak": [
-   744,
-   698,
-   1178,
-   765
-  ],
-  "berkas": "F053_00.png",
-  "latin": "JL. KEMUNING",
-  "yakin_latin": 0.996,
-  "draf": "ꦗ꧀ꦭ꧀ꦏꦼꦩꦸꦤꦶꦁ",
-  "skor_ctc": 3.004,
-  "diragukan": true,
-  "model_aksara": "ꦫꦠꦤ꧀ꦏꦼꦩꦸꦤꦶꦁ",
-  "model_latin": "ratankêmuning",
-  "model_yakin": 0.954
- },
- {
-  "foto": "F054.jpg",
-  "kotak": [
-   1129,
-   915,
-   1605,
-   975
-  ],
-  "berkas": "F054_00.png",
-  "latin": "e",
-  "yakin_latin": 0.504,
-  "draf": null,
-  "skor_ctc": null,
-  "diragukan": null,
-  "model_aksara": "ꦩꦤ꧀ꦝꦭꦮꦶꦱꦠ꧉",
-  "model_latin": "mandhalawisata",
-  "model_yakin": 0.951
- },
- {
   "foto": "F055.jpg",
   "kotak": [
    262,
@@ -2536,42 +2482,6 @@
   "model_aksara": "ꦲꦺꦼ꧀ꦁ꧀ꦠꦼꦭ꧀ꦶ꧀ꦱꦤ꧀ꦸ꧀ꦶ",
   "model_latin": "héngtêlsan",
   "model_yakin": 0.732
- },
- {
-  "foto": "F056.jpg",
-  "kotak": [
-   954,
-   614,
-   1370,
-   708
-  ],
-  "berkas": "F056_00.png",
-  "latin": "JL. MENUR I",
-  "yakin_latin": 0.959,
-  "draf": "ꦗ꧀ꦭ꧀ꦩꦼꦤꦸꦂꦲꦶ",
-  "skor_ctc": 4.351,
-  "diragukan": true,
-  "model_aksara": "ꦩꦼꦤꦸꦒ",
-  "model_latin": "mênuga",
-  "model_yakin": 0.947
- },
- {
-  "foto": "F056.jpg",
-  "kotak": [
-   618,
-   622,
-   942,
-   716
-  ],
-  "berkas": "F056_01.png",
-  "latin": "JL. MENUR I",
-  "yakin_latin": 0.959,
-  "draf": "ꦗ꧀ꦭ꧀ꦩꦼꦤꦸꦂꦲꦶ",
-  "skor_ctc": 5.258,
-  "diragukan": true,
-  "model_aksara": "ꦫꦠꦤ꧀",
-  "model_latin": "ratan",
-  "model_yakin": 0.907
  },
  {
   "foto": "F057.jpg",
@@ -3006,24 +2916,6 @@
   "model_yakin": 0.759
  },
  {
-  "foto": "F071.jpg",
-  "kotak": [
-   469,
-   876,
-   1159,
-   963
-  ],
-  "berkas": "F071_00.png",
-  "latin": "Slamet Riyadi So Tlp,F",
-  "yakin_latin": 0.773,
-  "draf": "ꦱ꧀ꦭꦩꦺꦠ꧀ꦫꦶꦪꦢꦶꦱꦺꦴꦠ꧀ꦭ꧀ꦥ꧀ꦥ꧀",
-  "skor_ctc": 5.331,
-  "diragukan": true,
-  "model_aksara": "ꦲꦝꦶꦩ꧀ꦲꦪꦶꦩ꧀꧀꧉",
-  "model_latin": "hadhimhayim",
-  "model_yakin": 0.936
- },
- {
   "foto": "F072.jpg",
   "kotak": [
    385,
@@ -3204,24 +3096,6 @@
   "model_yakin": 0.968
  },
  {
-  "foto": "F075.jpg",
-  "kotak": [
-   480,
-   806,
-   1008,
-   892
-  ],
-  "berkas": "F075_00.png",
-  "latin": "S0",
-  "yakin_latin": 0.235,
-  "draf": null,
-  "skor_ctc": null,
-  "diragukan": null,
-  "model_aksara": "ꦥꦼꦔꦢꦶꦭꦤ꧀ꦩꦼꦒꦼꦫꦶꦱꦸꦫꦏꦠ꧀",
-  "model_latin": "pêngadilanmêgêrisurakat",
-  "model_yakin": 0.908
- },
- {
   "foto": "F076.jpg",
   "kotak": [
    789,
@@ -3330,60 +3204,6 @@
   "model_yakin": 0.861
  },
  {
-  "foto": "F079.jpg",
-  "kotak": [
-   109,
-   516,
-   591,
-   642
-  ],
-  "berkas": "F079_00.png",
-  "latin": null,
-  "yakin_latin": null,
-  "draf": null,
-  "skor_ctc": null,
-  "diragukan": null,
-  "model_aksara": "ꦲꦺꦴꦧꦺꦠ꧀ꦝꦠ꧉",
-  "model_latin": "hobétdhata",
-  "model_yakin": 0.781
- },
- {
-  "foto": "F079.jpg",
-  "kotak": [
-   231,
-   637,
-   445,
-   733
-  ],
-  "berkas": "F079_01.png",
-  "latin": null,
-  "yakin_latin": null,
-  "draf": null,
-  "skor_ctc": null,
-  "diragukan": null,
-  "model_aksara": "ꦺꦺ꧀ꦺꦺ꧀ꦲ",
-  "model_latin": "ha",
-  "model_yakin": 0.681
- },
- {
-  "foto": "F080.jpg",
-  "kotak": [
-   366,
-   655,
-   1102,
-   740
-  ],
-  "berkas": "F080_00.png",
-  "latin": "TOKO BUKU",
-  "yakin_latin": 0.932,
-  "draf": "ꦠꦺꦴꦏꦺꦴꦧꦸꦏꦸ",
-  "skor_ctc": 4.954,
-  "diragukan": false,
-  "model_aksara": "ꦠꦺꦴꦏꦺꦴꦧꦸꦏꦸꦒꦩꦺꦝꦶꦲ",
-  "model_latin": "tokobukugamédhiha",
-  "model_yakin": 0.972
- },
- {
   "foto": "F081.jpg",
   "kotak": [
    779,
@@ -3490,24 +3310,6 @@
   "model_aksara": "ꦥ꧈ꦲ꧈ꦧ꧈ꦥ꧉ꦸꦏꦢꦤ꧀ꦏꦸ꧈",
   "model_latin": "pa ha ba pa kadanku",
   "model_yakin": 0.735
- },
- {
-  "foto": "F084.jpg",
-  "kotak": [
-   1022,
-   752,
-   1408,
-   931
-  ],
-  "berkas": "F084_00.png",
-  "latin": "KAMPUNGTIMURAN",
-  "yakin_latin": 0.887,
-  "draf": "ꦏꦩ꧀ꦥꦸꦁꦠꦶꦩꦸꦫꦤ꧀",
-  "skor_ctc": 4.54,
-  "diragukan": false,
-  "model_aksara": "ꦮꦶꦸꦺ꧀",
-  "model_latin": "wi",
-  "model_yakin": 0.785
  },
  {
   "foto": "F088.jpg",
@@ -3888,24 +3690,6 @@
   "model_yakin": 0.865
  },
  {
-  "foto": "F099.jpg",
-  "kotak": [
-   439,
-   284,
-   885,
-   494
-  ],
-  "berkas": "F099_00.png",
-  "latin": "omy",
-  "yakin_latin": 0.483,
-  "draf": "ꦲꦺꦴꦩ꧀ꦪ꧀",
-  "skor_ctc": 5.691,
-  "diragukan": false,
-  "model_aksara": "ꦫꦫꦁ",
-  "model_latin": "rarang",
-  "model_yakin": 0.871
- },
- {
   "foto": "F100.jpg",
   "kotak": [
    171,
@@ -3942,168 +3726,6 @@
   "model_yakin": 0.716
  },
  {
-  "foto": "F105.jpg",
-  "kotak": [
-   231,
-   792,
-   777,
-   939
-  ],
-  "berkas": "F105_00.png",
-  "latin": "(",
-  "yakin_latin": 0.746,
-  "draf": null,
-  "skor_ctc": null,
-  "diragukan": null,
-  "model_aksara": "ꦕꦶꦩꦫꦲꦭ꧀ꦧꦶꦂ",
-  "model_latin": "cimarahalbir",
-  "model_yakin": 0.912
- },
- {
-  "foto": "F108.jpg",
-  "kotak": [
-   1053,
-   481,
-   1196,
-   528
-  ],
-  "berkas": "F108_00.png",
-  "latin": "CAKEACO",
-  "yakin_latin": 0.878,
-  "draf": "ꦕꦏꦼꦲꦕꦺꦴ",
-  "skor_ctc": 4.992,
-  "diragukan": false,
-  "model_aksara": "ꦱ꧀ꦱꦢꦶꦶꦒ꧀ꦪꦸꦒ",
-  "model_latin": "ssadigyuga",
-  "model_yakin": 0.896
- },
- {
-  "foto": "F108.jpg",
-  "kotak": [
-   100,
-   627,
-   376,
-   713
-  ],
-  "berkas": "F108_01.png",
-  "latin": "AARA JAWA",
-  "yakin_latin": 0.818,
-  "draf": "ꦲꦲꦫꦗꦮ",
-  "skor_ctc": 5.533,
-  "diragukan": false,
-  "model_aksara": "ꦲꦏ꧀ꦥꦫꦗꦮ",
-  "model_latin": "hakparajawa",
-  "model_yakin": 0.935
- },
- {
-  "foto": "F108.jpg",
-  "kotak": [
-   1017,
-   617,
-   1278,
-   693
-  ],
-  "berkas": "F108_02.png",
-  "latin": "Cs",
-  "yakin_latin": 0.613,
-  "draf": null,
-  "skor_ctc": null,
-  "diragukan": null,
-  "model_aksara": "ꦏꦸꦁꦢ꧀ꦱ꧀ꦸꦩ꧀ꦁ",
-  "model_latin": "kungdsmng",
-  "model_yakin": 0.766
- },
- {
-  "foto": "F108.jpg",
-  "kotak": [
-   394,
-   699,
-   453,
-   733
-  ],
-  "berkas": "F108_03.png",
-  "latin": null,
-  "yakin_latin": null,
-  "draf": null,
-  "skor_ctc": null,
-  "diragukan": null,
-  "model_aksara": "ꦏꦸ",
-  "model_latin": "ku",
-  "model_yakin": 0.8
- },
- {
-  "foto": "F108.jpg",
-  "kotak": [
-   64,
-   775,
-   120,
-   804
-  ],
-  "berkas": "F108_04.png",
-  "latin": "AARA JAWA",
-  "yakin_latin": 0.818,
-  "draf": "ꦲꦲꦫꦗꦮ",
-  "skor_ctc": 6.99,
-  "diragukan": false,
-  "model_aksara": "ꦲ",
-  "model_latin": "ha",
-  "model_yakin": 0.995
- },
- {
-  "foto": "F108.jpg",
-  "kotak": [
-   414,
-   780,
-   477,
-   816
-  ],
-  "berkas": "F108_05.png",
-  "latin": null,
-  "yakin_latin": null,
-  "draf": null,
-  "skor_ctc": null,
-  "diragukan": null,
-  "model_aksara": "ꦪꦱ",
-  "model_latin": "yasa",
-  "model_yakin": 0.354
- },
- {
-  "foto": "F108.jpg",
-  "kotak": [
-   351,
-   887,
-   408,
-   920
-  ],
-  "berkas": "F108_06.png",
-  "latin": "AARA JAWA",
-  "yakin_latin": 0.818,
-  "draf": "ꦲꦲꦫꦗꦮ",
-  "skor_ctc": 6.925,
-  "diragukan": false,
-  "model_aksara": "ꦪ",
-  "model_latin": "ya",
-  "model_yakin": 0.999
- },
- {
-  "foto": "F108.jpg",
-  "kotak": [
-   109,
-   951,
-   147,
-   971
-  ],
-  "berkas": "F108_07.png",
-  "latin": null,
-  "yakin_latin": null,
-  "draf": null,
-  "skor_ctc": null,
-  "diragukan": null,
-  "model_aksara": "ꦥ",
-  "model_latin": "pa",
-  "model_yakin": 0.995
- },
- {
   "foto": "F111.jpg",
   "kotak": [
    745,
@@ -4120,42 +3742,6 @@
   "model_aksara": "ꦱꦭꦴꦏꦺꦠ꧀",
   "model_latin": "salokét",
   "model_yakin": 0.922
- },
- {
-  "foto": "F114.jpg",
-  "kotak": [
-   182,
-   600,
-   1732,
-   729
-  ],
-  "berkas": "F114_00.png",
-  "latin": "000",
-  "yakin_latin": 0.429,
-  "draf": null,
-  "skor_ctc": null,
-  "diragukan": null,
-  "model_aksara": "ꦥꦼꦩꦼꦁꦂꦫꦶꦤ꧀ꦠꦃꦏꦭꦸꦫꦃꦲꦤ꧀ꦧꦚꦸꦫꦢꦺꦤ꧀",
-  "model_latin": "pêmêngrrintahkalurahhanbanyuradén",
-  "model_yakin": 0.954
- },
- {
-  "foto": "F114.jpg",
-  "kotak": [
-   464,
-   665,
-   612,
-   725
-  ],
-  "berkas": "F114_01.png",
-  "latin": "PEMERINTAH KALURAHAN BANYURADEN",
-  "yakin_latin": 0.997,
-  "draf": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦭꦸꦫꦲꦤ꧀ꦧꦚꦸꦫꦢꦺꦤ꧀",
-  "skor_ctc": 8.491,
-  "diragukan": false,
-  "model_aksara": "ꦏ",
-  "model_latin": "ka",
-  "model_yakin": 0.874
  },
  {
   "foto": "F115.jpg",
@@ -5364,24 +4950,6 @@
   "model_yakin": 0.859
  },
  {
-  "foto": "F131.jpg",
-  "kotak": [
-   681,
-   1255,
-   1274,
-   1435
-  ],
-  "berkas": "F131_00.png",
-  "latin": "BAKPIA KUKUS",
-  "yakin_latin": 0.99,
-  "draf": "ꦧꦏ꧀ꦥꦶꦪꦏꦸꦏꦸꦱ꧀",
-  "skor_ctc": 0.776,
-  "diragukan": false,
-  "model_aksara": "ꦧꦏ꧀ꦥꦶꦲꦏꦸꦤꦱꦲ꧀",
-  "model_latin": "bakpihakunasah",
-  "model_yakin": 0.828
- },
- {
   "foto": "F132.jpg",
   "kotak": [
    308,
@@ -5650,24 +5218,6 @@
   "model_aksara": "ꦝꦴꦁꦲ꧀ꦤꦁꦫ",
   "model_latin": "dhonghnangra",
   "model_yakin": 0.709
- },
- {
-  "foto": "F142.jpg",
-  "kotak": [
-   401,
-   495,
-   1068,
-   580
-  ],
-  "berkas": "F142_00.png",
-  "latin": "JL. ABU BAKAR ALI",
-  "yakin_latin": 0.945,
-  "draf": "ꦗ꧀ꦭ꧀ꦲꦧꦸꦧꦏꦂꦲꦭꦶ",
-  "skor_ctc": 2.5,
-  "diragukan": true,
-  "model_aksara": "ꦱꦭꦤ꧀ꦲꦧꦸꦧꦏꦂꦲꦭꦁ",
-  "model_latin": "salanhabubakarhalang",
-  "model_yakin": 0.885
  },
  {
   "foto": "F143.jpg",

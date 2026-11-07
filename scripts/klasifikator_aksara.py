@@ -105,6 +105,9 @@ def susun(aug, seed=0, kali_nyata_j=60, kali_nyata_n=15):
 
     # potongan foto nyata: validasi dipilih per foto sumber (awalan F###) agar tidak bocor
     nyata = json.load(open(f'{NYATA}/label.json')) if os.path.exists(f'{NYATA}/label.json') else {}
+    from sintetis_nyata import foto_set_c  # penjaga Set C: potongan dari foto uji tidak boleh ikut
+    bocor = {f[:-4] for f in foto_set_c()}
+    nyata = {n: y for n, y in nyata.items() if n.split('_')[0] not in bocor}
     foto = sorted({n.split('_')[0] for n in nyata})
     rng.shuffle(foto)
     foto_valid = set(foto[:len(foto) // 7])

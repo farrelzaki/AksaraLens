@@ -6,6 +6,7 @@
 #   python -X utf8 scripts/sintetis_nyata.py buat --n 6000    # sampel + label.json + sumber.json di docs/random/sintetis_v4/
 #   python -X utf8 scripts/sintetis_nyata.py buat --n 400 --bagian val   # validasi di docs/random/sintetis_v4_val/
 #   python -X utf8 scripts/sintetis_nyata.py lembar           # lembar kontak 48 sampel
+#   python -X utf8 scripts/sintetis_nyata.py bungkus          # zip JPEG untuk Colab: docs/random/sintetis_v4c_jpg.zip
 #   python -X utf8 scripts/sintetis_nyata.py ukur             # CER pembaca v2 pada sampel vs baris bersih
 # Label disimpan dalam urutan LOGIS (taling setelah klaster), hanya karakter charset; ubah ke urutan tampak dengan ke_visual() bila melatih.
 # Baris Nusa dibagi per halaman PERSIS seperti notebook (latih/val/uji); halaman uji tidak pernah dipakai, dan baris dengan aksara
@@ -223,6 +224,7 @@ def buat(args):
     random.Random(5).shuffle(foto)
     foto_val = set(foto[:max(1, len(foto) * 15 // 100)])
     pecahan = [p for p in pecahan if (os.path.basename(p).rsplit('_', 1)[0] in foto_val) == (args.bagian == 'val')]
+    pecahan = [p for p in pecahan if os.path.basename(p).rsplit('_', 1)[0] + '.jpg' not in foto_set_c()]  # penjaga Set C
     rng = random.Random(args.seed + (0 if args.bagian == 'latih' else 99))
     os.makedirs(keluar + '/gambar', exist_ok=True)
     for lama in glob.glob(keluar + '/gambar/*'):
@@ -256,6 +258,32 @@ def buat(args):
     json.dump(sumber, open(keluar + '/sumber.json', 'w'))  # baris Nusa asal; notebook menyaring ulang dengan pembagiannya sendiri
     json.dump(terbalik, open(keluar + '/terbalik.json', 'w'))  # sampel bertinta terang: notebook membaliknya (255 - g) sebelum ke_input
     print(f'sampel {n} ({args.bagian}: {len(sumber_baris)} baris, {len(pecahan)} tempelan latar) ->', keluar)
+
+
+
+def foto_set_c():
+    """Foto crawl yang ternyata foto Set C (scripts/set_c.py); latarnya tidak boleh dipakai."""
+    import csv
+    from set_c import bocor, judul_set_c
+    p = os.path.join(AKAR, 'docs/random/foto_nyata/atribusi.csv')
+    rows = list(csv.reader(open(p, encoding='utf-8')))[1:] if os.path.exists(p) else []
+    return set(bocor([(r[0], r[1]) for r in rows if len(r) > 1], judul_set_c()))
+
+
+def bungkus(args):
+    """sintetis_v4 + sintetis_v4_val -> docs/random/sintetis_v4c_jpg.zip (JPEG 95) untuk notebook v4."""
+    import zipfile
+    keluar = os.path.join(AKAR, 'docs/random/sintetis_v4c_jpg.zip')
+    with zipfile.ZipFile(keluar, 'w', zipfile.ZIP_STORED) as z:
+        for folder, awal in ((KELUAR, ''), (KELUAR + '_val', 'val/')):
+            jpg = lambda f: f[:-4] + '.jpg'
+            label = json.load(open(folder + '/label.json', encoding='utf8'))
+            for f in sorted(label):
+                z.writestr(f'{awal}gambar/{jpg(f)}', cv2.imencode('.jpg', baca(os.path.join(folder, 'gambar', f)), [cv2.IMWRITE_JPEG_QUALITY, 95])[1].tobytes())
+            z.writestr(awal + 'label.json', json.dumps({jpg(f): t for f, t in label.items()}, ensure_ascii=False))
+            z.writestr(awal + 'sumber.json', json.dumps({jpg(f): t for f, t in json.load(open(folder + '/sumber.json')).items()}))
+            z.writestr(awal + 'terbalik.json', json.dumps([jpg(f) for f in json.load(open(folder + '/terbalik.json'))]))
+    print(keluar, round(os.path.getsize(keluar) / 1e6, 1), 'MB')
 
 
 def lembar(args):
@@ -294,10 +322,10 @@ def ukur(args):
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
-    ap.add_argument('perintah', choices=['latar', 'buat', 'lembar', 'ukur'])
+    ap.add_argument('perintah', choices=['latar', 'buat', 'lembar', 'ukur', 'bungkus'])
     ap.add_argument('--n', type=int, default=6000)
     ap.add_argument('--per-foto', type=int, default=8)
     ap.add_argument('--seed', type=int, default=0)
     ap.add_argument('--bagian', choices=['latih', 'val'], default='latih')
     a = ap.parse_args()
-    dict(latar=buat_latar, buat=buat, lembar=lembar, ukur=ukur)[a.perintah](a)
+    dict(latar=buat_latar, buat=buat, lembar=lembar, ukur=ukur, bungkus=bungkus)[a.perintah](a)
