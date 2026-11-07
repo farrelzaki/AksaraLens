@@ -77,7 +77,15 @@ DATA_V4 = kode(r'''
 import zipfile, csv as _csv
 DRIVE = os.path.dirname(OUT_DIR)
 V4_ZIP, NYATA_ZIP = f'{DRIVE}/sintetis_v4c_jpg.zip', f'{DRIVE}/data_nyata_v4.zip'
-assert os.path.exists(V4_ZIP), 'Unggah sintetis_v4c_jpg.zip ke ' + DRIVE
+import glob as _glob
+_pecahan = sorted(_glob.glob(V4_ZIP + '.part*'))
+if not os.path.exists(V4_ZIP) and _pecahan:  # zip diunggah terpecah (unggahan browser dibatasi 10 MB per berkas)
+    V4_ZIP = '/content/sintetis_v4c_jpg.zip'
+    with open(V4_ZIP, 'wb') as _o:
+        for _p in _pecahan:
+            _o.write(open(_p, 'rb').read())
+    print('zip disatukan dari', len(_pecahan), 'pecahan')
+assert os.path.exists(V4_ZIP), 'Unggah sintetis_v4c_jpg.zip (atau pecahannya .part00..) ke ' + DRIVE
 if not os.path.exists('/content/v4/label.json'):
     zipfile.ZipFile(V4_ZIP).extractall('/content/v4')
 
