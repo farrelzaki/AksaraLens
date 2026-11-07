@@ -54,7 +54,7 @@ negatif (Latin, angka, tekstur, Sunda/Bali; label kosong), dan **potongan foto n
 **Cara pakai**
 1. Runtime → Change runtime type → **T4 GPU**.
 2. Unggah ke Drive folder `aksaralens/`:
-   - `sintetis_v4b_jpg.zip` (wajib, ±171 MB, dari `docs/random/` di laptop Farrel);
+   - `sintetis_v4c_jpg.zip` (wajib, ±171 MB, dari `docs/random/` di laptop Farrel);
    - `data_nyata_v4.zip` (opsional, hasil `scripts/ekspor_label_latih.py`; makin banyak label terpercaya makin baik).
 3. Pastikan `aksaralens/model2_v2/crnn_finetune.pt` ada (bobot v2).
 4. Runtime → **Run all**. Sekitar 40–50 menit di T4.
@@ -76,8 +76,8 @@ DATA_V4 = kode(r'''
 # ---------- Sintetis v4 + potongan foto nyata terpercaya ----------
 import zipfile, csv as _csv
 DRIVE = os.path.dirname(OUT_DIR)
-V4_ZIP, NYATA_ZIP = f'{DRIVE}/sintetis_v4b_jpg.zip', f'{DRIVE}/data_nyata_v4.zip'
-assert os.path.exists(V4_ZIP), 'Unggah sintetis_v4b_jpg.zip ke ' + DRIVE
+V4_ZIP, NYATA_ZIP = f'{DRIVE}/sintetis_v4c_jpg.zip', f'{DRIVE}/data_nyata_v4.zip'
+assert os.path.exists(V4_ZIP), 'Unggah sintetis_v4c_jpg.zip ke ' + DRIVE
 if not os.path.exists('/content/v4/label.json'):
     zipfile.ZipFile(V4_ZIP).extractall('/content/v4')
 

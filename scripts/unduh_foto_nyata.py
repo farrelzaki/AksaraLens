@@ -42,8 +42,11 @@ def anggota(kat, kedalaman, lihat):
     return out
 
 
-set_c = {r['sumber'].split('/wiki/')[-1] for r in csv.DictReader(open(os.path.join(AKAR, 'docs/random/set_c/label_set_c.csv'), encoding='utf-8'))}
-set_c = {urllib.parse.unquote(s) for s in set_c}
+sys.path.insert(0, os.path.join(AKAR, 'scripts'))
+from set_c import judul_set_c, kunci_judul  # judul Commons dibandingkan setelah dinormalisasi (spasi/garis bawah/%-encoding)
+set_c = judul_set_c()
+if not set_c:
+    sys.exit('Set C tidak ditemukan: unduhan dihentikan agar foto uji tidak ikut terunduh.')
 judul = []
 lihat = set()
 for k in KATEGORI:
@@ -51,7 +54,7 @@ for k in KATEGORI:
 sudah = set()
 if os.environ.get('SUDAH'):
     sudah = {r['judul'] for r in csv.DictReader(open(os.environ['SUDAH'], encoding='utf-8'))}
-judul = [t for t in dict.fromkeys(judul) if re.search(r'\.jpe?g$', t, re.I) and urllib.parse.unquote(t) not in set_c and t not in sudah]
+judul = [t for t in dict.fromkeys(judul) if re.search(r'\.jpe?g$', t, re.I) and kunci_judul(t) not in set_c and t not in sudah]
 print('kandidat', len(judul))
 
 baris = []

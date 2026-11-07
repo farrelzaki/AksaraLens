@@ -38,6 +38,9 @@ def main():
     import rujukan_scanner as ruj
     hasil = json.load(open(os.path.join(D, 'hasil_diperiksa.json'), encoding='utf8'))
     label = pilih_terpercaya(hasil)
+    from sintetis_nyata import foto_set_c  # penjaga Set C
+    bocor = {f[:-4] for f in foto_set_c()}
+    label = {b: t for b, t in label.items() if foto_dari(b) not in bocor and os.path.exists(os.path.join(D, 'potongan', b))}
     if not label:
         sys.exit('Belum ada label terpercaya. Jalankan scripts/periksa_label.py dulu.')
     bagian = bagi_per_foto(list(label))
