@@ -13,6 +13,8 @@
 #   BAHASA=1           dekoder bahasa L5 (model_bahasa.py, sama dengan bahasa.ts): teks baris yang lolos dibetulkan
 #                      beam search + model bahasa; status tetap dari bacaan greedy. BAHASA=0 mematikan.
 #   PEMBACA=           path ONNX pembaca B2 (PP-OCRv5 fine-tune, scripts/b2_paddle.py) sebagai ganti aksaralens_scanner.onnx
+#   CACHE_PEMBACA=     berkas pickle untuk menyimpan keluaran pembaca B2 antarjalan (sapuan ambang)
+#   AMBANG_FOTO=, AMBANG_AREA=   "terima,ragu" menimpa ambang penilai status (pipeline_cerdas.AMBANG)
 # Model dibaca dari public/models (atau AKSARALENS_MODEL) dan docs/random/klasifikator.
 import os, runpy, sys
 AKAR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -35,14 +37,30 @@ if os.environ.get('PEMBACA'):
     # mengembalikan log-peluang (softmax ulang di hilir memberi peluang yang sama, dan L5 tetap jalan).
     import b2_paddle as _b2
     _pb = ort.InferenceSession(os.environ['PEMBACA'], providers=_prov)
+    _CACHE_PATH = os.environ.get('CACHE_PEMBACA')  # simpan keluaran pembaca per potongan agar sapuan ambang tidak membaca ulang
+    import hashlib, pickle, atexit as _ax
+    _cache = pickle.load(open(_CACHE_PATH, 'rb')) if _CACHE_PATH and os.path.exists(_CACHE_PATH) else {}
+    if _CACHE_PATH:
+        _ax.register(lambda: pickle.dump(_cache, open(_CACHE_PATH, 'wb')))
 
     class _PembacaB2:
         def run(self, _keluaran, masukan):
-            g = (255 * (1 - np.asarray(masukan['gambar'])[0, 0])).clip(0, 255).astype(np.uint8)
+            a = np.ascontiguousarray(masukan['gambar'], np.float32)
+            k = hashlib.md5(a.tobytes() + str(a.shape).encode()).hexdigest() if _CACHE_PATH else None
+            if k in _cache:
+                return [_cache[k]]
+            g = (255 * (1 - a[0, 0])).clip(0, 255).astype(np.uint8)
             p = _pb.run(None, {_pb.get_inputs()[0].name: _b2.ke_masukan(g)})[0]
-            return [np.log(np.maximum(p, 1e-9)).astype(np.float32)]
+            r = np.log(np.maximum(p, 1e-9)).astype(np.float32)
+            if k:
+                _cache[k] = r
+            return [r]
 
     ruj.crnn = _PembacaB2()
+for _mode in ('foto', 'area'):  # AMBANG_FOTO / AMBANG_AREA = "terima,ragu" untuk kalibrasi penilai status
+    if os.environ.get('AMBANG_' + _mode.upper()):
+        _t, _r = map(float, os.environ['AMBANG_' + _mode.upper()].split(','))
+        cerdas.AMBANG[_mode].update(terima=_t, ragu=_r)
 MEAN = np.array([.485, .456, .406], np.float32)[:, None, None]
 STD = np.array([.229, .224, .225], np.float32)[:, None, None]
 
