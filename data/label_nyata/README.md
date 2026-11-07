@@ -1,6 +1,6 @@
 # Label teks potongan aksara (untuk melatih pembaca scanner)
 
-505 potongan baris aksara Jawa dari 105 foto Wikimedia Commons, dipotong otomatis oleh detektor scanner. Tugas kita: **menuliskan bacaan Latin** dari aksara di tiap gambar. Hasilnya melatih pembaca scanner (L4, `docs/RENCANA_SCANNER_FINAL.md`).
+480 potongan baris aksara Jawa dari 90 foto Wikimedia Commons, dipotong otomatis oleh detektor scanner. Tugas kita: **menuliskan bacaan Latin** dari aksara di tiap gambar. Hasilnya melatih pembaca scanner (L4, `docs/RENCANA_SCANNER_FINAL.md`).
 
 ## Cara kerja (satu orang, sekitar 15-60 menit)
 
