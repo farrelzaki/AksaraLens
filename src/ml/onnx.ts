@@ -7,7 +7,7 @@ export type NamaModel = 'model1' | 'model2a' | 'model2b' | 'model2c';
 
 const BERKAS: Record<NamaModel, string> = {
   model1: 'aksaralens_huruf.onnx',
-  model2a: 'aksaralens_scanner.onnx',
+  model2a: 'aksaralens_pembaca_b2.onnx', // B2 (PP-OCRv5 fine-tune, int8); v2 = aksaralens_scanner.onnx
   model2b: 'aksaralens_detektor_pp.onnx',
   model2c: 'aksaralens_klasifikator.onnx',
 };
@@ -58,12 +58,20 @@ export const paksaEp = (ep?: string) => {
 const pilihEp = () => (epPaksa ? (epPaksa === 'webgpu' ? ['webgpu', 'wasm'] : ['wasm']) : 'gpu' in navigator ? ['webgpu', 'wasm'] : ['wasm']);
 export const infoOrt = () => ({ ep: pilihEp()[0], terisolasi: self.crossOriginIsolated, inti: navigator.hardwareConcurrency });
 
+let antreanSesi: Promise<void> = Promise.resolve();
+
 /** Membuat sesi sekali per model; WebGPU bila ada, cadangan WASM (F5). */
 export function muatModel(nama: NamaModel): Promise<InferenceSession> {
   let sesi = cache.get(nama);
   if (!sesi) {
     sesi = Promise.all([ortSiap(), ambilModel(urlAbsolut(nama))]).then(([ort, bytes]) => {
-      return ort.InferenceSession.create(bytes, { executionProviders: pilihEp() });
+      // Pembaca B2 (int8 QDQ) selalu WASM: kernel MaxPool WebGPU belum mendukung ceil_mode, dan jalur int8 cepat ada di WASM.
+      // Sesi dibuat bergiliran: inisialisasi backend berbeda secara bersamaan memicu "multiple calls to initWasm()".
+      const buat = antreanSesi.then(() =>
+        ort.InferenceSession.create(bytes, { executionProviders: nama === 'model2a' ? ['wasm'] : pilihEp() }),
+      );
+      antreanSesi = buat.then(() => undefined, () => undefined);
+      return buat;
     });
     sesi.catch(() => cache.delete(nama));
     cache.set(nama, sesi);

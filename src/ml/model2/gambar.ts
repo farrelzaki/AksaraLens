@@ -115,6 +115,53 @@ export function resize(g: Gray, nw: number, nh: number, skalaX = g.w / nw, skala
 
 const SKALA_KOEF = 2048; // INTER_RESIZE_COEF_SCALE
 
+/**
+ * cv2.resize(..., INTER_LINEAR) untuk uint8, sama persis dengan cv2 (diuji pada derau acak, 0 piksel beda):
+ * koordinat float32 fx = (dx+0.5)·skala − 0.5 dijepit di tepi, koefisien round(f·2048), lalu jalur SIMD vertikal
+ * ((b0·(S0>>4))>>16) + ((b1·(S1>>4))>>16), dibulatkan (v+2)>>2. Masukan dianggap sudah uint8.
+ */
+export function resizeBilinear(g: Gray, nw: number, nh: number): Gray {
+  const koef = (nSrc: number, nDst: number) => {
+    const skala = nSrc / nDst;
+    const s = new Int32Array(nDst);
+    const c0 = new Int32Array(nDst);
+    const c1 = new Int32Array(nDst);
+    for (let o = 0; o < nDst; o++) {
+      const f = Math.fround((o + 0.5) * skala - 0.5);
+      let s0 = Math.floor(f);
+      let fr = Math.fround(f - s0);
+      if (s0 < 0) [s0, fr] = [0, 0];
+      if (s0 >= nSrc - 1) [s0, fr] = [nSrc - 1, 0];
+      s[o] = s0;
+      c0[o] = bulat(Math.fround(Math.fround(1 - fr) * SKALA_KOEF));
+      c1[o] = bulat(Math.fround(fr * SKALA_KOEF));
+    }
+    return { s, c0, c1 };
+  };
+  const X = koef(g.w, nw);
+  const Y = koef(g.h, nh);
+  const tmp = new Int32Array(nw * g.h);
+  for (let y = 0; y < g.h; y++) {
+    const r = y * g.w;
+    for (let x = 0; x < nw; x++) {
+      const s0 = X.s[x];
+      tmp[y * nw + x] = g.d[r + s0] * X.c0[x] + g.d[r + Math.min(s0 + 1, g.w - 1)] * X.c1[x];
+    }
+  }
+  const out = buatGray(nw, nh);
+  for (let y = 0; y < nh; y++) {
+    const r0 = Y.s[y] * nw;
+    const r1 = Math.min(Y.s[y] + 1, g.h - 1) * nw;
+    const b0 = Y.c0[y];
+    const b1 = Y.c1[y];
+    for (let x = 0; x < nw; x++) {
+      const v = ((b0 * (tmp[r0 + x] >> 4)) >> 16) + ((b1 * (tmp[r1 + x] >> 4)) >> 16);
+      out.d[y * nw + x] = Math.min(255, Math.max(0, (v + 2) >> 2));
+    }
+  }
+  return out;
+}
+
 function resizeLinear(g: Gray, nw: number, nh: number, skalaX: number, skalaY: number, uint8: boolean): Gray {
   const X = linearArea(g.w, nw, skalaX);
   const Y = linearArea(g.h, nh, skalaY);
