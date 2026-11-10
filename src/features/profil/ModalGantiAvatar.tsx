@@ -1,5 +1,22 @@
 import React from 'react';
-import { ICON_PROFIL } from './ProfilPage';
+
+export interface ProfilIcon {
+  id: number;
+  nama: string;
+  sub: string;
+  src: string;
+}
+
+export const ICON_PROFIL: ProfilIcon[] = [
+  { id: 1, nama: 'Aksa', sub: 'Teman belajar aksara Jawa', src: '/assets/icon profile 1.svg' },
+  { id: 2, nama: 'Aksa Blangkon', sub: 'Semangat melestarikan budaya', src: '/assets/icon profile 2.svg' },
+  { id: 3, nama: 'Aksa Cendekia', sub: 'Rajin membaca dan teliti', src: '/assets/icon profile 3.svg' },
+  { id: 4, nama: 'Aksa Ceria', sub: 'Belajar dengan gembira', src: '/assets/icon profile 4.svg' },
+  { id: 5, nama: 'Aksa Juara', sub: 'Siap menuntaskan semua bab', src: '/assets/icon profile 5.svg' },
+  { id: 6, nama: 'Aksa Penjelajah', sub: 'Mencari aksara di sekitar', src: '/assets/icon profile 6.svg' },
+  { id: 7, nama: 'Aksa Bijak', sub: 'Memahami makna tiap goresan', src: '/assets/icon profile 7.svg' },
+  { id: 8, nama: 'Aksa Sahabat', sub: 'Setia menemanimu melangkah', src: '/assets/icon profile 8.svg' },
+];
 
 interface ModalGantiAvatarProps {
   isOpen: boolean;

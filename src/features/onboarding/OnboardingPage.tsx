@@ -30,6 +30,11 @@ export function OnboardingPage() {
   const [animating, setAnimating] = useState(false);
   const navigate = useNavigate();
 
+  const handleSelesai = () => {
+    localStorage.setItem('aksaralens_onboarding_done', 'true');
+    navigate('/intro');
+  };
+
   const goTo = (nextIndex: number) => {
     if (animating) return;
     setAnimating(true);
@@ -43,12 +48,8 @@ export function OnboardingPage() {
     if (index < SCENES.length - 1) {
       goTo(index + 1);
     } else {
-      navigate('/intro');
+      handleSelesai();
     }
-  };
-
-  const handleLewati = () => {
-    navigate('/intro');
   };
 
   const handleBack = () => {
@@ -76,7 +77,7 @@ export function OnboardingPage() {
           </svg>
         </button>
         <span className="onboarding-brand">AKSARA LENSA</span>
-        <button type="button" className="btn-lewati" onClick={handleLewati}>
+        <button type="button" className="btn-lewati" onClick={handleSelesai}>
           Lewati
         </button>
       </header>

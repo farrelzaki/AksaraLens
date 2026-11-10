@@ -4,25 +4,25 @@ import { hurufDariKode } from '../../aksara/huruf';
 import { hurufSeringSalah } from '../../progres/model';
 import { useProgres } from '../../progres/ProgresProvider';
 import { BAB, JALUR } from '../../content';
-import { ModalGantiAvatar } from './ModalGantiAvatar';
+import { ModalGantiAvatar, ICON_PROFIL } from './ModalGantiAvatar';
+import { useSesi } from '../../lib/sesi';
 
-// 8 pilihan icon profil (sesuai MODAL GANTI AVA.png)
-export const ICON_PROFIL = [
-  { id: 1, src: '/assets/icon profile 1.svg', nama: 'Lensa', sub: 'Teman belajar setia' },
-  { id: 2, src: '/assets/icon profile 2.svg', nama: 'Si Pembaca', sub: 'Suka membaca cerita aksara' },
-  { id: 3, src: '/assets/icon profile 3.svg', nama: 'Si Penulis', sub: 'Giat melatih goresan aksara' },
-  { id: 4, src: '/assets/icon profile 4.png', nama: 'Si Penjelajah', sub: 'Menemukan aksara di sekitar' },
-  { id: 5, src: '/assets/icon profile 5.svg', nama: 'Si Cendekia', sub: 'Cerdas dan berpengetahuan' },
-  { id: 6, src: '/assets/icon profile 6.svg', nama: 'Si Ceria', sub: 'Belajar dengan penuh semangat' },
-  { id: 7, src: '/assets/icon profile 7.svg', nama: 'Si Perintis', sub: 'Tumbuh perlahan tapi pasti' },
-  { id: 8, src: '/assets/icon profile 8.svg', nama: 'Si Ahli', sub: 'Menguasai seluk-beluk aksara' },
-];
+export { ICON_PROFIL };
 
 export function ProfilPage() {
   const { stats, status } = useProgres();
+  const { pengguna } = useSesi();
   const navigate = useNavigate();
 
-  const [namaUser, setNamaUser] = useState(() => localStorage.getItem('namaUser') || 'Kenji Morales');
+  const [namaUser, setNamaUser] = useState(() => {
+    return (
+      pengguna?.user_metadata?.display_name ||
+      pengguna?.email?.split('@')[0] ||
+      localStorage.getItem('namaUser') ||
+      'Kenji Morales'
+    );
+  });
+
   // Default ke avatar id 1 (Si Lensa asli tanpa aksesoris sesuai PROFIL 1.png)
   const [activeAvatarId, setActiveAvatarId] = useState<number>(() => {
     const saved = localStorage.getItem('selectedAvatarId');
@@ -33,18 +33,26 @@ export function ProfilPage() {
 
   useEffect(() => {
     const syncData = () => {
-      setNamaUser(localStorage.getItem('namaUser') || 'Kenji Morales');
+      const nama =
+        pengguna?.user_metadata?.display_name ||
+        pengguna?.email?.split('@')[0] ||
+        localStorage.getItem('namaUser') ||
+        'Kenji Morales';
+      setNamaUser(nama);
+
       const saved = localStorage.getItem('selectedAvatarId');
       const parsed = saved ? parseInt(saved, 10) : 1;
       setActiveAvatarId(isNaN(parsed) || parsed < 1 || parsed > 8 ? 1 : parsed);
     };
+
+    syncData();
     window.addEventListener('storage', syncData);
     window.addEventListener('focus', syncData);
     return () => {
       window.removeEventListener('storage', syncData);
       window.removeEventListener('focus', syncData);
     };
-  }, []);
+  }, [pengguna]);
 
   const lemah = hurufSeringSalah(stats);
 
@@ -72,10 +80,11 @@ export function ProfilPage() {
     '/assets/maskot profil bab 3.svg',
   ];
 
+  const avatarTerpilih = ICON_PROFIL.find((ic) => ic.id === activeAvatarId) || ICON_PROFIL[0];
+
   return (
     <div className="profil-halaman" style={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column', background: '#F8F5F0', overflowX: 'hidden', padding: 0, margin: 0 }}>
-      {/* Seluruh teks halaman profil hanya memakai Plus Jakarta Sans (aksara Jawa tetap Noto Sans Javanese).
-          Nama kelas sengaja bukan "profil-page": kelas itu sudah dipakai app.css (padding 18px) dan membuat hero menjorok ke dalam. */}
+      {/* Seluruh teks halaman profil hanya memakai Plus Jakarta Sans (aksara Jawa tetap Noto Sans Javanese). */}
       <style>{`
         .profil-halaman, .profil-halaman *:not(.aksara) { font-family: 'Plus Jakarta Sans', sans-serif !important; }
         .profil-halaman .aksara { font-family: 'Noto Sans Javanese', serif !important; }
@@ -264,8 +273,8 @@ export function ProfilPage() {
             }}
           >
             <img
-              src="/assets/icon profile 1.svg"
-              alt="Teman Belajar"
+              src={avatarTerpilih.src}
+              alt={avatarTerpilih.nama}
               style={{
                 width: 178,
                 height: 150,
@@ -274,6 +283,9 @@ export function ProfilPage() {
                 filter: 'drop-shadow(0 4px 16px rgba(67, 40, 28, 0.08))',
               }}
               draggable={false}
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = '/assets/icon profile 1.svg';
+              }}
             />
           </button>
 
@@ -319,8 +331,7 @@ export function ProfilPage() {
           END HERO PROFIL
           ============================================================ */}
 
-      {/* ── BODY CONTENT: Overlap ke atas agar menutupi bagian bawah landscape ──
-          Ruang untuk navbar melayang diatur oleh .isi di app.css (--tinggi-nav). */}
+      {/* ── BODY CONTENT: Overlap ke atas agar menutupi bagian bawah landscape ── */}
       <div style={{
         marginTop: '-46px',
         position: 'relative',

@@ -1,17 +1,33 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { ICON_PROFIL } from './ProfilPage';
+import { ICON_PROFIL } from './ModalGantiAvatar';
 import { ModalGantiAvatar } from './ModalGantiAvatar';
 import { useSesi } from '../../lib/sesi';
-import { keluar } from '../../lib/auth';
+import { keluar, gantiSandi, masukEmail } from '../../lib/auth';
+import { supabase } from '../../lib/supabase';
 
 export function EditProfilPage() {
   const navigate = useNavigate();
   const { pengguna } = useSesi();
 
-  // Data profil dari localStorage
-  const [namaUser, setNamaUser] = useState(() => localStorage.getItem('namaUser') || 'Kenji Morales');
-  const [emailUser, setEmailUser] = useState(() => localStorage.getItem('emailUser') || (pengguna?.email ?? 'Belum diisi'));
+  // Cek apakah akun terhubung via Google OAuth
+  const isGoogleUser = Boolean(
+    pengguna?.app_metadata?.provider === 'google' ||
+    pengguna?.identities?.some((id) => id.provider === 'google'),
+  );
+
+  // Data profil dari localStorage / sesi
+  const [namaUser, setNamaUser] = useState(() => {
+    return (
+      pengguna?.user_metadata?.display_name ||
+      pengguna?.email?.split('@')[0] ||
+      localStorage.getItem('namaUser') ||
+      'Kenji Morales'
+    );
+  });
+  const [emailUser, setEmailUser] = useState(() => {
+    return pengguna?.email || localStorage.getItem('emailUser') || 'Belum diisi';
+  });
   const [avatarId, setAvatarId] = useState(() => parseInt(localStorage.getItem('selectedAvatarId') || '1', 10));
 
   // Form edit informasi profil
@@ -19,12 +35,13 @@ export function EditProfilPage() {
   const [inputNama, setInputNama] = useState(namaUser);
   const [inputEmail, setInputEmail] = useState(emailUser === 'Belum diisi' ? '' : emailUser);
 
-  // Form ganti kata sandi (accordion default terbuka sesuai Figma EDIT PROFILE 1 & 2)
+  // Form ganti kata sandi
   const [isPasswordOpen, setIsPasswordOpen] = useState(true);
   const [passSaatIni, setPassSaatIni] = useState('');
   const [passBaru, setPassBaru] = useState('');
   const [passUlang, setPassUlang] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [sedangMemprosesSandi, setSedangMemprosesSandi] = useState(false);
 
   // Modal ganti avatar & pesan feedback
   const [modalAvatar, setModalAvatar] = useState(false);
@@ -35,7 +52,7 @@ export function EditProfilPage() {
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
-    setTimeout(() => setToastMessage(null), 3000);
+    setTimeout(() => setToastMessage(null), 3500);
   };
 
   const handleSimpanInfo = (e: React.FormEvent) => {
@@ -58,31 +75,78 @@ export function EditProfilPage() {
     setIsEditingInfo(false);
   };
 
-  const handlePeriksaPassword = (e: React.FormEvent) => {
+  const handlePeriksaPassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!passSaatIni && !passBaru && !passUlang) {
-      showToast('Masukkan kata sandi baru untuk memeriksa.');
+
+    if (isGoogleUser) {
+      showToast('Akun Anda masuk menggunakan Google. Kata sandi dikelola oleh Google.');
       return;
     }
-    if (passBaru && passBaru.length < 8) {
-      showToast('Kata sandi baru minimal 8 karakter.');
+
+    if (!passBaru) {
+      showToast('Ketikkan kata sandi baru.');
       return;
     }
+
+    // Supabase standar validasi minimal 6 karakter
+    if (passBaru.length < 6) {
+      showToast('Kata sandi baru minimal 6 karakter.');
+      return;
+    }
+
     if (passBaru !== passUlang) {
-      showToast('Ulangi kata sandi tidak cocok.');
+      showToast('Ulangi kata sandi baru tidak cocok.');
       return;
     }
-    showToast('Mode demo: Pemeriksaan kata sandi berhasil disimulasikan.');
+
+    // Jika pengguna login dengan email dan Supabase aktif
+    if (supabase && pengguna?.email) {
+      if (!passSaatIni) {
+        showToast('Masukkan kata sandi saat ini.');
+        return;
+      }
+
+      setSedangMemprosesSandi(true);
+      try {
+        // Verifikasi kata sandi lama dengan login ulang
+        const verif = await masukEmail(pengguna.email, passSaatIni);
+        if (!verif.ok) {
+          showToast('Kata sandi saat ini salah.');
+          setSedangMemprosesSandi(false);
+          return;
+        }
+
+        const hasil = await gantiSandi(passBaru);
+        if (hasil.ok) {
+          showToast('Kata sandi berhasil diperbarui!');
+          setPassSaatIni('');
+          setPassBaru('');
+          setPassUlang('');
+        } else {
+          showToast(hasil.pesan);
+        }
+      } catch {
+        showToast('Gagal mengubah kata sandi. Coba lagi.');
+      } finally {
+        setSedangMemprosesSandi(false);
+      }
+      return;
+    }
+
+    // Mode demo / tamu offline
+    showToast('Kata sandi berhasil diperbarui (mode demo).');
     setPassSaatIni('');
     setPassBaru('');
     setPassUlang('');
   };
 
   const handleLogout = async () => {
-    if (pengguna) {
-      await keluar();
+    await keluar();
+    if (!supabase) {
+      localStorage.removeItem('namaUser');
+      localStorage.removeItem('emailUser');
+      navigate('/masuk');
     }
-    navigate('/masuk');
   };
 
   const handleSelectAvatar = (newId: number) => {
@@ -117,7 +181,7 @@ export function EditProfilPage() {
       </div>
 
       <div className="edit-scroll-body">
-        {/* 2. Hero Avatar Card Berlatar Sage (EDIT PROFILE 1.png & 2.png) */}
+        {/* 2. Hero Avatar Card Berlatar Sage */}
         <div className="edit-avatar-sage-card">
           <div className="avatar-sage-center-wrapper">
             <button
@@ -175,7 +239,7 @@ export function EditProfilPage() {
           </div>
 
           {!isEditingInfo ? (
-            /* Mode Tampilan (EDIT PROFILE 1.png) */
+            /* Mode Tampilan */
             <div className="info-display-fields">
               <div className="field-group">
                 <span className="field-label-text">Nama panggilan</span>
@@ -187,7 +251,7 @@ export function EditProfilPage() {
               </div>
             </div>
           ) : (
-            /* Mode Form Edit (EDIT PROFILE 2.png) */
+            /* Mode Form Edit */
             <form onSubmit={handleSimpanInfo} className="info-edit-form">
               <div className="field-group">
                 <label htmlFor="input-nama-panggilan" className="field-label-text">
@@ -220,7 +284,7 @@ export function EditProfilPage() {
               </div>
 
               <p className="edit-form-note">
-                Perubahan hanya berlaku pada profil demo sesi ini, bukan akun Google atau email autentikasi.
+                Perubahan hanya berlaku pada profil sesi ini.
               </p>
 
               <div className="info-edit-actions">
@@ -263,7 +327,13 @@ export function EditProfilPage() {
               </div>
               <div className="lock-text-col">
                 <span className="lock-title">Ganti kata sandi</span>
-                <span className="lock-sub">Belum aktif - autentikasi belum terhubung</span>
+                <span className="lock-sub">
+                  {isGoogleUser
+                    ? 'Akun Google (kata sandi dikelola Google)'
+                    : pengguna
+                    ? 'Perbarui kata sandi akunmu'
+                    : 'Simulasi sandi (mode tamu)'}
+                </span>
               </div>
             </div>
             <div className={`accordion-chevron ${isPasswordOpen ? 'open' : ''}`}>
@@ -274,77 +344,109 @@ export function EditProfilPage() {
           </button>
 
           {isPasswordOpen && (
-            <form onSubmit={handlePeriksaPassword} className="password-form-body">
-              <div className="password-divider" />
-
-              <div className="field-group">
-                <label htmlFor="pass-saat-ini" className="field-label-text">
-                  Kata sandi saat ini
-                </label>
-                <input
-                  id="pass-saat-ini"
-                  type={showPassword ? 'text' : 'password'}
-                  className="edit-text-input"
-                  value={passSaatIni}
-                  onChange={(e) => setPassSaatIni(e.target.value)}
-                />
+            isGoogleUser ? (
+              <div style={{ padding: '16px 0 6px', textAlign: 'left' }}>
+                <div className="password-divider" />
+                <div style={{
+                  background: '#F3EFEA',
+                  borderRadius: 12,
+                  padding: '12px 14px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 10,
+                  color: '#685A4E',
+                  fontSize: 12,
+                  lineHeight: 1.5,
+                }}>
+                  <svg viewBox="0 0 20 20" fill="#A15214" width="18" height="18" style={{ flexShrink: 0 }}>
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                  </svg>
+                  <span>
+                    Akun ini masuk menggunakan akun Google ({pengguna?.email}). Kata sandi dikelola langsung melalui pengaturan akun Google Anda.
+                  </span>
+                </div>
               </div>
+            ) : (
+              <form onSubmit={handlePeriksaPassword} className="password-form-body">
+                <div className="password-divider" />
 
-              <div className="field-group">
-                <label htmlFor="pass-baru" className="field-label-text">
-                  Kata sandi baru
-                </label>
-                <input
-                  id="pass-baru"
-                  type={showPassword ? 'text' : 'password'}
-                  className="edit-text-input"
-                  placeholder="Minimal 8 karakter"
-                  value={passBaru}
-                  onChange={(e) => setPassBaru(e.target.value)}
-                />
-              </div>
+                <div className="field-group">
+                  <label htmlFor="pass-saat-ini" className="field-label-text">
+                    Kata sandi saat ini
+                  </label>
+                  <input
+                    id="pass-saat-ini"
+                    type={showPassword ? 'text' : 'password'}
+                    className="edit-text-input"
+                    value={passSaatIni}
+                    onChange={(e) => setPassSaatIni(e.target.value)}
+                    placeholder="Masukkan sandi saat ini"
+                  />
+                </div>
 
-              <div className="field-group">
-                <label htmlFor="pass-ulang" className="field-label-text">
-                  Ulangi kata sandi baru
-                </label>
-                <input
-                  id="pass-ulang"
-                  type={showPassword ? 'text' : 'password'}
-                  className="edit-text-input"
-                  value={passUlang}
-                  onChange={(e) => setPassUlang(e.target.value)}
-                />
-              </div>
+                <div className="field-group">
+                  <label htmlFor="pass-baru" className="field-label-text">
+                    Kata sandi baru
+                  </label>
+                  <input
+                    id="pass-baru"
+                    type={showPassword ? 'text' : 'password'}
+                    className="edit-text-input"
+                    placeholder="Minimal 6 karakter"
+                    value={passBaru}
+                    onChange={(e) => setPassBaru(e.target.value)}
+                  />
+                </div>
 
-              {/* Toggle tampilkan kata sandi */}
-              <button
-                type="button"
-                className="btn-toggle-eye-row"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="17" height="17">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-                <span>Tampilkan kata sandi</span>
-              </button>
+                <div className="field-group">
+                  <label htmlFor="pass-ulang" className="field-label-text">
+                    Ulangi kata sandi baru
+                  </label>
+                  <input
+                    id="pass-ulang"
+                    type={showPassword ? 'text' : 'password'}
+                    className="edit-text-input"
+                    placeholder="Minimal 6 karakter"
+                    value={passUlang}
+                    onChange={(e) => setPassUlang(e.target.value)}
+                  />
+                </div>
 
-              <p className="edit-form-note">
-                Mode demo: form ini tidak menyimpan atau mengubah kata sandi. Jangan gunakan kata sandi asli.
-              </p>
+                {/* Toggle tampilkan kata sandi */}
+                <button
+                  type="button"
+                  className="btn-toggle-eye-row"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="17" height="17">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                  <span>{showPassword ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'}</span>
+                </button>
 
-              <button type="submit" className="btn-periksa-perubahan-brown">
-                Periksa perubahan
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" width="18" height="18">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </button>
-            </form>
+                {!supabase && (
+                  <p className="edit-form-note">
+                    Mode demo: perubahan kata sandi disimulasikan secara lokal.
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  className="btn-periksa-perubahan-brown"
+                  disabled={sedangMemprosesSandi}
+                >
+                  {sedangMemprosesSandi ? 'Memperbarui...' : 'Simpan kata sandi'}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" width="18" height="18">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </button>
+              </form>
+            )
           )}
         </div>
 
-        {/* 5. Tombol Logout di Bawah (EDIT PROFILE 1.png) */}
+        {/* 5. Tombol Logout di Bawah */}
         <button
           type="button"
           className="btn-logout-peach"
@@ -370,4 +472,3 @@ export function EditProfilPage() {
     </div>
   );
 }
-

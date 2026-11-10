@@ -1,38 +1,51 @@
 import { useState, type FormEvent } from 'react';
-import { Navigate, useNavigate } from 'react-router';
+import { Navigate, useNavigate, useLocation } from 'react-router';
 import { supabase } from '../../lib/supabase';
 import { daftarEmail, gantiSandi, lupaSandi, masukEmail, masukGoogle } from '../../lib/auth';
 import { useSesi } from '../../lib/sesi';
 
-export function MasukPage() {
+interface MasukPageProps {
+  modeDefault?: 'masuk' | 'daftar';
+}
+
+export function MasukPage({ modeDefault }: MasukPageProps) {
   const { pengguna } = useSesi();
   const navigate = useNavigate();
-  const searchParams = new URLSearchParams(window.location.search);
-  const modeAwal = searchParams.get('mode') || (window.location.pathname.includes('daftar') ? 'daftar' : 'masuk');
+  const location = useLocation();
 
-  const [mode, setMode] = useState<'masuk' | 'daftar' | 'lupa' | 'ganti-sandi'>(
-    modeAwal === 'ganti-sandi' ? 'ganti-sandi' : modeAwal === 'daftar' ? 'daftar' : 'masuk',
-  );
+  const queryMode = new URLSearchParams(location.search).get('mode');
+  const pathMode = location.pathname.includes('daftar') ? 'daftar' : 'masuk';
+  const initialMode =
+    queryMode === 'ganti-sandi'
+      ? 'ganti-sandi'
+      : queryMode === 'daftar'
+      ? 'daftar'
+      : modeDefault || pathMode;
+
+  const [mode, setMode] = useState<'masuk' | 'daftar' | 'lupa' | 'ganti-sandi'>(initialMode);
   const [nama, setNama] = useState('');
   const [email, setEmail] = useState('');
   const [sandi, setSandi] = useState('');
   const [lihatSandi, setLihatSandi] = useState(false);
   const [setujuDemo, setSetujuDemo] = useState(true);
+
   const [pesan, setPesan] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
   const [sibuk, setSibuk] = useState(false);
 
-  // Jika sudah login, arahkan ke beranda aplikasi (/belajar)
+  // Jika sudah login dan bukan mode ganti-sandi, arahkan ke beranda
   if (pengguna && (mode === 'masuk' || mode === 'daftar')) {
     return <Navigate to="/belajar" replace />;
   }
 
   const handleKembali = () => {
-    if (window.history.length > 1) {
-      navigate(-1);
-    } else {
-      navigate('/intro');
+    if (mode === 'lupa' || mode === 'ganti-sandi') {
+      setMode('masuk');
+      setPesan(null);
+      setInfo(null);
+      return;
     }
+    navigate('/intro');
   };
 
   async function kirim(e: FormEvent) {
@@ -81,10 +94,10 @@ export function MasukPage() {
       localStorage.setItem('namaUser', nama.trim());
     }
 
-    // Mode demo / offline tanpa Supabase: simpan identitas dan lanjutkan ke beranda
+    // Mode demo / offline tanpa Supabase
     if (!supabase) {
       if (!localStorage.getItem('namaUser')) {
-        localStorage.setItem('namaUser', 'Kenji Morales');
+        localStorage.setItem('namaUser', nama.trim() || 'Kenji Morales');
       }
       navigate('/belajar');
       return;
@@ -103,7 +116,7 @@ export function MasukPage() {
       setInfo('Cek email kamu dan klik tautan konfirmasi, lalu masuk.');
       setMode('masuk');
     } else {
-      navigate('/belajar');
+      navigate('/belajar', { replace: true });
     }
   }
 
@@ -123,13 +136,213 @@ export function MasukPage() {
   const isDaftar = mode === 'daftar';
   const isMasuk = mode === 'masuk';
 
+  // ============================
+  // DAFTAR (REGIST.png) — LIME
+  // ============================
+  if (isDaftar) {
+    return (
+      <div className="auth-page auth-page-regist">
+        {/* Header */}
+        <header className="auth-header">
+          <button
+            type="button"
+            className="btn-circle-nav-auth btn-circle-nav-lime"
+            onClick={handleKembali}
+            aria-label="Kembali"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="20" height="20">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <div className="auth-brand-lockup">
+            <span className="brand-bold">Aksara</span>
+            <span className="brand-regular">Lensa</span>
+          </div>
+        </header>
+
+        {/* Maskot */}
+        <div className="auth-mascot-container mascot-regist">
+          <img
+            src="/assets/maskot regist.svg"
+            alt="Maskot Aksa mendaftar"
+            className="auth-mascot-img"
+            draggable={false}
+          />
+        </div>
+
+        {/* Judul */}
+        <div className="auth-title-container">
+          <h1 className="auth-title auth-title-dark">Siap kenal aksa?</h1>
+          <p className="auth-sub auth-sub-lime">Buat profilmu, mulai langkah pertamamu.</p>
+        </div>
+
+        {/* Google Button */}
+        <button
+          type="button"
+          className="btn-google-auth btn-google-lime"
+          onClick={denganGoogle}
+          disabled={sibuk}
+        >
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
+          </svg>
+          <span>Daftar dengan Google</span>
+        </button>
+
+        <div className="auth-divider auth-divider-lime">
+          <span>atau gunakan email</span>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={kirim} className="auth-form" noValidate>
+          <div className="form-group">
+            <label htmlFor="auth-nama" className="form-label-lime">Nama panggilan</label>
+            <input
+              id="auth-nama"
+              type="text"
+              autoComplete="name"
+              placeholder="Siapa namamu?"
+              value={nama}
+              onChange={(e) => setNama(e.target.value)}
+              className="auth-input auth-input-lime"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="auth-email" className="form-label-lime">Email</label>
+            <input
+              id="auth-email"
+              type="email"
+              inputMode="email"
+              autoComplete="email"
+              placeholder="nama@email.com"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="auth-input auth-input-lime"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="auth-sandi" className="form-label-lime">Kata sandi</label>
+            <div className="password-input-wrapper">
+              <input
+                id="auth-sandi"
+                type={lihatSandi ? 'text' : 'password'}
+                autoComplete="new-password"
+                placeholder="Minimal 6 karakter"
+                required
+                minLength={6}
+                value={sandi}
+                onChange={(e) => setSandi(e.target.value)}
+                className="auth-input auth-input-lime"
+              />
+              <button
+                type="button"
+                className="btn-toggle-eye"
+                onClick={() => setLihatSandi(!lihatSandi)}
+                aria-label={lihatSandi ? 'Sembunyikan sandi' : 'Tampilkan sandi'}
+              >
+                {lihatSandi ? (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {!supabase && (
+            <label className="checkbox-demo-row">
+              <input
+                type="checkbox"
+                checked={setujuDemo}
+                onChange={(e) => setSetujuDemo(e.target.checked)}
+                className="checkbox-custom"
+              />
+              <span className="checkbox-label-text">
+                Saya mengerti ini mode demo, bukan pendaftaran akun sungguhan.
+              </span>
+            </label>
+          )}
+
+          {pesan && (
+            <div className="auth-alert error" role="alert">
+              <div>{pesan}</div>
+              {pesan.toLowerCase().includes('sudah terdaftar') && (
+                <div style={{ marginTop: 8, display: 'flex', gap: 8 }}>
+                  <button
+                    type="button"
+                    className="auth-link-bold"
+                    style={{ textDecoration: 'underline', color: 'inherit' }}
+                    onClick={denganGoogle}
+                  >
+                    Masuk dengan Google
+                  </button>
+                  <span>atau</span>
+                  <button
+                    type="button"
+                    className="auth-link-bold"
+                    style={{ textDecoration: 'underline', color: 'inherit' }}
+                    onClick={() => {
+                      setMode('masuk');
+                      setPesan(null);
+                    }}
+                  >
+                    Beralih ke Masuk
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+          {info && (
+            <div className="auth-alert success" role="status">{info}</div>
+          )}
+
+          <button type="submit" className="btn-auth-submit btn-auth-submit-brown" disabled={sibuk}>
+            {sibuk ? 'Memproses...' : 'Daftar'}
+          </button>
+        </form>
+
+        <footer className="auth-footer-switch">
+          <p>
+            Sudah punya akun?{' '}
+            <button
+              type="button"
+              className="auth-link-bold auth-link-dark"
+              onClick={() => {
+                setMode('masuk');
+                setPesan(null);
+                setInfo(null);
+              }}
+            >
+              Masuk
+            </button>
+          </p>
+        </footer>
+      </div>
+    );
+  }
+
+  // ============================
+  // MASUK (LOGIN.png) — MINT
+  // ============================
   return (
-    <div className={`auth-page ${isDaftar ? 'auth-page-regist' : 'auth-page-masuk'}`}>
-      {/* 1. Header: Back Arrow + Logo AksaraLensa */}
+    <div className="auth-page auth-page-masuk">
+      {/* Header */}
       <header className="auth-header">
         <button
           type="button"
-          className={`btn-circle-nav-auth ${isDaftar ? 'btn-circle-nav-lime' : 'btn-circle-nav-mint'}`}
+          className="btn-circle-nav-auth btn-circle-nav-mint"
           onClick={handleKembali}
           aria-label="Kembali"
         >
@@ -137,100 +350,80 @@ export function MasukPage() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <span className="auth-brand-lockup">
+
+        <div className="auth-brand-lockup">
           <span className="brand-bold">Aksara</span>
-          <span className="brand-regular">lensa</span>
-        </span>
+          <span className="brand-regular">Lensa</span>
+        </div>
       </header>
 
-      {/* 2. Maskot Header */}
-      <div className={`auth-mascot-container ${isDaftar ? 'mascot-regist' : 'mascot-login'}`}>
+      {/* Maskot */}
+      <div className="auth-mascot-container mascot-login">
         <img
-          src={isDaftar ? '/assets/maskot regist.svg' : '/assets/maskot login.svg'}
-          alt={isDaftar ? 'Maskot Registrasi' : 'Maskot Masuk'}
+          src="/assets/maskot login.svg"
+          alt="Maskot Aksa masuk"
           className="auth-mascot-img"
           draggable={false}
         />
       </div>
 
-      {/* 3. Judul & Subjudul */}
+      {/* Judul */}
       <div className="auth-title-container">
-        <h1 className={`auth-title ${isDaftar ? 'auth-title-dark' : 'auth-title-brown'}`}>
-          {isDaftar
-            ? 'Siap kenal aksa?'
-            : mode === 'masuk'
-            ? 'Lanjut cerita aksaramu.'
-            : mode === 'lupa'
+        <h1 className="auth-title auth-title-brown">
+          {mode === 'lupa'
             ? 'Lupa kata sandi?'
-            : 'Ubah kata sandi'}
+            : mode === 'ganti-sandi'
+            ? 'Ubah kata sandi'
+            : 'Lanjut cerita aksaramu.'}
         </h1>
-        <p className={`auth-sub ${isDaftar ? 'auth-sub-lime' : 'auth-sub-mint'}`}>
-          {isDaftar
-            ? 'Buat profilmu, mulai langkah pertamamu.'
-            : mode === 'masuk'
-            ? 'Masuk dan teruskan perjalanan belajarmu.'
-            : mode === 'lupa'
+        <p className="auth-sub auth-sub-mint">
+          {mode === 'lupa'
             ? 'Masukkan email untuk menerima tautan pemulihan.'
-            : 'Ketikkan kata sandi baru untuk akunmu.'}
+            : mode === 'ganti-sandi'
+            ? 'Ketikkan kata sandi baru untuk akunmu.'
+            : 'Masuk dan teruskan perjalanan belajarmu.'}
         </p>
       </div>
 
-      {/* 4. Google Auth Button (Daftar / Masuk) */}
-      {(isMasuk || isDaftar) && (
+      {/* Google Button */}
+      {isMasuk && (
         <button
           type="button"
-          className={`btn-google-auth ${isDaftar ? 'btn-google-lime' : 'btn-google-white'}`}
+          className="btn-google-auth btn-google-white"
           onClick={denganGoogle}
+          disabled={sibuk}
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.27-2.09 3.645-5.18 3.645-9.15z"/>
-            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.03 1.16-3.1 0-5.73-2.09-6.67-4.9H1.28v3.15C3.27 21.35 7.33 24 12 24z"/>
-            <path fill="#FBBC05" d="M5.33 14.3c-.24-.72-.38-1.49-.38-2.3s.14-1.58.38-2.3V6.55H1.28C.46 8.18 0 10.03 0 12s.46 3.82 1.28 5.45l4.05-3.15z"/>
-            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.27 2.65 1.28 6.55l4.05 3.15c.94-2.81 3.57-4.95 6.67-4.95z"/>
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
           </svg>
-          <span>{isDaftar ? 'Daftar dengan Google' : 'Masuk dengan Google'}</span>
+          <span>Masuk dengan Google</span>
         </button>
       )}
 
-      {/* Divider */}
-      {(isMasuk || isDaftar) && (
-        <div className={`auth-divider ${isDaftar ? 'auth-divider-lime' : 'auth-divider-mint'}`}>
+      {isMasuk && (
+        <div className="auth-divider auth-divider-mint">
           <span>atau gunakan email</span>
         </div>
       )}
 
-      {/* 5. Form Input */}
-      <form className="auth-form" onSubmit={kirim} noValidate>
-        {isDaftar && (
-          <div className="form-group">
-            <label className="form-label-lime" htmlFor="daftar-nama">Nama panggilan</label>
-            <input
-              id="daftar-nama"
-              type="text"
-              className="auth-input auth-input-lime"
-              placeholder="Siapa namamu?"
-              value={nama}
-              onChange={(e) => setNama(e.target.value)}
-              autoComplete="name"
-            />
-          </div>
-        )}
-
+      {/* Form */}
+      <form onSubmit={kirim} className="auth-form" noValidate>
         {mode !== 'ganti-sandi' && (
           <div className="form-group">
-            <label className={isDaftar ? 'form-label-lime' : 'form-label-mint'} htmlFor="auth-email">
-              Email
-            </label>
+            <label htmlFor="auth-email-login" className="form-label-mint">Email</label>
             <input
-              id="auth-email"
+              id="auth-email-login"
               type="email"
               inputMode="email"
               autoComplete="email"
-              required
-              className={`auth-input ${isDaftar ? 'auth-input-lime' : 'auth-input-white'}`}
               placeholder="nama@email.com"
+              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className="auth-input auth-input-white"
             />
           </div>
         )}
@@ -238,9 +431,7 @@ export function MasukPage() {
         {mode !== 'lupa' && (
           <div className="form-group">
             <div className="label-row">
-              <label className={isDaftar ? 'form-label-lime' : 'form-label-mint'} htmlFor="auth-sandi">
-                Kata sandi
-              </label>
+              <label htmlFor="auth-sandi-login" className="form-label-mint">Kata sandi</label>
               {isMasuk && (
                 <button
                   type="button"
@@ -257,21 +448,21 @@ export function MasukPage() {
             </div>
             <div className="password-input-wrapper">
               <input
-                id="auth-sandi"
+                id="auth-sandi-login"
                 type={lihatSandi ? 'text' : 'password'}
                 autoComplete={isMasuk ? 'current-password' : 'new-password'}
+                placeholder={mode === 'ganti-sandi' ? 'Minimal 6 karakter' : 'Masukkan kata sandi'}
                 required
                 minLength={6}
-                className={`auth-input ${isDaftar ? 'auth-input-lime' : 'auth-input-white'}`}
-                placeholder={isDaftar ? 'Minimal 8 karakter' : 'Masukkan kata sandi'}
                 value={sandi}
                 onChange={(e) => setSandi(e.target.value)}
+                className="auth-input auth-input-white"
               />
               <button
                 type="button"
                 className="btn-toggle-eye"
                 onClick={() => setLihatSandi(!lihatSandi)}
-                aria-label={lihatSandi ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'}
+                aria-label={lihatSandi ? 'Sembunyikan sandi' : 'Tampilkan sandi'}
               >
                 {lihatSandi ? (
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
@@ -288,34 +479,30 @@ export function MasukPage() {
           </div>
         )}
 
-        {isDaftar && (
-          <label className="checkbox-demo-row">
-            <input
-              type="checkbox"
-              className="checkbox-custom"
-              checked={setujuDemo}
-              onChange={(e) => setSetujuDemo(e.target.checked)}
-            />
-            <span className="checkbox-label-text">
-              Saya mengerti ini mode demo, bukan pendaftaran akun sungguhan.
-            </span>
-          </label>
+        {pesan && (
+          <div className="auth-alert error" role="alert">
+            <div>{pesan}</div>
+            {pesan.toLowerCase().includes('sudah terdaftar') && (
+              <div style={{ marginTop: 8 }}>
+                <button
+                  type="button"
+                  className="auth-link-bold"
+                  style={{ textDecoration: 'underline', color: 'inherit' }}
+                  onClick={denganGoogle}
+                >
+                  Masuk dengan Google
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+        {info && (
+          <div className="auth-alert success" role="status">{info}</div>
         )}
 
-        {/* Status Pesan / Error */}
-        {pesan && <div className="auth-alert error" role="alert">{pesan}</div>}
-        {info && <div className="auth-alert success" role="status">{info}</div>}
-
-        {/* Tombol Aksi Utama */}
-        <button
-          type="submit"
-          className="btn-auth-submit btn-auth-submit-brown"
-          disabled={sibuk}
-        >
+        <button type="submit" className="btn-auth-submit btn-auth-submit-brown" disabled={sibuk}>
           {sibuk
             ? 'Memproses...'
-            : isDaftar
-            ? 'Daftar'
             : isMasuk
             ? 'Masuk'
             : mode === 'lupa'
@@ -324,14 +511,13 @@ export function MasukPage() {
         </button>
       </form>
 
-      {/* 6. Footer Switch */}
-      <div className="auth-footer-switch">
+      <footer className="auth-footer-switch">
         {isMasuk && (
-          <span>
+          <p>
             Belum punya akun?{' '}
             <button
               type="button"
-              className="auth-link-bold"
+              className="auth-link-bold auth-link-dark-underline"
               onClick={() => {
                 setMode('daftar');
                 setPesan(null);
@@ -340,23 +526,7 @@ export function MasukPage() {
             >
               Daftar sekarang
             </button>
-          </span>
-        )}
-        {isDaftar && (
-          <span>
-            Sudah punya akun?{' '}
-            <button
-              type="button"
-              className="auth-link-bold"
-              onClick={() => {
-                setMode('masuk');
-                setPesan(null);
-                setInfo(null);
-              }}
-            >
-              Masuk
-            </button>
-          </span>
+          </p>
         )}
         {(mode === 'lupa' || mode === 'ganti-sandi') && (
           <button
@@ -371,7 +541,7 @@ export function MasukPage() {
             Kembali ke Masuk
           </button>
         )}
-      </div>
+      </footer>
     </div>
   );
 }
