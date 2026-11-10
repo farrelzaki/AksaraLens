@@ -19,6 +19,8 @@ export function EditProfilPage() {
   // Data profil dari localStorage / sesi
   const [namaUser, setNamaUser] = useState(() => {
     return (
+      pengguna?.user_metadata?.full_name ||
+      pengguna?.user_metadata?.name ||
       pengguna?.user_metadata?.display_name ||
       pengguna?.email?.split('@')[0] ||
       localStorage.getItem('namaUser') ||

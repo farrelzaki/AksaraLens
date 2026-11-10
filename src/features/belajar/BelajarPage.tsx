@@ -2,32 +2,46 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { BAB, JALUR } from '../../content';
 import { useProgres } from '../../progres/ProgresProvider';
+import { useSesi } from '../../lib/sesi';
 import { ICON_PROFIL } from '../profil/ProfilPage';
 import { ModalGantiAvatar } from '../profil/ModalGantiAvatar';
 
 // F1: Homepage sesuai HOMEPAGE.png — kartu per bab dengan maskot & avatar terpilih
 export function BelajarPage() {
   const { status } = useProgres();
+  const { pengguna } = useSesi();
   const navigate = useNavigate();
   const [pesan] = useState<string | null>(null);
 
-  // Ambil nama pengguna dan avatar dari localStorage (otomatis sinkron saat kembali dari halaman profil)
-  const [namaUser, setNamaUser] = useState(() => localStorage.getItem('namaUser') || 'Kenji Morales');
+  const getNamaAktif = () => {
+    return (
+      localStorage.getItem('namaUser') ||
+      pengguna?.user_metadata?.full_name ||
+      pengguna?.user_metadata?.name ||
+      pengguna?.user_metadata?.display_name ||
+      pengguna?.email?.split('@')[0] ||
+      'Kenji Morales'
+    );
+  };
+
+  // Ambil nama pengguna dan avatar (sinkron dengan sesi dan profil)
+  const [namaUser, setNamaUser] = useState(getNamaAktif);
   const [activeAvatarId, setActiveAvatarId] = useState(() => parseInt(localStorage.getItem('selectedAvatarId') || '1', 10));
   const [modalAvatar, setModalAvatar] = useState(false);
 
   useEffect(() => {
     const handleUpdate = () => {
-      setNamaUser(localStorage.getItem('namaUser') || 'Kenji Morales');
+      setNamaUser(getNamaAktif());
       setActiveAvatarId(parseInt(localStorage.getItem('selectedAvatarId') || '1', 10));
     };
+    handleUpdate();
     window.addEventListener('storage', handleUpdate);
     window.addEventListener('focus', handleUpdate);
     return () => {
       window.removeEventListener('storage', handleUpdate);
       window.removeEventListener('focus', handleUpdate);
     };
-  }, []);
+  }, [pengguna]);
 
   const avatarTerpilih = ICON_PROFIL.find((ic) => ic.id === activeAvatarId) || ICON_PROFIL[0];
 

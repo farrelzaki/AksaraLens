@@ -16,6 +16,8 @@ export function ProfilPage() {
 
   const [namaUser, setNamaUser] = useState(() => {
     return (
+      pengguna?.user_metadata?.full_name ||
+      pengguna?.user_metadata?.name ||
       pengguna?.user_metadata?.display_name ||
       pengguna?.email?.split('@')[0] ||
       localStorage.getItem('namaUser') ||
@@ -34,6 +36,8 @@ export function ProfilPage() {
   useEffect(() => {
     const syncData = () => {
       const nama =
+        pengguna?.user_metadata?.full_name ||
+        pengguna?.user_metadata?.name ||
         pengguna?.user_metadata?.display_name ||
         pengguna?.email?.split('@')[0] ||
         localStorage.getItem('namaUser') ||

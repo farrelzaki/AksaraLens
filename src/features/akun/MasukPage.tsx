@@ -116,12 +116,21 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
       setInfo('Cek email kamu dan klik tautan konfirmasi, lalu masuk.');
       setMode('masuk');
     } else {
+      localStorage.setItem('aksaralens_onboarding_done', 'true');
+      localStorage.setItem('hasSeenIntro', 'true');
       navigate('/belajar', { replace: true });
     }
   }
 
   async function denganGoogle() {
     setPesan(null);
+
+    if (nama.trim()) {
+      localStorage.setItem('namaUser', nama.trim());
+    }
+    localStorage.setItem('aksaralens_onboarding_done', 'true');
+    localStorage.setItem('hasSeenIntro', 'true');
+
     if (!supabase) {
       if (!localStorage.getItem('namaUser')) {
         localStorage.setItem('namaUser', 'Kenji Morales');
@@ -129,7 +138,10 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
       navigate('/belajar');
       return;
     }
+
+    setSibuk(true);
     const { error } = await masukGoogle();
+    setSibuk(false);
     if (error) setPesan('Masuk dengan Google belum berhasil. Coba lagi.');
   }
 

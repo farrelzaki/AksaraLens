@@ -1,10 +1,17 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import { useSesi } from '../../lib/sesi';
 
 export function SplashScreen() {
   const navigate = useNavigate();
+  const { pengguna, memuat } = useSesi();
 
   const lanjut = () => {
+    if (memuat) return;
+    if (pengguna) {
+      navigate('/belajar', { replace: true });
+      return;
+    }
     const onboardingDone = localStorage.getItem('aksaralens_onboarding_done');
     if (onboardingDone) {
       navigate('/intro', { replace: true });
@@ -14,12 +21,29 @@ export function SplashScreen() {
   };
 
   useEffect(() => {
+    // Tunggu sampai status sesi Supabase selesai diperiksa
+    if (memuat) return;
+
+    if (pengguna) {
+      // Pengguna sudah login (termasuk setelah redirect dari Google OAuth)
+      const timer = setTimeout(() => {
+        navigate('/belajar', { replace: true });
+      }, 700);
+      return () => clearTimeout(timer);
+    }
+
+    // Pengguna belum login: cek onboarding
+    const onboardingDone = localStorage.getItem('aksaralens_onboarding_done');
     const timer = setTimeout(() => {
-      lanjut();
-    }, 2200);
+      if (onboardingDone) {
+        navigate('/intro', { replace: true });
+      } else {
+        navigate('/onboarding', { replace: true });
+      }
+    }, 1800);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [pengguna, memuat, navigate]);
 
   return (
     <div

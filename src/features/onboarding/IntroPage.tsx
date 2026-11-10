@@ -1,10 +1,18 @@
-import { useNavigate } from 'react-router';
+import { useNavigate, Navigate } from 'react-router';
+import { useSesi } from '../../lib/sesi';
 
 export function IntroPage() {
   const navigate = useNavigate();
+  const { pengguna, memuat } = useSesi();
+
+  // Jika sudah login, tidak perlu menampilkan layar intro — langsung ke beranda
+  if (!memuat && pengguna) {
+    return <Navigate to="/belajar" replace />;
+  }
 
   const handleJelajahi = () => {
     localStorage.setItem('hasSeenIntro', 'true');
+    localStorage.setItem('aksaralens_onboarding_done', 'true');
     navigate('/belajar');
   };
 

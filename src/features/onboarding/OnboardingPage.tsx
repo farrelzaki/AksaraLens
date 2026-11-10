@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, Navigate } from 'react-router';
+import { useSesi } from '../../lib/sesi';
 
 const SCENES = [
   {
@@ -26,9 +27,15 @@ const SCENES = [
 ];
 
 export function OnboardingPage() {
+  const { pengguna, memuat } = useSesi();
   const [index, setIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
   const navigate = useNavigate();
+
+  // Jika sudah login, langsung ke beranda belajar
+  if (!memuat && pengguna) {
+    return <Navigate to="/belajar" replace />;
+  }
 
   const handleSelesai = () => {
     localStorage.setItem('aksaralens_onboarding_done', 'true');
