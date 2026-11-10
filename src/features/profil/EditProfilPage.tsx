@@ -7,10 +7,19 @@ import { keluar } from '../../lib/auth';
 
 export function EditProfilPage() {
   const navigate = useNavigate();
-  const { pengguna } = useSesi();
+  const { pengguna, memuat } = useSesi();
 
-  // Data profil dari localStorage
-  const [namaUser, setNamaUser] = useState(() => localStorage.getItem('namaUser') || 'Kenji Morales');
+  // Pengguna yang belum login atau baru logout tidak boleh tertahan di halaman edit profil
+  React.useEffect(() => {
+    if (!memuat && !pengguna) {
+      navigate('/intro', { replace: true });
+    }
+  }, [memuat, pengguna, navigate]);
+
+  // Data profil dari localStorage / sesi
+  const [namaUser, setNamaUser] = useState(
+    () => localStorage.getItem('namaUser') || ((pengguna?.user_metadata?.full_name || pengguna?.user_metadata?.name) as string) || 'Teman Belajar',
+  );
   const [emailUser, setEmailUser] = useState(() => localStorage.getItem('emailUser') || (pengguna?.email ?? 'Belum diisi'));
   const [avatarId, setAvatarId] = useState(() => parseInt(localStorage.getItem('selectedAvatarId') || '1', 10));
 
@@ -40,7 +49,7 @@ export function EditProfilPage() {
 
   const handleSimpanInfo = (e: React.FormEvent) => {
     e.preventDefault();
-    const finalNama = inputNama.trim() || 'Kenji Morales';
+    const finalNama = inputNama.trim() || 'Teman Belajar';
     const finalEmail = inputEmail.trim() || 'Belum diisi';
 
     setNamaUser(finalNama);
@@ -78,11 +87,12 @@ export function EditProfilPage() {
     setPassUlang('');
   };
 
+  const [keluarSibuk, setKeluarSibuk] = useState(false);
+
   const handleLogout = async () => {
-    if (pengguna) {
-      await keluar();
-    }
-    navigate('/masuk');
+    if (keluarSibuk) return;
+    setKeluarSibuk(true);
+    await keluar('/intro');
   };
 
   const handleSelectAvatar = (newId: number) => {
@@ -349,6 +359,7 @@ export function EditProfilPage() {
           type="button"
           className="btn-logout-peach"
           onClick={handleLogout}
+          disabled={keluarSibuk}
           aria-label="Logout dari akun"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" width="19" height="19">
@@ -356,7 +367,7 @@ export function EditProfilPage() {
             <polyline points="16 17 21 12 16 7" />
             <line x1="21" y1="12" x2="9" y2="12" />
           </svg>
-          <span>Logout</span>
+          <span>{keluarSibuk ? 'Keluar...' : 'Logout'}</span>
         </button>
       </div>
 

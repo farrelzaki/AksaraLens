@@ -1,0 +1,1622 @@
+{
+ "F097_00.png": {
+  "latin": "kusuma sahid prins hotél solo",
+  "aksara": "ꦏꦸꦱꦸꦩꦱꦲꦶꦢ꧀ꦥ꧀ꦫꦶꦤ꧀ꦱ꧀ꦲꦺꦴꦠꦺꦭ꧀ꦱꦺꦴꦭꦺꦴ",
+  "sumber": "b1_dicek_manusia",
+  "bukti": [
+   "decoy",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F070_00.png": {
+  "latin": "solo",
+  "aksara": "ꦱꦺꦴꦭꦺꦴ",
+  "sumber": "b1_dicek_manusia",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F009_02.png": {
+  "latin": "badan pengelola kehuhangan dan asét daérah",
+  "aksara": "ꦧꦢꦤ꧀ꦥꦼꦔꦼꦭꦺꦴꦭꦏꦼꦲꦸꦲꦔꦤ꧀ꦢꦤ꧀ꦲꦱꦺꦠ꧀ꦢꦲꦺꦫꦃ",
+  "sumber": "b1_dicek_manusia",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F025_03.png": {
+  "latin": "kota surakarta",
+  "aksara": "ꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
+  "sumber": "b1_dicek_manusia",
+  "bukti": [
+   "decoy",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F024_01.png": {
+  "latin": "dhinas perhubungngan kota surakarta",
+  "aksara": "ꦝꦶꦤꦱ꧀ꦥꦼꦂꦲꦸꦧꦸꦁꦔꦤ꧀ꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
+  "sumber": "b1_dicek_manusia",
+  "bukti": [
+   "decoy",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F198_09.png": {
+  "latin": "va",
+  "aksara": "ꦮ",
+  "sumber": "b1_dicek_manusia",
+  "bukti": [],
+  "tier": "buang",
+  "sah": false
+ },
+ "F068_02.png": {
+  "latin": "surakarta",
+  "aksara": "ꦱꦸꦫꦏꦂꦠ",
+  "sumber": "b1_dicek_manusia",
+  "bukti": [
+   "decoy",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F074_01.png": {
+  "latin": "dhinas sosial tenaga kerja dhan transmigrasi",
+  "aksara": "ꦝꦶꦤꦱ꧀ꦱꦺꦴꦱꦶꦪꦭ꧀ꦠꦼꦤꦒꦏꦼꦂꦗꦝꦤ꧀ꦠ꧀ꦫꦤ꧀ꦱ꧀ꦩꦶꦒ꧀ꦫꦱꦶ",
+  "sumber": "b1_dicek_manusia",
+  "bukti": [
+   "decoy",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F008_05.png": {
+  "latin": "istiméwah yogyakarta tuwin hingkang",
+  "aksara": "ꦲꦶꦱ꧀ꦠꦶꦩꦺꦮꦃꦪꦺꦴꦒ꧀ꦪꦏꦂꦠꦠꦸꦮꦶꦤ꧀ꦲꦶꦁꦏꦁ",
+  "sumber": "b1_dicek_manusia",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F008_02.png": {
+  "latin": "yassan kalga husti ngulbên kihan saha kar",
+  "aksara": "ꦪꦱ꧀ꦱꦤ꧀ꦏꦭ꧀ꦒꦲꦸꦱ꧀ꦠꦶꦔꦸꦭ꧀ꦧꦼꦤ꧀ꦏꦶꦲꦤ꧀ꦱꦲꦏꦂ",
+  "sumber": "b1_dicek_manusia",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F025_00.png": {
+  "latin": "pêmêrintah kota surakarta",
+  "aksara": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
+  "sumber": "koreksi_farrel",
+  "bukti": [
+   "decoy",
+   "sumber2",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F073_02.png": {
+  "latin": "tra",
+  "aksara": "ꦠ꧀ꦫ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F100_00.png": {
+  "latin": "hambotên parêng lênggah mriki",
+  "aksara": "ꦲꦩ꧀ꦧꦺꦴꦠꦼꦤ꧀ꦥꦫꦼꦁꦭꦼꦁꦒꦃꦩ꧀ꦫꦶꦏꦶ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [
+   "decoy",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F115_01.png": {
+  "latin": "halim perdana kusuma",
+  "aksara": "ꦲꦭꦶꦩ꧀ꦥꦼꦂꦢꦤꦏꦸꦱꦸꦩ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F127_05.png": {
+  "latin": "tha",
+  "aksara": "ꦛ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F127_11.png": {
+  "latin": "ya",
+  "aksara": "ꦪ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [],
+  "tier": "buang",
+  "sah": false
+ },
+ "F165_02.png": {
+  "latin": "prakonggrés aksara jawa",
+  "aksara": "ꦥ꧀ꦫꦏꦺꦴꦁꦒ꧀ꦫꦺꦱ꧀ꦲꦏ꧀ꦱꦫꦗꦮ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F173_01.png": {
+  "latin": "hing gêbong mondasêkawan kapêrnah kilé",
+  "aksara": "ꦲꦶꦁꦒꦼꦧꦺꦴꦁꦩꦺꦴꦤ꧀ꦢꦱꦼꦏꦮꦤ꧀ꦏꦥꦼꦂꦤꦃꦏꦶꦭꦺ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F173_04.png": {
+  "latin": "turrannipun ki pakrama, kang sampun kapêthuta",
+  "aksara": "ꦠꦸꦂꦫꦤ꧀ꦤꦶꦥꦸꦤ꧀ꦏꦶꦥꦏ꧀ꦫꦩꦏꦁꦱꦩ꧀ꦥꦸꦤ꧀ꦏꦥꦼꦛꦸꦠ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F179_00.png": {
+  "latin": "lamun hana kang wanni wanni niru gawé hutawa ngowahhi huwang kêrtasmang",
+  "aksara": "ꦭꦩꦸꦤ꧀ꦲꦤꦏꦁꦮꦤ꧀ꦤꦶꦮꦤ꧀ꦤꦶꦤꦶꦫꦸꦒꦮꦺꦲꦸꦠꦮꦔꦺꦴꦮꦃꦲꦶꦲꦸꦮꦁꦏꦼꦂꦠꦱ꧀ꦩꦁ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F179_03.png": {
+  "latin": "nni gawé tontonnaning ngakéh, hapa manéh kinunjara tuwin kabuwang, sapa samuwa",
+  "aksara": "ꦤ꧀ꦤꦶꦒꦮꦺꦠꦺꦴꦤ꧀ꦠꦺꦴꦤ꧀ꦤꦤꦶꦁꦔꦏꦺꦃꦲꦥꦩꦤꦺꦃꦏꦶꦤꦸꦤ꧀ꦗꦫꦠꦸꦮꦶꦤ꧀ꦏꦧꦸꦮꦁꦱꦥꦱꦩꦸꦮ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F197_07.png": {
+  "latin": "nya",
+  "aksara": "ꦚ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F197_10.png": {
+  "latin": "ka",
+  "aksara": "ꦏ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F197_13.png": {
+  "latin": "ga",
+  "aksara": "ꦒ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F197_16.png": {
+  "latin": "ba",
+  "aksara": "ꦧ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F197_22.png": {
+  "latin": "pma",
+  "aksara": "ꦥ꧀ꦩ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F198_16.png": {
+  "latin": "ga",
+  "aksara": "ꦒ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F199_02.png": {
+  "latin": "ka",
+  "aksara": "ꦏ",
+  "sumber": "b1_ai_belum_dicek",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F198_24.png": {
+  "latin": "da",
+  "aksara": "ꦢ",
+  "sumber": "b2",
+  "bukti": [],
+  "tier": "buang",
+  "sah": false
+ },
+ "F197_01.png": {
+  "latin": "pa",
+  "aksara": "ꦥ",
+  "sumber": "b2",
+  "bukti": [],
+  "tier": "buang",
+  "sah": false
+ },
+ "F074_02.png": {
+  "latin": "tu",
+  "aksara": "ꦠꦸ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F088_03.png": {
+  "latin": "surakarta",
+  "aksara": "ꦱꦸꦫꦏꦂꦠ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F022_00.png": {
+  "latin": "bandar udara internasional yogyakarta",
+  "aksara": "ꦧꦤ꧀ꦢꦂꦲꦸꦢꦫꦲꦶꦤ꧀ꦠꦼꦂꦤꦱꦶꦪꦺꦴꦤꦭ꧀ꦪꦺꦴꦒ꧀ꦪꦏꦂꦠ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F198_08.png": {
+  "latin": "ha",
+  "aksara": "ꦲ",
+  "sumber": "b2",
+  "bukti": [],
+  "tier": "buang",
+  "sah": false
+ },
+ "F111_00.png": {
+  "latin": "loket",
+  "aksara": "ꦭꦺꦴꦏꦺꦠ꧀",
+  "sumber": "b2",
+  "bukti": [
+   "decoy",
+   "papan",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F029_00.png": {
+  "latin": "dalan brigjên slamêt riyadi",
+  "aksara": "ꦢꦭꦤ꧀ꦧ꧀ꦫꦶꦒ꧀ꦗꦼꦤ꧀ꦱ꧀ꦭꦩꦼꦠ꧀ꦫꦶꦪꦢꦶ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy",
+   "papan",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F030_00.png": {
+  "latin": "pa ta pa la na persero",
+  "aksara": "ꦥꦠꦥꦭꦤꦥꦼꦂꦱꦼꦫꦺꦴ",
+  "sumber": "b2",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F009_03.png": {
+  "latin": "ka pa pa da da i ya di kota yogyakarta",
+  "aksara": "ꦏꦥꦥꦢꦢꦲꦶꦪꦢꦶꦏꦺꦴꦠꦪꦺꦴꦒ꧀ꦪꦏꦂꦠ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F095_00.png": {
+  "latin": "ja la cipta mangunkusuma",
+  "aksara": "ꦗꦭꦕꦶꦥ꧀ꦠꦩꦔꦸꦤ꧀ꦏꦸꦱꦸꦩ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F169_00.png": {
+  "latin": "kelas pa éf",
+  "aksara": "ꦏꦼꦭꦱ꧀ꦥꦲꦺꦥ꧀",
+  "sumber": "b2",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F090_01.png": {
+  "latin": "sura",
+  "aksara": "ꦱꦸꦫ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F098_02.png": {
+  "latin": "lurahan kampung baru",
+  "aksara": "ꦭꦸꦫꦲꦤ꧀ꦏꦩ꧀ꦥꦸꦁꦧꦫꦸ",
+  "sumber": "b2",
+  "bukti": [
+   "papan"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F090_00.png": {
+  "latin": "sekolah menengah pertama negeri ga",
+  "aksara": "ꦱꦼꦏꦺꦴꦭꦃꦩꦼꦤꦼꦔꦃꦥꦼꦂꦠꦩꦤꦼꦒꦼꦫꦶꦒ",
+  "sumber": "b2",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F090_02.png": {
+  "latin": "ta",
+  "aksara": "ꦠ",
+  "sumber": "b2",
+  "bukti": [],
+  "tier": "buang",
+  "sah": false
+ },
+ "F081_02.png": {
+  "latin": "pama",
+  "aksara": "ꦥꦩ",
+  "sumber": "b2",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F096_00.png": {
+  "latin": "bonjol",
+  "aksara": "ꦧꦺꦴꦤ꧀ꦗꦺꦴꦭ꧀",
+  "sumber": "b2",
+  "bukti": [
+   "papan"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F197_20.png": {
+  "latin": "wa",
+  "aksara": "ꦮ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F197_02.png": {
+  "latin": "na",
+  "aksara": "ꦤ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F127_03.png": {
+  "latin": "ga",
+  "aksara": "ꦒ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F197_14.png": {
+  "latin": "ga",
+  "aksara": "ꦒ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F198_17.png": {
+  "latin": "la",
+  "aksara": "ꦭ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F197_05.png": {
+  "latin": "ya",
+  "aksara": "ꦪ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F197_17.png": {
+  "latin": "ba",
+  "aksara": "ꦧ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F198_12.png": {
+  "latin": "pa",
+  "aksara": "ꦥ",
+  "sumber": "b2",
+  "bukti": [],
+  "tier": "buang",
+  "sah": false
+ },
+ "F089_00.png": {
+  "latin": "na",
+  "aksara": "ꦤ",
+  "sumber": "b2",
+  "bukti": [],
+  "tier": "buang",
+  "sah": false
+ },
+ "F073_00.png": {
+  "latin": "pemerintah kota surakarta",
+  "aksara": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F173_05.png": {
+  "latin": "hingngajêngwahupunnikapalapurunnyagipupé",
+  "aksara": "ꦲꦶꦁꦔꦗꦼꦁꦮꦲꦸꦥꦸꦤ꧀ꦤꦶꦏꦥꦭꦥꦸꦫꦸꦤ꧀ꦚꦒꦶꦥꦸꦥꦺ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F163_00.png": {
+  "latin": "sugêrawuhpamupu",
+  "aksara": "ꦱꦸꦒꦼꦫꦮꦸꦃꦥꦩꦸꦥꦸ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F173_02.png": {
+  "latin": "na",
+  "aksara": "ꦤ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F123_02.png": {
+  "latin": "papunnapamalihpahargnsartapamiwah",
+  "aksara": "ꦥꦥꦸꦤ꧀ꦤꦥꦩꦭꦶꦃꦥꦲꦂꦒ꧀ꦤ꧀ꦱꦂꦠꦥꦩꦶꦮꦃ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F092_01.png": {
+  "latin": "hotéywisatanyndhah",
+  "aksara": "ꦲꦺꦴꦠꦺꦪ꧀ꦮꦶꦱꦠꦚ꧀ꦤ꧀ꦝꦃ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F164_01.png": {
+  "latin": "yogyakar",
+  "aksara": "ꦪꦺꦴꦒ꧀ꦪꦏꦂ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F066_00.png": {
+  "latin": "pêmêrintahkotasurakarta",
+  "aksara": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F025_01.png": {
+  "latin": "dhinastêbêrsihhanthanpêrtamannan",
+  "aksara": "ꦝꦶꦤꦱ꧀ꦠꦼꦧꦼꦂꦱꦶꦃꦲꦤ꧀ꦛꦤ꧀ꦥꦼꦂꦠꦩꦤ꧀ꦤꦤ꧀",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F007_53.png": {
+  "latin": "parsuhhêna",
+  "aksara": "ꦥꦂꦱꦸꦃꦲꦼꦤ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F176_01.png": {
+  "latin": "tagdhannangsarupiyah",
+  "aksara": "ꦠꦒ꧀ꦝꦤ꧀ꦤꦁꦱꦫꦸꦥꦶꦪꦃ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F199_00.png": {
+  "latin": "da",
+  "aksara": "ꦢ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F198_21.png": {
+  "latin": "g",
+  "aksara": "ꦒ꧀",
+  "sumber": "b2",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F007_90.png": {
+  "latin": "ciyamê",
+  "aksara": "ꦕꦶꦪꦩꦼ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F007_75.png": {
+  "latin": "têssékahaluh",
+  "aksara": "ꦠꦼꦱ꧀ꦱꦺꦏꦲꦭꦸꦃ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F007_78.png": {
+  "latin": "lalija gê",
+  "aksara": "ꦭꦭꦶꦗꦒꦼ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F197_08.png": {
+  "latin": "nya",
+  "aksara": "ꦚ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F195_19.png": {
+  "latin": "halapuhéradhangni",
+  "aksara": "ꦲꦭꦥꦸꦲꦺꦫꦝꦁꦤꦶ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F123_05.png": {
+  "latin": "hangapusirana",
+  "aksara": "ꦲꦔꦥꦸꦱꦶꦫꦤ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F124_08.png": {
+  "latin": "dacarambigikinihanakakédêsingjakujuré go",
+  "aksara": "ꦢꦕꦫꦩ꧀ꦧꦶꦒꦶꦏꦶꦤꦶꦲꦤꦏꦏꦺꦢꦼꦱꦶꦁꦗꦏꦸꦗꦸꦫꦺꦒꦺꦴ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F032_00.png": {
+  "latin": "lwapangnammanningsunsini",
+  "aksara": "ꦭ꧀ꦮꦥꦁꦤꦩ꧀ꦩꦤ꧀ꦤꦶꦁꦱꦸꦤ꧀ꦱꦶꦤꦶ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F127_09.png": {
+  "latin": "dha",
+  "aksara": "ꦝ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F179_04.png": {
+  "latin": "ntingkalupugthanna hayahunninnéladangsêtasblam tahun gadagala",
+  "aksara": "ꦤ꧀ꦠꦶꦁꦏꦭꦸꦥꦸꦒ꧀ꦛꦤ꧀ꦤꦲꦪꦲꦸꦤ꧀ꦤꦶꦤ꧀ꦤꦺꦭꦢꦁꦱꦼꦠꦱ꧀ꦧ꧀ꦭꦩ꧀ꦠꦲꦸꦤ꧀ꦒꦢꦒꦭ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F198_04.png": {
+  "latin": "ba",
+  "aksara": "ꦧ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F195_01.png": {
+  "latin": "dhihawagapuku",
+  "aksara": "ꦝꦶꦲꦮꦒꦥꦸꦏꦸ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F133_00.png": {
+  "latin": "mangkdarajatkingdaja kawurynrassunyarurangragahdhangwowanggo",
+  "aksara": "ꦩꦁꦏ꧀ꦢꦫꦗꦠ꧀ꦏꦶꦁꦢꦗꦏꦮꦸꦂꦪ꧀ꦤ꧀ꦫꦱ꧀ꦱꦸꦚꦫꦸꦫꦁꦫꦒꦃꦝꦁꦮꦺꦴꦮꦁꦒꦺꦴ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F195_07.png": {
+  "latin": "ddhapihadugé",
+  "aksara": "ꦢ꧀ꦝꦥꦶꦲꦢꦸꦒꦺ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F175_06.png": {
+  "latin": "mupiyah",
+  "aksara": "ꦩꦸꦥꦶꦪꦃ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F060_00.png": {
+  "latin": "hotélara",
+  "aksara": "ꦲꦺꦴꦠꦺꦭꦫ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F007_63.png": {
+  "latin": "hibarwa",
+  "aksara": "ꦲꦶꦧꦂꦮ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F007_60.png": {
+  "latin": "dhacayahé",
+  "aksara": "ꦝꦕꦪꦲꦺ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F007_87.png": {
+  "latin": "araning pustaka iki",
+  "aksara": "ꦲꦫꦤꦶꦁꦥꦸꦱ꧀ꦠꦏꦲꦶꦏꦶ",
+  "sumber": "b2",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F007_14.png": {
+  "latin": "go",
+  "aksara": "ꦒꦺꦴ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F009_01.png": {
+  "latin": "daérah istiméwa ngayogyakarta",
+  "aksara": "ꦢꦲꦺꦫꦃꦲꦶꦱ꧀ꦠꦶꦩꦺꦮꦔꦪꦺꦴꦒ꧀ꦪꦏꦂꦠ",
+  "sumber": "b2",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F007_50.png": {
+  "latin": "sing sing ora wruh ing kang utama",
+  "aksara": "ꦱꦶꦁꦱꦶꦁꦲꦺꦴꦫꦮ꧀ꦫꦸꦃꦲꦶꦁꦏꦁꦲꦸꦠꦩ",
+  "sumber": "b2",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F198_01.png": {
+  "latin": "ca",
+  "aksara": "ꦕ",
+  "sumber": "b2",
+  "bukti": [],
+  "tier": "buang",
+  "sah": false
+ },
+ "F007_56.png": {
+  "latin": "sa",
+  "aksara": "ꦱ",
+  "sumber": "b2",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F061_00.png": {
+  "latin": "asuransi jasindo",
+  "aksara": "ꦲꦱꦸꦫꦤ꧀ꦱꦶꦗꦱꦶꦤ꧀ꦢꦺꦴ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy",
+   "papan",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F059_00.png": {
+  "latin": "sa,pa.",
+  "aksara": "ꦱꦥ",
+  "sumber": "b3",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F132_03.png": {
+  "latin": "pra kongres aksara jawa i",
+  "aksara": "ꦥ꧀ꦫꦏꦺꦴꦁꦫꦺꦱ꧀ꦲꦏ꧀ꦱꦫꦗꦮꦲꦶ",
+  "sumber": "b3",
+  "bukti": [
+   "papan",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F132_02.png": {
+  "latin": "yogyakarta 17 - 19 maret 2020",
+  "aksara": "ꦪꦺꦴꦒ꧀ꦪꦏꦂꦠꦩꦫꦺꦠ꧀",
+  "sumber": "b3",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F197_00.png": {
+  "latin": "a",
+  "aksara": "ꦲ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F083_00.png": {
+  "latin": "–hahannahahannahanna",
+  "aksara": "ꦲꦲꦤ꧀ꦤꦲꦲꦤ꧀ꦤꦲꦤ꧀ꦤ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F064_00.png": {
+  "latin": "maga",
+  "aksara": "ꦩꦒ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F197_03.png": {
+  "latin": "ja",
+  "aksara": "ꦗ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F197_06.png": {
+  "latin": "ya",
+  "aksara": "ꦪ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F197_15.png": {
+  "latin": "ga",
+  "aksara": "ꦒ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F198_18.png": {
+  "latin": "ya",
+  "aksara": "ꦪ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F025_02.png": {
+  "latin": "na",
+  "aksara": "ꦤ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F173_03.png": {
+  "latin": "damênggahpaturrannipunsamikanoppa",
+  "aksara": "ꦢꦩꦼꦁꦒꦃꦥꦠꦸꦂꦫꦤ꧀ꦤꦶꦥꦸꦤ꧀ꦱꦩꦶꦏꦤꦺꦴꦥ꧀ꦥ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F123_03.png": {
+  "latin": "han na li ka ju mê nêng dang nam si ma ha ra ja",
+  "aksara": "ꦲꦤ꧀ꦤꦭꦶꦏꦗꦸꦩꦼꦤꦼꦁꦢꦁꦤꦩ꧀ꦱꦶꦩꦲꦫꦗ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F165_00.png": {
+  "latin": "sugêngrawuhpamupu",
+  "aksara": "ꦱꦸꦒꦼꦁꦫꦮꦸꦃꦥꦩꦸꦥꦸ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F024_00.png": {
+  "latin": "pêmêrintah kota surakarta",
+  "aksara": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
+  "sumber": "koreksi_farrel",
+  "bukti": [
+   "decoy",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F172_05.png": {
+  "latin": "ta hun wa wu wi nar no hing sang ka lan ni pun ru pan ar na gi ri tung gal pan pun ni ka ka",
+  "aksara": "ꦠꦲꦸꦤ꧀ꦮꦮꦸꦮꦶꦤꦂꦤꦺꦴꦲꦶꦁꦱꦁꦏꦭꦤ꧀ꦤꦶꦥꦸꦤ꧀ꦫꦸꦥꦤ꧀ꦲꦂꦤꦒꦶꦫꦶꦠꦸꦁꦒꦭ꧀ꦥꦤ꧀ꦥꦸꦤ꧀ꦤꦶꦏꦏ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F197_12.png": {
+  "latin": "da",
+  "aksara": "ꦢ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F007_67.png": {
+  "latin": "munsira",
+  "aksara": "ꦩꦸꦤ꧀ꦱꦶꦫ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F041_02.png": {
+  "latin": "jangngannipun",
+  "aksara": "ꦗꦁꦔꦤ꧀ꦤꦶꦥꦸꦤ꧀",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F172_02.png": {
+  "latin": "ni ro smang ka ran ning pu puh kin nên wa nu run kang ngan y ha pan kin nên kê wa la ma nu run sung",
+  "aksara": "ꦤꦶꦫꦺꦴꦱ꧀ꦩꦁꦏꦫꦤ꧀ꦤꦶꦁꦥꦸꦥꦸꦃꦏꦶꦤ꧀ꦤꦼꦤ꧀ꦮꦤꦸꦫꦸꦤ꧀ꦏꦁꦔꦤ꧀ꦪ꧀ꦲꦥꦤ꧀ꦏꦶꦤ꧀ꦤꦼꦤ꧀ꦏꦼꦮꦭꦩꦤꦸꦫꦸꦤ꧀ꦱꦸꦁ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F007_85.png": {
+  "latin": "nisakapur",
+  "aksara": "ꦤꦶꦱꦏꦥꦸꦂ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F127_01.png": {
+  "latin": "la",
+  "aksara": "ꦭ",
+  "sumber": "b3",
+  "bukti": [],
+  "tier": "buang",
+  "sah": false
+ },
+ "F007_82.png": {
+  "latin": "kêsségang",
+  "aksara": "ꦏꦼꦱ꧀ꦱꦺꦒꦁ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F008_07.png": {
+  "latin": "wakilbayasankallohustigulbékihanwo",
+  "aksara": "ꦮꦏꦶꦭ꧀ꦧꦪꦱꦤ꧀ꦏꦭ꧀ꦭꦺꦴꦲꦸꦱ꧀ꦠꦶꦒꦸꦭ꧀ꦧꦺꦏꦶꦲꦤ꧀ꦮꦺꦴ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F008_04.png": {
+  "latin": "nhamangkuhuwanagadagutirnudhahhéro",
+  "aksara": "ꦤ꧀ꦲꦩꦁꦏꦸꦲꦸꦮꦤꦒꦢꦒꦸꦠꦶꦂꦤꦸꦝꦃꦲꦺꦫꦺꦴ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F195_20.png": {
+  "latin": "dhuhasha",
+  "aksara": "ꦝꦸꦲꦱ꧀ꦲ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F088_00.png": {
+  "latin": "mamêrinnahpukahortasurakarta",
+  "aksara": "ꦩꦩꦼꦫꦶꦤ꧀ꦤꦃꦥꦸꦏꦲꦺꦴꦂꦠꦱꦸꦫꦏꦂꦠ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F094_00.png": {
+  "latin": "sasumurpêngarsitn",
+  "aksara": "ꦱꦱꦸꦩꦸꦂꦥꦼꦔꦂꦱꦶꦠ꧀ꦤ꧀",
+  "sumber": "b3",
+  "bukti": [
+   "decoy",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F195_14.png": {
+  "latin": "dhituné",
+  "aksara": "ꦝꦶꦠꦸꦤꦺ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F197_21.png": {
+  "latin": "la",
+  "aksara": "ꦭ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F175_10.png": {
+  "latin": "muluh",
+  "aksara": "ꦩꦸꦭꦸꦃ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F007_48.png": {
+  "latin": "tap sa",
+  "aksara": "ꦠꦥ꧀ꦱ",
+  "sumber": "b3",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F163_04.png": {
+  "latin": "pérgishotaw",
+  "aksara": "ꦥꦺꦂꦒꦶꦱ꧀ꦲꦺꦴꦠꦮ꧀",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F062_00.png": {
+  "latin": "hotélrsanugêrahpalasé",
+  "aksara": "ꦲꦺꦴꦠꦺꦭ꧀ꦂꦱꦤꦸꦒꦼꦫꦃꦥꦭꦱꦺ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy",
+   "visual"
+  ],
+  "tier": "terpercaya",
+  "sah": true
+ },
+ "F198_10.png": {
+  "latin": "ga",
+  "aksara": "ꦒ",
+  "sumber": "b3",
+  "bukti": [],
+  "tier": "buang",
+  "sah": false
+ },
+ "F165_04.png": {
+  "latin": "pérginghotélaw",
+  "aksara": "ꦥꦺꦂꦒꦶꦁꦲꦺꦴꦠꦺꦭꦮ꧀",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F124_22.png": {
+  "latin": "dhiduthogobémémomênawasandhangané",
+  "aksara": "ꦝꦶꦢꦸꦛꦺꦴꦒꦺꦴꦧꦺꦩꦺꦩꦺꦴꦩꦼꦤꦮꦱꦤ꧀ꦝꦔꦤꦺ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F177_00.png": {
+  "latin": "tagningsalanwarrupêyah",
+  "aksara": "ꦠꦒ꧀ꦤꦶꦁꦱꦭꦤ꧀ꦮꦂꦫꦸꦥꦼꦪꦃ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F195_11.png": {
+  "latin": "séyihuméra",
+  "aksara": "ꦱꦺꦪꦶꦲꦸꦩꦺꦫ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F124_16.png": {
+  "latin": "damarénkahhdhakathalêmbanggakêngkikahisanganangkangda",
+  "aksara": "ꦢꦩꦫꦺꦤ꧀ꦏꦃꦃꦝꦏꦛꦭꦼꦩ꧀ꦧꦁꦒꦏꦼꦁꦏꦶꦏꦲꦶꦱꦔꦤꦁꦏꦁꦢ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F127_07.png": {
+  "latin": "ha",
+  "aksara": "ꦲ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F007_51.png": {
+  "latin": "ngiha",
+  "aksara": "ꦔꦶꦲ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F124_19.png": {
+  "latin": "ngnaksérintihugakudjinggojangkêphamarga",
+  "aksara": "ꦁꦤꦏ꧀ꦱꦺꦫꦶꦤ꧀ꦠꦶꦲꦸꦒꦏꦸꦢ꧀ꦗꦶꦁꦒꦺꦴꦗꦁꦏꦼꦥ꧀ꦲꦩꦂꦒ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F198_05.png": {
+  "latin": "dha",
+  "aksara": "ꦝ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F124_09.png": {
+  "latin": "dinasêlasadangédabangstastangnyênharjakangréngsangsi",
+  "aksara": "ꦢꦶꦤꦱꦼꦭꦱꦢꦔꦺꦢꦧꦁꦱ꧀ꦠꦱ꧀ꦠꦁꦚꦼꦤ꧀ꦲꦂꦗꦏꦁꦫꦺꦁꦱꦁꦱꦶ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F007_70.png": {
+  "latin": "dhisakakahananinipa",
+  "aksara": "ꦝꦶꦱꦏꦏꦲꦤꦤꦶꦤꦶꦥ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F179_05.png": {
+  "latin": "dê ko ta pu pa gad hung nang wow dê kong na ba hu la ga sa to dang ko da do",
+  "aksara": "ꦢꦼꦏꦺꦴꦠꦥꦸꦥꦒꦢ꧀ꦲꦸꦁꦤꦁꦮꦺꦴꦮ꧀ꦢꦼꦏꦺꦴꦁꦤꦧꦲꦸꦭꦒꦱꦠꦺꦴꦢꦁꦏꦺꦴꦢꦢꦺꦴ",
+  "sumber": "b3",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F006_03.png": {
+  "latin": "d bang lil têm uk nên pang r na rad hu",
+  "aksara": "ꦢ꧀ꦧꦁꦭꦶꦭ꧀ꦠꦼꦩ꧀ꦲꦸꦏ꧀ꦤꦼꦤ꧀ꦥꦁꦂꦤꦫꦢ꧀ꦲꦸ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F195_17.png": {
+  "latin": "nunnyunok lannak",
+  "aksara": "ꦤꦸꦤ꧀ꦚꦸꦤꦺꦴꦏ꧀ꦭꦤ꧀ꦤꦏ꧀",
+  "sumber": "b3",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F197_37.png": {
+  "latin": "bba",
+  "aksara": "ꦧ꧀ꦧ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F151_17.png": {
+  "latin": "ngliramasasakohahngragungrarusahah",
+  "aksara": "ꦁꦭꦶꦫꦩꦱꦱꦏꦺꦴꦲꦃꦁꦫꦒꦸꦁꦫꦫꦸꦱꦲꦃ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F175_07.png": {
+  "latin": "pa",
+  "aksara": "ꦥ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "buang",
+  "sah": false
+ },
+ "F151_14.png": {
+  "latin": "sa mur rang th da ram li ga gu gal hang ga ru",
+  "aksara": "ꦱꦩꦸꦂꦫꦁꦛ꧀ꦢꦫꦩ꧀ꦭꦶꦒꦒꦸꦒꦭ꧀ꦲꦁꦒꦫꦸ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F122_04.png": {
+  "latin": "racadhpu",
+  "aksara": "ꦫꦕꦝ꧀ꦥꦸ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F178_02.png": {
+  "latin": "tadaraninglêmmangrapa",
+  "aksara": "ꦠꦢꦫꦤꦶꦁꦭꦼꦩ꧀ꦩꦁꦫꦥ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F197_18.png": {
+  "latin": "ththa",
+  "aksara": "ꦛ꧀ꦛ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F195_08.png": {
+  "latin": "kik dus",
+  "aksara": "ꦏꦶꦏ꧀ꦢꦸꦱ꧀",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F122_07.png": {
+  "latin": "nbarilpans",
+  "aksara": "ꦤ꧀ꦧꦫꦶꦭ꧀ꦥꦤ꧀ꦱ꧀",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F124_10.png": {
+  "latin": "kaskapakasilpagarsanéngéngkahkkambikodangditlambajayajongtonikakayosayanggotathajohajayosayangngsak",
+  "aksara": "ꦏꦱ꧀ꦏꦥꦏꦱꦶꦭ꧀ꦥꦒꦂꦱꦤꦺꦔꦺꦁꦏꦃꦏ꧀ꦏꦩ꧀ꦧꦶꦏꦺꦴꦢꦁꦢꦶꦠ꧀ꦭꦩ꧀ꦧꦗꦪꦗꦺꦴꦁꦠꦺꦴꦤꦶꦏꦏꦪꦺꦴꦱꦪꦁꦒꦺꦴꦠꦛꦗꦺꦴꦲꦗꦪꦺꦴꦱꦪꦁꦁꦱꦏ꧀",
+  "sumber": "b3",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F007_88.png": {
+  "latin": "si-si-si-si",
+  "aksara": "ꦱꦶꦱꦶꦱꦶꦱꦶ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F007_61.png": {
+  "latin": "liné",
+  "aksara": "ꦭꦶꦤꦺ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F195_05.png": {
+  "latin": "wu ran réng jur ha",
+  "aksara": "ꦮꦸꦫꦤ꧀ꦫꦺꦁꦗꦸꦂꦲ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F151_20.png": {
+  "latin": "jê jêng hi ci ru sir han yang kê ra",
+  "aksara": "ꦗꦼꦗꦼꦁꦲꦶꦕꦶꦫꦸꦱꦶꦂꦲꦤ꧀ꦪꦁꦏꦼꦫ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F144_05.png": {
+  "latin": "da ting hya pdoh ra hyi ra tu",
+  "aksara": "ꦢꦠꦶꦁꦃꦪꦥ꧀ꦢꦺꦴꦃꦫꦃꦪꦶꦫꦠꦸ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F150_00.png": {
+  "latin": "rang é tha ra pak jup da",
+  "aksara": "ꦫꦁꦲꦺꦛꦫꦥꦏ꧀ꦗꦸꦥ꧀ꦢ",
+  "sumber": "b3",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F067_00.png": {
+  "latin": "hotén wa ké léng aku",
+  "aksara": "ꦲꦺꦴꦠꦺꦤ꧀ꦮꦏꦺꦭꦺꦁꦲꦏꦸ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F088_02.png": {
+  "latin": "ting",
+  "aksara": "ꦠꦶꦁ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F175_04.png": {
+  "latin": "nung sa",
+  "aksara": "ꦤꦸꦁꦱ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F134_02.png": {
+  "latin": "lung dlah ang wa ti wung dang haké wé",
+  "aksara": "ꦭꦸꦁꦢ꧀ꦭꦃꦲꦁꦮꦠꦶꦮꦸꦁꦢꦁꦲꦏꦺꦮꦺ",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F007_79.png": {
+  "latin": "ng cu sa ta tah cah hr ka ca",
+  "aksara": "ꦁꦕꦸꦱꦠꦠꦃꦕꦃꦃꦂꦏꦕ",
+  "sumber": "b3",
+  "bukti": [],
+  "tier": "buang",
+  "sah": false
+ },
+ "F144_02.png": {
+  "latin": "ca mé nar sa dan wung né san",
+  "aksara": "ꦕꦩꦺꦤꦂꦱꦢꦤ꧀ꦮꦸꦁꦤꦺꦱꦤ꧀",
+  "sumber": "b3",
+  "bukti": [
+   "decoy"
+  ],
+  "tier": "periksa",
+  "sah": true
+ },
+ "F197_27.png": {
+  "latin": "e",
+  "aksara": "ꦲꦺ",
+  "sumber": "b3",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ },
+ "F198_13.png": {
+  "latin": "g",
+  "aksara": "ꦒ꧀",
+  "sumber": "b3",
+  "bukti": [],
+  "tier": "buang",
+  "sah": true
+ }
+}

@@ -12,13 +12,13 @@ export function BelajarPage() {
   const [pesan] = useState<string | null>(null);
 
   // Ambil nama pengguna dan avatar dari localStorage (otomatis sinkron saat kembali dari halaman profil)
-  const [namaUser, setNamaUser] = useState(() => localStorage.getItem('namaUser') || 'Kenji Morales');
+  const [namaUser, setNamaUser] = useState(() => localStorage.getItem('namaUser') || 'Teman Belajar');
   const [activeAvatarId, setActiveAvatarId] = useState(() => parseInt(localStorage.getItem('selectedAvatarId') || '1', 10));
   const [modalAvatar, setModalAvatar] = useState(false);
 
   useEffect(() => {
     const handleUpdate = () => {
-      setNamaUser(localStorage.getItem('namaUser') || 'Kenji Morales');
+      setNamaUser(localStorage.getItem('namaUser') || 'Teman Belajar');
       setActiveAvatarId(parseInt(localStorage.getItem('selectedAvatarId') || '1', 10));
     };
     window.addEventListener('storage', handleUpdate);

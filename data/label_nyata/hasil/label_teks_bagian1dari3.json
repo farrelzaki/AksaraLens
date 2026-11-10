@@ -1,0 +1,2031 @@
+{
+  "F131_00.png": {
+    "status": "ok",
+    "latin": "bakpia kukus",
+    "aksara": "ꦧꦏ꧀ꦥꦶꦪꦏꦸꦏꦸꦱ꧀",
+    "foto": "F131.jpg",
+    "kotak": [
+      681,
+      1255,
+      1274,
+      1435
+    ]
+  },
+  "F142_00.png": {
+    "status": "ok",
+    "latin": "dalan abu bakar ali",
+    "aksara": "ꦢꦭꦤ꧀ꦲꦧꦸꦧꦏꦂꦲꦭꦶ",
+    "foto": "F142.jpg",
+    "kotak": [
+      401,
+      495,
+      1068,
+      580
+    ]
+  },
+  "F072_00.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F072.jpg",
+    "kotak": [
+      385,
+      660,
+      849,
+      764
+    ]
+  },
+  "F068_00.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F068.jpg",
+    "kotak": [
+      272,
+      270,
+      1540,
+      341
+    ]
+  },
+  "F065_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F065.jpg",
+    "kotak": [
+      720,
+      669,
+      1334,
+      759
+    ]
+  },
+  "F097_00.png": {
+    "status": "ok",
+    "latin": "kusuma sahid prin hotél solo",
+    "aksara": "ꦏꦸꦱꦸꦩꦱꦲꦶꦢ꧀ꦥ꧀ꦫꦶꦤ꧀ꦲꦺꦴꦠꦺꦭ꧀ꦱꦺꦴꦭꦺꦴ",
+    "foto": "F097.jpg",
+    "kotak": [
+      434,
+      511,
+      1264,
+      591
+    ]
+  },
+  "F070_00.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F070.jpg",
+    "kotak": [
+      478,
+      624,
+      1058,
+      740
+    ]
+  },
+  "F028_00.png": {
+    "status": "lewati",
+    "latin": "dalan walét",
+    "aksara": "ꦢꦭꦤ꧀ꦮꦭꦺꦠ꧀",
+    "foto": "F028.jpg",
+    "kotak": [
+      683,
+      539,
+      1049,
+      631
+    ],
+    "catatan": "Ada Angka Jawa 3 (꧓) di luar charset model"
+  },
+  "F084_00.png": {
+    "status": "ok",
+    "latin": "kampung timuran",
+    "aksara": "ꦏꦩ꧀ꦥꦸꦁꦠꦶꦩꦸꦫꦤ꧀",
+    "foto": "F084.jpg",
+    "kotak": [
+      1022,
+      752,
+      1408,
+      931
+    ]
+  },
+  "F098_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F098.jpg",
+    "kotak": [
+      196,
+      660,
+      1462,
+      749
+    ]
+  },
+  "F082_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F082.jpg",
+    "kotak": [
+      272,
+      649,
+      1412,
+      846
+    ]
+  },
+  "F009_02.png": {
+    "status": "ok",
+    "latin": "badan pengelola kehuhangan dan asét daérah",
+    "aksara": "ꦧꦢꦤ꧀ꦥꦼꦔꦼꦭꦺꦴꦭꦏꦼꦲꦸꦲꦔꦤ꧀ꦢꦤ꧀ꦲꦱꦺꦠ꧀ꦢꦲꦺꦫꦃ",
+    "foto": "F009.jpg",
+    "kotak": [
+      489,
+      649,
+      1563,
+      795
+    ]
+  },
+  "F081_01.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F081.jpg",
+    "kotak": [
+      247,
+      735,
+      613,
+      872
+    ]
+  },
+  "F025_03.png": {
+    "status": "ok",
+    "latin": "kota surakarta",
+    "aksara": "ꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
+    "foto": "F025.jpg",
+    "kotak": [
+      447,
+      564,
+      1071,
+      655
+    ]
+  },
+  "F197_32.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F197.jpg",
+    "kotak": [
+      852,
+      1810,
+      915,
+      1891
+    ]
+  },
+  "F041_03.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F041.jpg",
+    "kotak": [
+      534,
+      1709,
+      670,
+      1741
+    ]
+  },
+  "F024_01.png": {
+    "status": "ok",
+    "latin": "dhinas perhubungngan kota surakarta",
+    "aksara": "ꦝꦶꦤꦱ꧀ꦥꦼꦂꦲꦸꦧꦸꦁꦔꦤ꧀ꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
+    "foto": "F024.jpg",
+    "kotak": [
+      407,
+      581,
+      1291,
+      703
+    ]
+  },
+  "F132_01.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F132.jpg",
+    "kotak": [
+      891,
+      484,
+      1139,
+      592
+    ]
+  },
+  "F148_05.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F148.jpg",
+    "kotak": [
+      557,
+      1141,
+      629,
+      1195
+    ]
+  },
+  "F198_15.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F198.jpg",
+    "kotak": [
+      655,
+      1097,
+      693,
+      1143
+    ]
+  },
+  "F198_09.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F198.jpg",
+    "kotak": [
+      846,
+      796,
+      895,
+      853
+    ]
+  },
+  "F108_06.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F108.jpg",
+    "kotak": [
+      351,
+      887,
+      408,
+      920
+    ]
+  },
+  "F198_23.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F198.jpg",
+    "kotak": [
+      820,
+      1425,
+      1013,
+      1491
+    ]
+  },
+  "F068_02.png": {
+    "status": "ok",
+    "latin": "surakarta",
+    "aksara": "ꦱꦸꦫꦏꦂꦠ",
+    "foto": "F068.jpg",
+    "kotak": [
+      750,
+      342,
+      1054,
+      409
+    ]
+  },
+  "F132_00.png": {
+    "status": "ok",
+    "latin": "prakonggrés aksara jawa",
+    "aksara": "ꦥ꧀ꦫꦏꦺꦴꦁꦒ꧀ꦫꦺꦱ꧀ꦲꦏ꧀ꦱꦫꦗꦮ",
+    "foto": "F132.jpg",
+    "kotak": [
+      308,
+      409,
+      1682,
+      612
+    ]
+  },
+  "F198_26.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F198.jpg",
+    "kotak": [
+      793,
+      1500,
+      983,
+      1555
+    ]
+  },
+  "F026_00.png": {
+    "status": "ok",
+    "latin": "ngonggopinaran",
+    "aksara": "ꦔꦺꦴꦁꦒꦺꦴꦥꦶꦤꦫꦤ꧀",
+    "foto": "F026.jpg",
+    "kotak": [
+      530,
+      403,
+      1292,
+      521
+    ]
+  },
+  "F124_15.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F124.jpg",
+    "kotak": [
+      1058,
+      708,
+      1794,
+      752
+    ]
+  },
+  "F124_01.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F124.jpg",
+    "kotak": [
+      1056,
+      193,
+      1772,
+      246
+    ]
+  },
+  "F124_13.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F124.jpg",
+    "kotak": [
+      1057,
+      651,
+      1785,
+      703
+    ]
+  },
+  "F074_01.png": {
+    "status": "ok",
+    "latin": "dhinas sosial tenaga kerja dhan transmigrasi",
+    "aksara": "ꦝꦶꦤꦱ꧀ꦱꦺꦴꦱꦶꦪꦭ꧀ꦠꦼꦤꦒꦏꦼꦂꦗꦝꦤ꧀ꦠ꧀ꦫꦤ꧀ꦱ꧀ꦩꦶꦒ꧀ꦫꦱꦶ",
+    "foto": "F074.jpg",
+    "kotak": [
+      121,
+      662,
+      1419,
+      821
+    ]
+  },
+  "F197_25.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F197.jpg",
+    "kotak": [
+      766,
+      963,
+      825,
+      1016
+    ]
+  },
+  "F065_01.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F065.jpg",
+    "kotak": [
+      1304,
+      1177,
+      1602,
+      1262
+    ]
+  },
+  "F071_00.png": {
+    "status": "ok",
+    "latin": "adhim ayim",
+    "aksara": "ꦲꦝꦶꦩ꧀ꦲꦪꦶꦩ꧀",
+    "foto": "F071.jpg",
+    "kotak": [
+      469,
+      876,
+      1159,
+      963
+    ]
+  },
+  "F003_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F003.jpg",
+    "kotak": [
+      324,
+      454,
+      1668,
+      776
+    ]
+  },
+  "F060_01.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F060.jpg",
+    "kotak": [
+      298,
+      982,
+      622,
+      1069
+    ]
+  },
+  "F008_05.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F008.jpg",
+    "kotak": [
+      311,
+      603,
+      1314,
+      658
+    ]
+  },
+  "F008_06.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F008.jpg",
+    "kotak": [
+      315,
+      648,
+      1315,
+      704
+    ]
+  },
+  "F002_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F002.jpg",
+    "kotak": [
+      373,
+      1307,
+      1180,
+      1419
+    ]
+  },
+  "F006_01.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F006.jpg",
+    "kotak": [
+      718,
+      309,
+      998,
+      343
+    ]
+  },
+  "F006_04.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F006.jpg",
+    "kotak": [
+      1031,
+      421,
+      1105,
+      446
+    ]
+  },
+  "F007_01.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1278,
+      150,
+      1455,
+      194
+    ]
+  },
+  "F007_04.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1450,
+      187,
+      1513,
+      223
+    ]
+  },
+  "F007_07.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1226,
+      383,
+      1415,
+      432
+    ]
+  },
+  "F007_10.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1412,
+      449,
+      1498,
+      494
+    ]
+  },
+  "F007_13.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      340,
+      623,
+      525,
+      691
+    ]
+  },
+  "F007_16.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1404,
+      695,
+      1427,
+      709
+    ]
+  },
+  "F007_19.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1300,
+      749,
+      1363,
+      778
+    ]
+  },
+  "F007_22.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1065,
+      863,
+      1198,
+      905
+    ]
+  },
+  "F007_25.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1277,
+      885,
+      1439,
+      943
+    ]
+  },
+  "F007_28.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1048,
+      910,
+      1190,
+      956
+    ]
+  },
+  "F007_31.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1046,
+      932,
+      1186,
+      980
+    ]
+  },
+  "F007_34.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1260,
+      974,
+      1439,
+      1016
+    ]
+  },
+  "F007_37.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      645,
+      999,
+      923,
+      1094
+    ]
+  },
+  "F007_40.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1368,
+      1008,
+      1446,
+      1040
+    ]
+  },
+  "F007_43.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1014,
+      1053,
+      1163,
+      1102
+    ]
+  },
+  "F007_46.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      999,
+      1133,
+      1145,
+      1182
+    ]
+  },
+  "F007_49.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1418,
+      1195,
+      1540,
+      1243
+    ]
+  },
+  "F007_52.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1,
+      1305,
+      302,
+      1398
+    ]
+  },
+  "F007_55.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      932,
+      1362,
+      986,
+      1390
+    ]
+  },
+  "F007_59.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      0,
+      1390,
+      269,
+      1473
+    ]
+  },
+  "F007_62.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      0,
+      1438,
+      254,
+      1528
+    ]
+  },
+  "F007_65.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      894,
+      1508,
+      993,
+      1557
+    ]
+  },
+  "F007_68.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      504,
+      1565,
+      959,
+      1675
+    ]
+  },
+  "F007_71.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      476,
+      1641,
+      943,
+      1748
+    ]
+  },
+  "F007_74.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1122,
+      1709,
+      1501,
+      1805
+    ]
+  },
+  "F007_77.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1116,
+      1749,
+      1495,
+      1839
+    ]
+  },
+  "F007_80.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      0,
+      1811,
+      126,
+      1867
+    ]
+  },
+  "F007_83.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      404,
+      1869,
+      888,
+      1982
+    ]
+  },
+  "F007_86.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1080,
+      1909,
+      1476,
+      1991
+    ]
+  },
+  "F007_89.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1070,
+      1952,
+      1476,
+      2031
+    ]
+  },
+  "F007_92.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F007.jpg",
+    "kotak": [
+      1061,
+      1996,
+      1406,
+      2048
+    ]
+  },
+  "F008_02.png": {
+    "status": "ok",
+    "latin": "yassan kalga husti ngulbên kihan saha kar",
+    "aksara": "ꦪꦱ꧀ꦱꦤ꧀ꦏꦭ꧀ꦒꦲꦸꦱ꧀ꦠꦶꦔꦸꦭ꧀ꦧꦼꦤ꧀ꦏꦶꦲꦤ꧀ꦱꦲꦏꦂ",
+    "foto": "F008.jpg",
+    "kotak": [
+      302,
+      461,
+      1311,
+      521
+    ]
+  },
+  "F009_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F009.jpg",
+    "kotak": [
+      250,
+      202,
+      1682,
+      444
+    ]
+  },
+  "F025_00.png": {
+    "status": "ok",
+    "latin": "pemerintah kota surakarta",
+    "aksara": "ꦥꦼꦩꦼꦫꦶꦤ꧀ꦠꦃꦏꦺꦴꦠꦱꦸꦫꦏꦂꦠ",
+    "foto": "F025.jpg",
+    "kotak": [
+      484,
+      291,
+      1190,
+      411
+    ]
+  },
+  "F027_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F027.jpg",
+    "kotak": [
+      178,
+      435,
+      1506,
+      520
+    ]
+  },
+  "F041_00.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F041.jpg",
+    "kotak": [
+      299,
+      143,
+      1032,
+      258
+    ]
+  },
+  "F054_00.png": {
+    "status": "ok",
+    "latin": "mandhala wisata",
+    "aksara": "ꦩꦤ꧀ꦝꦭꦮꦶꦱꦠ",
+    "foto": "F054.jpg",
+    "kotak": [
+      1129,
+      915,
+      1605,
+      975
+    ]
+  },
+  "F058_01.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F058.jpg",
+    "kotak": [
+      439,
+      793,
+      497,
+      836
+    ]
+  },
+  "F064_02.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F064.jpg",
+    "kotak": [
+      411,
+      579,
+      619,
+      660
+    ]
+  },
+  "F068_01.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F068.jpg",
+    "kotak": [
+      1851,
+      291,
+      1920,
+      353
+    ]
+  },
+  "F073_02.png": {
+    "status": "ok",
+    "latin": "tra",
+    "aksara": "ꦠ꧀ꦫ",
+    "foto": "F073.jpg",
+    "kotak": [
+      1429,
+      627,
+      1555,
+      674
+    ]
+  },
+  "F076_01.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F076.jpg",
+    "kotak": [
+      1015,
+      522,
+      1347,
+      591
+    ]
+  },
+  "F078_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F078.jpg",
+    "kotak": [
+      851,
+      103,
+      1107,
+      167
+    ]
+  },
+  "F079_01.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F079.jpg",
+    "kotak": [
+      231,
+      637,
+      445,
+      733
+    ]
+  },
+  "F088_01.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F088.jpg",
+    "kotak": [
+      437,
+      484,
+      1097,
+      561
+    ]
+  },
+  "F092_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F092.jpg",
+    "kotak": [
+      1049,
+      312,
+      1183,
+      349
+    ]
+  },
+  "F100_00.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F100.jpg",
+    "kotak": [
+      171,
+      286,
+      1183,
+      413
+    ]
+  },
+  "F108_02.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F108.jpg",
+    "kotak": [
+      1017,
+      617,
+      1278,
+      693
+    ]
+  },
+  "F108_07.png": {
+    "status": "ok",
+    "latin": "pa",
+    "aksara": "ꦥ",
+    "foto": "F108.jpg",
+    "kotak": [
+      109,
+      951,
+      147,
+      971
+    ]
+  },
+  "F115_01.png": {
+    "status": "ok",
+    "latin": "halim perdana kusuma",
+    "aksara": "ꦲꦭꦶꦩ꧀ꦥꦼꦂꦢꦤꦏꦸꦱꦸꦩ",
+    "foto": "F115.jpg",
+    "kotak": [
+      638,
+      629,
+      1434,
+      806
+    ]
+  },
+  "F120_02.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F120.jpg",
+    "kotak": [
+      659,
+      684,
+      989,
+      805
+    ]
+  },
+  "F120_05.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F120.jpg",
+    "kotak": [
+      647,
+      1237,
+      709,
+      1295
+    ]
+  },
+  "F122_02.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F122.jpg",
+    "kotak": [
+      497,
+      526,
+      735,
+      614
+    ]
+  },
+  "F122_05.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F122.jpg",
+    "kotak": [
+      500,
+      586,
+      738,
+      657
+    ]
+  },
+  "F122_08.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F122.jpg",
+    "kotak": [
+      1167,
+      701,
+      1239,
+      743
+    ]
+  },
+  "F123_01.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F123.jpg",
+    "kotak": [
+      474,
+      800,
+      953,
+      859
+    ]
+  },
+  "F123_04.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F123.jpg",
+    "kotak": [
+      454,
+      1180,
+      974,
+      1244
+    ]
+  },
+  "F123_07.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F123.jpg",
+    "kotak": [
+      495,
+      1405,
+      557,
+      1507
+    ]
+  },
+  "F124_02.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F124.jpg",
+    "kotak": [
+      1055,
+      246,
+      1707,
+      296
+    ]
+  },
+  "F124_07.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F124.jpg",
+    "kotak": [
+      193,
+      356,
+      989,
+      406
+    ]
+  },
+  "F124_12.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F124.jpg",
+    "kotak": [
+      179,
+      642,
+      871,
+      695
+    ]
+  },
+  "F124_17.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F124.jpg",
+    "kotak": [
+      1063,
+      757,
+      1785,
+      809
+    ]
+  },
+  "F124_20.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F124.jpg",
+    "kotak": [
+      180,
+      848,
+      786,
+      905
+    ]
+  },
+  "F124_23.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F124.jpg",
+    "kotak": [
+      175,
+      981,
+      1221,
+      1048
+    ]
+  },
+  "F125_02.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F125.jpg",
+    "kotak": [
+      1043,
+      439,
+      1189,
+      478
+    ]
+  },
+  "F127_02.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F127.jpg",
+    "kotak": [
+      151,
+      615,
+      219,
+      653
+    ]
+  },
+  "F127_05.png": {
+    "status": "ok",
+    "latin": "tha",
+    "aksara": "ꦛ",
+    "foto": "F127.jpg",
+    "kotak": [
+      798,
+      622,
+      860,
+      668
+    ]
+  },
+  "F127_08.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F127.jpg",
+    "kotak": [
+      1679,
+      865,
+      1775,
+      935
+    ]
+  },
+  "F127_11.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F127.jpg",
+    "kotak": [
+      744,
+      904,
+      808,
+      940
+    ]
+  },
+  "F133_02.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F133.jpg",
+    "kotak": [
+      942,
+      575,
+      998,
+      618
+    ]
+  },
+  "F134_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F134.jpg",
+    "kotak": [
+      592,
+      301,
+      1196,
+      465
+    ]
+  },
+  "F135_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F135.jpg",
+    "kotak": [
+      179,
+      0,
+      1205,
+      262
+    ]
+  },
+  "F144_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F144.jpg",
+    "kotak": [
+      1138,
+      327,
+      1580,
+      382
+    ]
+  },
+  "F144_03.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F144.jpg",
+    "kotak": [
+      305,
+      460,
+      763,
+      501
+    ]
+  },
+  "F144_06.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F144.jpg",
+    "kotak": [
+      1153,
+      857,
+      1603,
+      915
+    ]
+  },
+  "F148_03.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F148.jpg",
+    "kotak": [
+      1298,
+      943,
+      1794,
+      978
+    ]
+  },
+  "F150_01.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F150.jpg",
+    "kotak": [
+      395,
+      174,
+      779,
+      240
+    ]
+  },
+  "F151_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F151.jpg",
+    "kotak": [
+      247,
+      342,
+      1047,
+      407
+    ]
+  },
+  "F151_03.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F151.jpg",
+    "kotak": [
+      239,
+      518,
+      1061,
+      598
+    ]
+  },
+  "F151_06.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F151.jpg",
+    "kotak": [
+      834,
+      716,
+      856,
+      728
+    ]
+  },
+  "F151_09.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F151.jpg",
+    "kotak": [
+      233,
+      834,
+      668,
+      900
+    ]
+  },
+  "F151_12.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F151.jpg",
+    "kotak": [
+      246,
+      1094,
+      1056,
+      1171
+    ]
+  },
+  "F151_15.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F151.jpg",
+    "kotak": [
+      240,
+      1338,
+      1073,
+      1420
+    ]
+  },
+  "F151_18.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F151.jpg",
+    "kotak": [
+      234,
+      1518,
+      1059,
+      1609
+    ]
+  },
+  "F155_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F155.jpg",
+    "kotak": [
+      410,
+      151,
+      928,
+      224
+    ]
+  },
+  "F163_02.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F163.jpg",
+    "kotak": [
+      625,
+      428,
+      866,
+      468
+    ]
+  },
+  "F164_00.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F164.jpg",
+    "kotak": [
+      1056,
+      293,
+      1280,
+      368
+    ]
+  },
+  "F165_02.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F165.jpg",
+    "kotak": [
+      886,
+      305,
+      1278,
+      343
+    ]
+  },
+  "F172_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F172.jpg",
+    "kotak": [
+      110,
+      15,
+      1802,
+      140
+    ]
+  },
+  "F172_03.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F172.jpg",
+    "kotak": [
+      105,
+      338,
+      1799,
+      439
+    ]
+  },
+  "F172_06.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F172.jpg",
+    "kotak": [
+      107,
+      767,
+      1787,
+      865
+    ]
+  },
+  "F173_01.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F173.jpg",
+    "kotak": [
+      50,
+      187,
+      1872,
+      354
+    ]
+  },
+  "F173_04.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F173.jpg",
+    "kotak": [
+      28,
+      506,
+      1884,
+      694
+    ]
+  },
+  "F173_07.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F173.jpg",
+    "kotak": [
+      42,
+      998,
+      1868,
+      1143
+    ]
+  },
+  "F174_02.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F174.jpg",
+    "kotak": [
+      700,
+      840,
+      1196,
+      889
+    ]
+  },
+  "F175_02.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F175.jpg",
+    "kotak": [
+      1016,
+      404,
+      1056,
+      467
+    ]
+  },
+  "F175_05.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F175.jpg",
+    "kotak": [
+      989,
+      699,
+      1049,
+      738
+    ]
+  },
+  "F175_08.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F175.jpg",
+    "kotak": [
+      1138,
+      698,
+      1220,
+      753
+    ]
+  },
+  "F176_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F176.jpg",
+    "kotak": [
+      508,
+      476,
+      628,
+      553
+    ]
+  },
+  "F177_01.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F177.jpg",
+    "kotak": [
+      724,
+      805,
+      844,
+      856
+    ]
+  },
+  "F178_03.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F178.jpg",
+    "kotak": [
+      1075,
+      846,
+      1239,
+      897
+    ]
+  },
+  "F179_00.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F179.jpg",
+    "kotak": [
+      260,
+      1553,
+      771,
+      1587
+    ]
+  },
+  "F179_03.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F179.jpg",
+    "kotak": [
+      260,
+      1627,
+      771,
+      1659
+    ]
+  },
+  "F195_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F195.jpg",
+    "kotak": [
+      178,
+      161,
+      438,
+      258
+    ]
+  },
+  "F195_03.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F195.jpg",
+    "kotak": [
+      175,
+      251,
+      415,
+      304
+    ]
+  },
+  "F195_06.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F195.jpg",
+    "kotak": [
+      186,
+      327,
+      414,
+      394
+    ]
+  },
+  "F195_09.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F195.jpg",
+    "kotak": [
+      184,
+      399,
+      280,
+      480
+    ]
+  },
+  "F195_12.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F195.jpg",
+    "kotak": [
+      173,
+      576,
+      395,
+      670
+    ]
+  },
+  "F195_15.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F195.jpg",
+    "kotak": [
+      168,
+      786,
+      446,
+      887
+    ]
+  },
+  "F195_18.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F195.jpg",
+    "kotak": [
+      170,
+      879,
+      378,
+      953
+    ]
+  },
+  "F195_21.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F195.jpg",
+    "kotak": [
+      686,
+      962,
+      792,
+      1030
+    ]
+  },
+  "F197_04.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F197.jpg",
+    "kotak": [
+      781,
+      325,
+      821,
+      364
+    ]
+  },
+  "F197_07.png": {
+    "status": "ok",
+    "latin": "nya",
+    "aksara": "ꦚ",
+    "foto": "F197.jpg",
+    "kotak": [
+      654,
+      466,
+      725,
+      505
+    ]
+  },
+  "F197_10.png": {
+    "status": "ok",
+    "latin": "ka",
+    "aksara": "ꦏ",
+    "foto": "F197.jpg",
+    "kotak": [
+      212,
+      541,
+      265,
+      581
+    ]
+  },
+  "F197_13.png": {
+    "status": "ok",
+    "latin": "ga",
+    "aksara": "ꦒ",
+    "foto": "F197.jpg",
+    "kotak": [
+      656,
+      608,
+      721,
+      652
+    ]
+  },
+  "F197_16.png": {
+    "status": "ok",
+    "latin": "ba",
+    "aksara": "ꦧ",
+    "foto": "F197.jpg",
+    "kotak": [
+      656,
+      678,
+      719,
+      723
+    ]
+  },
+  "F197_19.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F197.jpg",
+    "kotak": [
+      1110,
+      816,
+      1164,
+      863
+    ]
+  },
+  "F197_22.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F197.jpg",
+    "kotak": [
+      662,
+      896,
+      715,
+      962
+    ]
+  },
+  "F197_28.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F197.jpg",
+    "kotak": [
+      340,
+      1440,
+      372,
+      1479
+    ]
+  },
+  "F197_31.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F197.jpg",
+    "kotak": [
+      239,
+      1554,
+      295,
+      1612
+    ]
+  },
+  "F198_00.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F198.jpg",
+    "kotak": [
+      195,
+      313,
+      265,
+      352
+    ]
+  },
+  "F198_03.png": {
+    "status": "lewati",
+    "latin": "",
+    "aksara": "",
+    "foto": "F198.jpg",
+    "kotak": [
+      773,
+      430,
+      821,
+      487
+    ]
+  },
+  "F198_06.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F198.jpg",
+    "kotak": [
+      952,
+      509,
+      1009,
+      547
+    ]
+  },
+  "F198_11.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F198.jpg",
+    "kotak": [
+      565,
+      877,
+      614,
+      922
+    ]
+  },
+  "F198_16.png": {
+    "status": "ok",
+    "latin": "ga",
+    "aksara": "ꦒ",
+    "foto": "F198.jpg",
+    "kotak": [
+      284,
+      1101,
+      345,
+      1137
+    ]
+  },
+  "F198_20.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F198.jpg",
+    "kotak": [
+      283,
+      1424,
+      396,
+      1460
+    ]
+  },
+  "F198_25.png": {
+    "status": "buang",
+    "latin": "",
+    "aksara": "",
+    "foto": "F198.jpg",
+    "kotak": [
+      242,
+      1500,
+      433,
+      1557
+    ]
+  },
+  "F199_02.png": {
+    "status": "ok",
+    "latin": "ka",
+    "aksara": "ꦏ",
+    "foto": "F199.jpg",
+    "kotak": [
+      167,
+      1168,
+      251,
+      1240
+    ]
+  }
+}

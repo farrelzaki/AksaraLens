@@ -22,7 +22,7 @@ export function ProfilPage() {
   const { stats, status } = useProgres();
   const navigate = useNavigate();
 
-  const [namaUser, setNamaUser] = useState(() => localStorage.getItem('namaUser') || 'Kenji Morales');
+  const [namaUser, setNamaUser] = useState(() => localStorage.getItem('namaUser') || 'Teman Belajar');
   // Default ke avatar id 1 (Si Lensa asli tanpa aksesoris sesuai PROFIL 1.png)
   const [activeAvatarId, setActiveAvatarId] = useState<number>(() => {
     const saved = localStorage.getItem('selectedAvatarId');
@@ -33,7 +33,7 @@ export function ProfilPage() {
 
   useEffect(() => {
     const syncData = () => {
-      setNamaUser(localStorage.getItem('namaUser') || 'Kenji Morales');
+      setNamaUser(localStorage.getItem('namaUser') || 'Teman Belajar');
       const saved = localStorage.getItem('selectedAvatarId');
       const parsed = saved ? parseInt(saved, 10) : 1;
       setActiveAvatarId(isNaN(parsed) || parsed < 1 || parsed > 8 ? 1 : parsed);
