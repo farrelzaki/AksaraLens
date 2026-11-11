@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Navigate, useNavigate, useLocation } from 'react-router';
 import { supabase } from '../../lib/supabase';
-import { daftarEmail, gantiSandi, lupaSandi, masukEmail, masukGoogle } from '../../lib/auth';
+import { daftarEmail, gantiSandi, keluar, lupaSandi, masukEmail, masukGoogle } from '../../lib/auth';
 import { useSesi } from '../../lib/sesi';
 
 interface MasukPageProps {
@@ -33,9 +33,55 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
   const [info, setInfo] = useState<string | null>(null);
   const [sibuk, setSibuk] = useState(false);
 
-  // Jika sudah login dan bukan mode ganti-sandi, arahkan ke beranda
+  // Jika pengguna masih memiliki sesi aktif di browser saat membuka halaman auth:
+  // Berikan kartu konfirmasi agar pengguna tahu mereka sedang login dan bisa logout dengan 1 klik untuk mengetes email baru.
   if (pengguna && (mode === 'masuk' || mode === 'daftar')) {
-    return <Navigate to="/belajar" replace />;
+    return (
+      <div className="auth-page auth-page-masuk" style={{ justifyContent: 'center', alignItems: 'center', minHeight: '100%', padding: '24px' }}>
+        <div style={{ background: '#FFFFFF', borderRadius: 24, padding: '32px 24px', boxShadow: '0 8px 32px rgba(67, 40, 28, 0.08)', maxWidth: 360, width: '100%', textAlign: 'center' }}>
+          <div style={{ fontSize: 48, marginBottom: 14 }}>👤</div>
+          <h2 style={{ fontSize: 20, fontWeight: 800, color: '#43281C', marginBottom: 8 }}>Sesi Akun Masih Aktif</h2>
+          <p style={{ fontSize: 13, color: '#685A4E', lineHeight: 1.5, marginBottom: 24 }}>
+            Saat ini kamu masih masuk sebagai <strong>{pengguna.email || 'Pengguna'}</strong>.<br />
+            Untuk mencoba login dengan akun lain atau menguji pesan belum registrasi, silakan keluar terlebih dahulu.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <button
+              type="button"
+              className="btn-auth-submit btn-auth-submit-brown"
+              onClick={() => navigate('/belajar')}
+            >
+              Lanjut ke Beranda Belajar →
+            </button>
+            <button
+              type="button"
+              style={{
+                background: '#FFF0DF',
+                color: '#91511E',
+                border: '1.5px solid #E1CBB5',
+                borderRadius: 16,
+                padding: '13px',
+                fontWeight: 700,
+                fontSize: 14,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 8,
+              }}
+              onClick={() => keluar('/masuk')}
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" width="18" height="18">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+              </svg>
+              <span>Keluar dari Akun Ini (Logout)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   const handleKembali = () => {
@@ -504,8 +550,69 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
         )}
 
         {pesan && (
-          <div className="auth-alert error" role="alert">
-            <div>{pesan}</div>
+          <div
+            className={`auth-alert ${pesan.toLowerCase().includes('belum terdaftar') ? 'warning' : 'error'}`}
+            role="alert"
+            style={
+              pesan.toLowerCase().includes('belum terdaftar')
+                ? {
+                    background: '#FFF4E5',
+                    border: '1.5px solid #F5A623',
+                    borderRadius: '16px',
+                    padding: '14px 16px',
+                    color: '#7A4100',
+                    textAlign: 'left',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '10px',
+                    boxShadow: '0 4px 12px rgba(245, 166, 35, 0.12)',
+                  }
+                : undefined
+            }
+          >
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+              {pesan.toLowerCase().includes('belum terdaftar') && (
+                <span style={{ fontSize: '20px', lineHeight: 1 }} aria-hidden="true">
+                  ⚠️
+                </span>
+              )}
+              <div style={{ flex: 1, fontSize: '13px', lineHeight: 1.45 }}>
+                {pesan.toLowerCase().includes('belum terdaftar') && (
+                  <strong style={{ display: 'block', fontSize: '13.5px', fontWeight: 800, color: '#663300', marginBottom: '2px' }}>
+                    Akun Belum Terdaftar
+                  </strong>
+                )}
+                <span>{pesan}</span>
+              </div>
+            </div>
+
+            {pesan.toLowerCase().includes('belum terdaftar') && (
+              <div style={{ display: 'flex', gap: '8px', marginTop: '2px' }}>
+                <button
+                  type="button"
+                  className="auth-link-bold"
+                  style={{
+                    background: '#7A4100',
+                    color: '#FFFFFF',
+                    border: 'none',
+                    borderRadius: '999px',
+                    padding: '7px 16px',
+                    fontSize: '12.5px',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    boxShadow: '0 2px 6px rgba(122, 65, 0, 0.2)',
+                  }}
+                  onClick={() => {
+                    setMode('daftar');
+                    setPesan(null);
+                    setInfo(`Lengkapi nama panggilan untuk mendaftar akun ${email}.`);
+                  }}
+                >
+                  Daftar Sekarang →
+                </button>
+              </div>
+            )}
+
             {pesan.toLowerCase().includes('sudah terdaftar') && (
               <div style={{ marginTop: 8 }}>
                 <button

@@ -124,18 +124,18 @@ export async function daftarEmail(email: string, sandi: string, nama?: string): 
   const emailBersih = email.trim().toLowerCase()
   const namaBersih = nama?.trim()
 
-  // Simpan mapping nama di lokal untuk email ini agar selalu sinkron saat masuk
-  if (namaBersih) {
-    try {
-      localStorage.setItem(`aksaralens:nama:${emailBersih}`, namaBersih)
-      const daftarAkun: string[] = JSON.parse(localStorage.getItem('aksaralens:registered_emails') || '[]')
-      if (!daftarAkun.includes(emailBersih)) {
-        daftarAkun.push(emailBersih)
-        localStorage.setItem('aksaralens:registered_emails', JSON.stringify(daftarAkun))
-      }
-    } catch {
-      /* abaikan */
+  // Simpan email ke daftar akun terdaftar lokal agar sinkron
+  try {
+    const daftarAkun: string[] = JSON.parse(localStorage.getItem('aksaralens:registered_emails') || '[]')
+    if (!daftarAkun.includes(emailBersih)) {
+      daftarAkun.push(emailBersih)
+      localStorage.setItem('aksaralens:registered_emails', JSON.stringify(daftarAkun))
     }
+    if (namaBersih) {
+      localStorage.setItem(`aksaralens:nama:${emailBersih}`, namaBersih)
+    }
+  } catch {
+    /* abaikan */
   }
 
   if (!supabase) {
@@ -202,10 +202,10 @@ export async function masukEmail(email: string, sandi: string): Promise<HasilAks
   const { data, error } = await supabase.auth.signInWithPassword({ email: emailBersih, password: sandi })
   if (error) {
     const m = error.message.toLowerCase()
-    if (m.includes('invalid login credentials')) {
+    if (m.includes('invalid login credentials') || m.includes('user not found') || m.includes('invalid_grant')) {
       const daftarAkun: string[] = JSON.parse(localStorage.getItem('aksaralens:registered_emails') || '[]')
       if (!daftarAkun.includes(emailBersih)) {
-        return { ok: false, pesan: 'Email ini belum terdaftar atau kata sandi salah. Silakan pastikan kamu sudah mendaftar terlebih dahulu.' }
+        return { ok: false, pesan: 'Akun dengan email ini belum terdaftar. Harap lakukan pendaftaran akun terlebih dahulu.' }
       }
       return { ok: false, pesan: 'Kata sandi salah. Silakan periksa kembali kata sandimu.' }
     }

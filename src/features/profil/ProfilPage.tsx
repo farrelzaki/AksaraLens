@@ -6,6 +6,7 @@ import { useProgres } from '../../progres/ProgresProvider';
 import { BAB, JALUR } from '../../content';
 import { ModalGantiAvatar, ICON_PROFIL } from './ModalGantiAvatar';
 import { useSesi } from '../../lib/sesi';
+import { keluar } from '../../lib/auth';
 
 export { ICON_PROFIL };
 
@@ -638,6 +639,22 @@ export function ProfilPage() {
             </span>
           </div>
         </div>
+
+        {/* Tombol Logout Langsung di Halaman Profil */}
+        <button
+          type="button"
+          className="btn-logout-peach"
+          onClick={() => keluar('/masuk')}
+          aria-label="Logout dari akun"
+          style={{ marginTop: 16, marginBottom: 24 }}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" width="19" height="19">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="9" y2="12" />
+          </svg>
+          <span>Keluar Akun (Logout)</span>
+        </button>
       </div>
 
       {/* Modal Pilih Avatar */}
