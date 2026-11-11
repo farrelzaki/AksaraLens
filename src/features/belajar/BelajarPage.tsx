@@ -20,7 +20,7 @@ export function BelajarPage() {
       pengguna?.user_metadata?.name ||
       pengguna?.user_metadata?.display_name ||
       pengguna?.email?.split('@')[0] ||
-      'Kenji Morales'
+      'Teman Belajar'
     );
   };
 

@@ -85,36 +85,54 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
       return;
     }
 
+    // Validasi email untuk Daftar & Masuk
+    const emailBersih = email.trim().toLowerCase();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailBersih)) {
+      setPesan('Format email belum benar (contoh: nama@email.com).');
+      return;
+    }
+
     if (sandi.length < 6) {
       setPesan('Kata sandi minimal 6 karakter.');
       return;
     }
 
-    if (mode === 'daftar' && nama.trim()) {
-      localStorage.setItem('namaUser', nama.trim());
-    }
-
-    // Mode demo / offline tanpa Supabase
-    if (!supabase) {
-      if (!localStorage.getItem('namaUser')) {
-        localStorage.setItem('namaUser', nama.trim() || 'Kenji Morales');
+    // === ALUR DAFTAR (REGISTRASI KETAT) ===
+    if (mode === 'daftar') {
+      if (!nama.trim()) {
+        setPesan('Masukkan nama panggilan atau nama lengkapmu.');
+        return;
       }
-      navigate('/belajar');
+      if (nama.trim().length < 2) {
+        setPesan('Nama minimal 2 karakter.');
+        return;
+      }
+
+      setSibuk(true);
+      const hasil = await daftarEmail(emailBersih, sandi, nama.trim());
+      setSibuk(false);
+
+      if (!hasil.ok) {
+        setPesan(hasil.pesan);
+      } else {
+        // Setelah registrasi sukses, wajibkan pengguna login dengan email & sandi baru
+        setMode('masuk');
+        setEmail(emailBersih);
+        setSandi('');
+        setPesan(null);
+        setInfo('Pendaftaran berhasil! Akunmu sudah terdaftar. Silakan masukkan kata sandi untuk masuk.');
+      }
       return;
     }
 
+    // === ALUR MASUK (LOGIN KETAT) ===
     setSibuk(true);
-    const hasil =
-      mode === 'masuk'
-        ? await masukEmail(email.trim(), sandi)
-        : await daftarEmail(email.trim(), sandi);
+    const hasil = await masukEmail(emailBersih, sandi);
     setSibuk(false);
 
     if (!hasil.ok) {
       setPesan(hasil.pesan);
-    } else if (hasil.butuhKonfirmasi) {
-      setInfo('Cek email kamu dan klik tautan konfirmasi, lalu masuk.');
-      setMode('masuk');
     } else {
       localStorage.setItem('aksaralens_onboarding_done', 'true');
       localStorage.setItem('hasSeenIntro', 'true');
@@ -124,17 +142,11 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
 
   async function denganGoogle() {
     setPesan(null);
-
-    if (nama.trim()) {
-      localStorage.setItem('namaUser', nama.trim());
-    }
     localStorage.setItem('aksaralens_onboarding_done', 'true');
     localStorage.setItem('hasSeenIntro', 'true');
 
     if (!supabase) {
-      if (!localStorage.getItem('namaUser')) {
-        localStorage.setItem('namaUser', 'Kenji Morales');
-      }
+      localStorage.setItem('namaUser', 'Teman Belajar');
       navigate('/belajar');
       return;
     }

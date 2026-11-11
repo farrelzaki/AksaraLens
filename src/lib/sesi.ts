@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react';
 import type { User } from '@supabase/supabase-js';
 import { supabase } from './supabase';
+import { sinkronkanUserMetadata } from './auth';
 
 export function useSesi(): { pengguna: User | null; memuat: boolean } {
   const [pengguna, setPengguna] = useState<User | null>(null);
@@ -15,11 +16,15 @@ export function useSesi(): { pengguna: User | null; memuat: boolean } {
     // getSession membaca sesi lokal, tidak memanggil jaringan.
     void supabase.auth.getSession().then(({ data }) => {
       if (batal) return;
-      setPengguna(data.session?.user ?? null);
+      const user = data.session?.user ?? null;
+      if (user) sinkronkanUserMetadata(user);
+      setPengguna(user);
       setMemuat(false);
     });
     const { data } = supabase.auth.onAuthStateChange((_event, sesi) => {
-      setPengguna(sesi?.user ?? null);
+      const user = sesi?.user ?? null;
+      if (user) sinkronkanUserMetadata(user);
+      setPengguna(user);
     });
     return () => {
       batal = true;

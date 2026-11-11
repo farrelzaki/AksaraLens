@@ -21,7 +21,7 @@ export function ProfilPage() {
       pengguna?.user_metadata?.display_name ||
       pengguna?.email?.split('@')[0] ||
       localStorage.getItem('namaUser') ||
-      'Kenji Morales'
+      'Teman Belajar'
     );
   });
 
@@ -41,7 +41,7 @@ export function ProfilPage() {
         pengguna?.user_metadata?.display_name ||
         pengguna?.email?.split('@')[0] ||
         localStorage.getItem('namaUser') ||
-        'Kenji Morales';
+        'Teman Belajar';
       setNamaUser(nama);
 
       const saved = localStorage.getItem('selectedAvatarId');

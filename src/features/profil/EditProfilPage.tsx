@@ -8,7 +8,14 @@ import { supabase } from '../../lib/supabase';
 
 export function EditProfilPage() {
   const navigate = useNavigate();
-  const { pengguna } = useSesi();
+  const { pengguna, memuat } = useSesi();
+
+  // Pengguna yang belum login atau baru logout tidak boleh tertahan di halaman edit profil
+  React.useEffect(() => {
+    if (!memuat && !pengguna) {
+      navigate('/masuk', { replace: true });
+    }
+  }, [memuat, pengguna, navigate]);
 
   // Cek apakah akun terhubung via Google OAuth
   const isGoogleUser = Boolean(
@@ -24,7 +31,7 @@ export function EditProfilPage() {
       pengguna?.user_metadata?.display_name ||
       pengguna?.email?.split('@')[0] ||
       localStorage.getItem('namaUser') ||
-      'Kenji Morales'
+      'Teman Belajar'
     );
   });
   const [emailUser, setEmailUser] = useState(() => {
@@ -142,13 +149,12 @@ export function EditProfilPage() {
     setPassUlang('');
   };
 
+  const [keluarSibuk, setKeluarSibuk] = useState(false);
+
   const handleLogout = async () => {
-    await keluar();
-    if (!supabase) {
-      localStorage.removeItem('namaUser');
-      localStorage.removeItem('emailUser');
-      navigate('/masuk');
-    }
+    if (keluarSibuk) return;
+    setKeluarSibuk(true);
+    await keluar('/masuk');
   };
 
   const handleSelectAvatar = (newId: number) => {
@@ -453,6 +459,7 @@ export function EditProfilPage() {
           type="button"
           className="btn-logout-peach"
           onClick={handleLogout}
+          disabled={keluarSibuk}
           aria-label="Logout dari akun"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" width="19" height="19">
@@ -460,7 +467,7 @@ export function EditProfilPage() {
             <polyline points="16 17 21 12 16 7" />
             <line x1="21" y1="12" x2="9" y2="12" />
           </svg>
-          <span>Logout</span>
+          <span>{keluarSibuk ? 'Keluar...' : 'Logout'}</span>
         </button>
       </div>
 
