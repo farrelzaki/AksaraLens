@@ -332,6 +332,9 @@ export function ScanPage() {
           <div className="scan-hint">
             <strong>Letakkan aksara di dalam bingkai</strong>
             <span>Pastikan cahaya cukup dan tulisan jelas.</span>
+            {foto && (
+              <button type="button" className="scan-retry" onClick={kembaliKamera}>Kembali ke kamera</button>
+            )}
           </div>
 
           <div className="scan-controls">
@@ -353,12 +356,6 @@ export function ScanPage() {
               Contoh
             </button>
           </div>
-
-          {foto && (
-            <div className="scan-hint">
-              <button type="button" className="scan-retry" onClick={kembaliKamera}>Kembali ke kamera</button>
-            </div>
-          )}
 
           <div className="scan-note" role="status">
             {galat
