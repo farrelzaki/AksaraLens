@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Navigate, useNavigate, useLocation } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import { supabase } from '../../lib/supabase';
 import { daftarEmail, gantiSandi, keluar, lupaSandi, masukEmail, masukGoogle } from '../../lib/auth';
 import { useSesi } from '../../lib/sesi';

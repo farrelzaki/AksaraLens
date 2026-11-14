@@ -119,8 +119,9 @@
   position: absolute;
   left: 37px;
   right: 37px;
-  top: 218px;
-  height: 283px;
+  /* Responsif: menyusut di layar pendek agar tombol tidak tertutup navbar */
+  top: 23.8%;
+  height: clamp(150px, calc(100% - 23.8% - 290px), 283px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -235,7 +236,7 @@
 /* Petunjuk & Tombol kontrol kamera */
 .scan-hint {
   position: absolute;
-  top: 540px;
+  bottom: 218px;
   left: 20px;
   right: 20px;
   text-align: center;
@@ -259,7 +260,7 @@
 
 .scan-controls {
   position: absolute;
-  top: 610px;
+  bottom: 130px;
   left: 0;
   right: 0;
   display: flex;
@@ -339,7 +340,7 @@
 
 .scan-note {
   position: absolute;
-  top: 710px;
+  bottom: 106px;
   left: 20px;
   right: 20px;
   text-align: center;
@@ -573,3 +574,14 @@
   50% { top: calc(100% - 3px); }
   100% { top: 0; }
 }
+
+
+/* Layar tinggi (rancangan Figma 917 px): kembali ke posisi asli agar tidak terlalu renggang */
+@media (min-height: 900px) {
+  .scan-frame { top: 218px; height: 283px; }
+  .scan-hint { bottom: auto; top: 540px; }
+  .scan-controls { bottom: auto; top: 610px; }
+  .scan-note { bottom: auto; top: 710px; }
+}
+
+.scan-hint .scan-retry { align-self: center; margin-top: 6px; }

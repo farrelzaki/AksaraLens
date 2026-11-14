@@ -31,9 +31,10 @@ body {
   width: 412px;
   min-width: 412px;
   max-width: 412px;
-  height: 917px;
-  min-height: 917px;
-  max-height: 917px;
+  /* 68 px = padding body (2 × 24) + bingkai (2 × 10); laptop pendek: bingkai menyusut, navbar tetap terlihat */
+  height: min(917px, calc(100dvh - 68px));
+  min-height: min(917px, calc(100dvh - 68px));
+  max-height: min(917px, calc(100dvh - 68px));
   box-sizing: content-box;
   /* Canvas dalam TEPAT 412 × 917 px, border di luar */
   display: flex;
@@ -84,7 +85,8 @@ body {
 /* Shell wadah mobile 412 × 917 px (Android Compact sesuai Figma) */
 .shell {
   width: 412px;
-  height: 917px;
+  /* Layar laptop yang lebih pendek dari 917 px: shell mengikuti tinggi layar agar navbar tidak keluar layar */
+  height: 100%;
   max-width: 412px;
   max-height: 917px;
   margin: 0 auto;
@@ -173,7 +175,8 @@ body {
   font-size: 11px;
   font-weight: 600;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  padding: 4px 12px;
+  padding: 4px 8px;
+  white-space: nowrap;
 }
 
 .navbar-item svg {
