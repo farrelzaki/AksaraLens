@@ -3,11 +3,15 @@
 # adegan v3, potongan foto nyata terpercaya), lalu diekspor ke folder gambar + daftar label PaddleOCR.
 # Pembaca v2 ikut dimuat hanya sebagai pembanding pada split yang sama. Config PaddleOCR berasal dari scripts/b2_paddle.py.
 # Pakai: python -X utf8 scripts/buat_notebook_b2.py   (butuh docs/random/AksaraLens_Model2_v4.ipynb dari buat_notebook_v4.py)
-import copy, json, os
+#        python -X utf8 scripts/buat_notebook_b2.py --ronde2   -> AksaraLens_Model2_B2r2.ipynb: sama, ditambah baris Wikisource
+#        (butuh docs/random/wikisource_b2.zip dari scripts/ekspor_wikisource_b2.py; charset tetap 31)
+import copy, json, os, sys
+
+RONDE2 = '--ronde2' in sys.argv
 
 AKAR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SUMBER = os.path.join(AKAR, 'docs/random/AksaraLens_Model2_v4.ipynb')
-TUJUAN = os.path.join(AKAR, 'docs/random/AksaraLens_Model2_B2.ipynb')
+TUJUAN = os.path.join(AKAR, 'docs/random/AksaraLens_Model2_B2r2.ipynb' if RONDE2 else 'docs/random/AksaraLens_Model2_B2.ipynb')
 nb = json.load(open(SUMBER, encoding='utf-8'))
 LAMA = nb['cells']
 B2_PY = open(os.path.join(AKAR, 'scripts/b2_paddle.py'), encoding='utf-8').read()
@@ -51,13 +55,13 @@ dengan 31 karakter aksara Jawa AksaraLens. Keluarannya CTC dengan urutan kelas *
 dan potongan foto nyata terpercaya. Tanpa Set C. Label kosong (negatif) tidak dipakai karena PaddleOCR membuangnya;
 penolakan "bukan aksara" tetap tugas klasifikator.
 
-**Cara pakai:** Runtime → **A100** (atau L4/T4, lebih lama) → **Run all**. Butuh di Drive `aksaralens/`: `sintetis_v4c_jpg.zip`,
+**Cara pakai:** Runtime → **A100** (atau L4/T4, lebih lama) → **Run all**. Butuh di Drive `aksaralens/`: `sintetis_v4c_jpg.zip`, (putaran 2: `wikisource_b2.zip`),
 `data_nyata_v4.zip`, dan `model2_v2/crnn_finetune.pt` (pembanding). Hasil di `aksaralens/model2_b2/`:
 `aksaralens_pembaca_b2.onnx` dan `hasil_b2.json`. Set C tidak ada di notebook ini; gerbang rilis diukur agen di laptop.
 ''')
 
 PENGATURAN = salin(6, ("OUT_DIR = '/content/drive/MyDrive/aksaralens/model2_v4'   # hasil v4, terpisah dari v2/v3",
-                       "OUT_DIR = '/content/drive/MyDrive/aksaralens/model2_b2'   # hasil B2, terpisah dari v2/v4"),
+                       "OUT_DIR = '/content/drive/MyDrive/aksaralens/model2_b2%s'   # hasil B2, terpisah dari v2/v4" % ('r2' if RONDE2 else '')),
                    ("assert SIMPAN_KE_DRIVE, 'v4 membutuhkan bobot v2 dan data di Drive'", "assert SIMPAN_KE_DRIVE, 'B2 membutuhkan data di Drive'"))
 
 # Sel data v4 tanpa pratinjau gambar di akhir (tidak perlu di sini).
@@ -281,6 +285,43 @@ json.dump(ringkas, open(f'{OUT_DIR}/hasil_b2.json', 'w'), indent=1, default=floa
 print(json.dumps({k: v for k, v in ringkas.items()}, indent=1, default=float)[:3000])
 print('Kirim ke agen dari', OUT_DIR, ': aksaralens_pembaca_b2.onnx dan hasil_b2.json')
 ''')
+
+if RONDE2:
+    EKSPOR_DATA['source'] = ''.join(EKSPOR_DATA['source']).replace(
+"""random.Random(0).shuffle(latih)
+val = {""",
+"""# ---------- Ronde 2: baris cetak Wikisource Jawa (buku val ditahan utuh; label sudah urutan tampak dan dalam charset) ----------
+import zipfile
+WIKI_ZIP = f'{OUT_DIR}/../wikisource_b2.zip'
+ULANG_WIKI = 1                                # 1 salinan augmentasi per baris (tanpa salinan polos): ~9,6 ribu baris
+wiki_latih, wiki_val, dibuang = [], [], 0
+if os.path.exists(WIKI_ZIP):
+    os.makedirs('/content/wiki', exist_ok=True)
+    zipfile.ZipFile(WIKI_ZIP).extractall('/content/wiki')
+    for l in open('/content/wiki/label.tsv', encoding='utf-8').read().splitlines():
+        f, t, bagian, _ = l.split('\t')
+        if to_visual(to_logical(t)) != t:     # ~1,4%: taling+tarung di tepi potongan tidak bolak-balik, buang agar label dan metrik konsisten
+            dibuang += 1; continue
+        (wiki_latih if bagian == 'latih' else wiki_val).append((f, t))
+    print('Wikisource: latih', len(wiki_latih), 'val', len(wiki_val), '| dibuang (tak bolak-balik):', dibuang)
+else:
+    print('PERINGATAN: wikisource_b2.zip tidak ada di Drive; putaran ini tanpa data Wikisource')
+
+def kerja_wiki(k):
+    rng = random.Random(50_000 + k); f, t = wiki_latih[k % len(wiki_latih)]
+    g = cv2.imread(f'/content/wiki/{f}', cv2.IMREAD_GRAYSCALE)
+    return [baris_daftar(f'wiki_{k}', _balik(augment(g, rng), rng), to_logical(t))]
+
+latih += jalankan(kerja_wiki, len(wiki_latih) * ULANG_WIKI) if wiki_latih else []
+random.Random(0).shuffle(latih)
+val = {""").replace(
+"""    'foto': [baris_daftar(f'val_foto_{k}', d['gray'], d['teks']) for k, d in enumerate(nyata_foto_val)],
+}""",
+"""    'foto': [baris_daftar(f'val_foto_{k}', d['gray'], d['teks']) for k, d in enumerate(nyata_foto_val)],
+    'wiki': [baris_daftar(f'val_wiki_{k}', cv2.imread(f'/content/wiki/{f}', cv2.IMREAD_GRAYSCALE), to_logical(t)) for k, (f, t) in enumerate(wiki_val)],
+}""").replace("val['buku'] + val['v4'] + val['adegan'] + val['foto']", "val['buku'] + val['v4'] + val['adegan'] + val['foto'] + val['wiki']")
+    EKSPOR_DATA['source'] = EKSPOR_DATA['source'].splitlines(True)
+    UKUR['source'] = ''.join(UKUR['source']).replace("('buku', 'buku_uji', 'v4', 'adegan', 'foto')", "('buku', 'buku_uji', 'v4', 'adegan', 'foto', 'wiki')").splitlines(True)
 
 sel = [
     JUDUL,
