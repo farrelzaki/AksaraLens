@@ -42,6 +42,14 @@ export const ortSiap = () => import('onnxruntime-web');
 /** Nama Cache Storage untuk berkas model (PRD: latihan & scanner tetap jalan offline setelah tercache). */
 export const CACHE_MODEL = 'aksaralens-model';
 
+const adalahHtml = (res: Response, bytes?: Uint8Array) => {
+  const ct = (res.headers.get('content-type') ?? '').toLowerCase();
+  if (ct.includes('text/html') || ct.includes('application/xhtml')) return true;
+  if (!bytes || bytes.length < 4) return false;
+  // Tolak HTML SPA fallback (<!doctype / <html) saat berkas .onnx belum ada di public/models/
+  return bytes[0] === 0x3c && (bytes[1] === 0x21 || bytes[1] === 0x68 || bytes[1] === 0x48);
+};
+
 /**
  * Bytes model: dari Cache Storage bila ada, kalau tidak diunduh lalu disimpan. URL berversi
  * (folder `v1/`), jadi isi cache tidak pernah basi; entri dengan URL lain (versi lama) dihapus.
@@ -52,21 +60,31 @@ export async function ambilModel(url: string, cadangan: string[] = []): Promise<
   let galat = 'Model gagal diunduh';
   for (const u of [url, ...cadangan]) {
     const tersimpan = await c?.match(u);
-    if (tersimpan) return new Uint8Array(await tersimpan.arrayBuffer());
+    if (tersimpan) {
+      const bytesCache = new Uint8Array(await tersimpan.arrayBuffer());
+      if (bytesCache.length > 0 && !adalahHtml(tersimpan, bytesCache)) return bytesCache;
+      await c?.delete(u).catch(() => undefined);
+    }
 
     const res = await fetch(u).catch(() => null);
     if (!res?.ok) {
       galat = `Model gagal diunduh (${res ? res.status : 'jaringan'})`;
       continue; // coba folder cadangan
     }
-    if (c) {
-      await c.put(u, res.clone()).catch(() => undefined); // kuota penuh: tetap jalan tanpa cache
+    const salinan = c ? res.clone() : null;
+    const bytes = new Uint8Array(await res.arrayBuffer());
+    if (!bytes.length || adalahHtml(res, bytes)) {
+      galat = 'Berkas model .onnx tidak ditemukan';
+      continue;
+    }
+    if (c && salinan) {
+      await c.put(u, salinan).catch(() => undefined); // kuota penuh: tetap jalan tanpa cache
       const dipakai = new Set(
         (Object.keys(BERKAS) as NamaModel[]).flatMap((n) => [urlAbsolut(n), ...(DASAR_CADANGAN ? [urlAbsolut(n, DASAR_CADANGAN)] : [])]),
       );
       for (const req of await c.keys()) if (!dipakai.has(req.url)) await c.delete(req);
     }
-    return new Uint8Array(await res.arrayBuffer());
+    return bytes;
   }
   throw new Error(galat);
 }

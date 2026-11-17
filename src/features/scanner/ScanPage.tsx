@@ -20,6 +20,13 @@ const IkonKembali = () => (
   </svg>
 );
 
+const IkonPutarKamera = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M20 11a8 8 0 0 0-14.6-4.4M4 4v4h4" />
+    <path d="M4 13a8 8 0 0 0 14.6 4.4M20 20v-4h-4" />
+  </svg>
+);
+
 const IkonBingkai = ({ size = 22 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
     <path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2M8 12h8" />
@@ -68,6 +75,23 @@ async function buatContoh(): Promise<Blob> {
   c.fillText('ꦧꦥꦏ꧀ꦠꦶꦤ꧀ꦝꦏ꧀', 80, 400);
   c.fillText('ꦥꦱꦂ', 80, 640);
   return new Promise((ok, gagal) => k.toBlob((b) => (b ? ok(b) : gagal(new Error('Gagal membuat contoh'))), 'image/png'));
+}
+
+/** Hasil pratinjau untuk gambar Contoh ketika model ONNX lokal belum terpasang. */
+function buatHasilPratinjauContoh(): HasilScan {
+  const barisTeks = ['ꦧꦥꦏ꧀ꦠꦶꦤ꧀ꦝꦏ꧀', 'ꦥꦱꦂ'];
+  return {
+    baris: barisTeks.map((unicode) => ({
+      unicode,
+      keyakinan: 0.99,
+      status: 'TERIMA' as const,
+      sukuKata: urai(unicode),
+    })),
+    kurangYakin: false,
+    diabaikan: 0,
+    kualitas: 'baik',
+    info: { waktuMs: 0, sudut: 0, kotak: [] },
+  };
 }
 
 /** Satu frame dari video sebagai JPEG (sisi terpanjang dibatasi). */
@@ -130,13 +154,24 @@ export function ScanPage() {
   const aliran = useRef<MediaStream | null>(null);
   const inputGaleri = useRef<HTMLInputElement>(null);
   const bidik = useRef<HTMLDivElement>(null);
+  const terpasangRef = useRef(true);
+  const permKameraRef = useRef(0);
+  const menghadapRef = useRef<'environment' | 'user'>('environment');
+  const modelStatusRef = useRef<'memuat' | 'siap' | 'gagal'>('memuat');
+  const muatModelRef = useRef<Promise<boolean> | null>(null);
 
-  const [siap, setSiap] = useState(false);
-  const [kameraAktif, setKameraAktif] = useState(false);
-  const [kameraGagal, setKameraGagal] = useState(false);
+  const [modelStatus, setModelStatus] = useState<'memuat' | 'siap' | 'gagal'>('memuat');
+  const [modelGalat, setModelGalat] = useState<string | null>(null);
+  const [kameraStatus, setKameraStatus] = useState<'membuka' | 'aktif' | 'gagal'>('membuka');
+  const [kameraPesan, setKameraPesan] = useState<string | null>(null);
+  const [menghadap, setMenghadap] = useState<'environment' | 'user'>('environment');
+  const [videoSiap, setVideoSiap] = useState(false);
+  const [streamTik, setStreamTik] = useState(0);
+
   const [foto, setFoto] = useState<File | Blob | null>(null);
   const [pratinjau, setPratinjau] = useState<string | null>(null);
   const [adalahContoh, setAdalahContoh] = useState(false);
+  const [pratinjauContoh, setPratinjauContoh] = useState(false);
   const [bingkai, setBingkai] = useState<Bingkai>(PENUH);
   const [memproses, setMemproses] = useState(false);
   const [galat, setGalat] = useState<string | null>(null);
@@ -144,44 +179,173 @@ export function ScanPage() {
   const [detail, setDetail] = useState(false);
   const [terpilih, setTerpilih] = useState(0);
 
-  const bukaKamera = useCallback(async () => {
-    // Browser hanya mengizinkan kamera di https atau localhost.
-    if (!navigator.mediaDevices?.getUserMedia) {
-      setKameraGagal(true);
-      return;
-    }
-    try {
-      const s = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: { ideal: 'environment' }, width: { ideal: 1920 }, height: { ideal: 1080 } },
-        audio: false,
-      });
-      aliran.current?.getTracks().forEach((t) => t.stop());
+  const hentikanAliran = useCallback(() => {
+    aliran.current?.getTracks().forEach((t) => {
+      t.onended = null;
+      t.stop();
+    });
+    aliran.current = null;
+  }, []);
+
+  const bukaKamera = useCallback(
+    async (arah?: 'environment' | 'user') => {
+      const targetArah = arah ?? menghadapRef.current;
+      menghadapRef.current = targetArah;
+      const reqId = ++permKameraRef.current;
+
+      // Browser hanya mengizinkan kamera di https atau localhost.
+      if (!navigator.mediaDevices?.getUserMedia) {
+        setKameraStatus('gagal');
+        setVideoSiap(false);
+        setKameraPesan('Browser atau alamat halaman belum mendukung kamera. Gunakan HTTPS/localhost atau pilih Galeri.');
+        return;
+      }
+
+      setKameraStatus('membuka');
+      setVideoSiap(false);
+      setKameraPesan(null);
+
+      const kandidat: MediaStreamConstraints[] = [
+        { video: { facingMode: { ideal: targetArah }, width: { ideal: 1920 }, height: { ideal: 1080 } }, audio: false },
+        { video: { facingMode: targetArah }, audio: false },
+        { video: true, audio: false },
+      ];
+
+      let s: MediaStream | null = null;
+      let errTerakhir: unknown = null;
+
+      for (const constraints of kandidat) {
+        try {
+          s = await navigator.mediaDevices.getUserMedia(constraints);
+          break;
+        } catch (err) {
+          errTerakhir = err;
+          const nama = err instanceof DOMException ? err.name : '';
+          if (nama === 'NotAllowedError' || nama === 'PermissionDeniedError' || nama === 'SecurityError') {
+            break;
+          }
+        }
+      }
+
+      // Abaikan hasil lama bila efek sudah dibersihkan (mis. StrictMode) atau ada permintaan kamera lebih baru
+      if (!terpasangRef.current || permKameraRef.current !== reqId) {
+        s?.getTracks().forEach((t) => t.stop());
+        return;
+      }
+
+      if (!s) {
+        hentikanAliran();
+        setKameraStatus('gagal');
+        setVideoSiap(false);
+        const nama = errTerakhir instanceof DOMException ? errTerakhir.name : '';
+        if (nama === 'NotAllowedError' || nama === 'PermissionDeniedError') {
+          setKameraPesan('Izin kamera ditolak. Aktifkan izin kamera di ikon gembok browser, lalu coba lagi.');
+        } else if (nama === 'NotFoundError' || nama === 'DevicesNotFoundError') {
+          setKameraPesan('Kamera tidak ditemukan pada perangkat ini. Gunakan Galeri atau Contoh di bawah.');
+        } else if (nama === 'NotReadableError' || nama === 'TrackStartError') {
+          setKameraPesan('Kamera sedang dipakai aplikasi lain. Tutup aplikasi lain lalu coba buka lagi.');
+        } else {
+          setKameraPesan('Izinkan akses kamera di browser, atau pilih foto dari galeri.');
+        }
+        return;
+      }
+
+      hentikanAliran();
       aliran.current = s;
-      setKameraGagal(false);
-      setKameraAktif(true);
-    } catch {
-      setKameraGagal(true);
-      setKameraAktif(false);
-    }
+
+      const track = s.getVideoTracks()[0];
+      if (track) {
+        track.onended = () => {
+          if (terpasangRef.current && aliran.current === s) {
+            aliran.current = null;
+            setVideoSiap(false);
+            setKameraStatus('gagal');
+            setKameraPesan('Koneksi kamera terputus. Tekan Coba buka kamera untuk menyambung ulang.');
+          }
+        };
+      }
+
+      setKameraStatus('aktif');
+      setStreamTik((n) => n + 1);
+    },
+    [hentikanAliran],
+  );
+
+  const pastikanModelSiap = useCallback(async (paksaUlang = false): Promise<boolean> => {
+    if (modelStatusRef.current === 'siap') return true;
+    if (!paksaUlang && muatModelRef.current) return muatModelRef.current;
+
+    modelStatusRef.current = 'memuat';
+    setModelStatus('memuat');
+    setModelGalat(null);
+
+    const tugas = siapkanScanner()
+      .then(() => {
+        modelStatusRef.current = 'siap';
+        if (terpasangRef.current) {
+          setModelStatus('siap');
+          setModelGalat(null);
+        }
+        return true;
+      })
+      .catch((err) => {
+        modelStatusRef.current = 'gagal';
+        if (terpasangRef.current) {
+          setModelStatus('gagal');
+          const msg = err instanceof Error ? err.message : '';
+          if (msg.includes('tidak ditemukan') || msg.includes('belum tersedia')) {
+            setModelGalat('Model AI (.onnx) belum ada di public/models/. Foto & Contoh tetap bisa dipakai.');
+          } else {
+            setModelGalat('Model scanner gagal dimuat. Periksa koneksi lalu coba muat ulang.');
+          }
+        }
+        return false;
+      })
+      .finally(() => {
+        if (muatModelRef.current === tugas) muatModelRef.current = null;
+      });
+
+    muatModelRef.current = tugas;
+    return tugas;
   }, []);
 
   useEffect(() => {
-    siapkanScanner().then(
-      () => setSiap(true),
-      () => setGalat('Model scanner gagal dimuat. Periksa koneksi lalu muat ulang halaman.'),
-    );
-    void bukaKamera();
+    terpasangRef.current = true;
+    void pastikanModelSiap();
+    void bukaKamera('environment');
     return () => {
-      aliran.current?.getTracks().forEach((t) => t.stop());
-      aliran.current = null;
+      terpasangRef.current = false;
+      permKameraRef.current += 1;
+      hentikanAliran();
     };
-  }, [bukaKamera]);
+  }, [bukaKamera, hentikanAliran, pastikanModelSiap]);
+
+  const tampilKamera = kameraStatus === 'aktif' && !foto;
 
   useEffect(() => {
-    if (kameraAktif && video.current && aliran.current) {
-      video.current.srcObject = aliran.current;
+    if (!tampilKamera) {
+      setVideoSiap(false);
+      return;
     }
-  }, [kameraAktif]);
+    const el = video.current;
+    const s = aliran.current;
+    if (!el || !s) return;
+
+    if (el.srcObject !== s) {
+      el.srcObject = s;
+    }
+    if (el.readyState >= 2 && el.videoWidth > 0) {
+      setVideoSiap(true);
+    }
+    void el
+      .play()
+      .then(() => {
+        if (terpasangRef.current && el.videoWidth > 0) setVideoSiap(true);
+      })
+      .catch(() => {
+        // Beberapa browser butuh klik tombol sebelum play() diizinkan
+      });
+  }, [tampilKamera, streamTik]);
 
   useEffect(() => {
     if (!foto) {
@@ -199,6 +363,7 @@ export function ScanPage() {
     setGalat(null);
     setHasil(null);
     setDetail(false);
+    setPratinjauContoh(false);
     setTerpilih(0);
     try {
       const h = await bacaFoto(gambar, area, mode);
@@ -215,18 +380,48 @@ export function ScanPage() {
   };
 
   const tekanShutter = async () => {
-    if (memproses || !siap) return;
+    if (memproses) return;
+    setGalat(null);
+
     if (foto) {
-      await bacaGambar(foto, bingkai);
+      const oke = modelStatus === 'siap' || (await pastikanModelSiap(true));
+      if (oke) {
+        await bacaGambar(foto, bingkai);
+      } else if (adalahContoh) {
+        const h = buatHasilPratinjauContoh();
+        simpanHasilSementara(h);
+        setPratinjauContoh(true);
+        setHasil(h);
+      } else {
+        setGalat('Model AI (.onnx) belum ada di public/models/, sehingga pembacaan otomatis belum aktif. Coba tombol Contoh.');
+      }
       return;
     }
-    if (kameraAktif) {
+
+    if (tampilKamera) {
       const v = video.current;
+      if (v && v.paused) {
+        await v.play().catch(() => undefined);
+      }
       const b = await tangkapVideo(v, 2048);
-      if (b && v) await bacaGambar(b, areaBidik(v, bidik.current), 'area');
-      else setGalat('Kamera belum siap. Coba lagi.');
+      if (!b || !v) {
+        setGalat('Kamera masih bersiap. Tunggu sebentar atau pilih foto dari Galeri.');
+        return;
+      }
+      const area = areaBidik(v, bidik.current);
+      const oke = modelStatus === 'siap' || (await pastikanModelSiap());
+      if (oke) {
+        await bacaGambar(b, area, 'area');
+      } else {
+        setAdalahContoh(false);
+        setPratinjauContoh(false);
+        setBingkai(PENUH);
+        setFoto(b);
+        setGalat('Foto berhasil diambil! Pasang berkas model .onnx di public/models/ untuk memindai otomatis, atau tekan Contoh.');
+      }
       return;
     }
+
     inputGaleri.current?.click();
   };
 
@@ -236,45 +431,106 @@ export function ScanPage() {
     if (!f) return;
     setGalat(null);
     setHasil(null);
+    setPratinjauContoh(false);
     setBingkai(PENUH);
     setAdalahContoh(false);
     setFoto(f);
   };
 
   const pakaiContoh = async () => {
-    if (memproses || !siap) return;
+    if (memproses) return;
     setGalat(null);
     setHasil(null);
+    setDetail(false);
+    setPratinjauContoh(false);
     setBingkai(PENUH);
     const b = await buatContoh();
     setAdalahContoh(true);
     setFoto(b);
-    await bacaGambar(b, PENUH, 'area');
+    const oke = modelStatus === 'siap' || (await pastikanModelSiap());
+    if (oke) {
+      await bacaGambar(b, PENUH, 'area');
+    } else {
+      const h = buatHasilPratinjauContoh();
+      simpanHasilSementara(h);
+      setPratinjauContoh(true);
+      setTerpilih(0);
+      setHasil(h);
+    }
   };
 
   const kembaliKamera = () => {
     setFoto(null);
     setAdalahContoh(false);
+    setPratinjauContoh(false);
     setBingkai(PENUH);
     setGalat(null);
+    if (kameraStatus !== 'aktif') {
+      void bukaKamera(menghadap);
+    }
+  };
+
+  const tekanTombolKanan = () => {
+    if (memproses) return;
+    setGalat(null);
+    setHasil(null);
+    setDetail(false);
+    setPratinjauContoh(false);
+    if (foto) {
+      kembaliKamera();
+      return;
+    }
+    if (kameraStatus === 'aktif') {
+      const arahBaru = menghadap === 'environment' ? 'user' : 'environment';
+      setMenghadap(arahBaru);
+      void bukaKamera(arahBaru);
+    } else {
+      void bukaKamera(menghadap);
+    }
   };
 
   const tutupHasil = () => {
     setHasil(null);
     setDetail(false);
+    setPratinjauContoh(false);
   };
 
   const suku: SukuKata[] = hasil ? hasil.baris.flatMap((b) => b.sukuKata) : [];
   const dipilih = suku[terpilih] ?? suku[0];
   const tautan = dipilih?.komponen.map(tautanMateri).find(Boolean) ?? '/belajar/materi/1';
-  const tampilKamera = kameraAktif && !foto;
+  const catatanBawah =
+    galat ??
+    (memproses
+      ? 'Membaca aksara…'
+      : foto
+        ? 'Atur area bingkai, lalu tekan tombol untuk membaca'
+        : modelStatus === 'memuat' && !tampilKamera
+          ? 'Menyiapkan kamera dan scanner…'
+          : tampilKamera
+            ? modelStatus === 'gagal' && modelGalat
+              ? modelGalat
+              : 'Tekan tombol bulat untuk memfoto dan membaca aksara'
+            : modelGalat ?? 'Kamera belum aktif — gunakan Galeri, Contoh, atau Coba buka kamera');
 
   return (
     <div className="scan-page">
       {/* Pratinjau kamera live, tanpa gambar hasil jepretan */}
       {tampilKamera && (
         <>
-          <video ref={video} className="scan-video-bg" autoPlay playsInline muted aria-label="Pratinjau kamera" />
+          <video
+            ref={video}
+            className={`scan-video-bg ${menghadap === 'user' ? 'cermin' : ''}`}
+            autoPlay
+            playsInline
+            muted
+            aria-label="Pratinjau kamera"
+            onLoadedData={(e) => {
+              if (e.currentTarget.videoWidth > 0) setVideoSiap(true);
+            }}
+            onPlaying={(e) => {
+              if (e.currentTarget.videoWidth > 0) setVideoSiap(true);
+            }}
+          />
           <div className="scan-video-scrim" aria-hidden="true" />
         </>
       )}
@@ -286,9 +542,16 @@ export function ScanPage() {
         </button>
         <div className="scan-title">Lensa Aksara</div>
         <div className="scan-subtitle">Arahkan. Foto. Pahami.</div>
-        <div className="scan-circle-btn kanan" aria-hidden="true">
-          <IkonBingkai size={20} />
-        </div>
+        <button
+          type="button"
+          className="scan-circle-btn kanan"
+          onClick={tekanTombolKanan}
+          disabled={memproses}
+          aria-label={foto ? 'Kembali ke kamera' : kameraStatus === 'aktif' ? 'Ganti kamera depan atau belakang' : 'Muat ulang kamera'}
+          title={foto ? 'Kembali ke kamera' : kameraStatus === 'aktif' ? 'Ganti kamera depan/belakang' : 'Muat ulang kamera'}
+        >
+          <IkonPutarKamera />
+        </button>
       </header>
 
       {MODE_DEMO && (
@@ -310,14 +573,17 @@ export function ScanPage() {
             ) : (
               <BingkaiPotong src={pratinjau} nilai={bingkai} onUbah={setBingkai} />
             )
-          ) : kameraAktif ? null : (
+          ) : tampilKamera && videoSiap ? null : (
             <div className="scan-empty">
               <IkonKameraMati />
-              <h2>Kamera belum aktif</h2>
-              <p>{kameraGagal ? 'Izinkan akses kamera di browser, atau pilih dari galeri.' : 'Membuka kamera…'}</p>
-              {kameraGagal && (
-                <button type="button" className="scan-retry" onClick={() => void bukaKamera()}>
-                  Coba buka kamera
+              <h2>{kameraStatus === 'gagal' ? 'Kamera belum aktif' : 'Menyiapkan kamera…'}</h2>
+              <p>
+                {kameraPesan ??
+                  (kameraStatus === 'membuka' ? 'Meminta akses kamera browser…' : 'Menghubungkan tampilan kamera…')}
+              </p>
+              {(kameraStatus === 'gagal' || tampilKamera) && (
+                <button type="button" className="scan-retry" onClick={() => void bukaKamera(menghadap)}>
+                  {kameraStatus === 'gagal' ? 'Coba buka kamera' : 'Muat ulang kamera'}
                 </button>
               )}
             </div>
@@ -338,37 +604,42 @@ export function ScanPage() {
           </div>
 
           <div className="scan-controls">
-            <button type="button" className="scan-side-btn" onClick={() => inputGaleri.current?.click()}>
+            <button
+              type="button"
+              className="scan-side-btn"
+              onClick={() => inputGaleri.current?.click()}
+              disabled={memproses}
+            >
               <IkonGaleri />
               Galeri
             </button>
             <button
               type="button"
-              className={`scan-shutter ${foto || kameraAktif ? 'siap' : ''} ${memproses ? 'sibuk' : ''}`}
+              className={`scan-shutter ${tampilKamera || foto ? 'siap' : ''} ${memproses ? 'sibuk' : ''}`}
               onClick={() => void tekanShutter()}
-              disabled={memproses || !siap}
-              aria-label={memproses ? 'Membaca aksara' : foto ? 'Baca foto' : 'Ambil foto'}
+              disabled={memproses}
+              aria-label={memproses ? 'Membaca aksara' : foto ? 'Baca foto' : tampilKamera ? 'Ambil foto' : 'Pilih dari galeri'}
             >
               <span />
             </button>
-            <button type="button" className="scan-side-btn" onClick={() => void pakaiContoh()} disabled={memproses || !siap}>
+            <button
+              type="button"
+              className="scan-side-btn"
+              onClick={() => void pakaiContoh()}
+              disabled={memproses}
+            >
               <IkonBingkai size={24} />
               Contoh
             </button>
           </div>
 
           <div className="scan-note" role="status">
-            {galat
-              ? galat
-              : memproses
-                ? 'Membaca aksara…'
-                : !siap
-                  ? 'Menyiapkan scanner…'
-                  : foto
-                    ? 'Atur area bingkai, lalu tekan tombol untuk membaca'
-                    : kameraAktif
-                      ? 'Tekan tombol untuk memfoto dan membaca aksara'
-                      : 'Kamera belum aktif'}
+            <span>{catatanBawah}</span>
+            {modelStatus === 'gagal' && !memproses && (
+              <button type="button" className="scan-note-retry" onClick={() => void pastikanModelSiap(true)}>
+                Coba muat model
+              </button>
+            )}
           </div>
         </>
       )}
@@ -383,6 +654,12 @@ export function ScanPage() {
               <path d="M18 6L6 18M6 6l12 12" />
             </svg>
           </button>
+
+          {pratinjauContoh && (
+            <p className="scan-sheet-note" role="note">
+              Pratinjau Contoh · Model AI (.onnx) lokal belum terpasang di public/models/
+            </p>
+          )}
 
           <h2 className="scan-sheet-title">{judulLatin(hasil)}</h2>
           <p className="scan-sheet-sub">

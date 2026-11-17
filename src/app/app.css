@@ -8900,6 +8900,345 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
   }
 }
 
+/* --------------------------------------------------------------------------
+   ANIMASI PROFIL HERO & MASKOT PROFIL BAB (Perjalanan belajarmu)
+   -------------------------------------------------------------------------- */
+.profil-hero-sun {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: profilHeroSunGlow 5.5s ease-in-out infinite;
+}
+
+.profil-hero-cloud {
+  will-change: transform;
+}
+
+.profil-hero-cloud-1 {
+  animation: profilHeroCloudDriftA 16s ease-in-out infinite alternate;
+}
+
+.profil-hero-cloud-2 {
+  animation: profilHeroCloudDriftB 21s ease-in-out -6s infinite alternate;
+}
+
+.profil-hero-cloud-3 {
+  animation: profilHeroCloudDriftA 18s ease-in-out -10s infinite alternate-reverse;
+}
+
+.profil-hero-tree-l {
+  transform-box: fill-box;
+  transform-origin: 42% 94%;
+  animation: profilHeroTreeSway 6.2s ease-in-out infinite;
+}
+
+.profil-hero-tree-r {
+  transform-box: fill-box;
+  transform-origin: 58% 94%;
+  animation: profilHeroTreeSway 7.1s ease-in-out -2.4s infinite reverse;
+}
+
+.profil-hero-sparkle {
+  transform-origin: center;
+  animation: profilHeroSparkle 3.4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.profil-hero-halo {
+  animation: profilHeroHaloBreathe 4.4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.profil-hero-avatar-btn {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.profil-hero-avatar-btn:active {
+  transform: scale(0.95);
+}
+
+.profil-hero-avatar-anim {
+  transform-origin: center 78%;
+  animation: profilHeroAvatarBob 3.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.profil-hero-bubble {
+  transform-origin: left center;
+  animation:
+    profilHeroBubbleIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both,
+    profilHeroBubbleFloat 4s ease-in-out 0.6s infinite;
+  will-change: transform;
+}
+
+@keyframes profilHeroSunGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.94;
+  }
+  50% {
+    transform: scale(1.07);
+    opacity: 1;
+  }
+}
+
+@keyframes profilHeroCloudDriftA {
+  0% {
+    transform: translateX(-7px);
+  }
+  100% {
+    transform: translateX(11px);
+  }
+}
+
+@keyframes profilHeroCloudDriftB {
+  0% {
+    transform: translateX(9px);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+
+@keyframes profilHeroTreeSway {
+  0%, 100% {
+    transform: rotate(-1.1deg);
+  }
+  50% {
+    transform: rotate(1.3deg);
+  }
+}
+
+@keyframes profilHeroSparkle {
+  0%, 100% {
+    transform: translateY(0) scale(0.88) rotate(0deg);
+    opacity: 0.78;
+  }
+  50% {
+    transform: translateY(-4px) scale(1.16) rotate(18deg);
+    opacity: 1;
+  }
+}
+
+@keyframes profilHeroHaloBreathe {
+  0%, 100% {
+    transform: scale(0.97);
+    opacity: 0.72;
+  }
+  50% {
+    transform: scale(1.045);
+    opacity: 0.98;
+  }
+}
+
+@keyframes profilHeroAvatarBob {
+  0%, 100% {
+    transform: translateY(0) scale(1, 1) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-4px) scale(0.99, 1.015) rotate(-1.2deg);
+  }
+  50% {
+    transform: translateY(0) scale(1.015, 0.985) rotate(0.4deg);
+  }
+  75% {
+    transform: translateY(-3.5px) scale(0.995, 1.01) rotate(1.3deg);
+  }
+}
+
+@keyframes profilHeroBubbleIn {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.88);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes profilHeroBubbleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3.5px);
+  }
+}
+
+/* MaskotProfilBab — 3 kartu bab vector murni */
+.aksa-profil-bab-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.aksa-profil-bab-rig {
+  transform-origin: 70px 108px;
+  animation: aksaProfilBabBreathe 3.8s ease-in-out infinite;
+}
+
+.aksa-profil-bab-2 .aksa-profil-bab-rig {
+  animation-delay: -1.2s;
+}
+
+.aksa-profil-bab-3 .aksa-profil-bab-rig {
+  animation-delay: -2.4s;
+}
+
+.aksa-profil-bab-brows {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: aksaProfilBabBrows 4.4s ease-in-out infinite;
+}
+
+.aksa-profil-bab-2 .aksa-profil-bab-brows {
+  animation-delay: -1.4s;
+}
+
+.aksa-profil-bab-3 .aksa-profil-bab-brows {
+  animation-delay: -2.8s;
+}
+
+.aksa-profil-bab-blangkon {
+  transform-box: fill-box;
+  transform-origin: 50% 85%;
+  animation: aksaProfilBabBlangkon 3.8s ease-in-out infinite;
+}
+
+.aksa-profil-bab-2 .aksa-profil-bab-blangkon {
+  animation-delay: -1.2s;
+}
+
+.aksa-profil-bab-3 .aksa-profil-bab-blangkon {
+  animation-delay: -2.4s;
+}
+
+.aksa-profil-bab-eyelid {
+  animation: aksaProfilBabBlink 4.6s linear infinite;
+}
+
+.aksa-profil-bab-2 .aksa-profil-bab-eyelid {
+  animation-delay: -1.5s;
+}
+
+.aksa-profil-bab-3 .aksa-profil-bab-eyelid {
+  animation-delay: -3.1s;
+}
+
+.aksa-profil-bab-1 .aksa-profil-bab-pupils {
+  animation: aksaProfilBabLookRight 5.2s ease-in-out infinite;
+}
+
+.aksa-profil-bab-2 .aksa-profil-bab-pupils {
+  animation: aksaProfilBabLookCenter 5.4s ease-in-out -1.1s infinite;
+}
+
+.aksa-profil-bab-3 .aksa-profil-bab-pupils {
+  animation: aksaProfilBabLookLeft 5.2s ease-in-out -2.2s infinite;
+}
+
+.aksa-profil-book {
+  transform-box: fill-box;
+  transform-origin: 50% 88%;
+  animation: aksaProfilBookRock 3.8s ease-in-out infinite;
+}
+
+.aksa-profil-bab-2 .aksa-profil-book {
+  animation-delay: -1.2s;
+}
+
+.aksa-profil-bab-3 .aksa-profil-book {
+  animation-delay: -2.4s;
+}
+
+@keyframes aksaProfilBabBreathe {
+  0%, 100% {
+    transform: translateY(0) scale(1, 1);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.015, 0.985);
+  }
+}
+
+@keyframes aksaProfilBabBrows {
+  0%, 70%, 100% {
+    transform: translateY(0);
+  }
+  82% {
+    transform: translateY(-2px);
+  }
+  92% {
+    transform: translateY(-0.5px);
+  }
+}
+
+@keyframes aksaProfilBabBlangkon {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-1.2px) rotate(-1.1deg);
+  }
+}
+
+@keyframes aksaProfilBabBlink {
+  0%, 49%, 57%, 92%, 100% {
+    transform: translateY(0);
+  }
+  52%, 54% {
+    transform: translateY(48px);
+  }
+  95%, 97% {
+    transform: translateY(48px);
+  }
+}
+
+@keyframes aksaProfilBabLookRight {
+  0%, 24%, 100% {
+    transform: translate(0.5px, 2.2px);
+  }
+  42%, 62% {
+    transform: translate(3.8px, 3.2px);
+  }
+  78%, 88% {
+    transform: translate(1.2px, -0.5px);
+  }
+}
+
+@keyframes aksaProfilBabLookCenter {
+  0%, 22%, 100% {
+    transform: translate(-2.6px, 2.8px);
+  }
+  42%, 64% {
+    transform: translate(2.6px, 2.8px);
+  }
+  80%, 90% {
+    transform: translate(0px, -0.4px);
+  }
+}
+
+@keyframes aksaProfilBabLookLeft {
+  0%, 24%, 100% {
+    transform: translate(-3.8px, 2.8px);
+  }
+  42%, 62% {
+    transform: translate(-0.6px, 2.4px);
+  }
+  78%, 88% {
+    transform: translate(-1.4px, -0.5px);
+  }
+}
+
+@keyframes aksaProfilBookRock {
+  0%, 100% {
+    transform: translateY(0) rotate(-0.8deg);
+  }
+  50% {
+    transform: translateY(-2.4px) rotate(1.1deg);
+  }
+}
+
 /* Hormati preferensi aksesibilitas tanpa menghilangkan ekspresi status form */
 @media (prefers-reduced-motion: reduce) {
   .splash-v2-aura,
@@ -8926,6 +9265,7 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
   .auth-form,
   .pelajaran-selesai-center,
   .pelajaran-selesai-halo,
+  [class*="profil-hero-"],
   [class*="aksa-"],
   [class*="onb-"] {
     animation: none !important;

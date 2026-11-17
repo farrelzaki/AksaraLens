@@ -7,6 +7,7 @@ import { BAB, JALUR } from '../../content';
 import { ModalGantiAvatar, ICON_PROFIL } from './ModalGantiAvatar';
 import { useSesi } from '../../lib/sesi';
 import { keluar } from '../../lib/auth';
+import { MaskotProfilBab } from '../../app/MaskotAksa';
 
 export { ICON_PROFIL };
 
@@ -81,16 +82,10 @@ export function ProfilPage() {
   const totalPersen = totalTitik > 0 ? Math.round((selesaiCount / totalTitik) * 100) : 0;
   const babSelesaiCount = progresPerBab.filter((b) => b.tuntas).length;
 
-  const profilBabMascots = [
-    '/assets/maskot profil bab 1.svg',
-    '/assets/maskot profil bab 2.svg',
-    '/assets/maskot profil bab 3.svg',
-  ];
-
   const avatarTerpilih = ICON_PROFIL.find((ic) => ic.id === activeAvatarId) || ICON_PROFIL[0];
 
   return (
-    <div className="profil-halaman" style={{ width: '100%', minHeight: '100%', display: 'flex', flexDirection: 'column', background: '#F8F5F0', overflowX: 'hidden', padding: 0, margin: 0 }}>
+    <div className="profil-halaman" style={{ width: '100%', flexShrink: 0, display: 'flex', flexDirection: 'column', background: 'var(--color-cream)', padding: 0, margin: 0 }}>
       {/* Seluruh teks halaman profil hanya memakai Plus Jakarta Sans (aksara Jawa tetap Noto Sans Javanese). */}
       <style>{`
         .profil-halaman, .profil-halaman *:not(.aksara) { font-family: 'Plus Jakarta Sans', sans-serif !important; }
@@ -123,32 +118,34 @@ export function ProfilPage() {
             {/* Sky gradient */}
             <path d="M0 0H412V456.442H0V0Z" fill="url(#skybg)" />
             {/* Sun */}
-            <path d="M273.98 179.534C283.082 179.534 290.46 157.736 290.46 130.847C290.46 103.957 283.082 82.1594 273.98 82.1594C264.879 82.1594 257.5 103.957 257.5 130.847C257.5 157.736 264.879 179.534 273.98 179.534Z" fill="#FFF6D5" />
+            <path className="profil-hero-sun" d="M273.98 179.534C283.082 179.534 290.46 157.736 290.46 130.847C290.46 103.957 283.082 82.1594 273.98 82.1594C264.879 82.1594 257.5 103.957 257.5 130.847C257.5 157.736 264.879 179.534 273.98 179.534Z" fill="#FFF6D5" />
             {/* Clouds */}
             <g opacity="0.85">
-              <path d="M81.3701 104.982C81.3701 91.2884 86.0051 83.681 90.6401 89.7669C93.2151 68.4663 105.06 69.9877 107.12 89.7669C113.3 83.681 118.965 95.8528 118.965 108.025H81.3701V104.982Z" fill="#FFFAF0" />
-              <path d="M190.035 59.3374C190.035 48.6871 193.64 42.6012 197.245 47.1656C199.305 30.4294 208.06 31.9509 210.12 47.1656C214.755 42.6012 219.39 51.73 219.39 60.8589H190.035V59.3374Z" fill="#FFFAF0" />
-              <path d="M318.785 156.712C318.785 141.497 323.935 130.847 330.115 138.454C333.72 106.503 349.685 112.589 351.23 138.454C358.955 130.847 365.135 146.061 365.65 158.233H318.785V156.712Z" fill="#FFFAF0" />
+              <path className="profil-hero-cloud profil-hero-cloud-1" d="M81.3701 104.982C81.3701 91.2884 86.0051 83.681 90.6401 89.7669C93.2151 68.4663 105.06 69.9877 107.12 89.7669C113.3 83.681 118.965 95.8528 118.965 108.025H81.3701V104.982Z" fill="#FFFAF0" />
+              <path className="profil-hero-cloud profil-hero-cloud-2" d="M190.035 59.3374C190.035 48.6871 193.64 42.6012 197.245 47.1656C199.305 30.4294 208.06 31.9509 210.12 47.1656C214.755 42.6012 219.39 51.73 219.39 60.8589H190.035V59.3374Z" fill="#FFFAF0" />
+              <path className="profil-hero-cloud profil-hero-cloud-3" d="M318.785 156.712C318.785 141.497 323.935 130.847 330.115 138.454C333.72 106.503 349.685 112.589 351.23 138.454C358.955 130.847 365.135 146.061 365.65 158.233H318.785V156.712Z" fill="#FFFAF0" />
             </g>
             {/* Hills layered */}
             <path d="M0 319.509L62.83 229.742C68.3234 221.628 73.8167 223.149 79.3101 234.307L108.665 293.644L166.345 155.19C172.525 140.99 178.877 140.99 185.4 155.19L262.65 325.595L304.88 222.135C311.747 206.92 318.614 206.92 325.48 222.135L412 331.681V456.442H0V319.509Z" fill="#B7C483" />
             <path d="M0 371.239C25.75 287.051 54.7617 269.808 87.0351 319.509C119.308 369.211 151.582 375.297 183.855 337.767C226.429 270.822 267.457 264.229 306.94 317.988C346.424 371.746 381.444 376.311 412 331.681V456.442H0V371.239Z" fill="#96AF62" />
             <path d="M0 409.276C35.3634 355.517 70.7267 344.867 106.09 377.325C141.453 409.783 173.212 407.247 201.365 369.718C259.045 334.217 329.257 344.867 412 401.669V456.442H0V409.276Z" fill="#D2D889" />
             <path d="M215.785 375.804C210.635 386.961 201.709 398.119 189.005 409.276C176.302 420.434 163.598 436.155 150.895 456.442H232.265C220.592 436.155 211.837 420.941 206 410.798C200.164 400.654 203.425 388.99 215.785 375.804Z" fill="#E6D59C" />
-            {/* Left pine tree #1 */}
-            <path d="M18.54 200.834H22.145V480.785H18.54V200.834Z" fill="#7C7D38" />
-            <path d="M20.085 95.8528L7.725 167.362H14.935L1.03 238.871H8.755L-6.18001 319.509H4.635L-13.39 400.147H53.045L35.02 319.509H45.32L30.385 238.871H38.11L24.72 167.362H32.445L20.085 95.8528Z" fill="#657E36" />
-            <path opacity="0.6" d="M20.085 95.8528V400.147H53.045L35.02 319.509H45.32L30.385 238.871H38.11L24.72 167.362H32.445L20.085 95.8528Z" fill="#536D2E" />
-            {/* Left pine tree #2 */}
-            <path d="M56.6449 269.651H59.0602V457.218H56.6449V269.651Z" fill="#7C7D38" />
-            <path d="M57.6801 199.313L49.3989 247.224H54.2296L44.9132 295.135H50.089L40.0825 349.163H47.3286L35.2518 403.19H79.7633L67.6866 349.163H74.5876L64.5811 295.135H69.7569L60.7856 247.224H65.9613L57.6801 199.313Z" fill="#7A9345" />
-            {/* Right pine tree #1 */}
-            <path d="M375.95 187.141H380.07V480.785H375.95V187.141Z" fill="#777740" />
-            <path d="M378.01 65.4233L365.65 136.933H372.86L358.955 208.442H366.68L351.745 289.08H362.56L344.535 369.718H410.97L392.945 289.08H403.245L388.31 208.442H396.035L382.645 136.933H390.37L378.01 65.4233Z" fill="#6B8438" />
-            <path opacity="0.5" d="M378.01 65.4233V369.718H410.97L392.945 289.08H403.245L388.31 208.442H396.035L382.645 136.933H390.37L378.01 65.4233Z" fill="#49632A" />
-            {/* Right pine tree #2 */}
-            <path d="M340.41 262.043H342.826V449.61H340.41V262.043Z" fill="#7C7D38" />
-            <path d="M341.445 191.706L333.164 239.617H337.995L328.678 287.528H333.854L323.848 341.555H331.094L319.017 395.583H363.529L351.452 341.555H358.353L348.346 287.528H353.522L344.551 239.617H349.727L341.445 191.706Z" fill="#81994A" />
+            {/* Left pine trees */}
+            <g className="profil-hero-tree-l">
+              <path d="M18.54 200.834H22.145V480.785H18.54V200.834Z" fill="#7C7D38" />
+              <path d="M20.085 95.8528L7.725 167.362H14.935L1.03 238.871H8.755L-6.18001 319.509H4.635L-13.39 400.147H53.045L35.02 319.509H45.32L30.385 238.871H38.11L24.72 167.362H32.445L20.085 95.8528Z" fill="#657E36" />
+              <path opacity="0.6" d="M20.085 95.8528V400.147H53.045L35.02 319.509H45.32L30.385 238.871H38.11L24.72 167.362H32.445L20.085 95.8528Z" fill="#536D2E" />
+              <path d="M56.6449 269.651H59.0602V457.218H56.6449V269.651Z" fill="#7C7D38" />
+              <path d="M57.6801 199.313L49.3989 247.224H54.2296L44.9132 295.135H50.089L40.0825 349.163H47.3286L35.2518 403.19H79.7633L67.6866 349.163H74.5876L64.5811 295.135H69.7569L60.7856 247.224H65.9613L57.6801 199.313Z" fill="#7A9345" />
+            </g>
+            {/* Right pine trees */}
+            <g className="profil-hero-tree-r">
+              <path d="M375.95 187.141H380.07V480.785H375.95V187.141Z" fill="#777740" />
+              <path d="M378.01 65.4233L365.65 136.933H372.86L358.955 208.442H366.68L351.745 289.08H362.56L344.535 369.718H410.97L392.945 289.08H403.245L388.31 208.442H396.035L382.645 136.933H390.37L378.01 65.4233Z" fill="#6B8438" />
+              <path opacity="0.5" d="M378.01 65.4233V369.718H410.97L392.945 289.08H403.245L388.31 208.442H396.035L382.645 136.933H390.37L378.01 65.4233Z" fill="#49632A" />
+              <path d="M340.41 262.043H342.826V449.61H340.41V262.043Z" fill="#7C7D38" />
+              <path d="M341.445 191.706L333.164 239.617H337.995L328.678 287.528H333.854L323.848 341.555H331.094L319.017 395.583H363.529L351.452 341.555H358.353L348.346 287.528H353.522L344.551 239.617H349.727L341.445 191.706Z" fill="#81994A" />
+            </g>
             {/* Bushes */}
             <path d="M42.745 459.485C54.1221 459.485 63.3451 447.905 63.3451 433.62C63.3451 419.335 54.1221 407.755 42.745 407.755C31.368 407.755 22.145 419.335 22.145 433.62C22.145 447.905 31.368 459.485 42.745 459.485Z" fill="#819B47" />
             <path d="M392.43 471.656C408.074 471.656 420.755 456.67 420.755 438.184C420.755 419.698 408.074 404.712 392.43 404.712C376.787 404.712 364.105 419.698 364.105 438.184C364.105 456.67 376.787 471.656 392.43 471.656Z" fill="#819B47" />
@@ -238,7 +235,7 @@ export function ProfilPage() {
         }}>
 
           {/* Bintang sparkle oranye kecil di kiri avatar */}
-          <div style={{
+          <div className="profil-hero-sparkle" style={{
             position: 'absolute',
             left: 'calc(50% - 127px)',
             top: 95,
@@ -251,7 +248,7 @@ export function ProfilPage() {
           </div>
 
           {/* Lingkaran Halo putih semi-transparan di belakang maskot */}
-          <div style={{
+          <div className="profil-hero-halo" style={{
             position: 'absolute',
             width: 214,
             height: 214,
@@ -264,6 +261,7 @@ export function ProfilPage() {
           {/* Maskot — Ditampilkan utuh tanpa circular crop yang memotong blangkon */}
           <button
             type="button"
+            className="profil-hero-avatar-btn"
             onClick={() => setModalAvatar(true)}
             aria-label="Pilih avatar teman belajar"
             style={{
@@ -280,6 +278,7 @@ export function ProfilPage() {
             }}
           >
             <img
+              className="profil-hero-avatar-anim"
               src={avatarTerpilih.src}
               alt={avatarTerpilih.nama}
               style={{
@@ -297,7 +296,7 @@ export function ProfilPage() {
           </button>
 
           {/* Balon ucapan "Aku temani setiap langkahmu." — Di kanan bawah maskot */}
-          <div style={{
+          <div className="profil-hero-bubble" style={{
             position: 'absolute',
             left: 'calc(50% + 38px)',
             top: 185,
@@ -514,24 +513,22 @@ export function ProfilPage() {
                     width: '100%',
                   }}
                 >
-                  {/* Thumbnail Maskot Bab */}
-                  <div style={{
-                    width: 108,
-                    height: 86,
-                    borderRadius: 16,
-                    overflow: 'hidden',
-                    flexShrink: 0,
-                    background: i === 0 ? '#E7EDDA' : i === 1 ? '#FEE8C8' : '#E8E2F8',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}>
-                    <img
-                      src={profilBabMascots[i] || '/assets/maskot profil bab 1.svg'}
-                      alt={`Maskot Bab ${bab.bab}`}
-                      draggable={false}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
+                  {/* Thumbnail Maskot Bab — pure SVG vector beranimasi */}
+                  <div
+                    className="profil-bab-thumb"
+                    style={{
+                      width: 108,
+                      height: 86,
+                      borderRadius: 16,
+                      overflow: 'hidden',
+                      flexShrink: 0,
+                      background: i === 0 ? '#E7EDDA' : i === 1 ? '#FFF0DF' : '#F0EAFB',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <MaskotProfilBab bab={bab.bab} />
                   </div>
 
                   {/* Info Bab & Progres Bar */}
