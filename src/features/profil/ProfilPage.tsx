@@ -644,21 +644,38 @@ export function ProfilPage() {
           </div>
         </div>
 
-        {/* Tombol Logout Langsung di Halaman Profil */}
-        <button
-          type="button"
-          className="btn-logout-peach"
-          onClick={() => keluar('/masuk')}
-          aria-label="Logout dari akun"
-          style={{ marginTop: 16, marginBottom: 24 }}
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" width="19" height="19">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-            <polyline points="16 17 21 12 16 7" />
-            <line x1="21" y1="12" x2="9" y2="12" />
-          </svg>
-          <span>Keluar Akun (Logout)</span>
-        </button>
+        {/* Tombol Aksi Akun di Halaman Profil */}
+        {pengguna ? (
+          <button
+            type="button"
+            className="btn-logout-peach"
+            onClick={() => keluar('/masuk')}
+            aria-label="Logout dari akun"
+            style={{ marginTop: 16, marginBottom: 24 }}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" width="19" height="19">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            <span>Keluar Akun (Logout)</span>
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="btn-periksa-perubahan-brown"
+            onClick={() => navigate('/masuk')}
+            aria-label="Masuk atau daftar akun"
+            style={{ marginTop: 16, marginBottom: 24 }}
+          >
+            <span>Masuk atau Daftar Akun</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" width="19" height="19">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+              <polyline points="10 17 15 12 10 7" />
+              <line x1="15" y1="12" x2="3" y2="12" />
+            </svg>
+          </button>
+        )}
       </div>
 
       {/* Modal Pilih Avatar */}

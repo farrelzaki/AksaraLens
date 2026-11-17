@@ -3,19 +3,12 @@ import { useNavigate } from 'react-router';
 import { ICON_PROFIL } from './ModalGantiAvatar';
 import { ModalGantiAvatar } from './ModalGantiAvatar';
 import { useSesi } from '../../lib/sesi';
-import { keluar, gantiSandi, masukEmail } from '../../lib/auth';
+import { keluar, gantiSandi, masukEmail, perbaruiProfil } from '../../lib/auth';
 import { supabase } from '../../lib/supabase';
 
 export function EditProfilPage() {
   const navigate = useNavigate();
-  const { pengguna, memuat } = useSesi();
-
-  // Pengguna yang belum login atau baru logout tidak boleh tertahan di halaman edit profil
-  React.useEffect(() => {
-    if (!memuat && !pengguna) {
-      navigate('/masuk', { replace: true });
-    }
-  }, [memuat, pengguna, navigate]);
+  const { pengguna } = useSesi();
 
   // Cek apakah akun terhubung via Google OAuth
   const isGoogleUser = Boolean(
@@ -43,6 +36,26 @@ export function EditProfilPage() {
   const [isEditingInfo, setIsEditingInfo] = useState(false);
   const [inputNama, setInputNama] = useState(namaUser);
   const [inputEmail, setInputEmail] = useState(emailUser === 'Belum diisi' ? '' : emailUser);
+  const [sedangSimpanInfo, setSedangSimpanInfo] = useState(false);
+
+  // Sinkronkan nama & email ketika sesi aktif selesai dimuat atau diperbarui
+  React.useEffect(() => {
+    const nama =
+      pengguna?.user_metadata?.full_name ||
+      pengguna?.user_metadata?.name ||
+      pengguna?.user_metadata?.display_name ||
+      pengguna?.email?.split('@')[0] ||
+      localStorage.getItem('namaUser') ||
+      'Teman Belajar';
+    const email = pengguna?.email || localStorage.getItem('emailUser') || 'Belum diisi';
+
+    setNamaUser(nama);
+    setEmailUser(email);
+    if (!isEditingInfo) {
+      setInputNama(nama);
+      setInputEmail(email === 'Belum diisi' ? '' : email);
+    }
+  }, [pengguna, isEditingInfo]);
 
   // Form ganti kata sandi
   const [isPasswordOpen, setIsPasswordOpen] = useState(true);
@@ -64,18 +77,39 @@ export function EditProfilPage() {
     setTimeout(() => setToastMessage(null), 3500);
   };
 
-  const handleSimpanInfo = (e: React.FormEvent) => {
+  const handleSimpanInfo = async (e: React.FormEvent) => {
     e.preventDefault();
-    const finalNama = inputNama.trim() || 'Kenji Morales';
-    const finalEmail = inputEmail.trim() || 'Belum diisi';
+    const finalNama = inputNama.trim() || 'Teman Belajar';
+    const finalEmail = pengguna?.email || inputEmail.trim() || 'Belum diisi';
 
-    setNamaUser(finalNama);
-    setEmailUser(finalEmail);
-    localStorage.setItem('namaUser', finalNama);
-    localStorage.setItem('emailUser', finalEmail);
+    if (finalNama.length < 2) {
+      showToast('Nama panggilan minimal 2 karakter.');
+      return;
+    }
 
-    setIsEditingInfo(false);
-    showToast('Profil berhasil diperbarui!');
+    setSedangSimpanInfo(true);
+    try {
+      const hasil = await perbaruiProfil(finalNama);
+      if (!hasil.ok) {
+        showToast(hasil.pesan);
+        return;
+      }
+
+      if (!pengguna) {
+        if (finalEmail !== 'Belum diisi') {
+          localStorage.setItem('emailUser', finalEmail);
+        } else {
+          localStorage.removeItem('emailUser');
+        }
+      }
+
+      setNamaUser(finalNama);
+      setEmailUser(finalEmail);
+      setIsEditingInfo(false);
+      showToast('Profil berhasil diperbarui!');
+    } finally {
+      setSedangSimpanInfo(false);
+    }
   };
 
   const handleBatalInfo = () => {
@@ -92,12 +126,22 @@ export function EditProfilPage() {
       return;
     }
 
+    if (!pengguna?.email) {
+      showToast('Masuk atau daftar akun email terlebih dahulu untuk mengatur kata sandi.');
+      return;
+    }
+
+    if (!passSaatIni) {
+      showToast('Masukkan kata sandi saat ini.');
+      return;
+    }
+
     if (!passBaru) {
       showToast('Ketikkan kata sandi baru.');
       return;
     }
 
-    // Supabase standar validasi minimal 6 karakter
+    // Validasi minimal 6 karakter
     if (passBaru.length < 6) {
       showToast('Kata sandi baru minimal 6 karakter.');
       return;
@@ -108,45 +152,29 @@ export function EditProfilPage() {
       return;
     }
 
-    // Jika pengguna login dengan email dan Supabase aktif
-    if (supabase && pengguna?.email) {
-      if (!passSaatIni) {
-        showToast('Masukkan kata sandi saat ini.');
+    setSedangMemprosesSandi(true);
+    try {
+      // Verifikasi kata sandi lama terlebih dahulu (berlaku untuk Supabase maupun mode lokal)
+      const verif = await masukEmail(pengguna.email, passSaatIni);
+      if (!verif.ok) {
+        showToast('Kata sandi saat ini salah.');
         return;
       }
 
-      setSedangMemprosesSandi(true);
-      try {
-        // Verifikasi kata sandi lama dengan login ulang
-        const verif = await masukEmail(pengguna.email, passSaatIni);
-        if (!verif.ok) {
-          showToast('Kata sandi saat ini salah.');
-          setSedangMemprosesSandi(false);
-          return;
-        }
-
-        const hasil = await gantiSandi(passBaru);
-        if (hasil.ok) {
-          showToast('Kata sandi berhasil diperbarui!');
-          setPassSaatIni('');
-          setPassBaru('');
-          setPassUlang('');
-        } else {
-          showToast(hasil.pesan);
-        }
-      } catch {
-        showToast('Gagal mengubah kata sandi. Coba lagi.');
-      } finally {
-        setSedangMemprosesSandi(false);
+      const hasil = await gantiSandi(passBaru, pengguna.email);
+      if (hasil.ok) {
+        showToast('Kata sandi berhasil diperbarui!');
+        setPassSaatIni('');
+        setPassBaru('');
+        setPassUlang('');
+      } else {
+        showToast(hasil.pesan);
       }
-      return;
+    } catch {
+      showToast('Gagal mengubah kata sandi. Coba lagi.');
+    } finally {
+      setSedangMemprosesSandi(false);
     }
-
-    // Mode demo / tamu offline
-    showToast('Kata sandi berhasil diperbarui (mode demo).');
-    setPassSaatIni('');
-    setPassBaru('');
-    setPassUlang('');
   };
 
   const [keluarSibuk, setKeluarSibuk] = useState(false);
@@ -285,14 +313,17 @@ export function EditProfilPage() {
                   id="input-email-profil"
                   type="email"
                   className="edit-text-input"
-                  value={inputEmail}
+                  value={pengguna?.email ?? inputEmail}
                   onChange={(e) => setInputEmail(e.target.value)}
                   placeholder="nama@email.com"
+                  disabled={Boolean(pengguna?.email)}
                 />
               </div>
 
               <p className="edit-form-note">
-                Perubahan hanya berlaku pada profil sesi ini.
+                {pengguna
+                  ? 'Nama panggilan diperbarui pada profil akunmu. Email mengikuti akun masuk.'
+                  : 'Mode tamu: perubahan tersimpan secara lokal di perangkat ini.'}
               </p>
 
               <div className="info-edit-actions">
@@ -300,11 +331,12 @@ export function EditProfilPage() {
                   type="button"
                   className="btn-batal-text"
                   onClick={handleBatalInfo}
+                  disabled={sedangSimpanInfo}
                 >
                   Batal
                 </button>
-                <button type="submit" className="btn-simpan-brown">
-                  Simpan perubahan
+                <button type="submit" className="btn-simpan-brown" disabled={sedangSimpanInfo}>
+                  {sedangSimpanInfo ? 'Menyimpan...' : 'Simpan perubahan'}
                   <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
                     <path
                       fillRule="evenodd"
@@ -340,7 +372,7 @@ export function EditProfilPage() {
                     ? 'Akun Google (kata sandi dikelola Google)'
                     : pengguna
                     ? 'Perbarui kata sandi akunmu'
-                    : 'Simulasi sandi (mode tamu)'}
+                    : 'Masuk dengan akun email untuk menggunakan kata sandi'}
                 </span>
               </div>
             </div>
@@ -352,7 +384,34 @@ export function EditProfilPage() {
           </button>
 
           {isPasswordOpen && (
-            isGoogleUser ? (
+            !pengguna ? (
+              <div style={{ padding: '16px 0 6px', textAlign: 'left' }}>
+                <div className="password-divider" />
+                <div style={{
+                  background: '#F3EFEA',
+                  borderRadius: 12,
+                  padding: '12px 14px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 10,
+                  color: '#685A4E',
+                  fontSize: 12,
+                  lineHeight: 1.5,
+                }}>
+                  <span>
+                    Kamu sedang belajar dalam <strong>Mode Tamu</strong>. Daftar atau masuk dengan akun email agar kata sandi dan progres belajarmu tersimpan aman.
+                  </span>
+                  <button
+                    type="button"
+                    className="btn-simpan-brown"
+                    style={{ alignSelf: 'flex-start', padding: '8px 14px', fontSize: 12 }}
+                    onClick={() => navigate('/masuk')}
+                  >
+                    Masuk / Daftar Akun →
+                  </button>
+                </div>
+              </div>
+            ) : isGoogleUser ? (
               <div style={{ padding: '16px 0 6px', textAlign: 'left' }}>
                 <div className="password-divider" />
                 <div style={{
@@ -435,7 +494,7 @@ export function EditProfilPage() {
 
                 {!supabase && (
                   <p className="edit-form-note">
-                    Mode demo: perubahan kata sandi disimulasikan secara lokal.
+                    Mode lokal: kata sandi akun diperbarui di penyimpanan peramban ini.
                   </p>
                 )}
 
@@ -454,21 +513,37 @@ export function EditProfilPage() {
           )}
         </div>
 
-        {/* 5. Tombol Logout di Bawah */}
-        <button
-          type="button"
-          className="btn-logout-peach"
-          onClick={handleLogout}
-          disabled={keluarSibuk}
-          aria-label="Logout dari akun"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" width="19" height="19">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-            <polyline points="16 17 21 12 16 7" />
-            <line x1="21" y1="12" x2="9" y2="12" />
-          </svg>
-          <span>{keluarSibuk ? 'Keluar...' : 'Logout'}</span>
-        </button>
+        {/* 5. Tombol Aksi Akun di Bawah (Logout bila login, Masuk/Daftar bila tamu) */}
+        {pengguna ? (
+          <button
+            type="button"
+            className="btn-logout-peach"
+            onClick={handleLogout}
+            disabled={keluarSibuk}
+            aria-label="Logout dari akun"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" width="19" height="19">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            <span>{keluarSibuk ? 'Keluar...' : 'Logout'}</span>
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="btn-periksa-perubahan-brown"
+            onClick={() => navigate('/masuk')}
+            aria-label="Masuk atau daftar akun"
+          >
+            <span>Masuk atau Daftar Akun</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" width="19" height="19">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+              <polyline points="10 17 15 12 10 7" />
+              <line x1="15" y1="12" x2="3" y2="12" />
+            </svg>
+          </button>
+        )}
       </div>
 
       {/* Modal Ganti Avatar */}

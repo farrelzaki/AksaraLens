@@ -1,5 +1,54 @@
+import type { User } from '@supabase/supabase-js'
 import { supabase } from './supabase'
 import { bersihkanAkunLokal, kosongkanTamu } from '../progres/penyimpanan'
+
+export const KUNCI_SESI_DEMO = 'aksaralens:demo_session'
+export const EVENT_SESI_DEMO = 'aksaralens:session-change'
+
+function buatUserDemo(email: string, nama: string): User {
+  const now = new Date().toISOString()
+  return {
+    id: `demo-${email}`,
+    aud: 'authenticated',
+    role: 'authenticated',
+    email,
+    created_at: now,
+    updated_at: now,
+    app_metadata: { provider: 'email', providers: ['email'] },
+    user_metadata: { full_name: nama, name: nama, display_name: nama },
+    identities: [],
+  }
+}
+
+export function bacaSesiDemo(): User | null {
+  try {
+    const raw = localStorage.getItem(KUNCI_SESI_DEMO)
+    if (!raw) return null
+    const parsed = JSON.parse(raw) as User
+    return parsed && typeof parsed.id === 'string' && typeof parsed.email === 'string' ? parsed : null
+  } catch {
+    return null
+  }
+}
+
+function kirimEventSesiDemo() {
+  window.dispatchEvent(new Event(EVENT_SESI_DEMO))
+}
+
+function catatEmailTerdaftar(emailBersih: string, namaBersih?: string) {
+  try {
+    const daftarAkun: string[] = JSON.parse(localStorage.getItem('aksaralens:registered_emails') || '[]')
+    if (!daftarAkun.includes(emailBersih)) {
+      daftarAkun.push(emailBersih)
+      localStorage.setItem('aksaralens:registered_emails', JSON.stringify(daftarAkun))
+    }
+    if (namaBersih) {
+      localStorage.setItem(`aksaralens:nama:${emailBersih}`, namaBersih)
+    }
+  } catch {
+    /* abaikan */
+  }
+}
 
 // === Sinkronisasi Identitas Pengguna ===
 export function sinkronkanUserMetadata(user: { id?: string; email?: string; user_metadata?: Record<string, unknown> } | null) {
@@ -9,6 +58,7 @@ export function sinkronkanUserMetadata(user: { id?: string; email?: string; user
     const nama =
       (typeof meta?.full_name === 'string' && meta.full_name.trim()) ||
       (typeof meta?.name === 'string' && meta.name.trim()) ||
+      (typeof meta?.display_name === 'string' && meta.display_name.trim()) ||
       (typeof meta?.user_name === 'string' && meta.user_name.trim()) ||
       (typeof meta?.given_name === 'string' && meta.given_name.trim()) ||
       (user.email ? localStorage.getItem(`aksaralens:nama:${user.email.toLowerCase()}`) : null) ||
@@ -62,17 +112,21 @@ export async function keluar(tujuan: string = '/masuk') {
       if (hasil?.error) {
         await supabase.auth.signOut({ scope: 'local' }).catch(() => null)
       }
+    } else {
+      const demoUser = bacaSesiDemo()
+      if (demoUser?.id) bersihkanAkunLokal(demoUser.id)
     }
   } catch {
     // Abaikan kegagalan jaringan saat proses keluar
   } finally {
-    // Bersihkan sesi Supabase lokal dan identitas profil dari perangkat
+    // Bersihkan sesi Supabase / demo lokal dan identitas profil dari perangkat
     try {
       for (const k of Object.keys(localStorage)) {
         if (k.startsWith('sb-') && k.endsWith('-auth-token')) {
           localStorage.removeItem(k)
         }
       }
+      localStorage.removeItem(KUNCI_SESI_DEMO)
       localStorage.removeItem('namaUser')
       localStorage.removeItem('emailUser')
       localStorage.removeItem('selectedAvatarId')
@@ -80,6 +134,7 @@ export async function keluar(tujuan: string = '/masuk') {
       /* abaikan */
     }
     kosongkanTamu()
+    kirimEventSesiDemo()
     window.location.replace(tujuan)
   }
 }
@@ -124,20 +179,6 @@ export async function daftarEmail(email: string, sandi: string, nama?: string): 
   const emailBersih = email.trim().toLowerCase()
   const namaBersih = nama?.trim()
 
-  // Simpan email ke daftar akun terdaftar lokal agar sinkron
-  try {
-    const daftarAkun: string[] = JSON.parse(localStorage.getItem('aksaralens:registered_emails') || '[]')
-    if (!daftarAkun.includes(emailBersih)) {
-      daftarAkun.push(emailBersih)
-      localStorage.setItem('aksaralens:registered_emails', JSON.stringify(daftarAkun))
-    }
-    if (namaBersih) {
-      localStorage.setItem(`aksaralens:nama:${emailBersih}`, namaBersih)
-    }
-  } catch {
-    /* abaikan */
-  }
-
   if (!supabase) {
     // Mode demo / offline tanpa Supabase
     try {
@@ -147,9 +188,10 @@ export async function daftarEmail(email: string, sandi: string, nama?: string): 
       }
       db[emailBersih] = { email: emailBersih, sandi, nama: namaBersih || emailBersih.split('@')[0] }
       localStorage.setItem('aksaralens:demo_accounts', JSON.stringify(db))
+      catatEmailTerdaftar(emailBersih, namaBersih)
       return { ok: true, butuhKonfirmasi: false }
     } catch {
-      return { ok: true, butuhKonfirmasi: false }
+      return { ok: false, pesan: 'Gagal menyimpan akun demo di peramban.' }
     }
   }
 
@@ -157,7 +199,7 @@ export async function daftarEmail(email: string, sandi: string, nama?: string): 
     email: emailBersih,
     password: sandi,
     options: {
-      data: namaBersih ? { full_name: namaBersih, name: namaBersih } : undefined,
+      data: namaBersih ? { full_name: namaBersih, name: namaBersih, display_name: namaBersih } : undefined,
       emailRedirectTo: `${window.location.origin}/profil`
     }
   })
@@ -166,15 +208,20 @@ export async function daftarEmail(email: string, sandi: string, nama?: string): 
   if (data.user && data.user.identities?.length === 0)
     return { ok: false, pesan: 'Email ini sudah terdaftar. Silakan langsung masuk.' }
 
+  catatEmailTerdaftar(emailBersih, namaBersih)
+  const butuhKonfirmasi = data.session === null
+
   // Supabase secara bawaan membuat sesi setelah signUp jika email confirmation off.
-  // Kita keluarkan secara lokal agar alur pendaftaran mewajibkan pengguna login terlebih dahulu.
-  try {
-    await supabase.auth.signOut({ scope: 'local' })
-  } catch {
-    /* abaikan */
+  // Keluarkan secara lokal agar alur pendaftaran mewajibkan pengguna login terlebih dahulu.
+  if (data.session) {
+    try {
+      await supabase.auth.signOut({ scope: 'local' })
+    } catch {
+      /* abaikan */
+    }
   }
 
-  return { ok: true, butuhKonfirmasi: false }
+  return { ok: true, butuhKonfirmasi }
 }
 
 export async function masukEmail(email: string, sandi: string): Promise<HasilAksi> {
@@ -191,8 +238,11 @@ export async function masukEmail(email: string, sandi: string): Promise<HasilAks
       if (user.sandi !== sandi) {
         return { ok: false, pesan: 'Kata sandi salah. Silakan periksa kembali kata sandimu.' }
       }
-      localStorage.setItem('namaUser', user.nama)
-      localStorage.setItem('emailUser', emailBersih)
+      const demoUser = buatUserDemo(emailBersih, user.nama)
+      localStorage.setItem(KUNCI_SESI_DEMO, JSON.stringify(demoUser))
+      sinkronkanUserMetadata(demoUser)
+      catatEmailTerdaftar(emailBersih, user.nama)
+      kirimEventSesiDemo()
       return { ok: true }
     } catch {
       return { ok: false, pesan: 'Terjadi kendala saat memeriksa akun.' }
@@ -213,23 +263,106 @@ export async function masukEmail(email: string, sandi: string): Promise<HasilAks
   }
 
   if (data.user) {
+    catatEmailTerdaftar(emailBersih)
     sinkronkanUserMetadata(data.user)
   }
   return { ok: true }
 }
 
 export async function lupaSandi(email: string): Promise<HasilAksi> {
-  if (!supabase) return { ok: false, pesan: 'Akun belum tersedia.' }
+  if (!supabase) return { ok: false, pesan: 'Fitur reset sandi via email memerlukan koneksi Supabase (.env).' }
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${window.location.origin}/masuk?mode=ganti-sandi`,
   })
   return error ? gagal(error) : { ok: true }
 }
 
-export async function gantiSandi(sandiBaru: string): Promise<HasilAksi> {
-  if (!supabase) return { ok: false, pesan: 'Akun belum tersedia.' }
+export async function gantiSandi(sandiBaru: string, emailOpsional?: string): Promise<HasilAksi> {
+  if (!supabase) {
+    const sesi = bacaSesiDemo()
+    const targetEmail = (sesi?.email || emailOpsional || '').trim().toLowerCase()
+    if (!targetEmail) {
+      return { ok: false, pesan: 'Masuk terlebih dahulu untuk mengubah kata sandi.' }
+    }
+    try {
+      const db = JSON.parse(localStorage.getItem('aksaralens:demo_accounts') || '{}')
+      if (!db[targetEmail]) {
+        return { ok: false, pesan: 'Akun demo tidak ditemukan.' }
+      }
+      db[targetEmail].sandi = sandiBaru
+      localStorage.setItem('aksaralens:demo_accounts', JSON.stringify(db))
+      return { ok: true }
+    } catch {
+      return { ok: false, pesan: 'Gagal menyimpan kata sandi baru.' }
+    }
+  }
   const { error } = await supabase.auth.updateUser({ password: sandiBaru })
   return error ? gagal(error) : { ok: true }
+}
+
+export async function perbaruiProfil(namaBaru: string): Promise<HasilAksi> {
+  const namaBersih = namaBaru.trim()
+  if (namaBersih.length < 2) {
+    return { ok: false, pesan: 'Nama panggilan minimal 2 karakter.' }
+  }
+
+  try {
+    localStorage.setItem('namaUser', namaBersih)
+  } catch {
+    /* abaikan */
+  }
+
+  if (!supabase) {
+    const sesi = bacaSesiDemo()
+    if (sesi?.email) {
+      const emailBersih = sesi.email.toLowerCase()
+      const diperbarui: User = {
+        ...sesi,
+        updated_at: new Date().toISOString(),
+        user_metadata: {
+          ...sesi.user_metadata,
+          full_name: namaBersih,
+          name: namaBersih,
+          display_name: namaBersih,
+        },
+      }
+      try {
+        localStorage.setItem(KUNCI_SESI_DEMO, JSON.stringify(diperbarui))
+        localStorage.setItem(`aksaralens:nama:${emailBersih}`, namaBersih)
+        const db = JSON.parse(localStorage.getItem('aksaralens:demo_accounts') || '{}')
+        if (db[emailBersih]) {
+          db[emailBersih].nama = namaBersih
+          localStorage.setItem('aksaralens:demo_accounts', JSON.stringify(db))
+        }
+      } catch {
+        /* abaikan */
+      }
+    }
+    kirimEventSesiDemo()
+    return { ok: true }
+  }
+
+  const { data, error } = await supabase.auth.updateUser({
+    data: { full_name: namaBersih, name: namaBersih, display_name: namaBersih },
+  })
+  if (error) return gagal(error)
+
+  if (data.user) {
+    sinkronkanUserMetadata(data.user)
+    if (data.user.email) {
+      try {
+        localStorage.setItem(`aksaralens:nama:${data.user.email.toLowerCase()}`, namaBersih)
+      } catch {
+        /* abaikan */
+      }
+    }
+    try {
+      await supabase.from('profiles').update({ display_name: namaBersih }).eq('id', data.user.id)
+    } catch {
+      /* sinkronisasi tabel profiles bersifat pelengkap */
+    }
+  }
+  return { ok: true }
 }
 
 // === Hapus akun (BR-03) ===

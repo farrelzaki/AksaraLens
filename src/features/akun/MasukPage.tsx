@@ -51,7 +51,7 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
 
   // Jika pengguna masih memiliki sesi aktif di browser saat membuka halaman auth:
   // Berikan kartu konfirmasi agar pengguna tahu mereka sedang login dan bisa logout dengan 1 klik untuk mengetes email baru.
-  if (pengguna && (mode === 'masuk' || mode === 'daftar')) {
+  if (pengguna && !sibuk && (mode === 'masuk' || mode === 'daftar')) {
     return (
       <div className="auth-page auth-page-masuk" style={{ justifyContent: 'center', alignItems: 'center', minHeight: '100%', padding: '24px' }}>
         <div style={{ background: '#FFFFFF', borderRadius: 24, padding: '32px 24px', boxShadow: '0 8px 32px rgba(67, 40, 28, 0.08)', maxWidth: 360, width: '100%', textAlign: 'center' }}>
@@ -167,6 +167,10 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
 
     // === ALUR DAFTAR (REGISTRASI KETAT) ===
     if (mode === 'daftar') {
+      if (!supabase && !setujuDemo) {
+        setPesan('Centang persetujuan mode demo lokal terlebih dahulu.');
+        return;
+      }
       if (!nama.trim()) {
         setPesan('Masukkan nama panggilan atau nama lengkapmu.');
         return;
@@ -188,7 +192,11 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
         setEmail(emailBersih);
         setSandi('');
         setPesan(null);
-        setInfo('Pendaftaran berhasil! Akunmu sudah terdaftar. Silakan masukkan kata sandi untuk masuk.');
+        setInfo(
+          hasil.butuhKonfirmasi
+            ? 'Pendaftaran berhasil! Cek kotak masuk emailmu untuk konfirmasi akun, lalu masuk dengan kata sandimu.'
+            : 'Pendaftaran berhasil! Akunmu sudah terdaftar. Silakan masukkan kata sandi untuk masuk.',
+        );
       }
       return;
     }
@@ -209,14 +217,17 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
 
   async function denganGoogle() {
     setPesan(null);
-    localStorage.setItem('aksaralens_onboarding_done', 'true');
-    localStorage.setItem('hasSeenIntro', 'true');
+    setInfo(null);
 
     if (!supabase) {
-      localStorage.setItem('namaUser', 'Teman Belajar');
-      navigate('/belajar');
+      setPesan(
+        'Login Google memerlukan koneksi Supabase (.env belum terpasang di perangkat ini). Untuk mencoba sekarang di lokal, silakan daftar & masuk menggunakan email di bawah.',
+      );
       return;
     }
+
+    localStorage.setItem('aksaralens_onboarding_done', 'true');
+    localStorage.setItem('hasSeenIntro', 'true');
 
     setSibuk(true);
     const { error } = await masukGoogle();

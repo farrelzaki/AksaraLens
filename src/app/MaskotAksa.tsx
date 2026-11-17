@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useId } from 'react';
 
 export type AuthMascotMood =
   | 'idle'
@@ -262,14 +262,10 @@ export function MaskotSplash() {
 
 /* ============================================================================
    2. MASKOT INTRO PAGE (Berbasis public/assets/maskot intro.svg)
-   Karakter: Menyembul hangat dari bawah layar, melirik tombol CTA dengan penasaran,
-   gelembung "Hai! Aku Aksa ✦" mengambang terpisah, dan interaktif saat disentuh!
+   Karakter: Muncul pop-up sekali saat halaman dibuka, mengayun tenang dengan
+   blangkon batik, mata melirik alami, dan gelembung "Hai! Aku Aksa ✦".
    ============================================================================ */
-interface MaskotIntroProps {
-  interested?: boolean;
-}
-
-export function MaskotIntro({ interested = false }: MaskotIntroProps) {
+export function MaskotIntro() {
   const uid = useId().replace(/:/g, '');
   const batikId = `batik-intro-${uid}`;
   const clipBlangkon = `blangkon-intro-${uid}`;
@@ -277,27 +273,8 @@ export function MaskotIntro({ interested = false }: MaskotIntroProps) {
   const clipEyeR = `eye-r-intro-${uid}`;
   const filterBubble = `filter-bubble-intro-${uid}`;
 
-  const [happyBurst, setHappyBurst] = useState(false);
-
-  const handlePoke = () => {
-    setHappyBurst(true);
-    window.setTimeout(() => setHappyBurst(false), 750);
-  };
-
   return (
-    <div
-      className={`aksa-intro-stage ${interested ? 'is-interested' : ''} ${happyBurst ? 'is-happy' : ''}`}
-      onClick={handlePoke}
-      role="button"
-      tabIndex={0}
-      aria-label="Maskot Aksa menyapa. Ketuk untuk menyapa balik."
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          handlePoke();
-        }
-      }}
-    >
+    <div className="aksa-intro-stage" aria-hidden="true">
       <svg
         viewBox="0 0 412 377"
         fill="none"
@@ -342,7 +319,7 @@ export function MaskotIntro({ interested = false }: MaskotIntroProps) {
           </filter>
         </defs>
 
-        {/* Bintang kecil interaktif saat diketuk / hover */}
+        {/* Bintang dekorasi kecil */}
         <path
           d="M52 102L54.8 110.2L63 113L54.8 115.8L52 124L49.2 115.8L41 113L49.2 110.2L52 102Z"
           fill="#9CAF6C"
@@ -354,6 +331,8 @@ export function MaskotIntro({ interested = false }: MaskotIntroProps) {
           className="aksa-intro-deco-star aksa-intro-deco-star-2"
         />
 
+        {/* Masuk pop-up sekali saat halaman dibuka */}
+        <g className="aksa-intro-peek-entry">
         {/* Rig Badan & Kepala Aksa (menempel rapat di bawah agar bebas celah saat membal) */}
         <g className="aksa-intro-head-rig">
           {/* Jambul / Tunas kepala dengan gerak susulan */}
@@ -421,17 +400,6 @@ export function MaskotIntro({ interested = false }: MaskotIntroProps) {
                 fill="none"
               />
             </g>
-            {/* Kelopak senyum bahagia saat diketuk */}
-            <g className="aksa-intro-happy-eye">
-              <rect x="48" y="200" width="146" height="148" fill="#A8D800" />
-              <path
-                d="M84 282C102 256 140 256 158 282"
-                stroke="#4D3423"
-                strokeWidth="10"
-                strokeLinecap="round"
-                fill="none"
-              />
-            </g>
           </g>
 
           {/* Mata Kanan */}
@@ -458,16 +426,6 @@ export function MaskotIntro({ interested = false }: MaskotIntroProps) {
                 d="M236 192C267 206 318 206 349 192"
                 stroke="#4D3423"
                 strokeWidth="9"
-                strokeLinecap="round"
-                fill="none"
-              />
-            </g>
-            <g className="aksa-intro-happy-eye">
-              <rect x="220" y="200" width="146" height="148" fill="#A8D800" />
-              <path
-                d="M254 282C272 256 310 256 328 282"
-                stroke="#4D3423"
-                strokeWidth="10"
                 strokeLinecap="round"
                 fill="none"
               />
@@ -510,6 +468,7 @@ export function MaskotIntro({ interested = false }: MaskotIntroProps) {
               stroke="#0B1035"
             />
           </g>
+        </g>
         </g>
 
         {/* Gelembung sapa "Hai! Aku Aksa ✦" mengambang dengan fase independen */}
