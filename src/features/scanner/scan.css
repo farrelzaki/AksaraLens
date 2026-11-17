@@ -527,34 +527,34 @@
   text-decoration: none;
 }
 
-/* Navbar transparan melayang langsung di atas kamera */
+/* Navbar transparan melayang langsung di atas kamera (Lensa Aksara - DESIGN_SYSTEM.md §6.3) */
 .navbar-container.navbar-scan {
   position: absolute;
-  bottom: 20px;
+  bottom: calc(18px + env(safe-area-inset-bottom));
   left: 0;
   right: 0;
-  z-index: 90;
+  z-index: 100;
 }
 
 .navbar-container.navbar-scan .navbar {
-  background: rgba(245, 240, 232, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  max-width: 366px;
+  background: rgba(245, 240, 232, 0.90);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.40);
+  max-width: 368px;
 }
 
 .navbar-container.navbar-scan .navbar-item {
   flex: 1;
-  color: #6B5B4D;
+  color: #7D6B5E;
 }
 
 .navbar-container.navbar-scan .navbar-item.active {
-  flex: 1.5;
-  background: #4D3423;
-  color: #FFFAF3;
-  box-shadow: none;
+  flex: 1.45;
+  background: #43281C;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(67, 40, 28, 0.24);
 }
 
 /* Garis pemindaian saat aksara sedang dibaca di latar belakang */

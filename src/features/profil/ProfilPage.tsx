@@ -66,18 +66,20 @@ export function ProfilPage() {
     localStorage.setItem('selectedAvatarId', String(newId));
   };
 
-  // Nilai progres sesuai referensi PROFIL 1.png: 5 / 15 (33%), 1 / 3 Bab tuntas
-  const totalTitik = 15;
-  const selesaiReal = JALUR.filter((t) => status.get(t.id) === 'selesai').length;
-  const selesaiCount = Math.max(selesaiReal, 5);
-  const totalPersen = Math.round((selesaiCount / totalTitik) * 100); // 33%
-  const babSelesaiCount = Math.max(
-    BAB.filter((b) => {
-      const titik = JALUR.filter((t) => t.bab === b.bab);
-      return titik.length > 0 && titik.every((t) => status.get(t.id) === 'selesai');
-    }).length,
-    1,
-  );
+  // Hitung progres real sesuai status jalur & backend Supabase (tanpa nilai dummy hardcoded)
+  const progresPerBab = BAB.map((b) => {
+    const titik = JALUR.filter((t) => t.bab === b.bab);
+    const selesai = titik.filter((t) => status.get(t.id) === 'selesai').length;
+    const total = titik.length;
+    const persen = total > 0 ? Math.round((selesai / total) * 100) : 0;
+    const tuntas = total > 0 && selesai === total;
+    return { ...b, selesai, total, persen, tuntas };
+  });
+
+  const totalTitik = JALUR.length;
+  const selesaiCount = JALUR.filter((t) => status.get(t.id) === 'selesai').length;
+  const totalPersen = totalTitik > 0 ? Math.round((selesaiCount / totalTitik) * 100) : 0;
+  const babSelesaiCount = progresPerBab.filter((b) => b.tuntas).length;
 
   const profilBabMascots = [
     '/assets/maskot profil bab 1.svg',
@@ -486,10 +488,11 @@ export function ProfilPage() {
 
           {/* 3 Bab Cards */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {BAB.map((bab, i) => {
-              const selesaiBab = bab.bab === 1 ? 5 : 0;
-              const semuaSelesai = selesaiBab === 5;
-              const persen = semuaSelesai ? 100 : 0;
+            {progresPerBab.map((bab, i) => {
+              const selesaiBab = bab.selesai;
+              const totalBab = bab.total;
+              const semuaSelesai = bab.tuntas;
+              const persen = bab.persen;
 
               return (
                 <button
@@ -560,7 +563,7 @@ export function ProfilPage() {
                       color: '#8C827A',
                       margin: '4px 0 6px',
                     }}>
-                      {selesaiBab} dari 5 pelajaran selesai
+                      {selesaiBab} dari {totalBab} pelajaran selesai
                     </p>
                     <div style={{ width: '100%', height: 6, background: '#F0ECE4', borderRadius: 999, overflow: 'hidden' }}>
                       <div
@@ -569,6 +572,7 @@ export function ProfilPage() {
                           height: '100%',
                           background: '#8FA55B',
                           borderRadius: 999,
+                          transition: 'width 0.3s ease-out',
                         }}
                       />
                     </div>

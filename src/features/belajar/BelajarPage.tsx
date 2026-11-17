@@ -50,15 +50,13 @@ export function BelajarPage() {
     localStorage.setItem('selectedAvatarId', String(newId));
   };
 
-  // Hitung progres per bab (5 tahap latihan sesuai HOMEPAGE.png)
+  // Hitung progres real per bab dari state jalur (sinkron dengan Supabase / localStorage)
   const progresBab = BAB.map((bab) => {
     const titikBab = JALUR.filter((t) => t.bab === bab.bab);
-    const selesaiReal = titikBab.filter((t) => status.get(t.id) === 'selesai').length;
-    const total = 5;
-    const hasAnyProgress = Array.from(status.values()).some((s) => s === 'selesai');
-    const selesai = hasAnyProgress ? Math.min(selesaiReal, total) : (bab.bab === 1 ? 5 : 0);
+    const selesai = titikBab.filter((t) => status.get(t.id) === 'selesai').length;
+    const total = titikBab.length;
     const persenVal = total > 0 ? Math.round((selesai / total) * 100) : 0;
-    const semua = selesai === total;
+    const semua = total > 0 && selesai === total;
     return { ...bab, selesai, total, persen: persenVal, semua };
   });
 

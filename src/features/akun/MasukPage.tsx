@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { useNavigate, useLocation } from 'react-router';
+import { MaskotLogin, MaskotRegist, type AuthMascotMood } from '../../app/MaskotAksa';
 import { supabase } from '../../lib/supabase';
 import { daftarEmail, gantiSandi, keluar, lupaSandi, masukEmail, masukGoogle } from '../../lib/auth';
 import { useSesi } from '../../lib/sesi';
@@ -27,11 +28,26 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
   const [email, setEmail] = useState('');
   const [sandi, setSandi] = useState('');
   const [lihatSandi, setLihatSandi] = useState(false);
+  const [focusedField, setFocusedField] = useState<'nama' | 'email' | 'password' | null>(null);
   const [setujuDemo, setSetujuDemo] = useState(true);
 
   const [pesan, setPesan] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
   const [sibuk, setSibuk] = useState(false);
+
+  const mascotMood: AuthMascotMood = sibuk
+    ? 'loading'
+    : focusedField === 'password'
+    ? lihatSandi
+      ? 'password-visible'
+      : 'password-hidden'
+    : focusedField === 'email'
+    ? 'email'
+    : focusedField === 'nama'
+    ? 'nama'
+    : pesan
+    ? 'error'
+    : 'idle';
 
   // Jika pengguna masih memiliki sesi aktif di browser saat membuka halaman auth:
   // Berikan kartu konfirmasi agar pengguna tahu mereka sedang login dan bisa logout dengan 1 klik untuk mengetes email baru.
@@ -39,7 +55,9 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
     return (
       <div className="auth-page auth-page-masuk" style={{ justifyContent: 'center', alignItems: 'center', minHeight: '100%', padding: '24px' }}>
         <div style={{ background: '#FFFFFF', borderRadius: 24, padding: '32px 24px', boxShadow: '0 8px 32px rgba(67, 40, 28, 0.08)', maxWidth: 360, width: '100%', textAlign: 'center' }}>
-          <div style={{ fontSize: 48, marginBottom: 14 }}>👤</div>
+          <div style={{ width: 92, height: 92, margin: '0 auto 14px' }}>
+            <MaskotLogin mood="idle" />
+          </div>
           <h2 style={{ fontSize: 20, fontWeight: 800, color: '#43281C', marginBottom: 8 }}>Sesi Akun Masih Aktif</h2>
           <p style={{ fontSize: 13, color: '#685A4E', lineHeight: 1.5, marginBottom: 24 }}>
             Saat ini kamu masih masuk sebagai <strong>{pengguna.email || 'Pengguna'}</strong>.<br />
@@ -87,6 +105,8 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
   const handleKembali = () => {
     if (mode === 'lupa' || mode === 'ganti-sandi') {
       setMode('masuk');
+      setFocusedField(null);
+      setLihatSandi(false);
       setPesan(null);
       setInfo(null);
       return;
@@ -96,6 +116,7 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
 
   async function kirim(e: FormEvent) {
     e.preventDefault();
+    setFocusedField(null);
     setPesan(null);
     setInfo(null);
 
@@ -233,12 +254,7 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
 
         {/* Maskot */}
         <div className="auth-mascot-container mascot-regist">
-          <img
-            src="/assets/maskot regist.svg"
-            alt="Maskot Aksa mendaftar"
-            className="auth-mascot-img"
-            draggable={false}
-          />
+          <MaskotRegist mood={mascotMood} />
         </div>
 
         {/* Judul */}
@@ -278,6 +294,8 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
               placeholder="Siapa namamu?"
               value={nama}
               onChange={(e) => setNama(e.target.value)}
+              onFocus={() => setFocusedField('nama')}
+              onBlur={() => setFocusedField((prev) => (prev === 'nama' ? null : prev))}
               className="auth-input auth-input-lime"
             />
           </div>
@@ -293,6 +311,8 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onFocus={() => setFocusedField('email')}
+              onBlur={() => setFocusedField((prev) => (prev === 'email' ? null : prev))}
               className="auth-input auth-input-lime"
             />
           </div>
@@ -309,12 +329,17 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
                 minLength={6}
                 value={sandi}
                 onChange={(e) => setSandi(e.target.value)}
+                onFocus={() => setFocusedField('password')}
+                onBlur={() => setFocusedField((prev) => (prev === 'password' ? null : prev))}
                 className="auth-input auth-input-lime"
               />
               <button
                 type="button"
                 className="btn-toggle-eye"
-                onClick={() => setLihatSandi(!lihatSandi)}
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => setLihatSandi((v) => !v)}
+                onFocus={() => setFocusedField('password')}
+                onBlur={() => setFocusedField((prev) => (prev === 'password' ? null : prev))}
                 aria-label={lihatSandi ? 'Sembunyikan sandi' : 'Tampilkan sandi'}
               >
                 {lihatSandi ? (
@@ -391,6 +416,8 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
               className="auth-link-bold auth-link-dark"
               onClick={() => {
                 setMode('masuk');
+                setFocusedField(null);
+                setLihatSandi(false);
                 setPesan(null);
                 setInfo(null);
               }}
@@ -429,12 +456,7 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
 
       {/* Maskot */}
       <div className="auth-mascot-container mascot-login">
-        <img
-          src="/assets/maskot login.svg"
-          alt="Maskot Aksa masuk"
-          className="auth-mascot-img"
-          draggable={false}
-        />
+        <MaskotLogin mood={mascotMood} />
       </div>
 
       {/* Judul */}
@@ -493,6 +515,8 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onFocus={() => setFocusedField('email')}
+              onBlur={() => setFocusedField((prev) => (prev === 'email' ? null : prev))}
               className="auth-input auth-input-white"
             />
           </div>
@@ -508,6 +532,7 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
                   className="link-btn-text"
                   onClick={() => {
                     setMode('lupa');
+                    setFocusedField(null);
                     setPesan(null);
                     setInfo(null);
                   }}
@@ -526,12 +551,17 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
                 minLength={6}
                 value={sandi}
                 onChange={(e) => setSandi(e.target.value)}
+                onFocus={() => setFocusedField('password')}
+                onBlur={() => setFocusedField((prev) => (prev === 'password' ? null : prev))}
                 className="auth-input auth-input-white"
               />
               <button
                 type="button"
                 className="btn-toggle-eye"
-                onClick={() => setLihatSandi(!lihatSandi)}
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => setLihatSandi((v) => !v)}
+                onFocus={() => setFocusedField('password')}
+                onBlur={() => setFocusedField((prev) => (prev === 'password' ? null : prev))}
                 aria-label={lihatSandi ? 'Sembunyikan sandi' : 'Tampilkan sandi'}
               >
                 {lihatSandi ? (
@@ -604,6 +634,8 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
                   }}
                   onClick={() => {
                     setMode('daftar');
+                    setFocusedField(null);
+                    setLihatSandi(false);
                     setPesan(null);
                     setInfo(`Lengkapi nama panggilan untuk mendaftar akun ${email}.`);
                   }}
@@ -651,6 +683,8 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
               className="auth-link-bold auth-link-dark-underline"
               onClick={() => {
                 setMode('daftar');
+                setFocusedField(null);
+                setLihatSandi(false);
                 setPesan(null);
                 setInfo(null);
               }}
@@ -665,6 +699,8 @@ export function MasukPage({ modeDefault }: MasukPageProps) {
             className="auth-link-bold"
             onClick={() => {
               setMode('masuk');
+              setFocusedField(null);
+              setLihatSandi(false);
               setPesan(null);
               setInfo(null);
             }}

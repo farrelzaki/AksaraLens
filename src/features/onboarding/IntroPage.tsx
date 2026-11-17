@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { useNavigate, Navigate } from 'react-router';
+import { MaskotIntro } from '../../app/MaskotAksa';
 import { useSesi } from '../../lib/sesi';
 
 export function IntroPage() {
   const navigate = useNavigate();
   const { pengguna, memuat } = useSesi();
+  const [ctaHovered, setCtaHovered] = useState(false);
 
   // Jika sudah login, tidak perlu menampilkan layar intro — langsung ke beranda
   if (!memuat && pengguna) {
@@ -36,6 +39,10 @@ export function IntroPage() {
             type="button"
             className="intro-btn-primary"
             onClick={() => navigate('/daftar')}
+            onMouseEnter={() => setCtaHovered(true)}
+            onMouseLeave={() => setCtaHovered(false)}
+            onFocus={() => setCtaHovered(true)}
+            onBlur={() => setCtaHovered(false)}
           >
             Daftar sekarang
           </button>
@@ -43,6 +50,10 @@ export function IntroPage() {
             type="button"
             className="intro-btn-outline"
             onClick={() => navigate('/masuk')}
+            onMouseEnter={() => setCtaHovered(true)}
+            onMouseLeave={() => setCtaHovered(false)}
+            onFocus={() => setCtaHovered(true)}
+            onBlur={() => setCtaHovered(false)}
           >
             Sudah punya akun? Masuk
           </button>
@@ -57,12 +68,7 @@ export function IntroPage() {
       </div>
 
       <div className="intro-bottom-mascot">
-        <img
-          src="/assets/maskot intro.svg"
-          alt="Maskot Aksa - Hai! Aku Aksa ✦"
-          className="intro-mascot-img"
-          draggable={false}
-        />
+        <MaskotIntro interested={ctaHovered} />
       </div>
     </div>
   );
