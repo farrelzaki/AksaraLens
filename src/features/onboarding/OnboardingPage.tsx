@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState, type TouchEvent } from 'react';
 import { useNavigate, Navigate } from 'react-router';
 import { useSesi } from '../../lib/sesi';
+import { OnboardingSceneArt } from './OnboardingSceneArt';
 
 const SCENES = [
   {
@@ -8,21 +9,21 @@ const SCENES = [
     stepLabel: 'KENALI AKSARANYA',
     title: 'Cerita besar.\nMulai dari\nsatu aksara.',
     desc: 'Kenali aksara Jawa lewat tiga bab dan pelajaran pendek. Satu langkah, satu hal baru.',
-    image: '/assets/OnboardingScene 1.svg',
+    sceneLabel: 'Aksa mengenal huruf aksara Jawa dari buku belajar',
   },
   {
     stepCode: '02 / 03',
     stepLabel: 'COBA GORESANNYA',
     title: 'Lihat bentuknya.\nCoba tulis.\nKamu bisa!',
     desc: 'Lihat animasi contoh, tulis di kanvas dalam materi, lalu uji pemahamanmu dengan kuis.',
-    image: '/assets/OnboardingScene 2.svg',
+    sceneLabel: 'Aksa berlatih menulis goresan aksara Jawa di kanvas',
   },
   {
     stepCode: '03 / 03',
     stepLabel: 'TEMUKAN BUNYINYA',
     title: 'Dari bentuk,\njadi bunyi.\nJadi mengerti.',
     desc: 'Jelajahi Lensa untuk memahami teks Latin dan detail per suku kata. Hasil scan saat ini memakai contoh demo.',
-    image: '/assets/OnboardingScene 3.svg',
+    sceneLabel: 'Aksa memindai aksara Jawa dengan Lensa Aksara untuk mengetahui bunyinya',
   },
 ];
 
@@ -30,7 +31,17 @@ export function OnboardingPage() {
   const { pengguna, memuat } = useSesi();
   const [index, setIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
+  const touchStartXRef = useRef<number | null>(null);
+  const transitionTimerRef = useRef<number | null>(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    return () => {
+      if (transitionTimerRef.current !== null) {
+        window.clearTimeout(transitionTimerRef.current);
+      }
+    };
+  }, []);
 
   // Jika sudah login, langsung ke beranda belajar
   if (!memuat && pengguna) {
@@ -43,12 +54,15 @@ export function OnboardingPage() {
   };
 
   const goTo = (nextIndex: number) => {
-    if (animating) return;
+    if (animating || nextIndex === index) return;
     setAnimating(true);
-    setTimeout(() => {
+    if (transitionTimerRef.current !== null) {
+      window.clearTimeout(transitionTimerRef.current);
+    }
+    transitionTimerRef.current = window.setTimeout(() => {
       setIndex(nextIndex);
       setAnimating(false);
-    }, 240);
+    }, 220);
   };
 
   const handleNext = () => {
@@ -67,10 +81,31 @@ export function OnboardingPage() {
     }
   };
 
+  const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+    touchStartXRef.current = e.touches[0]?.clientX ?? null;
+  };
+
+  const handleTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
+    if (touchStartXRef.current === null) return;
+    const endX = e.changedTouches[0]?.clientX ?? touchStartXRef.current;
+    const deltaX = endX - touchStartXRef.current;
+    touchStartXRef.current = null;
+    if (Math.abs(deltaX) < 42) return;
+    if (deltaX < 0 && index < SCENES.length - 1) {
+      goTo(index + 1);
+    } else if (deltaX > 0 && index > 0) {
+      goTo(index - 1);
+    }
+  };
+
   const current = SCENES[index];
 
   return (
-    <div className="onboarding-screen">
+    <div
+      className="onboarding-screen"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Header */}
       <header className="onboarding-header">
         <button
@@ -91,7 +126,10 @@ export function OnboardingPage() {
 
       {/* Body: Step label + title + desc */}
       <div className="onboarding-body">
-        <span className="onboarding-step-label">
+        <span
+          className={`onboarding-step-label${animating ? ' onboarding-slide-out' : ' onboarding-slide-in'}`}
+          key={`label-${index}`}
+        >
           {current.stepCode} · {current.stepLabel}
         </span>
         <h1
@@ -112,13 +150,14 @@ export function OnboardingPage() {
 
       {/* Scene illustration */}
       <div className="onboarding-scene-container">
-        <img
+        <div
           key={`scene-${index}`}
-          src={current.image}
-          alt={`Ilustrasi Onboarding ${index + 1}`}
-          className={`onboarding-scene-img${animating ? ' onboarding-scene-fade-out' : ' onboarding-scene-fade-in'}`}
-          draggable={false}
-        />
+          className={`onboarding-scene-wrap${animating ? ' onboarding-scene-fade-out' : ' onboarding-scene-fade-in'}`}
+          role="img"
+          aria-label={current.sceneLabel}
+        >
+          <OnboardingSceneArt step={index} />
+        </div>
       </div>
 
       {/* Footer */}

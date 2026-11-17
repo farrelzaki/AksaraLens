@@ -4394,7 +4394,7 @@ body {
 .onboarding-screen {
   width: 100%;
   flex: 1;
-  min-height: 917px;
+  min-height: 100%;
   height: 100%;
   max-height: 917px;
   background-color: #43281C;
@@ -4497,9 +4497,17 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0 16px;
-  margin: 8px 0 0;
-  min-height: 280px;
+  padding: 0 14px;
+  margin: 4px 0 0;
+  min-height: 220px;
+  position: relative;
+}
+
+.onboarding-scene-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .onboarding-scene-img {
@@ -4620,7 +4628,15 @@ body {
 }
 
 .onboarding-slide-in {
-  animation: onboardingSlideIn 0.25s ease both;
+  animation: onboardingSlideIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.onboarding-title.onboarding-slide-in {
+  animation-delay: 0.04s;
+}
+
+.onboarding-desc.onboarding-slide-in {
+  animation-delay: 0.09s;
 }
 
 .onboarding-slide-out {
@@ -4628,7 +4644,7 @@ body {
 }
 
 .onboarding-scene-fade-in {
-  animation: onboardingFadeIn 0.28s ease both;
+  animation: onboardingFadeIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .onboarding-scene-fade-out {
@@ -7112,18 +7128,463 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
   }
 }
 
-/* -------- 2. ONBOARDING SCENE SUBTLE FLOAT -------- */
-.onboarding-scene-container {
-  position: relative;
-  animation: onboardingAmbientFloat 4.6s ease-in-out infinite;
+/* -------- 2. ONBOARDING SCENE ANIMATED VECTOR RIGS -------- */
+.onb-scene-stage {
+  width: 100%;
+  max-width: 356px;
+  max-height: 332px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@keyframes onboardingAmbientFloat {
+.onb-scene-svg {
+  width: 100%;
+  height: auto;
+  max-height: 326px;
+  display: block;
+  overflow: visible;
+}
+
+/* Transform pivot aman untuk setiap elemen SVG adegan */
+.onb-blob,
+.onb-shadow,
+.onb-aksa-rig,
+.onb-aksa-head,
+.onb-blangkon,
+.onb-brows,
+.onb-pupils,
+.onb-eyelid,
+.onb-hands,
+.onb-bubble,
+.onb-sparkle,
+.onb-s1-book,
+.onb-s1-glyph,
+.onb-s1-check,
+.onb-s2-canvas,
+.onb-s2-pencil,
+.onb-s3-phone,
+.onb-s3-reticle,
+.onb-s3-result,
+.onb-s3-check,
+.onb-s3-badge {
+  transform-box: fill-box;
+  transform-origin: center center;
+}
+
+.onb-blob {
+  animation: onbBlobBreathe 6.4s ease-in-out infinite;
+}
+
+.onb-shadow {
+  animation: onbShadowPulse 3.8s ease-in-out infinite;
+}
+
+.onb-aksa-rig {
+  transform-origin: 50% 88%;
+  animation:
+    onbAksaEnter 0.56s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+    onbAksaBreathe 3.8s ease-in-out 0.56s infinite;
+}
+
+.onb-aksa-head {
+  transform-origin: 50% 84%;
+  animation: onbHeadTilt 4.8s ease-in-out 0.4s infinite;
+}
+
+.onb-blangkon {
+  transform-origin: 50% 85%;
+  animation: onbBlangkonSettle 3.8s ease-in-out 0.14s infinite;
+}
+
+.onb-brows {
+  animation: onbBrowsLift 4.8s ease-in-out infinite;
+}
+
+.onb-brows-curious {
+  animation: onbBrowsCurious 4.4s ease-in-out infinite;
+}
+
+.onb-pupils {
+  animation: onbPupilsLook 5.2s ease-in-out infinite;
+}
+
+.onb-pupils-track {
+  animation: onbPupilsTrack 4.4s ease-in-out infinite;
+}
+
+.onb-eyelid {
+  transform-origin: top center;
+  animation: onbEyeBlink 4.6s ease-in-out infinite;
+}
+
+.onb-hands {
+  animation: onbHandsBob 2.8s ease-in-out infinite;
+}
+
+.onb-bubble {
+  transform-origin: center bottom;
+  animation:
+    onbBubblePop 0.54s cubic-bezier(0.34, 1.56, 0.64, 1) 0.24s both,
+    onbBubbleFloat 3.6s ease-in-out 0.8s infinite;
+}
+
+.onb-sparkle {
+  animation: onbSparkleTwinkle 2.8s ease-in-out infinite;
+}
+
+.onb-sparkle-1 {
+  animation-delay: 0.2s;
+}
+
+.onb-sparkle-2 {
+  animation-delay: 1.4s;
+}
+
+/* Scene 1: Membaca Buku Aksara Dasar */
+.onb-s1-book {
+  animation:
+    onbPropEnter 0.52s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both,
+    onbPropFloat 4.2s ease-in-out 0.65s infinite;
+}
+
+.onb-s1-glyph {
+  animation: onbGlyphGlow 3.2s ease-in-out infinite;
+}
+
+.onb-s1-check {
+  animation: onbCheckPulse 2.6s ease-in-out 0.4s infinite;
+}
+
+/* Scene 2: Latihan Menulis di Kanvas */
+.onb-s2-canvas {
+  animation: onbPropEnter 0.52s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+.onb-s2-trace-stroke {
+  stroke-dasharray: 102;
+  stroke-dashoffset: 102;
+  animation: onbTraceStroke 4.4s cubic-bezier(0.42, 0, 0.25, 1) 0.35s infinite;
+}
+
+.onb-s2-pencil {
+  transform-origin: 86% 88%;
+  animation: onbPencilWrite 4.4s cubic-bezier(0.42, 0, 0.25, 1) 0.35s infinite;
+}
+
+/* Scene 3: Pemindaian Lensa & Pengenalan Bunyi */
+.onb-s3-phone {
+  animation:
+    onbPropEnter 0.52s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both,
+    onbPhoneTilt 4.6s ease-in-out 0.65s infinite;
+}
+
+.onb-s3-scan-beam {
+  animation: onbScanSweep 3.2s ease-in-out infinite;
+}
+
+.onb-s3-reticle {
+  animation: onbReticlePulse 3.2s ease-in-out infinite;
+}
+
+.onb-s3-result {
+  animation: onbResultHighlight 3.2s ease-in-out infinite;
+}
+
+.onb-s3-check {
+  animation: onbCheckPulse 3.2s ease-in-out infinite;
+}
+
+.onb-s3-badge {
+  animation: onbBadgeFloat 3.6s ease-in-out 0.2s infinite;
+}
+
+@keyframes onbBlobBreathe {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.035) rotate(2.5deg);
+  }
+}
+
+@keyframes onbShadowPulse {
+  0%, 100% {
+    transform: scaleX(1);
+    opacity: 0.19;
+  }
+  50% {
+    transform: scaleX(0.94);
+    opacity: 0.14;
+  }
+}
+
+@keyframes onbAksaEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.92);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes onbAksaBreathe {
+  0%, 100% {
+    transform: translateY(0) scaleX(1) scaleY(1);
+  }
+  50% {
+    transform: translateY(-5px) scaleX(0.985) scaleY(1.018);
+  }
+}
+
+@keyframes onbHeadTilt {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(-2.2deg) translateY(-1px);
+  }
+  70% {
+    transform: rotate(2deg) translateY(-1px);
+  }
+}
+
+@keyframes onbBlangkonSettle {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-1.5px) rotate(-0.8deg);
+  }
+}
+
+@keyframes onbBrowsLift {
+  0%, 55%, 100% {
+    transform: translateY(0);
+  }
+  72% {
+    transform: translateY(-2.4px);
+  }
+}
+
+@keyframes onbBrowsCurious {
+  0%, 35%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  55% {
+    transform: translateY(-2.6px) rotate(-2deg);
+  }
+}
+
+@keyframes onbPupilsLook {
+  0%, 40%, 100% {
+    transform: translate(0, 0);
+  }
+  55%, 78% {
+    transform: translate(2.5px, 0.8px);
+  }
+  88% {
+    transform: translate(1.2px, -1.2px);
+  }
+}
+
+@keyframes onbPupilsTrack {
+  0%, 12%, 100% {
+    transform: translate(-1px, 1px);
+  }
+  35% {
+    transform: translate(1.5px, 0.5px);
+  }
+  65% {
+    transform: translate(3px, 1.5px);
+  }
+  82% {
+    transform: translate(0.5px, -1px);
+  }
+}
+
+@keyframes onbEyeBlink {
+  0%, 44%, 49%, 89%, 94%, 100% {
+    transform: translateY(-4px);
+  }
+  46.5%, 91.5% {
+    transform: translateY(58px);
+  }
+}
+
+@keyframes onbHandsBob {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(-1.8deg);
+  }
+}
+
+@keyframes onbBubblePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.76) translateY(8px);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.04) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes onbBubbleFloat {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes onbSparkleTwinkle {
+  0%, 100% {
+    transform: scale(0.85) rotate(0deg);
+    opacity: 0.72;
+  }
+  50% {
+    transform: scale(1.18) rotate(18deg);
+    opacity: 1;
+  }
+}
+
+@keyframes onbPropEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes onbPropFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0.7deg);
+  }
+}
+
+@keyframes onbGlyphGlow {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes onbCheckPulse {
+  0%, 55%, 100% {
+    transform: scale(1);
+  }
+  72% {
+    transform: scale(1.12);
+  }
+}
+
+@keyframes onbTraceStroke {
+  0%, 10% {
+    stroke-dashoffset: 102;
+    opacity: 0.25;
+  }
+  65%, 86% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  96%, 100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes onbPencilWrite {
+  0%, 10% {
+    transform: translate(-52px, 14px) rotate(-6deg);
+  }
+  26% {
+    transform: translate(-44px, -2px) rotate(-2deg);
+  }
+  42% {
+    transform: translate(-24px, 4px) rotate(2deg);
+  }
+  56% {
+    transform: translate(-10px, -3px) rotate(-3deg);
+  }
+  68%, 82% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  92% {
+    transform: translate(4px, -10px) rotate(5deg);
+  }
+  100% {
+    transform: translate(-52px, 14px) rotate(-6deg);
+  }
+}
+
+@keyframes onbPhoneTilt {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(-0.8deg);
+  }
+}
+
+@keyframes onbScanSweep {
+  0%, 100% {
+    transform: translateY(-38px);
+    opacity: 0.72;
+  }
+  50% {
+    transform: translateY(42px);
+    opacity: 1;
+  }
+}
+
+@keyframes onbReticlePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.88;
+  }
+  50% {
+    transform: scale(1.045);
+    opacity: 1;
+  }
+}
+
+@keyframes onbResultHighlight {
+  0%, 42%, 100% {
+    transform: scale(1);
+  }
+  58%, 74% {
+    transform: scale(1.035);
+  }
+}
+
+@keyframes onbBadgeFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(3deg);
   }
 }
 
@@ -7903,6 +8364,10 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
   .splash-v2-tagline,
   .splash-v2-footer,
   .splash-v2-dot,
+  .onboarding-step-label,
+  .onboarding-title,
+  .onboarding-desc,
+  .onboarding-scene-wrap,
   .onboarding-scene-container,
   .intro-blob-green,
   .intro-blob-brown,
@@ -7914,7 +8379,13 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
   .auth-title-container,
   .btn-google-auth,
   .auth-form,
-  [class*="aksa-"] {
+  [class*="aksa-"],
+  [class*="onb-"] {
     animation: none !important;
+  }
+
+  .onb-s2-trace-stroke {
+    stroke-dashoffset: 0 !important;
+    opacity: 1 !important;
   }
 }

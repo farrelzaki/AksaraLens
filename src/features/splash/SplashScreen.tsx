@@ -13,12 +13,7 @@ export function SplashScreen() {
       navigate('/belajar', { replace: true });
       return;
     }
-    const onboardingDone = localStorage.getItem('aksaralens_onboarding_done');
-    if (onboardingDone) {
-      navigate('/intro', { replace: true });
-    } else {
-      navigate('/onboarding', { replace: true });
-    }
+    navigate('/onboarding', { replace: true });
   };
 
   useEffect(() => {
@@ -33,14 +28,9 @@ export function SplashScreen() {
       return () => clearTimeout(timer);
     }
 
-    // Pengguna belum login: beri waktu animasi sapaan Aksa tampil nyaman sebelum masuk onboarding/intro
-    const onboardingDone = localStorage.getItem('aksaralens_onboarding_done');
+    // Pengguna belum login: selalu arahkan ke Onboarding (1-3) lalu Intro sesuai userflow utama
     const timer = setTimeout(() => {
-      if (onboardingDone) {
-        navigate('/intro', { replace: true });
-      } else {
-        navigate('/onboarding', { replace: true });
-      }
+      navigate('/onboarding', { replace: true });
     }, 2300);
 
     return () => clearTimeout(timer);

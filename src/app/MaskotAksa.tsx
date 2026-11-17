@@ -13,14 +13,14 @@ export type AuthMascotMood =
  * Pola Batik Parang & Cecek tradisional khas Jawa untuk blangkon Aksa.
  * Dibangun dengan vektor murni agar tajam di layar Retina/4K dan ringan tanpa bitmap ratusan KB.
  */
-function BatikPatternDef({ id }: { id: string }) {
+export function BatikPatternDef({ id, scale = 1 }: { id: string; scale?: number }) {
   return (
     <pattern
       id={id}
       width="24"
       height="24"
       patternUnits="userSpaceOnUse"
-      patternTransform="rotate(-26)"
+      patternTransform={scale === 1 ? 'rotate(-26)' : `rotate(-26) scale(${scale})`}
     >
       {/* Dasar sogan cokelat tua khas batik Mataram */}
       <rect width="24" height="24" fill="#4A2714" />

@@ -130,6 +130,8 @@ export async function keluar(tujuan: string = '/masuk') {
       localStorage.removeItem('namaUser')
       localStorage.removeItem('emailUser')
       localStorage.removeItem('selectedAvatarId')
+      localStorage.removeItem('aksaralens_onboarding_done')
+      localStorage.removeItem('hasSeenIntro')
     } catch {
       /* abaikan */
     }
