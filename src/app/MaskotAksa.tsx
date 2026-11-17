@@ -1,4 +1,4 @@
-import { useId } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 
 export type AuthMascotMood =
   | 'idle'
@@ -279,14 +279,43 @@ export function MaskotIntro() {
   const clipEyeL = `eye-l-intro-${uid}`;
   const clipEyeR = `eye-r-intro-${uid}`;
 
+  const [senyumMerem, setSenyumMerem] = useState(false);
+  const timerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current !== null) {
+        window.clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
+
+  const handleSentuhAksa = () => {
+    setSenyumMerem(true);
+    if (timerRef.current !== null) {
+      window.clearTimeout(timerRef.current);
+    }
+    timerRef.current = window.setTimeout(() => {
+      setSenyumMerem(false);
+      timerRef.current = null;
+    }, 2200);
+  };
+
   return (
-    <div className="aksa-intro-stage" aria-hidden="true">
+    <button
+      type="button"
+      onClick={handleSentuhAksa}
+      className={`aksa-intro-stage${senyumMerem ? ' is-happy' : ''}`}
+      aria-label="Sapa maskot Aksa"
+      aria-pressed={senyumMerem}
+    >
       <svg
         viewBox="0 0 412 377"
         preserveAspectRatio="xMidYMax meet"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="aksa-intro-svg"
+        aria-hidden="true"
       >
         <defs>
           <BatikPatternDef id={batikId} />
@@ -324,13 +353,13 @@ export function MaskotIntro() {
             className="aksa-intro-sprout"
           />
 
-          {/* Tubuh kubah hijau lime (berlebih ke bawah y=406 agar tak pernah terbuka celah) */}
+          {/* Tubuh kubah hijau lime (berlebih ke bawah y=430 agar tak pernah terbuka celah saat membal) */}
           <path
-            d="M10.7112 263.457C10.7112 173.855 83.3477 101.219 172.949 101.219H239.647C329.249 101.219 401.885 173.855 401.885 263.457V406H10.7112V263.457Z"
+            d="M10.7112 263.457C10.7112 173.855 83.3477 101.219 172.949 101.219H239.647C329.249 101.219 401.885 173.855 401.885 263.457V430H10.7112V263.457Z"
             fill="#A8D800"
           />
           <path
-            d="M-15.0125 406V251.504C-15.0125 131.07 427.609 131.07 427.609 251.504V406H-15.0125Z"
+            d="M-15.0125 430V251.504C-15.0125 131.07 427.609 131.07 427.609 251.504V430H-15.0125Z"
             fill="#A8D800"
           />
 
@@ -382,6 +411,17 @@ export function MaskotIntro() {
                 fill="none"
               />
             </g>
+            {/* Mata merem senyum (^) saat maskot ditekan */}
+            <g className="aksa-intro-happy-eye">
+              <rect x="48" y="200" width="146" height="150" fill="#A8D800" />
+              <path
+                d="M78 286C97 251 145 251 164 286"
+                stroke="#4D3423"
+                strokeWidth="11.5"
+                strokeLinecap="round"
+                fill="none"
+              />
+            </g>
           </g>
 
           {/* Mata Kanan */}
@@ -412,11 +452,30 @@ export function MaskotIntro() {
                 fill="none"
               />
             </g>
+            {/* Mata merem senyum (^) saat maskot ditekan */}
+            <g className="aksa-intro-happy-eye">
+              <rect x="220" y="200" width="146" height="150" fill="#A8D800" />
+              <path
+                d="M250 286C269 251 317 251 336 286"
+                stroke="#4D3423"
+                strokeWidth="11.5"
+                strokeLinecap="round"
+                fill="none"
+              />
+            </g>
           </g>
 
-          {/* Titik hidung */}
+          {/* Titik hidung & senyum ceria */}
           <circle cx="197.034" cy="340.028" r="4.632" fill="#0B1035" />
           <circle cx="216.592" cy="340.028" r="4.632" fill="#0B1035" />
+          <path
+            d="M178 347C195 366 219 366 236 347"
+            stroke="#4D3423"
+            strokeWidth="7.2"
+            strokeLinecap="round"
+            fill="none"
+            className="aksa-intro-smile"
+          />
 
           {/* Blangkon Batik dengan gerak susulan */}
           <g className="aksa-intro-blangkon">
@@ -455,39 +514,41 @@ export function MaskotIntro() {
 
         {/* Gelembung sapa "Hai! Aku Aksa ✦" mengambang dengan bayangan vektor tajam */}
         <g className="aksa-intro-bubble-group">
-          <path
-            d="M274.088 12.5573C274.94 5.62209 281.252 0.690303 288.187 1.54184L374.156 12.0975C381.092 12.949 386.023 19.2614 385.172 26.1966L383.867 36.822C383.016 43.7572 376.703 48.689 369.768 47.8374L273.174 35.9771C272.107 35.8461 271.348 34.875 271.479 33.8081L274.088 12.5573Z"
-            transform="translate(0 4.86)"
-            fill="#E7E5D5"
-          />
-          <path
-            d="M274.088 12.5573C274.94 5.62209 281.252 0.690303 288.187 1.54184L374.156 12.0975C381.092 12.949 386.023 19.2614 385.172 26.1966L383.867 36.822C383.016 43.7572 376.703 48.689 369.768 47.8374L273.174 35.9771C272.107 35.8461 271.348 34.875 271.479 33.8081L274.088 12.5573Z"
-            fill="#FFFEF5"
-            stroke="#DBDBC7"
-            strokeWidth="1.5"
-          />
-          <text
-            x="318"
-            y="23.6"
-            transform="rotate(7 318 23.6)"
-            textAnchor="middle"
-            dominantBaseline="central"
-            fill="#4D3423"
-            fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
-            fontSize="9.8"
-            fontWeight="700"
-            textRendering="geometricPrecision"
-          >
-            Hai! Aku Aksa
-          </text>
-          <path
-            d="M365.66 33.6641C365.641 33.2368 365.509 32.7631 365.266 32.2429C365.023 31.7164 364.648 31.2094 364.139 30.722C363.636 30.2355 363.115 29.9002 362.576 29.7163L362.626 29.3106C363.189 29.249 363.743 29.0752 364.288 28.7891C364.84 28.4974 365.317 28.1246 365.719 27.6706C366.13 27.2046 366.413 26.7296 366.571 26.2456L366.977 26.2954C366.995 26.6245 367.07 26.9704 367.202 27.333C367.335 27.6892 367.518 28.0385 367.75 28.3808C367.99 28.7175 368.265 29.0291 368.577 29.3157C369.041 29.7388 369.53 30.0407 370.044 30.2215L369.994 30.6272C369.631 30.6545 369.246 30.7543 368.84 30.9266C368.439 31.0997 368.059 31.3178 367.7 31.581C367.342 31.8376 367.04 32.1176 366.793 32.4207C366.431 32.8665 366.189 33.2975 366.066 33.7139L365.66 33.6641Z"
-            fill="#789421"
-            className="aksa-intro-bubble-star"
-          />
+          <g className="aksa-intro-bubble-react">
+            <path
+              d="M274.088 12.5573C274.94 5.62209 281.252 0.690303 288.187 1.54184L374.156 12.0975C381.092 12.949 386.023 19.2614 385.172 26.1966L383.867 36.822C383.016 43.7572 376.703 48.689 369.768 47.8374L273.174 35.9771C272.107 35.8461 271.348 34.875 271.479 33.8081L274.088 12.5573Z"
+              transform="translate(0 4.86)"
+              fill="#E7E5D5"
+            />
+            <path
+              d="M274.088 12.5573C274.94 5.62209 281.252 0.690303 288.187 1.54184L374.156 12.0975C381.092 12.949 386.023 19.2614 385.172 26.1966L383.867 36.822C383.016 43.7572 376.703 48.689 369.768 47.8374L273.174 35.9771C272.107 35.8461 271.348 34.875 271.479 33.8081L274.088 12.5573Z"
+              fill="#FFFEF5"
+              stroke="#DBDBC7"
+              strokeWidth="1.5"
+            />
+            <text
+              x="318"
+              y="23.6"
+              transform="rotate(7 318 23.6)"
+              textAnchor="middle"
+              dominantBaseline="central"
+              fill="#4D3423"
+              fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
+              fontSize="9.8"
+              fontWeight="700"
+              textRendering="geometricPrecision"
+            >
+              {senyumMerem ? 'Hehe, halo!' : 'Hai! Aku Aksa'}
+            </text>
+            <path
+              d="M365.66 33.6641C365.641 33.2368 365.509 32.7631 365.266 32.2429C365.023 31.7164 364.648 31.2094 364.139 30.722C363.636 30.2355 363.115 29.9002 362.576 29.7163L362.626 29.3106C363.189 29.249 363.743 29.0752 364.288 28.7891C364.84 28.4974 365.317 28.1246 365.719 27.6706C366.13 27.2046 366.413 26.7296 366.571 26.2456L366.977 26.2954C366.995 26.6245 367.07 26.9704 367.202 27.333C367.335 27.6892 367.518 28.0385 367.75 28.3808C367.99 28.7175 368.265 29.0291 368.577 29.3157C369.041 29.7388 369.53 30.0407 370.044 30.2215L369.994 30.6272C369.631 30.6545 369.246 30.7543 368.84 30.9266C368.439 31.0997 368.059 31.3178 367.7 31.581C367.342 31.8376 367.04 32.1176 366.793 32.4207C366.431 32.8665 366.189 33.2975 366.066 33.7139L365.66 33.6641Z"
+              fill="#789421"
+              className="aksa-intro-bubble-star"
+            />
+          </g>
         </g>
       </svg>
-    </div>
+    </button>
   );
 }
 

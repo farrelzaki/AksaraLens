@@ -4721,17 +4721,19 @@ body {
 .highlight-text {
   position: relative;
   display: inline-block;
+  z-index: 0;
 }
 
 .highlight-text::after {
   content: '';
   position: absolute;
-  bottom: 2px;
-  left: 0;
-  right: 0;
+  bottom: 0px;
+  left: -2px;
+  right: -2px;
   height: 9px;
   background-color: #9CAF6C;
-  border-radius: 4px;
+  border-radius: 2px;
+  transform: rotate(-1.8deg);
   z-index: -1;
 }
 
@@ -7793,8 +7795,24 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
   width: 100%;
   max-width: 412px;
   display: block;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  appearance: none;
   user-select: none;
-  pointer-events: none;
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.aksa-intro-stage:focus-visible {
+  outline: 2px solid #9CAF6C;
+  outline-offset: 2px;
+  border-radius: 28px;
 }
 
 .aksa-intro-svg {
@@ -7803,6 +7821,12 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
   height: auto;
   display: block;
   overflow: visible;
+  transform-origin: center bottom;
+  transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.aksa-intro-stage:active .aksa-intro-svg {
+  transform: scale(0.985, 0.96);
 }
 
 .aksa-intro-peek-entry {
@@ -7829,8 +7853,17 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
   animation: aksaIntroBlangkonSettle 4.8s ease-in-out 1.05s infinite;
 }
 
+.aksa-intro-brows {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 .aksa-intro-blush {
   opacity: 0.22;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 0.22s ease, transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .aksa-intro-pupils {
@@ -7839,6 +7872,67 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
 
 .aksa-eyelid-intro {
   animation: aksaIntroBlink 4.6s ease-in-out 0.9s infinite;
+}
+
+.aksa-intro-happy-eye {
+  opacity: 0;
+  transition: opacity 0.14s ease;
+}
+
+.aksa-intro-smile {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center top;
+  transform: scale(0.72) translateY(6px);
+  transition:
+    opacity 0.16s ease,
+    transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Status interaktif: saat Aksa ditekan → senyum merem ceria */
+.aksa-intro-stage.is-happy .aksa-intro-head-rig {
+  animation: aksaIntroHappyBounce 0.62s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.aksa-intro-stage.is-happy .aksa-intro-brows {
+  transform: translateY(-8px);
+}
+
+.aksa-intro-stage.is-happy .aksa-intro-happy-eye {
+  opacity: 1;
+}
+
+.aksa-intro-stage.is-happy .aksa-intro-blush {
+  opacity: 0.72;
+  transform: translateY(-4px) scale(1.16);
+}
+
+.aksa-intro-stage.is-happy .aksa-intro-smile {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.aksa-intro-stage.is-happy .aksa-intro-sprout {
+  animation-duration: 0.55s;
+}
+
+.aksa-intro-stage.is-happy .aksa-intro-blangkon {
+  animation: aksaIntroHappyBlangkon 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.aksa-intro-bubble-react {
+  transform-box: view-box;
+  transform-origin: 328px 25px;
+  transition: transform 0.34s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.aksa-intro-stage.is-happy .aksa-intro-bubble-react {
+  transform: translate(3px, -14px) scale(1.04) rotate(0.8deg);
+}
+
+.aksa-intro-stage.is-happy .aksa-intro-deco-star {
+  opacity: 0.96;
+  animation-duration: 0.85s;
 }
 
 .aksa-intro-bubble-group {
@@ -7889,11 +7983,11 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
 
 @keyframes introHighlightSweep {
   from {
-    transform: scaleX(0);
+    transform: rotate(-1.8deg) scaleX(0);
     opacity: 0.3;
   }
   to {
-    transform: scaleX(1);
+    transform: rotate(-1.8deg) scaleX(1);
     opacity: 1;
   }
 }
@@ -8008,6 +8102,33 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
   }
   50% {
     transform: scale(1.18) rotate(22deg);
+  }
+}
+
+@keyframes aksaIntroHappyBounce {
+  0% {
+    transform: translateY(0) scale(1, 1);
+  }
+  38% {
+    transform: translateY(-28px) scale(0.985, 1.028) rotate(-1.4deg);
+  }
+  72% {
+    transform: translateY(-19px) scale(1.01, 0.992) rotate(1deg);
+  }
+  100% {
+    transform: translateY(-22px) scale(1, 1) rotate(0deg);
+  }
+}
+
+@keyframes aksaIntroHappyBlangkon {
+  0% {
+    transform: rotate(0deg) translateY(0);
+  }
+  42% {
+    transform: rotate(-3.2deg) translateY(-4px);
+  }
+  100% {
+    transform: rotate(1deg) translateY(0);
   }
 }
 
