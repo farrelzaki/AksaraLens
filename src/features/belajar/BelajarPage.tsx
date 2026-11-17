@@ -5,6 +5,7 @@ import { useProgres } from '../../progres/ProgresProvider';
 import { useSesi } from '../../lib/sesi';
 import { ICON_PROFIL } from '../profil/ProfilPage';
 import { ModalGantiAvatar } from '../profil/ModalGantiAvatar';
+import { MaskotHomepageHero, MaskotHomepageBab } from '../../app/MaskotAksa';
 
 // F1: Homepage sesuai HOMEPAGE.png — kartu per bab dengan maskot & avatar terpilih
 export function BelajarPage() {
@@ -60,11 +61,11 @@ export function BelajarPage() {
     return { ...bab, selesai, total, persen: persenVal, semua };
   });
 
-  // Tema dan maskot kotak per bab (sesuai HOMEPAGE.png & aset design/assets-csv)
+  // Tema kartu bab (sesuai HOMEPAGE.png & aset design/assets-csv)
   const babTheme = [
-    { theme: 'theme-bab1', maskot: '/assets/maskot homepage bab 1.svg', judul: 'Aksara Nglegena', desc: 'Kenali 20 aksara dasar' },
-    { theme: 'theme-bab2', maskot: '/assets/maskot homepage bab 2.svg', judul: 'Sandhangan Swara', desc: 'Ubah bunyi dengan sandhangan' },
-    { theme: 'theme-bab3', maskot: '/assets/maskot homepage bab 3.svg', judul: 'Panyigeg & Pangkon', desc: 'Lengkapi bunyi akhir kata' },
+    { theme: 'theme-bab1', judul: 'Aksara Nglegena', desc: 'Kenali 20 aksara dasar' },
+    { theme: 'theme-bab2', judul: 'Sandhangan Swara', desc: 'Ubah bunyi dengan sandhangan' },
+    { theme: 'theme-bab3', judul: 'Panyigeg & Pangkon', desc: 'Lengkapi bunyi akhir kata' },
   ];
 
   const handleKlikBab = (babNomor: number) => {
@@ -130,13 +131,7 @@ export function BelajarPage() {
           </button>
         </div>
         <div className="hero-mascot">
-          <img
-            src="/assets/maskot homepage.svg"
-            alt="Maskot AksaraLens"
-            width={172}
-            height={172}
-            draggable={false}
-          />
+          <MaskotHomepageHero />
         </div>
       </div>
 
@@ -167,15 +162,7 @@ export function BelajarPage() {
             >
               {/* Maskot kotak per bab */}
               <div className="bab-card-media">
-                <img
-                  src={t.maskot}
-                  alt={`Maskot Bab ${bab.bab}`}
-                  className="bab-card-mascot-img"
-                  draggable={false}
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = 'none';
-                  }}
-                />
+                <MaskotHomepageBab bab={bab.bab} />
               </div>
 
               {/* Info bab — Wajib Rata Kiri */}

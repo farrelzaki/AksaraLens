@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router';
 import { NGLEGENA } from '../../aksara/huruf';
 import { titikDariId } from '../../content';
 import { useProgres } from '../../progres/ProgresProvider';
+import { MaskotSplash } from '../../app/MaskotAksa';
 
 // Daftar 3 tantangan mengenali aksara sesuai Kenali aksara dasar 1-4.png
 const TANTANGAN_SOAL = [
@@ -184,11 +185,7 @@ export function PelajaranPage() {
                 KENALAN DULU
               </span>
               <div className="pelajaran-card-mascot-head">
-                <img
-                  src="/assets/icon profile 1.svg"
-                  alt="Aksa"
-                  draggable={false}
-                />
+                <MaskotSplash compact />
               </div>
             </div>
 
@@ -260,11 +257,7 @@ export function PelajaranPage() {
                 SOAL 0{soalIndex + 1}
               </span>
               <div className="pelajaran-card-mascot-head">
-                <img
-                  src="/assets/icon profile 1.svg"
-                  alt="Aksa"
-                  draggable={false}
-                />
+                <MaskotSplash compact />
               </div>
             </div>
 
@@ -345,24 +338,30 @@ export function PelajaranPage() {
         )}
 
         {mode === 'selesai' && (
-          <div style={{ textAlign: 'center', padding: '24px 8px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div style={{ width: '96px', height: '96px', borderRadius: '50%', background: '#E5EBD8', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
-              <img src="/assets/icon profile 1.svg" alt="Aksa" width={72} height={72} draggable={false} />
+          <div className="pelajaran-selesai-center">
+            <div className="pelajaran-selesai-mascot-wrap">
+              <div className="pelajaran-selesai-halo" aria-hidden="true" />
+              <div className="pelajaran-selesai-mascot-ring">
+                <div className="pelajaran-selesai-mascot-box">
+                  <MaskotSplash />
+                </div>
+              </div>
             </div>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '24px', fontWeight: 800, color: '#3A2315', marginBottom: '6px' }}>
+            <h2 className="pelajaran-selesai-title">
               Luar biasa! 🎉
             </h2>
-            <p style={{ fontSize: '13.5px', color: '#6B6159', lineHeight: 1.5, marginBottom: '20px', maxWidth: '280px' }}>
+            <p className="pelajaran-selesai-desc">
               Kamu telah menyelesaikan 3 tantangan mengenali aksara dengan baik.
             </p>
-            <div style={{ background: '#F7F4F1', borderRadius: '16px', padding: '14px 20px', width: '100%', marginBottom: '20px', display: 'flex', justifyContent: 'space-around' }}>
-              <div>
-                <span style={{ display: 'block', fontSize: '11px', color: '#8C827A', fontWeight: 600 }}>WAKTU</span>
-                <span style={{ fontSize: '16px', fontWeight: 800, color: '#3A2315' }}>{formatTimer(detik)}</span>
+            <div className="pelajaran-selesai-stats">
+              <div className="pelajaran-selesai-stat">
+                <span className="pelajaran-selesai-stat-label">WAKTU</span>
+                <span className="pelajaran-selesai-stat-value">{formatTimer(detik)}</span>
               </div>
-              <div>
-                <span style={{ display: 'block', fontSize: '11px', color: '#8C827A', fontWeight: 600 }}>TANTANGAN</span>
-                <span style={{ fontSize: '16px', fontWeight: 800, color: '#4E602B' }}>3 / 3 Tuntas</span>
+              <div className="pelajaran-selesai-stat-divider" aria-hidden="true" />
+              <div className="pelajaran-selesai-stat">
+                <span className="pelajaran-selesai-stat-label">TANTANGAN</span>
+                <span className="pelajaran-selesai-stat-value is-accent">3 / 3 Tuntas</span>
               </div>
             </div>
           </div>

@@ -458,8 +458,8 @@ body {
 
 .hero-mascot {
   position: absolute;
-  right: -10px;
-  bottom: -14px;
+  right: -6px;
+  bottom: 0;
   z-index: 1;
   pointer-events: none;
 }
@@ -562,12 +562,16 @@ body {
   background: #EDE5FA;
 }
 
-.bab-card-mascot-img {
+.bab-card-mascot-img,
+.aksa-bab-svg {
   width: 100%;
   height: 100%;
+  display: block;
+}
+
+.bab-card-mascot-img {
   object-fit: contain;
   object-position: bottom;
-  display: block;
 }
 
 
@@ -4606,24 +4610,24 @@ body {
 @keyframes onboardingFadeIn {
   from {
     opacity: 0;
-    transform: scale(0.97);
+    transform: translateY(8px);
   }
 
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
   }
 }
 
 @keyframes onboardingFadeOut {
   from {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
   }
 
   to {
     opacity: 0;
-    transform: scale(0.97);
+    transform: translateY(-8px);
   }
 }
 
@@ -4658,7 +4662,7 @@ body {
 .intro-screen {
   width: 100%;
   flex: 1;
-  min-height: 917px;
+  min-height: 0;
   height: 100%;
   max-height: 917px;
   background-color: #FFFBEA;
@@ -4671,10 +4675,10 @@ body {
 
 .intro-blob-green {
   position: absolute;
-  top: -60px;
-  left: -60px;
-  width: 220px;
-  height: 220px;
+  top: -86px;
+  left: -66px;
+  width: 186px;
+  height: 186px;
   border-radius: 50%;
   background-color: #9CAF6C;
   z-index: 1;
@@ -4683,10 +4687,10 @@ body {
 
 .intro-blob-brown {
   position: absolute;
-  top: 30px;
-  right: -60px;
-  width: 210px;
-  height: 190px;
+  top: -36px;
+  right: -64px;
+  width: 184px;
+  height: 172px;
   border-radius: 50%;
   background-color: #633923;
   z-index: 1;
@@ -4696,7 +4700,7 @@ body {
 .intro-content {
   position: relative;
   z-index: 2;
-  padding: 160px 24px 0;
+  padding: clamp(168px, 22.5dvh, 208px) 24px 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -4706,7 +4710,7 @@ body {
 
 .intro-headline {
   font-family: var(--font-display);
-  font-size: 38px;
+  font-size: clamp(32px, 4.3dvh, 38px);
   font-weight: 800;
   line-height: 1.15;
   color: #43281C;
@@ -4732,10 +4736,10 @@ body {
 }
 
 .intro-desc {
-  font-size: 14.5px;
+  font-size: clamp(13.5px, 1.8dvh, 14.5px);
   line-height: 1.45;
   color: #5E614D;
-  margin-bottom: 24px;
+  margin-bottom: clamp(16px, 2.5dvh, 24px);
 }
 
 .intro-btn-group {
@@ -4814,6 +4818,48 @@ body {
   overflow: visible;
   margin-bottom: 0;
   padding-right: 0;
+}
+
+@media (max-height: 840px) {
+  .intro-blob-green {
+    top: -96px;
+    width: 174px;
+    height: 174px;
+  }
+
+  .intro-blob-brown {
+    top: -48px;
+    width: 170px;
+    height: 162px;
+  }
+
+  .intro-content {
+    padding: 146px 24px 0;
+  }
+
+  .intro-headline {
+    font-size: 31px;
+    line-height: 1.12;
+    margin-bottom: 8px;
+  }
+
+  .intro-desc {
+    font-size: 13.5px;
+    margin-bottom: 14px;
+  }
+
+  .intro-btn-group {
+    gap: 8px;
+  }
+
+  .intro-btn-primary,
+  .intro-btn-outline {
+    height: 46px;
+  }
+
+  .intro-bottom-mascot {
+    margin-bottom: -56px;
+  }
 }
 
 .intro-bubble {
@@ -5197,7 +5243,13 @@ body {
   height: 38px;
   border-radius: 50%;
   overflow: hidden;
-  background: #B9EC00;
+  background: #EBF3DC;
+  border: 1px solid rgba(78, 96, 43, 0.14);
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
@@ -5206,6 +5258,128 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.pelajaran-card-mascot-head .aksa-splash-svg,
+.pelajaran-selesai-mascot-box .aksa-splash-svg {
+  filter: none;
+}
+
+/* Completion ("Luar biasa!") Showcase — Terpusat Vertikal */
+.pelajaran-selesai-center {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 8px;
+  animation: pelajaranSelesaiEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.pelajaran-selesai-mascot-wrap {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.pelajaran-selesai-halo {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(168, 216, 0, 0.24) 0%,
+    rgba(229, 235, 216, 0.12) 55%,
+    rgba(229, 235, 216, 0) 72%
+  );
+  pointer-events: none;
+  animation: pelajaranSelesaiHalo 3s ease-in-out infinite;
+}
+
+.pelajaran-selesai-mascot-ring {
+  position: relative;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background: #E5EBD8;
+  border: 2px solid rgba(156, 175, 108, 0.35);
+  box-shadow: 0 8px 20px rgba(78, 96, 43, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.pelajaran-selesai-mascot-box {
+  width: 82px;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pelajaran-selesai-title {
+  font-family: var(--font-display);
+  font-size: 25px;
+  font-weight: 800;
+  color: #3A2315;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.pelajaran-selesai-desc {
+  font-size: 13.5px;
+  color: #6B6159;
+  line-height: 1.5;
+  margin: 0 0 22px;
+  max-width: 280px;
+}
+
+.pelajaran-selesai-stats {
+  background: #F7F4F1;
+  border-radius: 18px;
+  padding: 15px 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.pelajaran-selesai-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.pelajaran-selesai-stat-label {
+  display: block;
+  font-size: 11px;
+  color: #8C827A;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.pelajaran-selesai-stat-value {
+  font-size: 17px;
+  font-weight: 800;
+  color: #3A2315;
+}
+
+.pelajaran-selesai-stat-value.is-accent {
+  color: #4E602B;
+}
+
+.pelajaran-selesai-stat-divider {
+  width: 1px;
+  height: 30px;
+  background: rgba(77, 52, 35, 0.1);
 }
 
 .pelajaran-card-title {
@@ -7572,10 +7746,10 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
 
 @keyframes onbResultHighlight {
   0%, 42%, 100% {
-    transform: scale(1);
+    transform: translateY(0);
   }
   58%, 74% {
-    transform: scale(1.035);
+    transform: translateY(-2.5px);
   }
 }
 
@@ -8355,6 +8529,377 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
   }
 }
 
+/* ==========================================================================
+   PELAJARAN SELESAI ("Luar biasa!") & HOMEPAGE MASKOT ANIMATIONS
+   ========================================================================== */
+@keyframes pelajaranSelesaiEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pelajaranSelesaiHalo {
+  0%, 100% {
+    transform: scale(0.96);
+    opacity: 0.72;
+  }
+  50% {
+    transform: scale(1.07);
+    opacity: 1;
+  }
+}
+
+/* 5. Maskot Homepage Hero Banner */
+.aksa-home-hero-stage {
+  position: relative;
+  width: 172px;
+  height: 147px;
+  display: block;
+}
+
+.aksa-home-hero-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.aksa-home-hero-star {
+  transform-box: fill-box;
+  transform-origin: center center;
+  animation: aksaSparkleTwinkle 3.2s ease-in-out 0.3s infinite;
+}
+
+.aksa-home-hero-rig {
+  transform-box: view-box;
+  transform-origin: 86px 143px;
+  animation:
+    aksaHomeHeroPop 0.72s cubic-bezier(0.22, 1, 0.36, 1) both,
+    aksaHomeHeroBreathe 3.8s ease-in-out 0.72s infinite;
+}
+
+.aksa-home-hero-blangkon {
+  transform-box: fill-box;
+  transform-origin: 50% 85%;
+  animation: aksaHomeHeroBlangkon 4.4s ease-in-out 0.4s infinite;
+}
+
+.aksa-home-hero-brows {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: aksaHomeHeroBrows 6.2s ease-in-out 0.6s infinite;
+}
+
+.aksa-home-hero-pupils {
+  transform-box: fill-box;
+  transform-origin: center center;
+  animation: aksaHomeHeroLook 6.2s ease-in-out 0.6s infinite;
+}
+
+.aksa-home-hero-eyelid {
+  animation: aksaHomeHeroBlink 4.8s ease-in-out 1.1s infinite;
+}
+
+@keyframes aksaHomeHeroPop {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scaleY(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+@keyframes aksaHomeHeroBreathe {
+  0%, 100% {
+    transform: translateY(0) scaleY(1) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-1.5px) scaleY(1.028) rotate(-0.6deg);
+  }
+}
+
+@keyframes aksaHomeHeroBlangkon {
+  0%, 100% {
+    transform: rotate(-1.1deg);
+  }
+  50% {
+    transform: rotate(1.4deg);
+  }
+}
+
+@keyframes aksaHomeHeroBrows {
+  0%, 34%, 72%, 100% {
+    transform: translateY(0);
+  }
+  44%, 62% {
+    transform: translateY(-1.8px);
+  }
+}
+
+@keyframes aksaHomeHeroLook {
+  0%, 24%, 100% {
+    transform: translate(0, 0);
+  }
+  34%, 48% {
+    transform: translate(-4px, 1.4px);
+  }
+  58%, 72% {
+    transform: translate(-3.4px, -1.8px);
+  }
+  82% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes aksaHomeHeroBlink {
+  0%, 44%, 48%, 90%, 94%, 100% {
+    transform: translateY(0);
+  }
+  46%, 92% {
+    transform: translateY(67px);
+  }
+}
+
+/* 6. Maskot Kartu Bab Homepage (Bab 1, 2, 3 dengan fase staggered alami) */
+.aksa-bab-rig {
+  transform-box: view-box;
+  transform-origin: 54px 124px;
+  animation: aksaBabBreathe 4s ease-in-out infinite;
+}
+
+.aksa-bab-blangkon {
+  transform-box: fill-box;
+  transform-origin: 50% 85%;
+  animation: aksaBabBlangkon 4.4s ease-in-out infinite;
+}
+
+.aksa-bab-brows {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: aksaBabBrows 5.4s ease-in-out infinite;
+}
+
+.aksa-bab-eyelid {
+  animation: aksaBabBlink 5.2s ease-in-out infinite;
+}
+
+.aksa-bab1-pupils,
+.aksa-bab2-pupils,
+.aksa-bab3-pupils {
+  transform-box: fill-box;
+  transform-origin: center center;
+}
+
+.aksa-bab1-pupils {
+  animation: aksaBab1Look 5.6s ease-in-out infinite;
+}
+
+.aksa-bab1-slate {
+  transform-box: fill-box;
+  transform-origin: 50% 55%;
+  animation: aksaBab1Slate 3.8s ease-in-out infinite;
+}
+
+.aksa-bab1-pointer {
+  transform-box: fill-box;
+  transform-origin: 50% 85%;
+  animation: aksaBab1Pointer 2.4s ease-in-out infinite;
+}
+
+.aksa-bab-2 .aksa-bab-rig,
+.aksa-bab-2 .aksa-bab-blangkon,
+.aksa-bab-2 .aksa-bab-brows,
+.aksa-bab-2 .aksa-bab-eyelid {
+  animation-delay: -1.4s;
+}
+
+.aksa-bab2-pupils {
+  animation: aksaBab2Look 5.8s ease-in-out -1.4s infinite;
+}
+
+.aksa-bab2-pencil {
+  transform-box: fill-box;
+  transform-origin: 25% 85%;
+  animation: aksaBab2Write 2.8s ease-in-out -0.6s infinite;
+}
+
+.aksa-bab-3 .aksa-bab-rig,
+.aksa-bab-3 .aksa-bab-blangkon,
+.aksa-bab-3 .aksa-bab-brows,
+.aksa-bab-3 .aksa-bab-eyelid {
+  animation-delay: -2.7s;
+}
+
+.aksa-bab3-pupils {
+  animation: aksaBab3Look 5.6s ease-in-out -1s infinite;
+}
+
+.aksa-bab3-card-l {
+  transform-box: fill-box;
+  transform-origin: 50% 70%;
+  animation: aksaBab3CardLeft 4.4s ease-in-out infinite;
+}
+
+.aksa-bab3-card-r {
+  transform-box: fill-box;
+  transform-origin: 50% 70%;
+  animation: aksaBab3CardRight 4.4s ease-in-out infinite;
+}
+
+.aksa-bab3-arrow {
+  transform-box: fill-box;
+  transform-origin: center center;
+  animation: aksaBab3Arrow 2.2s ease-in-out infinite;
+}
+
+.bab-card:hover .aksa-bab-rig {
+  animation-duration: 2.3s;
+}
+
+@keyframes aksaBabBreathe {
+  0%, 100% {
+    transform: translateY(0) scaleY(1);
+  }
+  50% {
+    transform: translateY(-1px) scaleY(1.022);
+  }
+}
+
+@keyframes aksaBabBlangkon {
+  0%, 100% {
+    transform: rotate(-1.2deg);
+  }
+  50% {
+    transform: rotate(1.3deg);
+  }
+}
+
+@keyframes aksaBabBrows {
+  0%, 36%, 72%, 100% {
+    transform: translateY(0);
+  }
+  48%, 62% {
+    transform: translateY(-1.3px);
+  }
+}
+
+@keyframes aksaBabBlink {
+  0%, 45%, 49%, 91%, 95%, 100% {
+    transform: translateY(0);
+  }
+  47%, 93% {
+    transform: translateY(40px);
+  }
+}
+
+@keyframes aksaBab1Look {
+  0%, 28%, 100% {
+    transform: translate(0, 0);
+  }
+  38%, 54% {
+    transform: translate(0, 1.8px);
+  }
+  64%, 78% {
+    transform: translate(-1.6px, -0.8px);
+  }
+}
+
+@keyframes aksaBab1Slate {
+  0%, 100% {
+    transform: rotate(-1.2deg);
+  }
+  50% {
+    transform: rotate(1.4deg);
+  }
+}
+
+@keyframes aksaBab1Pointer {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  45% {
+    transform: translate(-2.2px, -2.5px) rotate(-5deg);
+  }
+  70% {
+    transform: translate(-0.8px, -0.8px) rotate(-1.5deg);
+  }
+}
+
+@keyframes aksaBab2Look {
+  0%, 22%, 100% {
+    transform: translate(1.2px, 1.8px);
+  }
+  44%, 64% {
+    transform: translate(-1.2px, 1.4px);
+  }
+  74%, 86% {
+    transform: translate(0, -0.6px);
+  }
+}
+
+@keyframes aksaBab2Write {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(2.4px, -1.8px) rotate(4deg);
+  }
+  50% {
+    transform: translate(-1.4px, 1px) rotate(-3deg);
+  }
+  75% {
+    transform: translate(1.6px, -1.2px) rotate(2.5deg);
+  }
+}
+
+@keyframes aksaBab3Look {
+  0%, 20%, 100% {
+    transform: translate(0, 0);
+  }
+  28%, 44% {
+    transform: translate(-2.3px, 1.1px);
+  }
+  56%, 72% {
+    transform: translate(2.3px, 1.1px);
+  }
+}
+
+@keyframes aksaBab3CardLeft {
+  0%, 50%, 100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  22% {
+    transform: rotate(-4deg) translateY(-2px);
+  }
+}
+
+@keyframes aksaBab3CardRight {
+  0%, 50%, 100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  72% {
+    transform: rotate(4deg) translateY(-2px);
+  }
+}
+
+@keyframes aksaBab3Arrow {
+  0%, 100% {
+    transform: translateX(-1px) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateX(2.2px) scale(1.08);
+    opacity: 1;
+  }
+}
+
 /* Hormati preferensi aksesibilitas tanpa menghilangkan ekspresi status form */
 @media (prefers-reduced-motion: reduce) {
   .splash-v2-aura,
@@ -8379,6 +8924,8 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
   .auth-title-container,
   .btn-google-auth,
   .auth-form,
+  .pelajaran-selesai-center,
+  .pelajaran-selesai-halo,
   [class*="aksa-"],
   [class*="onb-"] {
     animation: none !important;

@@ -4,6 +4,7 @@ import { titikDariId } from '../../content';
 import { useProgres } from '../../progres/ProgresProvider';
 import { hurufDariKode } from '../../aksara/huruf';
 import { cekKanvas, periksaTulisan, siapkanPemeriksa, type HasilCek } from '../../ml/model1/periksa';
+import { MaskotSplash } from '../../app/MaskotAksa';
 
 export function LatihanPage() {
   const { id } = useParams();
@@ -214,7 +215,7 @@ export function LatihanPage() {
             LATIHAN 0{hurufIndex + 1}
           </span>
           <div className="pelajaran-card-mascot-head">
-            <img src="/assets/icon profile 1.svg" alt="Aksa" draggable={false} />
+            <MaskotSplash compact />
           </div>
         </div>
 
