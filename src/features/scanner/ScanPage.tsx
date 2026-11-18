@@ -683,7 +683,7 @@ export function ScanPage() {
                     className={`scan-chip ${terpilih === i ? 'aktif' : ''}`}
                     onClick={() => setTerpilih(i)}
                   >
-                    <span className="aksara">{s.teks}</span>
+                    <span className="aksara">{s.teksTampil}</span>
                     <small>{s.latin}</small>
                   </button>
                 ))}
