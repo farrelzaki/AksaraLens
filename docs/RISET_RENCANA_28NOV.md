@@ -93,6 +93,8 @@ Prinsip: **jalur kirim dulu, eksperimen belakangan.** Setiap langkah punya gerba
 
 ## 6. Keputusan untuk Farrel
 
+**18 Nov 10.22 WIB: Farrel menyetujui semua rekomendasi D1-D6.**
+
 | # | Keputusan | Rekomendasi Claude |
 | --- | --- | --- |
 | D1 | Pasang pembaca B2 (int8, 18 MB) ke web, dengan sakelar kembali ke v2 | **Ya.** Ini satu-satunya cara kenaikan sejak 7 Nov sampai ke demo |
@@ -100,7 +102,7 @@ Prinsip: **jalur kirim dulu, eksperimen belakangan.** Setiap langkah punya gerba
 | D3 | Charset tetap 31 sampai 28 Nov | **Ya.** Perluasan menyentuh transliterator, konten, dan test; terlalu berisiko dalam 10 hari |
 | D4 | C-uji dibuka sekali pada 24 Nov untuk susunan final | Ya |
 | D5 | B2r3 hanya bila L-A sampai L-D selesai 22 Nov | Ya |
-| D6 | Konfirmasi tenggat 28 Nov (PRD menulis 23 Nov; code freeze PRD 19 Nov) | Perlu jawaban Farrel |
+| D6 | Konfirmasi tenggat 28 Nov (PRD menulis 23 Nov; code freeze PRD 19 Nov) | Dikonfirmasi: 28 Nov |
 
 ## 7. Yang sengaja tidak dikerjakan
 
