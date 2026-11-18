@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { BAB } from '../../content';
-import { TAHAP, tahapDiBab } from '../../content/tahap';
+import { NAMA_TAHAP, TAHAP, tahapDiBab } from '../../content/tahap';
 import { useProgres } from '../../progres/ProgresProvider';
 import { useSesi } from '../../lib/sesi';
 import { ICON_PROFIL } from '../profil/ProfilPage';
@@ -63,8 +63,16 @@ export function BelajarPage() {
     return { ...bab, selesai, terkunci, total, persen: persenVal, semua };
   });
 
-  const tahapAktifPertama =
-    TAHAP.find((t) => tahap.get(t.id) === 'terbuka') || TAHAP[0];
+  // Tahap berikutnya = tahap pertama yang terbuka (setelah tahap terakhir yang selesai).
+  const tahapBerikutnya = TAHAP.find((t) => tahap.get(t.id) === 'terbuka');
+  const adaProgres = TAHAP.some((t) => tahap.get(t.id) === 'selesai');
+  const semuaSelesai = !tahapBerikutnya && adaProgres;
+  const tahapAktifPertama = tahapBerikutnya ?? TAHAP[0];
+  const labelCta = semuaSelesai
+    ? 'Ulangi dari Bab 1'
+    : adaProgres
+      ? `Lanjut: Bab ${tahapAktifPertama.bab} ${NAMA_TAHAP[tahapAktifPertama.jenis]}`
+      : 'Mulai belajar';
 
   // Tema kartu bab (sesuai HOMEPAGE.png & aset design/assets-csv)
   const babTheme = [
@@ -135,7 +143,7 @@ export function BelajarPage() {
             }
             style={{ textAlign: 'left' }}
           >
-            <span>Mulai belajar</span>
+            <span>{labelCta}</span>
             <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
               <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
             </svg>
