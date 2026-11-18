@@ -28,7 +28,7 @@ export function SplashPage() {
         <img
           src="/assets/logo splash screen.svg"
           alt="Maskot AksaraLens"
-          className="splash-mascot-img"
+          className="splash-mascot-img aksa-3d"
           draggable={false}
         />
       </div>

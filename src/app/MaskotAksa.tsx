@@ -1,5 +1,37 @@
 import { useEffect, useId, useRef, useState } from 'react';
 
+/**
+ * Filter pencahayaan 3D semu untuk semua maskot Aksa di luar onboarding (kelas `.aksa-3d`).
+ * Dipasang SEKALI di root aplikasi (main.tsx). Bayangan tepi lembut + kilau specular dari
+ * siluet membuat maskot tampak seperti bahan "clay" menggembung tanpa mengubah gambar vektornya.
+ */
+export function Aksa3DDefs() {
+  return (
+    <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="aksa-3d" x="-4%" y="-4%" width="108%" height="108%" colorInterpolationFilters="sRGB" primitiveUnits="objectBoundingBox">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="0.045" result="bulat" />
+          <feDiffuseLighting in="bulat" surfaceScale="1.6" diffuseConstant="1" lightingColor="#ffffff" result="cahaya">
+            <feDistantLight azimuth="235" elevation="58" />
+          </feDiffuseLighting>
+          <feComponentTransfer in="cahaya" result="cahayaNorm">
+            <feFuncR type="linear" slope="1.16" />
+            <feFuncG type="linear" slope="1.16" />
+            <feFuncB type="linear" slope="1.16" />
+          </feComponentTransfer>
+          <feComposite in="cahayaNorm" in2="SourceAlpha" operator="in" result="cahayaPotong" />
+          <feBlend in="SourceGraphic" in2="cahayaPotong" mode="multiply" result="berbayang" />
+          <feSpecularLighting in="bulat" surfaceScale="1.6" specularConstant="0.35" specularExponent="30" lightingColor="#ffffff" result="kilau">
+            <feDistantLight azimuth="235" elevation="55" />
+          </feSpecularLighting>
+          <feComposite in="kilau" in2="SourceAlpha" operator="in" result="kilauPotong" />
+          <feComposite in="berbayang" in2="kilauPotong" operator="arithmetic" k1="0" k2="1" k3="0.4" k4="0" />
+        </filter>
+      </defs>
+    </svg>
+  );
+}
+
 export type AuthMascotMood =
   | 'idle'
   | 'nama'
@@ -114,7 +146,7 @@ export function MaskotSplash({ compact = false }: { compact?: boolean } = {}) {
         viewBox="0 0 181 190"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="aksa-splash-svg"
+        className="aksa-splash-svg aksa-3d"
         role="img"
         aria-label="Maskot Aksa tersenyum"
       >
@@ -314,7 +346,7 @@ export function MaskotIntro() {
         preserveAspectRatio="xMidYMax meet"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="aksa-intro-svg"
+        className="aksa-intro-svg aksa-3d"
         aria-hidden="true"
       >
         <defs>
@@ -571,7 +603,7 @@ export function MaskotLogin({ mood = 'idle' }: { mood?: AuthMascotMood }) {
         viewBox="0 0 170 170"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="aksa-login-svg"
+        className="aksa-login-svg aksa-3d"
         role="img"
         aria-label="Maskot Aksa"
       >
@@ -771,7 +803,7 @@ export function MaskotRegist({ mood = 'idle' }: { mood?: AuthMascotMood }) {
         viewBox="0 0 350 192"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="aksa-regist-svg"
+        className="aksa-regist-svg aksa-3d"
         role="img"
         aria-label="Maskot Aksa mendaftar"
       >
@@ -969,7 +1001,7 @@ export function MaskotHomepageHero() {
         viewBox="0 0 167 143"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="aksa-home-hero-svg"
+        className="aksa-home-hero-svg aksa-3d"
       >
         <defs>
           <BatikPatternDef id={batikId} scale={0.72} />
@@ -1151,7 +1183,7 @@ export function MaskotHomepageBab({ bab }: { bab: number }) {
 
   if (bab === 1) {
     return (
-      <svg viewBox="0 0 108 124" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg" className="aksa-bab-svg aksa-bab-1" aria-hidden="true">
+      <svg viewBox="0 0 108 124" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg" className="aksa-bab-svg aksa-bab-1 aksa-3d" aria-hidden="true">
         <defs>
           <BatikPatternDef id={batikId} scale={0.42} />
           <clipPath id={clipCard}>
@@ -1233,7 +1265,7 @@ export function MaskotHomepageBab({ bab }: { bab: number }) {
 
   if (bab === 2) {
     return (
-      <svg viewBox="0 0 108 124" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg" className="aksa-bab-svg aksa-bab-2" aria-hidden="true">
+      <svg viewBox="0 0 108 124" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg" className="aksa-bab-svg aksa-bab-2 aksa-3d" aria-hidden="true">
         <defs>
           <BatikPatternDef id={batikId} scale={0.42} />
           <clipPath id={clipCard}>
@@ -1313,7 +1345,7 @@ export function MaskotHomepageBab({ bab }: { bab: number }) {
   }
 
   return (
-    <svg viewBox="0 0 108 124" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg" className="aksa-bab-svg aksa-bab-3" aria-hidden="true">
+    <svg viewBox="0 0 108 124" preserveAspectRatio="xMidYMax slice" fill="none" xmlns="http://www.w3.org/2000/svg" className="aksa-bab-svg aksa-bab-3 aksa-3d" aria-hidden="true">
       <defs>
         <BatikPatternDef id={batikId} scale={0.42} />
         <clipPath id={clipCard}>
@@ -1412,7 +1444,7 @@ export function MaskotProfilBab({ bab }: { bab: number }) {
       preserveAspectRatio="xMidYMid slice"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={`aksa-profil-bab-svg aksa-profil-bab-${clampedBab}`}
+      className={`aksa-3d aksa-profil-bab-svg aksa-profil-bab-${clampedBab}`}
       aria-hidden="true"
     >
       <defs>

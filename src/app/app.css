@@ -10027,3 +10027,9 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
 }
 
 
+
+
+/* 3D semu untuk maskot Aksa di luar onboarding (filter didefinisikan oleh <Aksa3DDefs /> di main.tsx) */
+.aksa-3d {
+  filter: url(#aksa-3d);
+}
