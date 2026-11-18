@@ -1,0 +1,167 @@
+/* ========================================================
+   MASKOT PERJALANAN (Aksa beraktivitas di roadmap Materi Bab)
+   Semua animasi otomatis mati lewat aturan prefers-reduced-motion di tokens.css.
+   ======================================================== */
+.rm-aksa {
+  display: block;
+  overflow: visible;
+}
+
+.rm-aksa-cermin {
+  transform: scaleX(-1);
+}
+
+.rm-aksa-ayun,
+.rm-aksa-lompat,
+.rm-aksa-bayangan,
+.rm-aksa-kelopak,
+.rm-prop-kaca,
+.rm-prop-kartu-kiri,
+.rm-prop-kartu-kanan,
+.rm-prop-gelembung,
+.rm-prop-pensil,
+.rm-prop-bintang,
+.rm-kilau,
+.rm-konfeti {
+  transform-box: fill-box;
+}
+
+/* Napas/ayun pelan */
+.rm-aksa-ayun {
+  transform-origin: 50% 100%;
+  animation: rmAksaAyun 1.8s ease-in-out infinite;
+}
+
+@keyframes rmAksaAyun {
+  0%, 100% { transform: translateY(0) scale(1, 1); }
+  50% { transform: translateY(-2.5px) scale(1.015, 0.985); }
+}
+
+/* Lompat gembira saat bab tamat */
+.rm-aksa-lompat {
+  transform-origin: 50% 100%;
+  animation: rmAksaLompat 1.1s cubic-bezier(0.3, 0, 0.4, 1) infinite;
+}
+
+@keyframes rmAksaLompat {
+  0%, 100% { transform: translateY(0) scale(1.04, 0.95); }
+  15% { transform: translateY(0) scale(1, 1); }
+  45% { transform: translateY(-10px) scale(0.98, 1.03); }
+  75% { transform: translateY(0) scale(1, 1); }
+}
+
+.rm-aksa-rayakan .rm-aksa-bayangan {
+  transform-origin: 50% 50%;
+  animation: rmBayangan 1.1s cubic-bezier(0.3, 0, 0.4, 1) infinite;
+}
+
+@keyframes rmBayangan {
+  0%, 15%, 75%, 100% { transform: scaleX(1); opacity: 1; }
+  45% { transform: scaleX(0.7); opacity: 0.6; }
+}
+
+/* Kedip */
+.rm-aksa-kelopak {
+  transform-origin: 50% 0;
+  transform: scaleY(0);
+  animation: rmKedip 5s ease-in-out infinite;
+}
+
+@keyframes rmKedip {
+  0%, 93%, 100% { transform: scaleY(0); }
+  96% { transform: scaleY(1); }
+}
+
+/* Kaca pembesar menyapu pelan (kenali) */
+.rm-prop-kaca {
+  transform-origin: 0% 100%;
+  animation: rmKaca 2.6s ease-in-out infinite;
+}
+
+@keyframes rmKaca {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-9deg) translateY(-1px); }
+}
+
+/* Kartu bergantian diangkat (cocokkan) */
+.rm-prop-kartu-kiri,
+.rm-prop-kartu-kanan {
+  transform-origin: 50% 100%;
+  animation: rmKartu 2.4s ease-in-out infinite;
+}
+
+.rm-prop-kartu-kanan {
+  animation-delay: -1.2s;
+}
+
+@keyframes rmKartu {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* Gelembung pikiran mengembang (ingat) */
+.rm-prop-gelembung {
+  transform-origin: 0% 100%;
+  animation: rmGelembung 2.8s ease-in-out infinite;
+}
+
+@keyframes rmGelembung {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.06) translateY(-1.5px); opacity: 0.92; }
+}
+
+/* Pensil menulis + goresan muncul (tulis) */
+.rm-prop-pensil {
+  transform-origin: 50% 100%;
+  animation: rmPensil 0.9s ease-in-out infinite;
+}
+
+@keyframes rmPensil {
+  0%, 100% { transform: rotate(0deg) translateX(0); }
+  50% { transform: rotate(-6deg) translateX(-1.5px); }
+}
+
+.rm-prop-goresan {
+  stroke-dasharray: 26;
+  stroke-dashoffset: 26;
+  animation: rmGoresan 2.4s linear infinite;
+}
+
+@keyframes rmGoresan {
+  0% { stroke-dashoffset: 26; opacity: 1; }
+  70% { stroke-dashoffset: 0; opacity: 1; }
+  90%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+/* Bintang kuis berkilau */
+.rm-prop-bintang {
+  transform-origin: 50% 50%;
+  animation: rmBintang 2s ease-in-out infinite;
+}
+
+@keyframes rmBintang {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(14deg) scale(1.1); }
+}
+
+.rm-kilau {
+  transform-origin: 50% 50%;
+  animation: rmKilau 1.6s ease-in-out infinite;
+}
+
+@keyframes rmKilau {
+  0%, 100% { transform: scale(0.5); opacity: 0.2; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Konfeti melayang turun (rayakan) */
+.rm-konfeti {
+  transform-origin: 50% 50%;
+  animation: rmKonfeti 2.2s ease-in-out infinite;
+}
+
+@keyframes rmKonfeti {
+  0% { transform: translateY(-4px); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(8px); opacity: 0; }
+}

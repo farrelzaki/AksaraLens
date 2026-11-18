@@ -7349,10 +7349,14 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
 }
 
 .onb-blob {
+  transform-box: fill-box;
+  transform-origin: center;
   animation: onbBlobBreathe 6.4s ease-in-out infinite;
 }
 
 .onb-shadow {
+  transform-box: fill-box;
+  transform-origin: center;
   animation: onbShadowPulse 3.8s ease-in-out infinite;
 }
 
@@ -7406,6 +7410,8 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
 }
 
 .onb-sparkle {
+  transform-box: fill-box;
+  transform-origin: center;
   animation: onbSparkleTwinkle 2.8s ease-in-out infinite;
 }
 
@@ -7419,21 +7425,29 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
 
 /* Scene 1: Membaca Buku Aksara Dasar */
 .onb-s1-book {
+  transform-box: fill-box;
+  transform-origin: center;
   animation:
     onbPropEnter 0.52s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both,
     onbPropFloat 4.2s ease-in-out 0.65s infinite;
 }
 
 .onb-s1-glyph {
+  transform-box: fill-box;
+  transform-origin: center;
   animation: onbGlyphGlow 3.2s ease-in-out infinite;
 }
 
 .onb-s1-check {
+  transform-box: fill-box;
+  transform-origin: center;
   animation: onbCheckPulse 2.6s ease-in-out 0.4s infinite;
 }
 
 /* Scene 2: Latihan Menulis di Kanvas */
 .onb-s2-canvas {
+  transform-box: fill-box;
+  transform-origin: center;
   animation: onbPropEnter 0.52s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
 }
 
@@ -7444,12 +7458,15 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
 }
 
 .onb-s2-pencil {
-  transform-origin: 86% 88%;
+  transform-box: fill-box;
+  transform-origin: 92% 92%;
   animation: onbPencilWrite 4.4s cubic-bezier(0.42, 0, 0.25, 1) 0.35s infinite;
 }
 
 /* Scene 3: Pemindaian Lensa & Pengenalan Bunyi */
 .onb-s3-phone {
+  transform-box: fill-box;
+  transform-origin: center;
   animation:
     onbPropEnter 0.52s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both,
     onbPhoneTilt 4.6s ease-in-out 0.65s infinite;
@@ -7460,18 +7477,26 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
 }
 
 .onb-s3-reticle {
+  transform-box: fill-box;
+  transform-origin: center;
   animation: onbReticlePulse 3.2s ease-in-out infinite;
 }
 
 .onb-s3-result {
+  transform-box: fill-box;
+  transform-origin: center;
   animation: onbResultHighlight 3.2s ease-in-out infinite;
 }
 
 .onb-s3-check {
+  transform-box: fill-box;
+  transform-origin: center;
   animation: onbCheckPulse 3.2s ease-in-out infinite;
 }
 
 .onb-s3-badge {
+  transform-box: fill-box;
+  transform-origin: center;
   animation: onbBadgeFloat 3.6s ease-in-out 0.2s infinite;
 }
 
@@ -7693,25 +7718,34 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
 
 @keyframes onbPencilWrite {
   0%, 10% {
-    transform: translate(-52px, 14px) rotate(-6deg);
+    transform: translate(-58px, 15px) rotate(-4deg);
+  }
+  18% {
+    transform: translate(-60px, -11px) rotate(2deg);
   }
   26% {
-    transform: translate(-44px, -2px) rotate(-2deg);
+    transform: translate(-51px, 15px) rotate(-3deg);
   }
-  42% {
-    transform: translate(-24px, 4px) rotate(2deg);
+  34% {
+    transform: translate(-41px, 6px) rotate(1deg);
   }
-  56% {
-    transform: translate(-10px, -3px) rotate(-3deg);
+  43% {
+    transform: translate(-35px, -13px) rotate(3deg);
   }
-  68%, 82% {
-    transform: translate(0, 0) rotate(0deg);
+  51% {
+    transform: translate(-23px, 12px) rotate(-2deg);
+  }
+  58% {
+    transform: translate(-17px, -14px) rotate(2deg);
+  }
+  65%, 84% {
+    transform: translate(-10px, 11px) rotate(0deg);
   }
   92% {
-    transform: translate(4px, -10px) rotate(5deg);
+    transform: translate(-6px, -2px) rotate(5deg);
   }
   100% {
-    transform: translate(-52px, 14px) rotate(-6deg);
+    transform: translate(-58px, 15px) rotate(-4deg);
   }
 }
 
@@ -7726,11 +7760,11 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
 
 @keyframes onbScanSweep {
   0%, 100% {
-    transform: translateY(-38px);
-    opacity: 0.72;
+    transform: translateY(-34px);
+    opacity: 0.78;
   }
   50% {
-    transform: translateY(42px);
+    transform: translateY(34px);
     opacity: 1;
   }
 }
@@ -9397,3 +9431,585 @@ body, button, input, textarea, select, h1, h2, h3, h4, h5, h6, p, span, a, label
     opacity: 1 !important;
   }
 }
+
+/* =========================================================
+   REVISI PEMBELAJARAN 5 TAHAP, CARA MENULIS & LATIHAN MENULIS
+   ========================================================= */
+
+.pelajaran-page-container {
+  background:
+    radial-gradient(115% 430px at 50% 0%, #E8EEDC 0%, #E8EEDC 99.6%, #F7F4F1 100%)
+    #F7F4F1;
+}
+
+.pelajaran-page-container .aksara-latin-capsule {
+  margin-top: 6px;
+}
+
+/* --- Animasi Cara Menulis (Pensil + Fill Urutan Goresan, rasio presisi 4:3) --- */
+.cara-menulis-stage {
+  position: relative;
+  width: 240px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  user-select: none;
+  overflow: visible;
+}
+
+.cara-menulis-stage.is-compact {
+  width: 208px;
+  height: 156px;
+}
+
+.cara-menulis-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.cara-menulis-pencil {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 6;
+  transition: left 20ms linear, top 20ms linear;
+}
+
+.cara-menulis-nib-glow {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168, 216, 0, 0.9) 0%, rgba(78, 96, 43, 0) 75%);
+  animation: caraMenulisNibPulse 0.45s ease-in-out infinite alternate;
+}
+
+.cara-menulis-pencil-svg {
+  position: absolute;
+  left: -2px;
+  top: -36px;
+  filter: drop-shadow(0 4px 6px rgba(58, 35, 21, 0.24));
+}
+
+@keyframes caraMenulisNibPulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.72;
+  }
+  100% {
+    transform: scale(1.38);
+    opacity: 1;
+  }
+}
+
+.btn-contoh-bentuk.is-playing {
+  background: #EBF3DC;
+  color: #3D5C1E;
+}
+
+/* --- Tahap Soal (Cocokkan, Ingat, Kuis) --- */
+.aksara-box-center.soal-box {
+  height: 204px;
+  margin-bottom: 14px;
+}
+
+.aksara-box-latin-quote {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 40px;
+  font-weight: 800;
+  color: #3A2315;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.option-latin-label.aksara.soal-opt-aksara {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #3A2315;
+}
+
+/* --- Tahap 3 (INGAT): Kotak Otak Tersembunyi, Tombol Aku Sudah Ingat & Lihat Lagi --- */
+.ingat-brain-hidden {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ingatBrainPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes ingatBrainPop {
+  0% {
+    transform: scale(0.65);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.ingat-action-wrap {
+  margin-top: 4px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-aku-sudah-ingat {
+  width: 100%;
+  height: 52px;
+  border-radius: 16px;
+  background: #FFFFFF;
+  border: 1.5px solid #4E602B;
+  color: #4E602B;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-aku-sudah-ingat:hover,
+.btn-aku-sudah-ingat:active {
+  background: #F4F8EC;
+  transform: translateY(-1px);
+}
+
+.btn-lihat-lagi {
+  background: transparent;
+  border: none;
+  color: #B33A24;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 2px 4px;
+  margin-left: 4px;
+  white-space: nowrap;
+}
+
+.btn-lihat-lagi:hover {
+  color: #82241B;
+}
+
+/* --- Layar Selesai Tahap (result.png) --- */
+.pelajaran-selesai-stats {
+  background: #E5EBD8;
+}
+
+.pelajaran-selesai-stat-label {
+  color: #5D6C3D;
+}
+
+.pelajaran-selesai-stat-divider {
+  background: rgba(78, 96, 43, 0.16);
+}
+
+/* --- Tahap 4 (TULIS / Latihan Menulis): Kanvas, Cara Menulis & Perayaan --- */
+.pelajaran-page-container .canvas-drawing-container {
+  height: 288px;
+}
+
+.latihan-controls-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.btn-canvas-clear.is-active {
+  background: #EBF3DC;
+  border-color: #8DA564;
+  color: #3D5C1E;
+}
+
+.latihan-cara-menulis-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(250, 247, 242, 0.94);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 8;
+  cursor: pointer;
+  animation: fadeIn 0.2s ease;
+}
+
+.latihan-cara-menulis-hint {
+  margin-top: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #4E602B;
+  background: #EBF3DC;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.canvas-drawing-container.is-verified-correct {
+  border: 2.5px solid #48852A;
+  background: #F4FAEE;
+  box-shadow: 0 0 0 5px rgba(168, 216, 0, 0.2), 0 10px 24px rgba(60, 122, 41, 0.14);
+  animation: canvasSuccessPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.canvas-drawing-container.is-verified-wrong {
+  border: 2px solid #D9534F;
+  animation: canvasWrongShake 0.42s ease;
+}
+
+@keyframes canvasSuccessPop {
+  0% {
+    transform: scale(0.97);
+  }
+  60% {
+    transform: scale(1.015);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes canvasWrongShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+.canvas-celebration-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 7;
+  overflow: hidden;
+}
+
+.confetti-burst {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  animation: confettiBurstFly 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.confetti-burst.cb-1 {
+  top: 44%;
+  left: 44%;
+  background: #A8D800;
+  --tx: -95px;
+  --ty: -75px;
+  --rot: -140deg;
+}
+
+.confetti-burst.cb-2 {
+  top: 46%;
+  left: 52%;
+  background: #F2B705;
+  --tx: 98px;
+  --ty: -82px;
+  --rot: 165deg;
+}
+
+.confetti-burst.cb-3 {
+  top: 52%;
+  left: 46%;
+  background: #EE851B;
+  --tx: -102px;
+  --ty: 68px;
+  --rot: 120deg;
+}
+
+.confetti-burst.cb-4 {
+  top: 50%;
+  left: 54%;
+  background: #4E602B;
+  --tx: 92px;
+  --ty: 62px;
+  --rot: -135deg;
+}
+
+@keyframes confettiBurstFly {
+  0% {
+    transform: translate(0, 0) scale(0.4) rotate(0deg);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(1.15) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+.confetti-sparkle {
+  position: absolute;
+  color: #6DB328;
+  font-size: 18px;
+  animation: sparkleFloatPop 1.2s ease-in-out infinite alternate;
+}
+
+.confetti-sparkle.sp-1 {
+  top: 14px;
+  left: 18px;
+  color: #F2B705;
+}
+
+.confetti-sparkle.sp-2 {
+  top: 18px;
+  right: 20px;
+  color: #6DB328;
+  animation-delay: 0.2s;
+}
+
+.confetti-sparkle.sp-3 {
+  bottom: 18px;
+  left: 22px;
+  color: #4E602B;
+  animation-delay: 0.35s;
+}
+
+.confetti-sparkle.sp-4 {
+  top: 46%;
+  right: 16px;
+  color: #EE851B;
+  font-size: 13px;
+  animation-delay: 0.5s;
+}
+
+@keyframes sparkleFloatPop {
+  0% {
+    transform: translateY(0) scale(0.85) rotate(0deg);
+    opacity: 0.72;
+  }
+  100% {
+    transform: translateY(-6px) scale(1.22) rotate(18deg);
+    opacity: 1;
+  }
+}
+
+.canvas-verified-stamp {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #2E6F1E;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(46, 111, 30, 0.28);
+  animation: stampBadgePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.stamp-check {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #A8D800;
+  color: #1F3A14;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+@keyframes stampBadgePop {
+  0% {
+    transform: scale(0.4) rotate(-8deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.latihan-celebration-card {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #EAF6E0 0%, #DDF0CC 100%);
+  border: 2px solid #75B73B;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 20px rgba(72, 99, 59, 0.14);
+  animation: celebrationCardEnter 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes celebrationCardEnter {
+  0% {
+    transform: translateY(10px) scale(0.94);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.celebration-icon-ring {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #2E6F1E;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4px rgba(168, 216, 0, 0.34);
+  animation: celebrationPulseRing 1.4s ease-in-out infinite;
+}
+
+@keyframes celebrationPulseRing {
+  0%, 100% {
+    box-shadow: 0 0 0 3px rgba(168, 216, 0, 0.28);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(168, 216, 0, 0.12);
+    transform: scale(1.06);
+  }
+}
+
+.celebration-check-icon {
+  font-size: 19px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.celebration-text-col {
+  flex: 1;
+  text-align: left;
+}
+
+.celebration-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.celebration-title-row strong {
+  font-size: 14px;
+  font-weight: 800;
+  color: #1F4714;
+}
+
+.celebration-score-pill {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #2E6F1E;
+  color: #FFFFFF;
+  font-size: 10.5px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.celebration-desc {
+  margin: 0;
+  font-size: 12px;
+  color: #2E5622;
+  line-height: 1.38;
+  font-weight: 600;
+}
+
+.latihan-warning-card {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: #FDF1EE;
+  border: 1.5px solid #E5A399;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fadeIn 0.25s ease;
+}
+
+.warning-icon-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #C94438;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.warning-text-col {
+  flex: 1;
+  text-align: left;
+}
+
+.warning-text-col strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  color: #82241B;
+  margin-bottom: 2px;
+}
+
+.warning-text-col p {
+  margin: 0;
+  font-size: 12px;
+  color: #9E3328;
+  line-height: 1.38;
+  font-weight: 600;
+}
+
+.warning-retry-btn {
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: #FFFFFF;
+  border: 1.5px solid #D97E73;
+  color: #9E3328;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.warning-retry-btn:hover {
+  background: #F9E2DF;
+}
+
+.btn-action-pelajaran.is-verified {
+  background: #2E6F1E;
+  box-shadow: 0 6px 18px rgba(46, 111, 30, 0.32);
+}
+
+

@@ -1,18 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback, type KeyboardEvent } from 'react';
 import { useNavigate } from 'react-router';
 import { hurufDariKode } from '../../aksara/huruf';
 import { hurufSeringSalah } from '../../progres/model';
 import { useProgres } from '../../progres/ProgresProvider';
-import { BAB, JALUR } from '../../content';
+import { BAB } from '../../content';
+import { TAHAP, tahapDiBab } from '../../content/tahap';
 import { ModalGantiAvatar, ICON_PROFIL } from './ModalGantiAvatar';
 import { useSesi } from '../../lib/sesi';
 import { keluar } from '../../lib/auth';
 import { MaskotProfilBab } from '../../app/MaskotAksa';
+import { DetailProgres, type TabDetail } from './DetailProgres';
+import { detailAksara, ringkasAksara } from './dataProgres';
+import './detail-progres.css';
 
 export { ICON_PROFIL };
 
 export function ProfilPage() {
-  const { stats, status } = useProgres();
+  const { stats, tahap } = useProgres();
   const { pengguna } = useSesi();
   const navigate = useNavigate();
 
@@ -62,23 +66,42 @@ export function ProfilPage() {
 
   const lemah = hurufSeringSalah(stats);
 
+  // Detail progres: setiap ringkasan bisa diklik dan membuka tab yang sesuai
+  const [detail, setDetail] = useState<TabDetail | null>(null);
+  const tutupDetail = useCallback(() => setDetail(null), []);
+  const ringkasHuruf = useMemo(() => ringkasAksara(detailAksara(tahap, stats)), [tahap, stats]);
+  const tulisSelesai = TAHAP.filter((t) => t.jenis === 'tulis' && tahap.get(t.id) === 'selesai').length;
+  const tulisTotal = TAHAP.filter((t) => t.jenis === 'tulis').length;
+  const bisaDiklik = (tab: TabDetail, label: string) => ({
+    role: 'button' as const,
+    tabIndex: 0,
+    'aria-label': label,
+    onClick: () => setDetail(tab),
+    onKeyDown: (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setDetail(tab);
+      }
+    },
+  });
+
   const handleSelectAvatar = (newId: number) => {
     setActiveAvatarId(newId);
     localStorage.setItem('selectedAvatarId', String(newId));
   };
 
-  // Hitung progres real sesuai status jalur & backend Supabase (tanpa nilai dummy hardcoded)
+  // Hitung progres real sesuai 5 tahapan per bab & backend Supabase (tanpa nilai dummy hardcoded)
   const progresPerBab = BAB.map((b) => {
-    const titik = JALUR.filter((t) => t.bab === b.bab);
-    const selesai = titik.filter((t) => status.get(t.id) === 'selesai').length;
-    const total = titik.length;
+    const daftarTahap = tahapDiBab(b.bab);
+    const selesai = daftarTahap.filter((t) => tahap.get(t.id) === 'selesai').length;
+    const total = daftarTahap.length;
     const persen = total > 0 ? Math.round((selesai / total) * 100) : 0;
     const tuntas = total > 0 && selesai === total;
     return { ...b, selesai, total, persen, tuntas };
   });
 
-  const totalTitik = JALUR.length;
-  const selesaiCount = JALUR.filter((t) => status.get(t.id) === 'selesai').length;
+  const totalTitik = TAHAP.length;
+  const selesaiCount = TAHAP.filter((t) => tahap.get(t.id) === 'selesai').length;
   const totalPersen = totalTitik > 0 ? Math.round((selesaiCount / totalTitik) * 100) : 0;
   const babSelesaiCount = progresPerBab.filter((b) => b.tuntas).length;
 
@@ -348,8 +371,8 @@ export function ProfilPage() {
         gap: 14,
       }}>
 
-        {/* 1. Card Motivasi + Progres Belajar */}
-        <div style={{
+        {/* 1. Card Motivasi + Progres Belajar (klik → detail pelajaran) */}
+        <div className="profil-ringkasan-klik" {...bisaDiklik('pelajaran', 'Lihat detail pelajaran yang selesai')} style={{
           background: '#FFFFFF',
           borderRadius: 26,
           padding: '22px 20px 18px',
@@ -417,7 +440,7 @@ export function ProfilPage() {
           justifyContent: 'space-around',
         }}>
           {/* Kolom 1: Pelajaran selesai */}
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 4 }}>
+          <button type="button" className="profil-stat-klik" onClick={() => setDetail('pelajaran')} aria-label="Lihat detail pelajaran selesai" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 4 }}>
             <svg viewBox="0 0 24 24" fill="none" stroke="#7D6B5E" strokeWidth="2.2" width="22" height="22">
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
@@ -427,13 +450,13 @@ export function ProfilPage() {
             <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 10.5, color: '#8C827A' }}>
               Pelajaran selesai
             </span>
-          </div>
+          </button>
 
           {/* Garis Pembatas Vertikal */}
           <div style={{ width: 1, height: 44, background: '#EFEAE3' }} />
 
           {/* Kolom 2: Bab tuntas */}
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 4 }}>
+          <button type="button" className="profil-stat-klik" onClick={() => setDetail('pelajaran')} aria-label="Lihat detail bab tuntas" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 4 }}>
             <svg viewBox="0 0 24 24" fill="none" stroke="#C86A2E" strokeWidth="2.5" width="22" height="22">
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
@@ -443,13 +466,13 @@ export function ProfilPage() {
             <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 10.5, color: '#8C827A' }}>
               Bab tuntas
             </span>
-          </div>
+          </button>
 
           {/* Garis Pembatas Vertikal */}
           <div style={{ width: 1, height: 44, background: '#EFEAE3' }} />
 
           {/* Kolom 3: Progres belajar */}
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 4 }}>
+          <button type="button" className="profil-stat-klik" onClick={() => setDetail('pelajaran')} aria-label="Lihat detail progres belajar" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 4 }}>
             <svg viewBox="0 0 24 24" fill="none" stroke="#7B61FF" strokeWidth="2.2" width="22" height="22">
               <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
               <polyline points="16 7 22 7 22 13" />
@@ -460,7 +483,25 @@ export function ProfilPage() {
             <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 10.5, color: '#8C827A' }}>
               Progres belajar
             </span>
-          </div>
+          </button>
+        </div>
+
+        {/* 2b. Ringkasan Aksara & Menulis (klik → detail) */}
+        <div className="profil-ringkas-aksara">
+          <button type="button" className="profil-ringkasan-klik" onClick={() => setDetail('aksara')} aria-label="Lihat detail aksara">
+            <span className="angka">
+              {ringkasHuruf.dipelajari} <small>/ {ringkasHuruf.total}</small>
+            </span>
+            <span className="label">Aksara dipelajari</span>
+            <span className="sub">{ringkasHuruf.dikuasai} dikuasai · lihat detail ›</span>
+          </button>
+          <button type="button" className="profil-ringkasan-klik" onClick={() => setDetail('menulis')} aria-label="Lihat detail latihan menulis">
+            <span className="angka">
+              {tulisSelesai} <small>/ {tulisTotal}</small>
+            </span>
+            <span className="label">Latihan menulis selesai</span>
+            <span className="sub">Lihat detail ›</span>
+          </button>
         </div>
 
         {/* 3. Section Perjalanan Belajarmu */}
@@ -595,7 +636,7 @@ export function ProfilPage() {
 
         {/* 4. Huruf Sering Salah (jika ada) */}
         {lemah.length > 0 && (
-          <div className="card-lemah" style={{ textAlign: 'left' }}>
+          <div className="card-lemah profil-ringkasan-klik" style={{ textAlign: 'left' }} {...bisaDiklik('aksara', 'Lihat penguasaan aksara')}>
             <h3 className="lemah-title" style={{ textAlign: 'left' }}>Huruf sering salah</h3>
             <p className="lemah-sub" style={{ textAlign: 'left' }}>Latih lagi aksara berikut untuk memperkuat ingatanmu:</p>
             <div className="lemah-tags">
@@ -674,6 +715,9 @@ export function ProfilPage() {
           </button>
         )}
       </div>
+
+      {/* Lembar Detail Progres */}
+      <DetailProgres tab={detail} onTutup={tutupDetail} />
 
       {/* Modal Pilih Avatar */}
       <ModalGantiAvatar

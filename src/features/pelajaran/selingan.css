@@ -1,0 +1,445 @@
+/* ========================================================
+   SELINGAN PEMBUKA / PENUTUP TAHAP (cutscene)
+   Animasi otomatis mati lewat prefers-reduced-motion di tokens.css.
+   ======================================================== */
+.sl-layar {
+  position: absolute;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  animation: slMasukLayar 0.32s ease-out both;
+}
+
+.sl-keluar {
+  animation: slKeluarLayar 0.28s ease-in both;
+}
+
+@keyframes slMasukLayar {
+  from { opacity: 0; transform: scale(1.04); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slKeluarLayar {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.97); }
+}
+
+/* --- Latar pembuka mengikuti waktu setempat --- */
+.sl-waktu-pagi { background: linear-gradient(180deg, #FFF3C4 0%, #FFFBEA 55%, #E7EDDA 100%); }
+.sl-waktu-siang { background: linear-gradient(180deg, #DDEBF5 0%, #F3F7EA 55%, #E7EDDA 100%); }
+.sl-waktu-sore { background: linear-gradient(180deg, #FFD9A8 0%, #FFF0DF 55%, #F3E6D2 100%); }
+.sl-waktu-malam {
+  background: linear-gradient(180deg, #2E3A1E 0%, #384520 55%, #52632F 100%);
+  color: var(--text-on-dark);
+}
+
+/* --- Latar penutup mengikuti hasil --- */
+.sl-hasil-tamat-bab,
+.sl-hasil-sempurna,
+.sl-hasil-kilat { background: radial-gradient(120% 70% at 50% 40%, #FFFBEA 0%, #E7EDDA 70%, #D2ED7D 100%); }
+.sl-hasil-hebat { background: radial-gradient(120% 70% at 50% 40%, #FFFFFF 0%, #FFF0DF 75%); }
+.sl-hasil-bangkit { background: radial-gradient(120% 70% at 50% 40%, #FFFFFF 0%, #F7F4F1 60%, #F0EAFB 100%); }
+.sl-bab2.sl-hasil-tamat-bab,
+.sl-bab2.sl-hasil-sempurna { background: radial-gradient(120% 70% at 50% 40%, #FFFBEA 0%, #FFF0DF 70%, #FFD263 130%); }
+.sl-bab3.sl-hasil-tamat-bab,
+.sl-bab3.sl-hasil-sempurna { background: radial-gradient(120% 70% at 50% 40%, #FFFFFF 0%, #F0EAFB 70%, #BBA4EF 130%); }
+
+/* --- Isi --- */
+.sl-isi {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 28px;
+  margin-top: -40px;
+}
+
+.sl-chip {
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--text-accent);
+  border-radius: var(--radius-full);
+  padding: 5px 14px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+  animation: slTurun 0.45s 0.1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.sl-waktu-malam .sl-chip { background: rgba(255, 255, 255, 0.14); color: var(--text-on-dark); }
+
+.sl-panggung {
+  position: relative;
+  width: 200px;
+  height: 190px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.sl-maskot {
+  transform-origin: 50% 100%;
+}
+
+.sl-maskot .rm-aksa {
+  width: 190px;
+  height: auto;
+}
+
+.sl-judul {
+  margin: 14px 0 6px;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  animation: slNaik 0.5s 0.35s ease-out both;
+}
+
+.sl-sub {
+  margin: 0;
+  max-width: 300px;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 500;
+  opacity: 0.85;
+  animation: slNaik 0.5s 0.5s ease-out both;
+}
+
+.sl-lencana {
+  margin-top: 14px;
+  background: var(--orange-soft);
+  border: 1px solid var(--orange-border);
+  color: var(--orange-text);
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  animation: slTurun 0.5s 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes slNaik {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slTurun {
+  from { opacity: 0; transform: translateY(-10px) scale(0.85); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* --- Gerak masuk maskot: berbeda per varian --- */
+.sl-masuk-sambut-pertama { animation: slMunculBawah 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.sl-masuk-mulai-bab { animation: slJalanMasuk 1s ease-out both; }
+.sl-masuk-ulang { animation: slPutarMasuk 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.sl-masuk-perkuat { animation: slZoomFokus 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.sl-masuk-tantangan-akhir { animation: slGetarLompat 1.2s ease-out both; }
+.sl-masuk-biasa { animation: slJatuhPantul 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.sl-masuk-tamat-bab { animation: slLompatTinggi 1s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.sl-masuk-kilat { animation: slMelesat 0.6s ease-out both; }
+.sl-masuk-sempurna { animation: slJatuhPantul 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.sl-masuk-hebat { animation: slMunculBawah 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.sl-masuk-bangkit { animation: slBangkit 1.2s ease-out both; }
+
+@keyframes slMunculBawah {
+  0% { transform: translateY(120px) scale(0.6); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes slJalanMasuk {
+  0% { transform: translateX(-260px) rotate(-6deg); }
+  20% { transform: translateX(-200px) translateY(-8px) rotate(6deg); }
+  40% { transform: translateX(-130px) rotate(-6deg); }
+  60% { transform: translateX(-60px) translateY(-8px) rotate(6deg); }
+  80%, 100% { transform: translateX(0) rotate(0deg); }
+}
+
+@keyframes slPutarMasuk {
+  0% { transform: rotate(-200deg) scale(0.2); opacity: 0; }
+  100% { transform: rotate(0deg) scale(1); opacity: 1; }
+}
+
+@keyframes slZoomFokus {
+  0% { transform: scale(0.3); opacity: 0; filter: blur(4px); }
+  100% { transform: scale(1); opacity: 1; filter: blur(0); }
+}
+
+@keyframes slGetarLompat {
+  0%, 30% { transform: translateX(0); }
+  5%, 15%, 25% { transform: translateX(-4px); }
+  10%, 20% { transform: translateX(4px); }
+  55% { transform: translateY(-40px) scale(1.05, 0.95); }
+  75% { transform: translateY(0) scale(1.08, 0.92); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes slJatuhPantul {
+  0% { transform: translateY(-260px); opacity: 0; }
+  60% { transform: translateY(0) scale(1.1, 0.88); opacity: 1; }
+  80% { transform: translateY(-14px) scale(0.97, 1.03); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes slLompatTinggi {
+  0% { transform: translateY(40px) scale(0.6); opacity: 0; }
+  50% { transform: translateY(-50px) scale(1.05); opacity: 1; }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes slMelesat {
+  0% { transform: translateX(320px) skewX(-18deg); opacity: 0; }
+  70% { transform: translateX(-16px) skewX(8deg); opacity: 1; }
+  100% { transform: translateX(0) skewX(0); }
+}
+
+@keyframes slBangkit {
+  0% { transform: translateY(26px) rotate(-14deg) scale(0.9); opacity: 0; }
+  40% { transform: translateY(10px) rotate(-14deg) scale(0.9); opacity: 1; }
+  70% { transform: translateY(-14px) rotate(4deg) scale(1.04); }
+  100% { transform: translateY(0) rotate(0) scale(1); }
+}
+
+/* Kartu huruf yang sering salah (varian "perkuat") */
+.sl-kartu-huruf {
+  position: absolute;
+  top: 4px;
+  right: -10px;
+  background: var(--color-white);
+  border: 2px solid var(--orange-border);
+  color: var(--orange-text);
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  font-size: 18px;
+  font-weight: 800;
+  box-shadow: var(--shadow-card);
+  animation: slKartuGoyang 1.6s 0.6s ease-in-out infinite both;
+}
+
+@keyframes slKartuGoyang {
+  0%, 100% { transform: rotate(8deg); }
+  50% { transform: rotate(-4deg) translateY(-4px); }
+}
+
+/* --- Langit pembuka --- */
+.sl-langit { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+
+.sl-matahari {
+  position: absolute;
+  top: 9%;
+  right: 14%;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  animation: slMatahari 3s ease-in-out infinite alternate;
+}
+.sl-matahari-pagi { background: #FFD263; box-shadow: 0 0 0 14px rgba(255, 210, 99, 0.25); top: 16%; }
+.sl-matahari-siang { background: #FFE07F; box-shadow: 0 0 0 16px rgba(255, 224, 127, 0.3); top: 7%; }
+.sl-matahari-sore { background: #EE851B; box-shadow: 0 0 0 16px rgba(238, 133, 27, 0.2); top: 22%; right: 70%; }
+
+@keyframes slMatahari {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+.sl-bulan { position: absolute; top: 9%; right: 14%; animation: slMatahari 3s ease-in-out infinite alternate; }
+
+.sl-bintang-langit {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #FFF3C4;
+  animation: slKerlip 1.6s ease-in-out infinite;
+}
+
+.sl-awan { position: absolute; animation: slAwan 9s linear infinite; }
+.sl-awan-1 { top: 14%; left: -90px; }
+.sl-awan-2 { top: 26%; left: -70px; animation-duration: 13s; animation-delay: -5s; }
+
+@keyframes slAwan {
+  from { transform: translateX(0); }
+  to { transform: translateX(560px); }
+}
+
+.sl-bukit {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 22%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sl-rumput { transform-box: fill-box; transform-origin: 50% 100%; animation: slGoyang 3s ease-in-out infinite; }
+
+@keyframes slGoyang {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+.sl-waktu-malam .sl-bukit { filter: brightness(0.6); }
+
+/* --- Bintang hasil --- */
+.sl-bintang-baris {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.sl-bintang {
+  animation: slBintangPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.sl-bintang.tengah { margin-bottom: 8px; }
+
+.sl-bintang.terisi { filter: drop-shadow(0 3px 0 rgba(201, 151, 35, 0.35)); }
+
+@keyframes slBintangPop {
+  0% { transform: scale(0) rotate(-90deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+/* --- Efek penutup --- */
+.sl-konfeti,
+.sl-efek-kilat,
+.sl-efek-bintang,
+.sl-efek-semangat {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sl-konfeti-potong {
+  position: absolute;
+  top: -12px;
+  width: 8px;
+  height: 12px;
+  border-radius: 2px;
+  animation-name: slKonfetiJatuh;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+
+.sl-konfeti-potong.bulat { width: 8px; height: 8px; border-radius: 50%; }
+
+@keyframes slKonfetiJatuh {
+  0% { transform: translateY(0) rotate(var(--putar, 0deg)); opacity: 1; }
+  100% { transform: translateY(105vh) rotate(calc(var(--putar, 0deg) + 540deg)); opacity: 0.6; }
+}
+
+.sl-garis-laju {
+  position: absolute;
+  right: -40%;
+  width: 40%;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, rgba(168, 216, 0, 0), rgba(168, 216, 0, 0.8));
+  animation: slLaju 0.7s ease-out infinite;
+}
+
+@keyframes slLaju {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-320%); opacity: 0; }
+}
+
+.sl-kerlip { position: absolute; animation: slKerlip 1.4s ease-in-out infinite; }
+
+@keyframes slKerlip {
+  0%, 100% { transform: scale(0.4) rotate(0deg); opacity: 0.3; }
+  50% { transform: scale(1.1) rotate(45deg); opacity: 1; }
+}
+
+.sl-hati { position: absolute; bottom: -20px; animation: slHatiNaik 3s ease-in infinite; }
+
+@keyframes slHatiNaik {
+  0% { transform: translateY(0) scale(0.6); opacity: 0; }
+  20% { opacity: 0.9; }
+  100% { transform: translateY(-80vh) scale(1.1); opacity: 0; }
+}
+
+/* Piala bab tamat */
+.sl-piala-wrap {
+  position: absolute;
+  left: 50%;
+  bottom: 70px;
+  width: 0;
+  height: 0;
+}
+
+.sl-sinar {
+  position: absolute;
+  left: -110px;
+  top: -110px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(rgba(255, 210, 99, 0.35) 0deg 12deg, rgba(255, 210, 99, 0) 12deg 30deg);
+  -webkit-mask: radial-gradient(circle, #000 30%, transparent 70%);
+  mask: radial-gradient(circle, #000 30%, transparent 70%);
+  animation: slSinar 8s linear infinite;
+}
+
+@keyframes slSinar { to { transform: rotate(360deg); } }
+
+.sl-piala {
+  position: absolute;
+  left: 44px;
+  top: -90px;
+  animation: slPiala 0.8s 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes slPiala {
+  from { transform: translateY(40px) scale(0); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* --- Tombol & penghitung waktu --- */
+.sl-lewati {
+  position: absolute;
+  z-index: 3;
+  bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+  left: 24px;
+  right: 24px;
+  margin: 0 auto;
+  max-width: 260px;
+  height: var(--h-button);
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--color-brown);
+  color: var(--text-on-brown);
+  font: 700 16px/24px var(--font-body);
+  box-shadow: var(--shadow-cta);
+  cursor: pointer;
+  animation: slNaik 0.4s 0.8s ease-out both;
+}
+
+.sl-penghitung {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: var(--color-lime);
+  transform-origin: 0 50%;
+  animation-name: slHitung;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+@keyframes slHitung {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}

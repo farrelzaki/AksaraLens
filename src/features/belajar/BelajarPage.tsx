@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import { BAB, JALUR } from '../../content';
+import { BAB } from '../../content';
+import { TAHAP, tahapDiBab } from '../../content/tahap';
 import { useProgres } from '../../progres/ProgresProvider';
 import { useSesi } from '../../lib/sesi';
 import { ICON_PROFIL } from '../profil/ProfilPage';
@@ -9,7 +10,7 @@ import { MaskotHomepageHero, MaskotHomepageBab } from '../../app/MaskotAksa';
 
 // F1: Homepage sesuai HOMEPAGE.png — kartu per bab dengan maskot & avatar terpilih
 export function BelajarPage() {
-  const { status } = useProgres();
+  const { tahap } = useProgres();
   const { pengguna } = useSesi();
   const navigate = useNavigate();
   const [pesan] = useState<string | null>(null);
@@ -51,15 +52,18 @@ export function BelajarPage() {
     localStorage.setItem('selectedAvatarId', String(newId));
   };
 
-  // Hitung progres real per bab dari state jalur (sinkron dengan Supabase / localStorage)
+  // Hitung progres real per bab dari 5 tahap belajar (sinkron dengan Supabase / localStorage)
   const progresBab = BAB.map((bab) => {
-    const titikBab = JALUR.filter((t) => t.bab === bab.bab);
-    const selesai = titikBab.filter((t) => status.get(t.id) === 'selesai').length;
-    const total = titikBab.length;
+    const daftarTahap = tahapDiBab(bab.bab);
+    const selesai = daftarTahap.filter((t) => tahap.get(t.id) === 'selesai').length;
+    const total = daftarTahap.length;
     const persenVal = total > 0 ? Math.round((selesai / total) * 100) : 0;
     const semua = total > 0 && selesai === total;
     return { ...bab, selesai, total, persen: persenVal, semua };
   });
+
+  const tahapAktifPertama =
+    TAHAP.find((t) => tahap.get(t.id) === 'terbuka') || TAHAP[0];
 
   // Tema kartu bab (sesuai HOMEPAGE.png & aset design/assets-csv)
   const babTheme = [
@@ -121,7 +125,13 @@ export function BelajarPage() {
           <button
             type="button"
             className="hero-cta"
-            onClick={() => navigate('/pelajaran/b1-p1')}
+            onClick={() =>
+              navigate(
+                tahapAktifPertama.jenis === 'tulis'
+                  ? `/latihan/${tahapAktifPertama.id}`
+                  : `/pelajaran/${tahapAktifPertama.id}`
+              )
+            }
             style={{ textAlign: 'left' }}
           >
             <span>Mulai belajar</span>

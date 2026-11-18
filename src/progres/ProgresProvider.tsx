@@ -2,10 +2,13 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 import { JALUR } from '../content';
 import { useSesi } from '../lib/sesi';
 import { catatJawaban, statusJalur, type ProgresTitik, type StatHuruf, type StatusTitik } from './model';
+import { statusTahap } from './tahap';
 import { migrasiTamu, penyimpananAkun, penyimpananTamu, type HasilMigrasi, type Penyimpanan } from './penyimpanan';
 
 interface NilaiProgres {
   status: Map<string, StatusTitik>;
+  /** status 15 tahap belajar (Kenali, Cocokkan, Ingat, Tulis, Kuis per bab) */
+  tahap: Map<string, StatusTitik>;
   stats: StatHuruf[];
   /** hasil migrasi tamu -> akun terakhir (null bila belum ada), untuk pesan ke pengguna */
   hasilMigrasi: HasilMigrasi | null;
@@ -92,9 +95,10 @@ export function ProgresProvider({ children, penyimpanan: dariLuar }: { children:
   );
 
   const status = useMemo(() => statusJalur(JALUR, new Set(progres.map((p) => p.lesson_id))), [progres]);
+  const tahap = useMemo(() => statusTahap(new Set(progres.map((p) => p.lesson_id))), [progres]);
   const nilai = useMemo(
-    () => ({ status, stats, hasilMigrasi, selesaikanTitik, catat }),
-    [status, stats, hasilMigrasi, selesaikanTitik, catat],
+    () => ({ status, tahap, stats, hasilMigrasi, selesaikanTitik, catat }),
+    [status, tahap, stats, hasilMigrasi, selesaikanTitik, catat],
   );
 
   return <Ctx.Provider value={nilai}>{children}</Ctx.Provider>;

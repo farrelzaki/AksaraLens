@@ -1,14 +1,16 @@
 import { useEffect } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router';
-import { babDariNomor, JALUR } from '../../content';
+import { babDariNomor } from '../../content';
+import { tahapDiBab, type TahapBelajar } from '../../content/tahap';
 import { useProgres } from '../../progres/ProgresProvider';
+import { RoadmapDekorasi, type NodeRoadmap } from './RoadmapDekorasi';
 
 export function MateriBabPage() {
   const { bab } = useParams();
-  const babNomor = Number(bab) || 1;
+  const babNomor = (Number(bab) || 1) as 1 | 2 | 3;
   const { hash } = useLocation();
   const navigate = useNavigate();
-  const { status } = useProgres();
+  const { tahap: statusTahap } = useProgres();
   const data = babDariNomor(babNomor);
 
   useEffect(() => {
@@ -25,13 +27,13 @@ export function MateriBabPage() {
     );
   }
 
-  // Filter titik jalur untuk bab ini
-  const titikBab = JALUR.filter((t) => t.bab === babNomor);
-  const selesaiCount = titikBab.filter((t) => status.get(t.id) === 'selesai').length;
-  const persen = titikBab.length > 0 ? Math.round((selesaiCount / titikBab.length) * 100) : 0;
+  // Ambil 5 tahapan untuk bab ini
+  const daftarTahap = tahapDiBab(babNomor);
+  const selesaiCount = daftarTahap.filter((t) => statusTahap.get(t.id) === 'selesai').length;
+  const persen = daftarTahap.length > 0 ? Math.round((selesaiCount / daftarTahap.length) * 100) : 0;
 
-  // Temukan titik terbuka pertama untuk CTA bawah
-  const titikPertama = titikBab.find((t) => status.get(t.id) === 'terbuka') || titikBab[0];
+  // Temukan tahap terbuka pertama untuk CTA bawah
+  const tahapPertama = daftarTahap.find((t) => statusTahap.get(t.id) === 'terbuka') || daftarTahap[0];
 
   const themeClass = babNomor === 1 ? 'theme-bab1' : babNomor === 2 ? 'theme-bab2' : 'theme-bab3';
 
@@ -57,7 +59,7 @@ export function MateriBabPage() {
       icon: 'eye',
       cx: 118.4,
       cy: 72.0,
-      titikRef: titikBab[0],
+      tahapRef: daftarTahap[0],
     },
     {
       id: 'temukan',
@@ -66,7 +68,7 @@ export function MateriBabPage() {
       icon: 'eye',
       cx: 238.9,
       cy: 202.0,
-      titikRef: titikBab[1] || titikBab[0],
+      tahapRef: daftarTahap[1],
     },
     {
       id: 'ingat',
@@ -75,7 +77,7 @@ export function MateriBabPage() {
       icon: 'brain',
       cx: 118.4,
       cy: 332.0,
-      titikRef: titikBab[2] || titikBab[0],
+      tahapRef: daftarTahap[2],
     },
     {
       id: 'tulis',
@@ -84,7 +86,7 @@ export function MateriBabPage() {
       icon: 'pencil',
       cx: 238.9,
       cy: 462.0,
-      titikRef: titikBab.find((t) => t.type === 'writing') || titikBab[1],
+      tahapRef: daftarTahap[3],
     },
     {
       id: 'kuis',
@@ -93,23 +95,28 @@ export function MateriBabPage() {
       icon: 'sparkle',
       cx: 118.4,
       cy: 592.0,
-      titikRef: titikBab[titikBab.length - 1],
+      tahapRef: daftarTahap[4],
     },
   ];
 
   // Cari index tahapan yang aktif: tahapan pertama yang terbuka dan belum selesai
   const indexAktif = tahapan.findIndex((t) => {
-    const s = t.titikRef ? status.get(t.titikRef.id) : undefined;
+    const s = t.tahapRef ? statusTahap.get(t.tahapRef.id) : undefined;
     return s === 'terbuka';
   });
 
-  const handleKlikTitik = (titikId?: string, isLocked?: boolean) => {
-    if (isLocked) return;
-    if (!titikId) return;
-    const t = JALUR.find((item) => item.id === titikId);
-    if (t) {
-      navigate(t.type === 'writing' ? `/latihan/${t.id}` : `/pelajaran/${t.id}`);
-    }
+  // Data untuk lapisan dekorasi (pohon, bunga, maskot) — memakai status yang sama dengan node
+  const nodeDekorasi: NodeRoadmap[] = tahapan.map((t, idx) => ({
+    cx: t.cx,
+    cy: t.cy,
+    status: (t.tahapRef ? statusTahap.get(t.tahapRef.id) : undefined) ?? (idx === 0 ? 'terbuka' : 'terkunci'),
+    jenis: t.tahapRef?.jenis,
+  }));
+  const indexMaskot = indexAktif === -1 ? (selesaiCount === 0 ? 0 : -1) : indexAktif;
+
+  const handleKlikTahap = (item?: TahapBelajar, isLocked?: boolean) => {
+    if (isLocked || !item) return;
+    navigate(item.jenis === 'tulis' ? `/latihan/${item.id}` : `/pelajaran/${item.id}`);
   };
 
   return (
@@ -151,6 +158,9 @@ export function MateriBabPage() {
 
       {/* 3. Winding Path S-Curve — koordinat presisi Figma 412px */}
       <section className="journey-path-container">
+        {/* Taman dekoratif + maskot Aksa yang mengikuti progres (hanya hiasan, tidak bisa diklik) */}
+        <RoadmapDekorasi bab={babNomor} nodes={nodeDekorasi} indexAktif={indexMaskot} />
+
         {/* Garis lintasan S-Curve SVG presisi 366 × 650 */}
         <svg
           className="path-svg-canvas"
@@ -181,7 +191,7 @@ export function MateriBabPage() {
 
         {/* 5 Node Tahapan dengan penempatan presisi di titik S-curve */}
         {tahapan.map((tahap, idx) => {
-          const titikStatus = tahap.titikRef ? status.get(tahap.titikRef.id) : idx === 0 ? 'terbuka' : 'terkunci';
+          const titikStatus = tahap.tahapRef ? statusTahap.get(tahap.tahapRef.id) : idx === 0 ? 'terbuka' : 'terkunci';
           const isTerbuka = titikStatus === 'terbuka' || titikStatus === 'selesai';
           const isSelesai = titikStatus === 'selesai';
           // Tentukan node aktif: jika indexAktif >= 0 gunakan itu, jika tidak ada yg aktif dan ada selesai, node terakhir; default node 0
@@ -207,7 +217,7 @@ export function MateriBabPage() {
               <button
                 type="button"
                 className={`node-button ${isCurrent ? 'current' : ''} ${isSelesai ? 'completed' : ''} ${!isTerbuka ? 'locked' : ''}`}
-                onClick={() => handleKlikTitik(tahap.titikRef?.id, !isTerbuka)}
+                onClick={() => handleKlikTahap(tahap.tahapRef, !isTerbuka)}
                 disabled={!isTerbuka}
                 aria-label={`${tahap.title} (${titikStatus})`}
               >
@@ -292,7 +302,7 @@ export function MateriBabPage() {
         <button
           type="button"
           className="btn-primary btn-materi-cta"
-          onClick={() => handleKlikTitik(titikPertama?.id, false)}
+          onClick={() => handleKlikTahap(tahapPertama, false)}
         >
           <span>{selesaiCount > 0 ? 'Lanjutkan belajar' : 'Mulai pelajaran pertama'}</span>
           <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18">

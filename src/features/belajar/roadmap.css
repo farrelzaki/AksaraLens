@@ -1,0 +1,121 @@
+/* ========================================================
+   DEKORASI ROADMAP (MateriBabPage) — taman yang tumbuh mengikuti progres
+   Lapisan: .rm-latar (z 0, di bawah garis jalur z 1) · node (z 2) · .rm-maskot (z 3)
+   Semua animasi otomatis mati lewat prefers-reduced-motion di tokens.css.
+   ======================================================== */
+.rm-latar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 366px;
+  height: 740px;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.rm-maskot {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  transform-origin: 50% 100%;
+  animation: rmHadir 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes rmHadir {
+  0% { transform: translateY(10px) scale(0.6); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.rm-goyang,
+.rm-mekar,
+.rm-kelopak-jatuh,
+.rm-kupu,
+.rm-sayap,
+.rm-bendera,
+.rm-kilau-latar {
+  transform-box: fill-box;
+}
+
+/* Tajuk pohon, tangkai bunga, dan rumput bergoyang ditiup angin */
+.rm-goyang {
+  transform-origin: 50% 100%;
+  animation: rmGoyang 4.2s ease-in-out infinite;
+}
+
+.rm-goyang-cepat {
+  animation-duration: 3s;
+}
+
+@keyframes rmGoyang {
+  0%, 100% { transform: rotate(-1.6deg); }
+  50% { transform: rotate(1.6deg); }
+}
+
+/* Bunga yang baru mekar muncul dengan pop lembut */
+.rm-mekar {
+  transform-origin: 50% 50%;
+  animation: rmMekar 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes rmMekar {
+  0% { transform: scale(0.2); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Kelopak gugur dari pohon yang mekar */
+.rm-kelopak-jatuh {
+  transform-origin: 50% 50%;
+  animation: rmGugur 5.5s ease-in infinite;
+}
+
+@keyframes rmGugur {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  80% { opacity: 0.9; }
+  100% { transform: translate(-10px, 30px) rotate(160deg); opacity: 0; }
+}
+
+/* Kupu-kupu melayang & mengepak */
+.rm-kupu {
+  transform-origin: 50% 50%;
+  animation: rmKupu 6s ease-in-out infinite;
+}
+
+@keyframes rmKupu {
+  0%, 100% { transform: translate(0, 0) rotate(-6deg); }
+  25% { transform: translate(7px, -6px) rotate(8deg); }
+  50% { transform: translate(-3px, -11px) rotate(-4deg); }
+  75% { transform: translate(-8px, -3px) rotate(6deg); }
+}
+
+.rm-sayap {
+  transform-origin: 50% 50%;
+  animation: rmSayap 0.35s ease-in-out infinite alternate;
+}
+
+@keyframes rmSayap {
+  0% { transform: scaleX(1); }
+  100% { transform: scaleX(0.35); }
+}
+
+/* Bendera garis akhir berkibar saat bab tamat */
+.rm-bendera {
+  transform-origin: 0% 50%;
+  animation: rmBendera 1.4s ease-in-out infinite;
+}
+
+@keyframes rmBendera {
+  0%, 100% { transform: skewY(0deg) scaleX(1); }
+  50% { transform: skewY(-6deg) scaleX(0.92); }
+}
+
+.rm-kilau-latar {
+  transform-origin: 50% 50%;
+  animation: rmKilauLatar 1.8s ease-in-out infinite;
+}
+
+@keyframes rmKilauLatar {
+  0%, 100% { transform: scale(0.4) rotate(0deg); opacity: 0.2; }
+  50% { transform: scale(1) rotate(45deg); opacity: 1; }
+}
