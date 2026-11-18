@@ -5,7 +5,8 @@ describe('urlModel', () => {
   it('memakai folder lokal secara bawaan dan URL Supabase bila diisi', () => {
     expect(urlModel('model1', '/models')).toBe('/models/aksaralens_huruf.onnx');
     expect(urlModel('model2a', 'https://x.supabase.co/storage/v1/object/public/models/v2/')).toBe(
-      'https://x.supabase.co/storage/v1/object/public/models/v2/aksaralens_pembaca_b2.onnx',
+      'https://x.supabase.co/storage/v1/object/public/models/v2/aksaralens_pembaca_b2r2.onnx',
     );
+    expect(urlModel('model2a_r1', '/models')).toBe('/models/aksaralens_pembaca_b2.onnx');
   });
 });

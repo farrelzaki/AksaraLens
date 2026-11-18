@@ -64,17 +64,20 @@ interface Pembaca {
 }
 
 /**
- * Pembaca baris: B2 (bawaan) atau CRNN v2 (`?pembaca=v2` / VITE_PEMBACA=v2). Bila B2 gagal dimuat
- * (berkas belum diunggah, jaringan), scanner tetap jalan dengan v2 alih-alih gagal total.
+ * Pembaca baris: B2 (bawaan; putaran 2, cadangan putaran 1) atau CRNN v2 (`?pembaca=v2` / VITE_PEMBACA=v2). Bila B2
+ * gagal dimuat (berkas belum diunggah, jaringan), scanner tetap jalan dengan v2 alih-alih gagal total.
  */
 let pembacaAktif: Promise<Pembaca> | null = null;
 function muatPembaca(): Promise<Pembaca> {
   pembacaAktif ??= (async (): Promise<Pembaca> => {
     if (pembacaDiminta() === 'b2') {
-      try {
-        return { jenis: 'b2', sesi: await muatModel('model2a') };
-      } catch (e) {
-        console.warn('Pembaca B2 gagal dimuat, memakai v2:', e);
+      // Putaran 2 dulu, lalu putaran 1 (berkas lama di models/v2), lalu v2.
+      for (const nama of ['model2a', 'model2a_r1'] as const) {
+        try {
+          return { jenis: 'b2', sesi: await muatModel(nama) };
+        } catch (e) {
+          console.warn(`Pembaca ${nama} gagal dimuat:`, e);
+        }
       }
     }
     return { jenis: 'v2', sesi: await muatModel('model2v2') };

@@ -3,11 +3,12 @@
 
 import type { InferenceSession } from 'onnxruntime-web';
 
-export type NamaModel = 'model1' | 'model2a' | 'model2v2' | 'model2b' | 'model2c';
+export type NamaModel = 'model1' | 'model2a' | 'model2a_r1' | 'model2v2' | 'model2b' | 'model2c';
 
 const BERKAS: Record<NamaModel, string> = {
   model1: 'aksaralens_huruf.onnx',
-  model2a: 'aksaralens_pembaca_b2.onnx', // pembaca B2 (PP-OCRv5 fine-tune, int8), bawaan
+  model2a: 'aksaralens_pembaca_b2r2.onnx', // pembaca B2 putaran 2 (PP-OCRv5 fine-tune + Wikisource, int8), bawaan
+  model2a_r1: 'aksaralens_pembaca_b2.onnx', // pembaca B2 putaran 1: dipakai bila berkas putaran 2 belum ada / gagal dimuat
   model2v2: 'aksaralens_scanner.onnx', // pembaca CRNN v2: sakelar `?pembaca=v2` / VITE_PEMBACA=v2, dan cadangan bila B2 gagal dimuat
   model2b: 'aksaralens_detektor_pp.onnx',
   model2c: 'aksaralens_klasifikator.onnx',
@@ -117,7 +118,7 @@ export function muatModel(nama: NamaModel): Promise<InferenceSession> {
       // Pembaca B2 (int8 QDQ) selalu WASM: kernel MaxPool WebGPU belum mendukung ceil_mode, dan jalur int8 cepat ada di WASM.
       // Sesi dibuat bergiliran: inisialisasi backend berbeda secara bersamaan memicu "multiple calls to initWasm()".
       const buat = antreanSesi.then(() =>
-        ort.InferenceSession.create(bytes, { executionProviders: nama === 'model2a' ? ['wasm'] : pilihEp() }),
+        ort.InferenceSession.create(bytes, { executionProviders: nama.startsWith('model2a') ? ['wasm'] : pilihEp() }),
       );
       antreanSesi = buat.then(() => undefined, () => undefined);
       return buat;
