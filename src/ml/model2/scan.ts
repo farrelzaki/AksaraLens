@@ -7,8 +7,9 @@
 // - sudut deskew dicari pada gambar ≤ 800 px (notebook: masker resolusi penuh lalu diperkecil).
 
 import { urai, type SukuKata } from '../../aksara/urai';
-import { infoOrt, muatModel, ortSiap } from '../onnx';
-import { CHARSET, dekodeGreedy } from './ctc';
+import type { InferenceSession } from 'onnxruntime-web';
+import { infoOrt, muatModel, ortSiap, pembacaDiminta, type JenisPembaca } from '../onnx';
+import { CHARSET, TINGGI_BARIS, dekodeGreedy, keInputBaris } from './ctc';
 import { TINGGI_B2, keInputB2, keLogPeluang } from './pembacaB2';
 import { dekodeBeam, logSoftmax, pilihKoreksi, type ModelBahasa } from './bahasa';
 import modelBahasa from './model_bahasa.json';
@@ -57,10 +58,48 @@ export function siapkanScanner(): Promise<void> {
   return pemanasan;
 }
 
+interface Pembaca {
+  jenis: JenisPembaca;
+  sesi: InferenceSession;
+}
+
+/**
+ * Pembaca baris: B2 (bawaan) atau CRNN v2 (`?pembaca=v2` / VITE_PEMBACA=v2). Bila B2 gagal dimuat
+ * (berkas belum diunggah, jaringan), scanner tetap jalan dengan v2 alih-alih gagal total.
+ */
+let pembacaAktif: Promise<Pembaca> | null = null;
+function muatPembaca(): Promise<Pembaca> {
+  pembacaAktif ??= (async (): Promise<Pembaca> => {
+    if (pembacaDiminta() === 'b2') {
+      try {
+        return { jenis: 'b2', sesi: await muatModel('model2a') };
+      } catch (e) {
+        console.warn('Pembaca B2 gagal dimuat, memakai v2:', e);
+      }
+    }
+    return { jenis: 'v2', sesi: await muatModel('model2v2') };
+  })().catch((e) => {
+    pembacaAktif = null;
+    throw e;
+  });
+  return pembacaAktif;
+}
+
+/** Tensor masukan pembaca dan dimensinya: B2 [1, 3, 48, W], v2 [1, 1, 64, W]. */
+const masukanPembaca = (jenis: JenisPembaca, crop: Gray) => {
+  if (jenis === 'b2') {
+    const { data, lebar } = keInputB2(crop);
+    return { data, dims: [1, 3, TINGGI_B2, lebar] };
+  }
+  const { data, lebar } = keInputBaris(crop);
+  return { data, dims: [1, 1, TINGGI_BARIS, lebar] };
+};
+
 async function panaskan(): Promise<void> {
-  const [ort, det, pembaca, kl] = await Promise.all([ortSiap(), muatModel('model2b'), muatModel('model2a'), muatModel('model2c')]);
+  const [ort, det, pembaca, kl] = await Promise.all([ortSiap(), muatModel('model2b'), muatPembaca(), muatModel('model2c')]);
   await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', new Float32Array(3 * 32 * 32), [1, 3, 32, 32]) });
-  await pembaca.run({ [pembaca.inputNames[0]]: new ort.Tensor('float32', new Float32Array(3 * TINGGI_B2 * TINGGI_B2), [1, 3, TINGGI_B2, TINGGI_B2]) });
+  const kosong = masukanPembaca(pembaca.jenis, { w: TINGGI_BARIS, h: TINGGI_BARIS, d: new Float32Array(TINGGI_BARIS * TINGGI_BARIS).fill(255) });
+  await pembaca.sesi.run({ [pembaca.sesi.inputNames[0]]: new ort.Tensor('float32', kosong.data, kosong.dims) });
   await kl.run({ [kl.inputNames[0]]: new ort.Tensor('float32', new Float32Array(TINGGI_KL * LEBAR_KL), [1, 1, TINGGI_KL, LEBAR_KL]) });
 }
 
@@ -83,7 +122,7 @@ const SAMA_KOTAK = 0.7; // IoU dua kotak yang dianggap baris yang sama
 export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilScan> {
   const mulai = performance.now();
   await siapkanScanner();
-  const [ort, det, pembaca, kl] = await Promise.all([ortSiap(), muatModel('model2b'), muatModel('model2a'), muatModel('model2c')]);
+  const [ort, det, pembaca, kl] = await Promise.all([ortSiap(), muatModel('model2b'), muatPembaca(), muatModel('model2c')]);
 
   // 1. polaritas & deskew halaman
   let g = normalisasiPolaritas(gray);
@@ -96,14 +135,14 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
   const waktu = { deteksi: 0, saring: 0, baca: 0, bahasa: 0, kotak: 0, dibaca: 0 };
   const baca = async (crop: Gray) => {
     const t0 = performance.now();
-    // Pembaca B2 (PP-OCRv5 fine-tune, int8): masukan [1, 3, 48, W], keluaran peluang -> log-peluang untuk dekoder.
-    const { data, lebar } = keInputB2(crop);
-    const keluar = await pembaca.run({
-      [pembaca.inputNames[0]]: new ort.Tensor('float32', data, [1, 3, TINGGI_B2, lebar]),
-    });
+    const { data, dims } = masukanPembaca(pembaca.jenis, crop);
+    const { sesi } = pembaca;
+    const keluar = await sesi.run({ [sesi.inputNames[0]]: new ort.Tensor('float32', data, dims) });
     waktu.baca += performance.now() - t0;
     waktu.dibaca++;
-    const logit = keLogPeluang(keluar[pembaca.outputNames[0]].data as Float32Array);
+    // B2 mengeluarkan peluang softmax -> log-peluang; v2 mengeluarkan logit. Dekoder hilir sama (softmax-nya sama).
+    const mentah = keluar[sesi.outputNames[0]].data as Float32Array;
+    const logit = pembaca.jenis === 'b2' ? keLogPeluang(mentah) : mentah;
     const hasil = dekodeGreedy(logit, CHARSET.length);
     // L5: model bahasa hanya membetulkan teks baris yang lolos penilai; status tetap dari bacaan greedy.
     let koreksi: string | null = null;
@@ -142,12 +181,13 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
     return potongan.filter((_, i) => lolosJawa(logit[i])).map((p) => p.kotak);
   };
 
-  // 2. detektor pada polaritas asli; polaritas terbalik hanya bila belum ada baris yang layak tampil (hemat waktu di ponsel)
+  // 2. detektor pada polaritas asli; polaritas terbalik hanya bila belum ada baris TERIMA
   const deteksiDanBaca = async (sisi: number) => {
     const calon: Calon[] = [];
     const semuaKotak: Kotak[] = [];
     for (const sumber of [g, balik(g)]) {
-      if (calon.some((c) => c.status !== 'TOLAK')) break;
+      // Polaritas terbalik dilewati hanya bila sudah ada baris TERIMA (sama dengan pipeline_cerdas.baca_foto).
+      if (calon.some((c) => c.status === 'TERIMA')) break;
       const t0 = performance.now();
       const m = masukanPP(sumber, sisi);
       const keluarDet = await det.run({ [det.inputNames[0]]: new ort.Tensor('float32', m.data, [1, 3, m.H, m.W]) });
@@ -203,7 +243,7 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto'): Promise<HasilSc
     waktuMs: performance.now() - mulai,
     sudut,
     kotak: semuaKotak,
-    tahap: { praMs: Math.round(praMs), deteksiMs: Math.round(waktu.deteksi), saringMs: Math.round(waktu.saring), bacaMs: Math.round(waktu.baca), bahasaMs: Math.round(waktu.bahasa), potonganDibaca: waktu.dibaca, kotakDeteksi: semuaKotak.length, ...infoOrt() },
+    tahap: { praMs: Math.round(praMs), deteksiMs: Math.round(waktu.deteksi), saringMs: Math.round(waktu.saring), bacaMs: Math.round(waktu.baca), bahasaMs: Math.round(waktu.bahasa), potonganDibaca: waktu.dibaca, kotakDeteksi: semuaKotak.length, pembaca: pembaca.jenis, ...infoOrt() },
   });
 }
 

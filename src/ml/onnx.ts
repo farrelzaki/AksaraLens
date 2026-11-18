@@ -3,11 +3,12 @@
 
 import type { InferenceSession } from 'onnxruntime-web';
 
-export type NamaModel = 'model1' | 'model2a' | 'model2b' | 'model2c';
+export type NamaModel = 'model1' | 'model2a' | 'model2v2' | 'model2b' | 'model2c';
 
 const BERKAS: Record<NamaModel, string> = {
   model1: 'aksaralens_huruf.onnx',
-  model2a: 'aksaralens_pembaca_b2.onnx', // B2 (PP-OCRv5 fine-tune, int8); v2 = aksaralens_scanner.onnx
+  model2a: 'aksaralens_pembaca_b2.onnx', // pembaca B2 (PP-OCRv5 fine-tune, int8), bawaan
+  model2v2: 'aksaralens_scanner.onnx', // pembaca CRNN v2: sakelar `?pembaca=v2` / VITE_PEMBACA=v2, dan cadangan bila B2 gagal dimuat
   model2b: 'aksaralens_detektor_pp.onnx',
   model2c: 'aksaralens_klasifikator.onnx',
 };
@@ -88,6 +89,15 @@ export async function ambilModel(url: string, cadangan: string[] = []): Promise<
   }
   throw new Error(galat);
 }
+
+export type JenisPembaca = 'b2' | 'v2';
+/** Pembaca baris yang diminta: `?pembaca=v2` (dikirim halaman ke worker) > VITE_PEMBACA > bawaan B2. */
+let pembacaPaksa: JenisPembaca | undefined;
+export const paksaPembaca = (p?: string) => {
+  pembacaPaksa = p === 'b2' || p === 'v2' ? p : undefined;
+};
+export const pembacaDiminta = (): JenisPembaca =>
+  pembacaPaksa ?? ((import.meta.env.VITE_PEMBACA as string | undefined) === 'v2' ? 'v2' : 'b2');
 
 /** Penyedia eksekusi yang dipaksa lewat `?ep=wasm|webgpu` (diagnosis kecepatan di ponsel); kosong = otomatis. */
 let epPaksa: string | undefined;
