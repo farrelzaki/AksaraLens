@@ -6,6 +6,7 @@ import babJson from './bab.json';
 import goresanJson from './goresan.json';
 import materiJson from './materi-huruf.json';
 import soalJson from './soal.json';
+import tokoJson from './toko.json';
 
 export type JenisTitik = 'lesson' | 'writing';
 
@@ -65,6 +66,13 @@ export interface SoalTitik {
   jodoh: PasanganJodoh[];
 }
 
+/** F8: hadiah koin dan harga karakter Aksa (id = id di ICON_PROFIL). Harga 0 = gratis sejak awal. */
+export interface Toko {
+  hadiah: { soal: number; titik: number };
+  avatar: { id: number; harga: number }[];
+}
+
+export const TOKO = tokoJson as Toko;
 export const JALUR = jalurJson as Titik[];
 export const BAB = babJson as Bab[];
 export const GORESAN = goresanJson as Record<string, Goresan>;
