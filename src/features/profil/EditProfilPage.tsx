@@ -227,11 +227,12 @@ export function EditProfilPage() {
               aria-label="Ganti avatar"
               title="Klik untuk mengganti avatar"
             >
-              <div className="avatar-circle-sage-ring">
+              <div className="avatar-circle-sage-ring avatar-sage-3d-stage">
                 <img
+                  key={avatarTerpilih.id}
                   src={avatarTerpilih.src}
                   alt={avatarTerpilih.nama}
-                  className="avatar-sage-img"
+                  className="avatar-sage-img avatar-sage-3d-img aksa-3d"
                   draggable={false}
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = '/assets/icon profile 1.svg';

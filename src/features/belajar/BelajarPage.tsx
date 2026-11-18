@@ -100,7 +100,7 @@ export function BelajarPage() {
             <img
               src={avatarTerpilih.src}
               alt={avatarTerpilih.nama}
-              className="avatar-profil-img"
+              className="avatar-profil-img aksa-3d"
               draggable={false}
               onError={(e) => {
                 (e.target as HTMLImageElement).src = '/assets/icon profile 1.svg';

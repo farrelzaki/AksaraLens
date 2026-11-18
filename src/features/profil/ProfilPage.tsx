@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback, type KeyboardEvent } from 'react';
+import { useState, useEffect, useMemo, useCallback, type KeyboardEvent, type PointerEvent, type CSSProperties } from 'react';
 import { useNavigate } from 'react-router';
 import { hurufDariKode } from '../../aksara/huruf';
 import { hurufSeringSalah } from '../../progres/model';
@@ -38,6 +38,19 @@ export function ProfilPage() {
     return isNaN(parsed) || parsed < 1 || parsed > 8 ? 1 : parsed;
   });
   const [modalAvatar, setModalAvatar] = useState(false);
+  const [tilt3d, setTilt3d] = useState({ rx: 0, ry: 0 });
+
+  const handleAvatarPointerMove = (e: PointerEvent<HTMLButtonElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+    const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+    setTilt3d({
+      rx: Math.max(-14, Math.min(14, -ny * 14)),
+      ry: Math.max(-16, Math.min(16, nx * 16)),
+    });
+  };
+
+  const resetAvatarTilt = () => setTilt3d({ rx: 0, ry: 0 });
 
   useEffect(() => {
     const syncData = () => {
@@ -281,11 +294,17 @@ export function ProfilPage() {
             pointerEvents: 'none',
           }} />
 
-          {/* Maskot — Ditampilkan utuh tanpa circular crop yang memotong blangkon */}
+          {/* Bayangan lantai 3D lembut di bawah maskot */}
+          <div className="profil-hero-3d-shadow" aria-hidden="true" />
+
+          {/* Maskot Aksa 3D — Ditampilkan utuh dengan efek clay 3D & tilt interaktif */}
           <button
             type="button"
-            className="profil-hero-avatar-btn"
+            className="profil-hero-avatar-btn profil-hero-avatar-3d-stage"
             onClick={() => setModalAvatar(true)}
+            onPointerMove={handleAvatarPointerMove}
+            onPointerLeave={resetAvatarTilt}
+            onPointerCancel={resetAvatarTilt}
             aria-label="Pilih avatar teman belajar"
             style={{
               background: 'none',
@@ -298,24 +317,28 @@ export function ProfilPage() {
               position: 'relative',
               zIndex: 7,
               outline: 'none',
-            }}
+              '--aksa-rx': `${tilt3d.rx}deg`,
+              '--aksa-ry': `${tilt3d.ry}deg`,
+            } as CSSProperties}
           >
-            <img
-              className="profil-hero-avatar-anim"
-              src={avatarTerpilih.src}
-              alt={avatarTerpilih.nama}
-              style={{
-                width: 178,
-                height: 150,
-                objectFit: 'contain',
-                display: 'block',
-                filter: 'drop-shadow(0 4px 16px rgba(67, 40, 28, 0.08))',
-              }}
-              draggable={false}
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = '/assets/icon profile 1.svg';
-              }}
-            />
+            <div className="profil-hero-avatar-3d-tilt">
+              <img
+                key={avatarTerpilih.id}
+                className="profil-hero-avatar-anim profil-hero-avatar-3d"
+                src={avatarTerpilih.src}
+                alt={avatarTerpilih.nama}
+                style={{
+                  width: 178,
+                  height: 150,
+                  objectFit: 'contain',
+                  display: 'block',
+                }}
+                draggable={false}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/assets/icon profile 1.svg';
+                }}
+              />
+            </div>
           </button>
 
           {/* Balon ucapan "Aku temani setiap langkahmu." — Di kanan bawah maskot */}

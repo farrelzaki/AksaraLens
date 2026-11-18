@@ -70,11 +70,12 @@ export function ModalGantiAvatar({
 
         {/* Preview Avatar Terpilih */}
         <div className="avatar-preview-box">
-          <div className="avatar-preview-img-wrap">
+          <div className="avatar-preview-img-wrap avatar-preview-3d-stage">
             <img
+              key={currentPreview.id}
               src={currentPreview.src}
               alt={currentPreview.nama}
-              className="avatar-preview-img"
+              className="avatar-preview-img avatar-preview-3d-img aksa-3d"
               draggable={false}
               onError={(e) => {
                 (e.target as HTMLImageElement).src = '/assets/icon profile 1.svg';
@@ -113,11 +114,11 @@ export function ModalGantiAvatar({
                     </svg>
                   </div>
                 )}
-                <div className="avatar-thumb-wrap">
+                <div className="avatar-thumb-wrap avatar-thumb-3d-stage">
                   <img
                     src={ic.src}
                     alt={ic.nama}
-                    className="avatar-thumb-img"
+                    className="avatar-thumb-img aksa-3d"
                     draggable={false}
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = '/assets/icon profile 1.svg';
