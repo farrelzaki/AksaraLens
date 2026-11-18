@@ -6,6 +6,7 @@
 //   node scripts/paritas_web.cjs http://localhost:5199 <folder foto> <json python> <keluaran.json> b2|v2
 // Folder foto berisi <id>.jpg/.png untuk setiap kunci 'foto' di JSON Python (mis. Set C positif + negatif).
 // Foto hanya dibaca lokal oleh Chromium headless; tidak ada yang dikirim keluar.
+const { chromium } = require('playwright');
 const fs = require('fs'), path = require('path');
 const [,, url, dirFoto, jsonPy, keluar, pembaca] = process.argv;
 (async () => {
