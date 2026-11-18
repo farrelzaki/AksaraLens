@@ -85,6 +85,7 @@ Aturan untuk agen:
 | T-09 | Navbar, jalur, layar pelajaran, materi | Choirun | `[ ]` | | `src/app/`, `src/features/belajar/`, `src/features/pelajaran/` | | 19 Okt–8 Nov |
 | T-10 | Soal + logika jalur (tamu) | Emil | `[ ]` | | `src/content/`, `src/progres/` | | 19 Okt–8 Nov |
 | T-11 | Scanner end-to-end di browser (detektor → CRNN → transliterasi) + sinkron label hasil ML | Farrel | `[x]` | `feature/scanner` | `src/ml/`, `src/aksara/`, `src/features/scanner/` | 2026-10-18 | Identik dengan notebook; uji di ponsel lanjut di T-02 |
+| T-13 | Gamifikasi: koin + toko karakter Aksa (F8) | Choirun | `[~]` | `feature/gamifikasi` | `docs/PRD.md`, `docs/ARSITEKTUR.md`, `src/progres/` (butuh persetujuan Emil), `src/features/profil/` (butuh persetujuan Farrel), UI | 2026-11-18 | Fase 1 = draf PRD; fase data/DB menunggu `disetujui Emil` |
 
 Rincian langkah task (rencana, checkpoint) ditulis di `TASK.md` pribadi, bukan di sini.
 
