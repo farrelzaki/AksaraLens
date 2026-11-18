@@ -23,7 +23,8 @@ const PANGKON = '꧀';
 
 const GABUNG_TINGGI = 0.5; // IoU tinggi minimal dua kotak sebaris
 const GABUNG_CELAH = 3; // celah mendatar maksimal, kali tinggi baris
-const GABUNG_TIMPA = 0.5; // tumpang mendatar maksimal, kali tinggi baris: baris bertumpuk bukan pecahan
+const GABUNG_TIMPA = 0.5; // tumpang mendatar maksimal, kali lebar kotak tersempit: kotak di dalam kotak lain bukan pecahan
+const SEBARIS = 0.5; // tumpang tegak minimal, kali tinggi kotak terpendek, agar dua kotak dianggap satu baris saat diurutkan
 const KECIL = 0.5; // kotak di bawah ini kali median tinggi dibuang
 export const MAKS_KOTAK = 60; // per polaritas; halaman buku NusaAksara sampai 80 baris
 export const BUKTI_FOTO = 2; // baris TERIMA minimal agar baris lain di foto dinilai longgar
@@ -37,7 +38,7 @@ const AMBANG: Record<Mode, { terima: number; ragu: number; valid: number; konson
   area: { terima: 0.85, ragu: 0.6, valid: 0.85, konsonan: 2 },
 };
 
-/** Kotak pecahan pada baris yang sama digabung, kotak kecil dibuang, maksimal `MAKS_KOTAK` terlebar, urut atas ke bawah. */
+/** Kotak pecahan pada baris yang sama digabung, kotak kecil dibuang, maksimal `MAKS_KOTAK` terlebar, dalam urutan baca. */
 export function gabungBaris(kotak: readonly Kotak[]): Kotak[] {
   if (!kotak.length) return [];
   const tinggi = kotak.map((k) => k[3] - k[1]).sort((a, b) => a - b);
@@ -50,7 +51,10 @@ export function gabungBaris(kotak: readonly Kotak[]): Kotak[] {
       const tumpang = Math.min(r[3], k[3]) - Math.max(r[1], k[1]);
       const gabungan = Math.max(r[3], k[3]) - Math.min(r[1], k[1]);
       const celah = k[0] - r[2];
-      return tumpang / Math.max(gabungan, 1) >= GABUNG_TINGGI && celah > -GABUNG_TIMPA * hMin && celah < GABUNG_CELAH * hMin;
+      // Pecahan yang sedikit bertumpuk (C28: tumpang 37 px dari lebar 251 px) tetap digabung; kotak yang sebagian besar
+      // berada di dalam kotak lain secara mendatar (mis. satu baris di dalam kotak blok) tidak.
+      const lebarMin = Math.min(r[2] - r[0], k[2] - k[0]);
+      return tumpang / Math.max(gabungan, 1) >= GABUNG_TINGGI && -celah < GABUNG_TIMPA * lebarMin && celah < GABUNG_CELAH * hMin;
     });
     if (r) {
       r[0] = Math.min(r[0], k[0]);
@@ -59,10 +63,32 @@ export function gabungBaris(kotak: readonly Kotak[]): Kotak[] {
       r[3] = Math.max(r[3], k[3]);
     } else baris.push([...k]);
   }
+  return urutBaca(
+    baris.sort((a, b) => b[2] - b[0] - (a[2] - a[0])).slice(0, MAKS_KOTAK),
+    (k) => k,
+  );
+}
+
+/**
+ * Urutan baca: kotak dikelompokkan per baris (tumpang tegak >= SEBARIS x tinggi terpendek), baris diurut atas ke bawah,
+ * isi baris kiri ke kanan. Mengurutkan hanya menurut tepi atas membalik dua potongan sebaris yang tepi atasnya
+ * berselisih beberapa piksel (C28).
+ */
+export function urutBaca<T>(isi: readonly T[], kotakDari: (x: T) => Kotak): T[] {
+  const urut = [...isi].sort((a, b) => kotakDari(a)[1] + kotakDari(a)[3] - kotakDari(b)[1] - kotakDari(b)[3]);
+  const baris: { y0: number; y1: number; isi: T[] }[] = [];
+  for (const x of urut) {
+    const k = kotakDari(x);
+    const r = baris.find((r) => Math.min(r.y1, k[3]) - Math.max(r.y0, k[1]) >= SEBARIS * Math.min(r.y1 - r.y0, k[3] - k[1]));
+    if (r) {
+      r.isi.push(x);
+      r.y0 = Math.min(r.y0, k[1]);
+      r.y1 = Math.max(r.y1, k[3]);
+    } else baris.push({ y0: k[1], y1: k[3], isi: [x] });
+  }
   return baris
-    .sort((a, b) => b[2] - b[0] - (a[2] - a[0]))
-    .slice(0, MAKS_KOTAK)
-    .sort((a, b) => a[1] - b[1]);
+    .sort((a, b) => a.y0 - b.y0)
+    .flatMap((r) => r.isi.sort((a, b) => kotakDari(a)[0] - kotakDari(b)[0]));
 }
 
 /** Proporsi tanda yang sah: sandhangan/pangkon harus menempel pada huruf; pangkon diikuti huruf atau pada. */
@@ -95,12 +121,12 @@ export function iou(a: Kotak, b: Kotak): number {
   return (lebar * tinggi) / ((a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - lebar * tinggi);
 }
 
-/** Kotak sama dari dua polaritas: simpan yang terbaik. Hasil urut atas ke bawah. */
+/** Kotak sama dari dua polaritas: simpan yang terbaik. Hasil dalam urutan baca. */
 export function pilihBaris(calon: readonly Calon[]): Calon[] {
   const urut = [...calon].sort((a, b) => Number(b.status !== 'TOLAK') - Number(a.status !== 'TOLAK') || b.keyakinan - a.keyakinan);
   const hasil: Calon[] = [];
   for (const c of urut) if (hasil.every((h) => iou(c.kotak, h.kotak) < 0.3)) hasil.push(c);
-  return hasil.sort((a, b) => a.kotak[1] - b.kotak[1]);
+  return urutBaca(hasil, (c) => c.kotak);
 }
 
 /**
