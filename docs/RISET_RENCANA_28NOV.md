@@ -112,6 +112,18 @@ Prinsip: **jalur kirim dulu, eksperimen belakangan.** Setiap langkah punya gerba
 - Menyetel ambang di Cp: diganti verifikator yang dilatih di luar Set C.
 - Ensembel r1+r2 di web: menggandakan unduhan (36 MB) dan waktu baca. Hanya dipertimbangkan setelah 28 Nov.
 
+
+## 8. Pembaruan setelah evaluasi keras (18 Nov sore)
+
+Evaluasi lengkap: `docs/EVALUASI_SISTEM_18NOV.md`. Perubahan pada rencana bagian 5:
+
+- **L-A:** syarat lintasan polaritas Python dan web disamakan. Gerbang waktu baru: bila B2 di browser laptop > 8 dtk/foto, slot B2r3 dipakai untuk PP-OCRv5 mobile rec.
+- **L-B:** tambah AUC penolakan dan laporan per set.
+- **L-C:** verifikator mendapat fitur peluang huruf pada frame blank (risiko huruf hilang) dan peluang minimum per huruf. Aturan "≥ 3 konsonan" dan skor eskalasi/area memakai keluaran verifikator.
+- **L-D:** terbukti pada C28 (dua kotak sebaris tumpang 37 px, batas 36 px). Gabung kotak tumpang-tindih + urutan baca per baris kiri ke kanan, di TS dan Python.
+- **B2r3:** pilih satu dari (a) mobile rec, (b) lr sesuai panduan + sintetis terarah, (c) pseudo-label Commons yang disepakati r1+r2 + verifikator.
+- **Hasil negatif uji audit:** margin potongan, unclip, dan membaca potongan mentah tidak memberi perbaikan yang meyakinkan, jadi tidak diubah.
+
 ## Rujukan
 
 - Slossberg dkk. (2020), *On Calibration of Scene-Text Recognition Models*. https://arxiv.org/abs/2012.12643
