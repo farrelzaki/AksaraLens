@@ -1,9 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { TOKO } from '../content';
 import {
+  barisDariDompet,
   beliAvatar,
   beriHadiah,
   DOMPET_AWAL,
+  dompetDariBaris,
+  dompetKosong,
   gabungDompet,
   hadiahJawaban,
   hadiahTitik,
@@ -141,5 +144,27 @@ describe('TOKO (data statis)', () => {
     expect(TOKO.avatar.some((a) => a.harga === 0)).toBe(true);
     expect(TOKO.hadiah.soal).toBeGreaterThan(0);
     expect(TOKO.hadiah.titik).toBeGreaterThan(0);
+  });
+});
+
+describe('konversi baris Supabase', () => {
+  it('bolak-balik tanpa kehilangan data', () => {
+    const d = dompet(35, [2, 6], ['titik:b1-kenali'], '2026-11-18T10:00:00.000Z');
+    expect(dompetDariBaris(barisDariDompet(d))).toEqual(d);
+  });
+
+  it('baris kosong/tidak ada menjadi dompet awal', () => {
+    expect(dompetDariBaris(null)).toEqual(DOMPET_AWAL);
+    expect(dompetDariBaris(undefined)).toEqual(DOMPET_AWAL);
+  });
+
+  it('dompet tanpa waktu mendapat waktu saat dikirim', () => {
+    expect(barisDariDompet(DOMPET_AWAL, new Date('2026-11-18T00:00:00Z')).updated_at).toBe('2026-11-18T00:00:00.000Z');
+  });
+
+  it('dompetKosong hanya benar untuk dompet yang belum berisi', () => {
+    expect(dompetKosong(DOMPET_AWAL)).toBe(true);
+    expect(dompetKosong(dompet(0, [], ['soal:x']))).toBe(false);
+    expect(dompetKosong(dompet(5))).toBe(false);
   });
 });

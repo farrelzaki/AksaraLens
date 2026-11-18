@@ -88,3 +88,26 @@ export function gabungDompet(server: Dompet, lokal: Dompet): Dompet {
     updated_at: server.updated_at > lokal.updated_at ? server.updated_at : lokal.updated_at,
   };
 }
+
+/** Bentuk baris `user_wallet` di Supabase (snake_case, tanpa user_id). */
+export interface BarisDompet {
+  coins: number;
+  owned_avatars: number[];
+  rewarded: string[];
+  updated_at: string;
+}
+
+export const dompetDariBaris = (b: BarisDompet | null | undefined): Dompet =>
+  b
+    ? { koin: b.coins, avatar: b.owned_avatars ?? [], hadiah: b.rewarded ?? [], updated_at: b.updated_at ?? '' }
+    : DOMPET_AWAL;
+
+export const barisDariDompet = (d: Dompet, kini = new Date()): BarisDompet => ({
+  coins: d.koin,
+  owned_avatars: d.avatar,
+  rewarded: d.hadiah,
+  updated_at: d.updated_at || kini.toISOString(),
+});
+
+/** Dompet yang belum berisi apa pun (tidak perlu dimigrasi atau dikirim). */
+export const dompetKosong = (d: Dompet): boolean => d.koin === 0 && d.avatar.length === 0 && d.hadiah.length === 0;

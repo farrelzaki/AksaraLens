@@ -4,14 +4,27 @@
 
 import { supabase } from '../lib/supabase';
 import { gabungProgres, type ProgresTitik, type StatHuruf } from './model';
+import {
+  barisDariDompet,
+  DOMPET_AWAL,
+  dompetDariBaris,
+  dompetKosong,
+  gabungDompet,
+  type BarisDompet,
+  type Dompet,
+} from './koin';
 
 const KUNCI_PROGRES = 'aksaralens:progress';
 const KUNCI_STATS = 'aksaralens:stats';
+const KUNCI_DOMPET = 'aksaralens:wallet';
 
 export interface Penyimpanan {
   muat(): Promise<{ progres: ProgresTitik[]; stats: StatHuruf[] }>;
   simpanTitik(p: ProgresTitik): Promise<void>;
   simpanStats(stats: StatHuruf[]): Promise<void>;
+  /** F8: dompet koin & karakter. Snapshot penuh; yang terbaru menggantikan yang lama. */
+  muatDompet(): Promise<Dompet>;
+  simpanDompet(d: Dompet): Promise<void>;
   /** Opsional (hanya akun): kirim antrean offline. Melempar galat bila masih gagal. */
   sinkron?(): Promise<void>;
 }
@@ -35,11 +48,27 @@ export const penyimpananTamu: Penyimpanan = {
   async simpanStats(stats) {
     localStorage.setItem(KUNCI_STATS, JSON.stringify(stats));
   },
+  async muatDompet() {
+    try {
+      const mentah = localStorage.getItem(KUNCI_DOMPET);
+      return mentah ? { ...DOMPET_AWAL, ...(JSON.parse(mentah) as Partial<Dompet>) } : DOMPET_AWAL;
+    } catch {
+      return DOMPET_AWAL;
+    }
+  },
+  async simpanDompet(d) {
+    try {
+      localStorage.setItem(KUNCI_DOMPET, JSON.stringify(d));
+    } catch {
+      /* penyimpanan penuh/dimatikan: koin hanya bertahan selama sesi */
+    }
+  },
 };
 
 export const kosongkanTamu = () => {
   localStorage.removeItem(KUNCI_PROGRES);
   localStorage.removeItem(KUNCI_STATS);
+  localStorage.removeItem(KUNCI_DOMPET);
 };
 
 // --- Akun: cache + antrean offline + migrasi tamu ---------------------------------
@@ -51,6 +80,8 @@ type Antrean = { titik: ProgresTitik[]; stats: StatHuruf[] | null };
 const kunciCache = (uid: string) => `aksaralens:cache:${uid}`;
 const kunciAntrean = (uid: string) => `aksaralens:antrean:${uid}`;
 const kunciMigrasi = (uid: string) => `aksaralens:migrasi:${uid}`;
+const kunciDompetCache = (uid: string) => `aksaralens:cache-dompet:${uid}`;
+const kunciDompetAntrean = (uid: string) => `aksaralens:antrean-dompet:${uid}`;
 
 const bacaObjek = <T,>(kunci: string, awal: T): T => {
   try {
@@ -74,6 +105,8 @@ export const bersihkanAkunLokal = (userId: string) => {
   try {
     localStorage.removeItem(kunciCache(userId));
     localStorage.removeItem(kunciAntrean(userId));
+    localStorage.removeItem(kunciDompetCache(userId));
+    localStorage.removeItem(kunciDompetAntrean(userId));
   } catch {
     /* abaikan */
   }
@@ -88,6 +121,25 @@ async function muatServer(): Promise<Data> {
   if (p.error) throw p.error;
   if (s.error) throw s.error;
   return { progres: p.data as ProgresTitik[], stats: s.data as StatHuruf[] };
+}
+
+async function muatDompetServer(): Promise<Dompet> {
+  if (!supabase) throw new Error('Supabase belum dikonfigurasi');
+  // RLS membatasi hasil ke baris milik sendiri; belum ada baris = dompet kosong.
+  const { data, error } = await supabase
+    .from('user_wallet')
+    .select('coins, owned_avatars, rewarded, updated_at')
+    .maybeSingle();
+  if (error) throw error;
+  return dompetDariBaris(data as BarisDompet | null);
+}
+
+async function kirimDompet(userId: string, d: Dompet): Promise<void> {
+  if (!supabase) throw new Error('Supabase belum dikonfigurasi');
+  const { error } = await supabase
+    .from('user_wallet')
+    .upsert({ user_id: userId, ...barisDariDompet(d) }, { onConflict: 'user_id' });
+  if (error) throw error;
 }
 
 /** Tulis ke server (upsert massal). Melempar galat bila gagal. */
@@ -124,6 +176,15 @@ export function penyimpananAkun(userId: string): Penyimpanan {
       titik: kini.titik.filter((t) => !a.titik.some((x) => x.lesson_id === t.lesson_id)),
       stats: JSON.stringify(kini.stats) === JSON.stringify(a.stats) ? null : kini.stats,
     });
+  };
+
+  /** Kirim dompet yang tertahan; bila dompet berubah selama pengiriman, snapshot baru tetap di antrean. */
+  const kirimAntreanDompet = async () => {
+    const a = bacaObjek<Dompet | null>(kunciDompetAntrean(userId), null);
+    if (!a) return;
+    await kirimDompet(userId, a);
+    const kini = bacaObjek<Dompet | null>(kunciDompetAntrean(userId), null);
+    if (JSON.stringify(kini) === JSON.stringify(a)) tulisObjek(kunciDompetAntrean(userId), null);
   };
 
   return {
@@ -167,8 +228,34 @@ export function penyimpananAkun(userId: string): Penyimpanan {
         simpanAntrean({ ...antrean(), stats });
       }
     },
+    async muatDompet() {
+      try {
+        await kirimAntreanDompet();
+      } catch {
+        /* masih offline: tetap tertahan di antrean */
+      }
+      const tertahan = bacaObjek<Dompet | null>(kunciDompetAntrean(userId), null);
+      if (tertahan) return tertahan; // lebih baru dari server; dikirim saat online
+      try {
+        const d = await muatDompetServer();
+        tulisObjek(kunciDompetCache(userId), d);
+        return d;
+      } catch {
+        return bacaObjek<Dompet>(kunciDompetCache(userId), DOMPET_AWAL); // offline: salinan terakhir
+      }
+    },
+    async simpanDompet(d) {
+      tulisObjek(kunciDompetCache(userId), d);
+      try {
+        await kirimDompet(userId, d);
+        tulisObjek(kunciDompetAntrean(userId), null);
+      } catch {
+        tulisObjek(kunciDompetAntrean(userId), d); // snapshot terbaru menggantikan yang tertahan
+      }
+    },
     async sinkron() {
       await kirimAntrean();
+      await kirimAntreanDompet();
     },
   };
 }
@@ -189,13 +276,18 @@ export function migrasiTamu(userId: string): Promise<HasilMigrasi> {
   const proses = (async (): Promise<HasilMigrasi> => {
     if (localStorage.getItem(kunciMigrasi(userId)) === 'berhasil') return 'tidak-ada';
     const lokal = await penyimpananTamu.muat();
-    if (lokal.progres.length === 0 && lokal.stats.length === 0) return 'tidak-ada';
+    const dompetTamu = await penyimpananTamu.muatDompet();
+    if (lokal.progres.length === 0 && lokal.stats.length === 0 && dompetKosong(dompetTamu)) return 'tidak-ada';
     try {
       const gabungan = gabungProgres(await muatServer(), lokal);
+      // Koin dijumlah, karakter & kunci hadiah digabung (F8). Dompet tamu kosong dilewati.
+      const dompet = dompetKosong(dompetTamu) ? null : gabungDompet(await muatDompetServer(), dompetTamu);
       await kirimData(userId, gabungan);
+      if (dompet) await kirimDompet(userId, dompet);
       localStorage.setItem(kunciMigrasi(userId), 'berhasil');
       kosongkanTamu();
       tulisObjek(kunciCache(userId), gabungan);
+      if (dompet) tulisObjek(kunciDompetCache(userId), dompet);
       return 'berhasil';
     } catch {
       return 'gagal'; // data tamu tetap aman; dicoba lagi saat masuk berikutnya
