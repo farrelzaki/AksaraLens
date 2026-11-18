@@ -58,7 +58,7 @@ Format: **Masalah** · Bukti · Dampak · Seharusnya · Rencana.
 
 ### B. Logika pipeline
 
-**B1. Keyakinan buta terhadap huruf yang hilang.** `ctc.ts` baris 39–52: keyakinan = rata-rata peluang tertinggi **hanya pada frame non-blank**. Frame tempat blank menang tipis atas suatu huruf (huruf hampir terbaca lalu terbuang) tidak dihitung sama sekali.
+**B1. Keyakinan buta terhadap huruf yang hilang.** *(Koreksi 19 Nov: di set baris L-B, keyakinan sekarang sudah AUC 0,97–0,98 dan fitur risiko huruf hilang hanya 0,61–0,66, jadi dampaknya jauh lebih kecil dari dugaan. Verifikator terlatih tidak lebih baik dan tidak dipasang; lihat log 19 Nov.)* `ctc.ts` baris 39–52: keyakinan = rata-rata peluang tertinggi **hanya pada frame non-blank**. Frame tempat blank menang tipis atas suatu huruf (huruf hampir terbaca lalu terbuang) tidak dihitung sama sekali.
 - Dampak:
   - Galat penghapusan (paling sering pada sandhangan: taling-tarung C25, pepet C22, cecak C19) tetap berkeyakinan tinggi.
   - Baris sampah bisa lolos (literatur: AUC ≈ 0,5).

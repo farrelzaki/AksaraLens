@@ -124,6 +124,28 @@ Evaluasi lengkap: `docs/EVALUASI_SISTEM_18NOV.md`. Perubahan pada rencana bagian
 - **B2r3:** pilih satu dari (a) mobile rec, (b) lr sesuai panduan + sintetis terarah, (c) pseudo-label Commons yang disepakati r1+r2 + verifikator.
 - **Hasil negatif uji audit:** margin potongan, unclip, dan membaca potongan mentah tidak memberi perbaikan yang meyakinkan, jadi tidak diubah.
 
+
+## 9. Status 19 Nov dini hari
+
+| Langkah | Status | Hasil |
+| --- | --- | --- |
+| L-A | PR #48, menunggu ukur waktu | B2 di web; bawaan `aksaralens_pembaca_b2r2.onnx`, cadangan putaran 1 lalu v2 |
+| L-B | PR #50 | Set baris di luar Set C, 1.469 potongan; r2 − r1 = +2,8% [+1,9%, +3,7%] (v4c + Nusa) |
+| L-C | Selesai, hasil negatif | Verifikator tidak lebih baik dari keyakinan sekarang (AUC 0,97–0,98) begitu jalan pintas panjang baris dibuang; ambang tetap |
+| L-D | PR #49 | C28 CER 1,0 → 0,12; tidak ada foto lain berubah |
+| D2 | **Aturan terpenuhi → r2** | (a) batas bawah +1,9% > −1 poin; (b) salah-terima negatif 5,7% ≤ 6,0% |
+
+Pipeline web pada 25 foto Cp:
+- r1: 5/12 foto CER ≤ 0,2.
+- r2: 6/12.
+- r2 + L-D: 7/12; rata-rata CER 0,433 → 0,295; negatif ditolak 10/13 → 12/13.
+
+**Perlu dari Farrel (akun utama):**
+1. Unggah `docs/random/b2r2_int8_qdq.onnx` ke Supabase `models/v2` sebagai `aksaralens_pembaca_b2r2.onnx`.
+2. Login Vercel di panel browser untuk mengukur waktu preview.
+
+Waktu yang dibebaskan L-C dipakai untuk negatif tingkat foto (Commons) dan, bila gerbang waktu gagal, B2r3 mobile.
+
 ## Rujukan
 
 - Slossberg dkk. (2020), *On Calibration of Scene-Text Recognition Models*. https://arxiv.org/abs/2012.12643
