@@ -1,0 +1,97 @@
+/* F8 Koin & Toko Aksa. Kelas diawali "koin-" agar tidak bentrok dengan app.css. */
+
+.koin-ikon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffe08a 0%, #f5a623 70%);
+  border: 2px solid #d98a14;
+  color: #7a4a0a;
+  font-weight: 700;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+.koin-lencana {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px 5px 6px;
+  background: #ffffff;
+  border: 1px solid #efeae3;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(67, 40, 28, 0.1);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: #43281c;
+}
+
+.koin-didapat {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 10px 16px;
+  background: #fff4dc;
+  border: 1px solid #f3d9a0;
+  border-radius: 999px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  color: #43281c;
+  animation: koin-muncul 0.5s ease-out both;
+}
+
+@keyframes koin-muncul {
+  from { opacity: 0; transform: translateY(8px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .koin-didapat { animation: none; }
+}
+
+/* --- Toko di modal pilih avatar --- */
+
+.koin-modal-saldo {
+  display: flex;
+  justify-content: flex-end;
+  margin: -4px 0 10px;
+}
+
+.koin-kunci-lencana {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 7px 2px 3px;
+  background: #ffffff;
+  border: 1px solid #efeae3;
+  border-radius: 999px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #43281c;
+}
+
+.avatar-choice-card.koin-terkunci .avatar-thumb-img {
+  filter: grayscale(0.85) brightness(0.92);
+  opacity: 0.75;
+}
+
+.koin-pesan {
+  margin: 0 0 10px;
+  text-align: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  color: #685a4e;
+}
+
+.btn-save-avatar:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

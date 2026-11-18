@@ -6,6 +6,7 @@ import { useProgres } from '../../progres/ProgresProvider';
 import { useSesi } from '../../lib/sesi';
 import { ICON_PROFIL } from '../profil/ProfilPage';
 import { ModalGantiAvatar } from '../profil/ModalGantiAvatar';
+import { LencanaKoin } from '../koin/LencanaKoin';
 import { MaskotHomepageHero, MaskotHomepageBab } from '../../app/MaskotAksa';
 
 // F1: Homepage sesuai HOMEPAGE.png — kartu per bab dengan maskot & avatar terpilih
@@ -120,6 +121,14 @@ export function BelajarPage() {
           <span className="greeting-sub" style={{ textAlign: 'left' }}>Sugeng rawuh 👋</span>
           <span className="greeting-name" style={{ textAlign: 'left' }}>Halo, {namaUser}!</span>
         </div>
+        <button
+          type="button"
+          onClick={() => setModalAvatar(true)}
+          aria-label="Buka toko karakter Aksa"
+          style={{ marginLeft: 'auto', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+        >
+          <LencanaKoin />
+        </button>
       </header>
 
       {/* 2. Hero Banner (HOMEPAGE.png) - Seluruh teks wajib Rata Kiri */}

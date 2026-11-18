@@ -9,6 +9,7 @@ import { ModalGantiAvatar, ICON_PROFIL } from './ModalGantiAvatar';
 import { useSesi } from '../../lib/sesi';
 import { keluar } from '../../lib/auth';
 import { MaskotProfilBab } from '../../app/MaskotAksa';
+import { LencanaKoin } from '../koin/LencanaKoin';
 import { DetailProgres, type TabDetail } from './DetailProgres';
 import { detailAksara, ringkasAksara } from './dataProgres';
 import './detail-progres.css';
@@ -196,6 +197,16 @@ export function ProfilPage() {
             </clipPath>
           </defs>
         </svg>
+
+        {/* ── Saldo koin (F8) — Kiri atas; ketuk untuk membuka toko karakter ── */}
+        <button
+          type="button"
+          onClick={() => setModalAvatar(true)}
+          aria-label="Buka toko karakter Aksa"
+          style={{ position: 'absolute', top: 20, left: 20, zIndex: 10, background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+        >
+          <LencanaKoin />
+        </button>
 
         {/* ── Tombol ⚙️ Pengaturan — Kanan atas ── */}
         <button

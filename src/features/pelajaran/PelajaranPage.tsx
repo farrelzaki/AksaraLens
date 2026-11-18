@@ -18,6 +18,8 @@ import {
 } from './bankSoal';
 import { AnimasiCaraMenulis } from './AnimasiCaraMenulis';
 import { SelinganPelajaran } from './SelinganPelajaran';
+import { KoinDidapat } from '../koin/LencanaKoin';
+import { kunciSoal } from '../../progres/koin';
 import { useSelingan } from './useSelingan';
 
 type FasePelajaran = 'kenalan' | 'soal' | 'selesai';
@@ -80,6 +82,7 @@ export function PelajaranPage() {
   const [salah, setSalah] = useState(0);
   const [kombo, setKombo] = useState(0);
   const [komboMaks, setKomboMaks] = useState(0);
+  const [koinSesi, setKoinSesi] = useState(0); // F8: koin yang didapat di tahap ini
   const selingan = useSelingan(tahap, fase === 'selesai');
 
   // Reset state ketika berpindah tahap
@@ -97,6 +100,7 @@ export function PelajaranPage() {
     setSalah(0);
     setKombo(0);
     setKomboMaks(0);
+    setKoinSesi(0);
   }, [tahap.id, tahap.jenis]);
 
   useEffect(() => {
@@ -151,7 +155,8 @@ export function PelajaranPage() {
       setSudahDiperiksa(true);
       setApakahBenar(benar);
       const latin = latinSoal(currentSoal);
-      catat(latin, benar);
+      const koinSoal = catat(latin, benar, kunciSoal(tahap.id, soalIndex));
+      if (koinSoal > 0) setKoinSesi((n) => n + koinSoal);
       if (benar) {
         const k = kombo + 1;
         setKombo(k);
@@ -171,7 +176,8 @@ export function PelajaranPage() {
         setApakahBenar(null);
         setTersembunyi(false);
       } else {
-        selesaikanTitik(tahap.id);
+        const koinTitik = selesaikanTitik(tahap.id);
+        if (koinTitik > 0) setKoinSesi((n) => n + koinTitik);
         // Sinkronkan juga ID titik jalur lama pada bab terkait
         const titikBabLama = JALUR.filter((t) => t.bab === babNomor && t.type === 'lesson');
         const mapNomorKeIndex = Math.min(titikBabLama.length - 1, Math.max(0, tahap.nomor - 1));
@@ -674,6 +680,7 @@ export function PelajaranPage() {
                 <span className="pelajaran-selesai-stat-label">Waktu belajar</span>
               </div>
             </div>
+            <KoinDidapat jumlah={koinSesi} />
           </div>
         )}
       </div>
