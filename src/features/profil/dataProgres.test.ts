@@ -17,6 +17,7 @@ describe('penguasaan', () => {
 describe('atribusi kunci statistik', () => {
   it('Bab 1 memakai kode huruf langsung', () => {
     expect(kodeDariKunciStat('ka')).toEqual(['ka']);
+    expect(kodeDariKunciStat('tulis:ka')).toEqual(['ka']);
   });
   it('suku kata Bab 2–3 diatribusikan ke tandanya', () => {
     expect(kodeDariKunciStat('ki')).toEqual(['wulu']);

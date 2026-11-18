@@ -1,0 +1,198 @@
+/* Menu "Huruf sering salah" (Profil). Memakai kerangka & header Edit Profil. */
+
+.hss-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 5px;
+  background: #EFE7DE;
+  border-radius: 16px;
+  margin-bottom: 12px;
+}
+
+.hss-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 8px;
+  background: transparent;
+  font: 700 13px/1.2 var(--font-body);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.hss-tab.aktif {
+  background: var(--color-white);
+  color: #91511E;
+  box-shadow: 0 2px 8px rgba(77, 52, 35, 0.08);
+}
+
+.hss-tab-jumlah {
+  min-width: 20px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: #F6E3D1;
+  color: #91511E;
+  font-size: 11px;
+}
+
+.hss-sub {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin: 0 2px 14px;
+}
+
+.hss-kosong {
+  background: var(--color-mint);
+  color: var(--color-olive-dark);
+  border-radius: 18px;
+  padding: 18px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.hss-daftar {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hss-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFF9F2;
+  border: 1.5px solid #E1CBB5;
+  border-radius: 18px;
+  padding: 12px 14px;
+}
+
+.hss-aksara {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--color-white);
+  border: 1px solid #E1CBB5;
+  font-family: var(--font-aksara);
+  font-size: 22px;
+  color: var(--text-primary);
+}
+
+.hss-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hss-latin {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.hss-hitung {
+  font-size: 11.5px;
+  color: #91511E;
+}
+
+.hss-bar {
+  display: block;
+  height: 5px;
+  border-radius: 999px;
+  background: #F1E3D4;
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+.hss-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--color-sage);
+  border-radius: inherit;
+}
+
+.hss-yakin {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.hss-btn {
+  flex-shrink: 0;
+  border-radius: 12px;
+  padding: 8px 10px;
+  font: 700 12px/1.2 var(--font-body);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.hss-btn-kuasai {
+  border: 1.5px solid var(--color-olive);
+  background: var(--color-white);
+  color: var(--color-olive);
+}
+
+.hss-btn-ya {
+  border: 0;
+  background: var(--color-olive);
+  color: var(--color-white);
+}
+
+.hss-btn-batal {
+  border: 1px solid #E1CBB5;
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.hss-catatan {
+  font-size: 11.5px;
+  color: var(--text-subtle);
+  text-align: center;
+  margin: 18px 8px 0;
+}
+
+/* Kartu menu di halaman Profil */
+.hss-menu-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.hss-menu-isi {
+  flex: 1;
+  min-width: 0;
+}
+
+.hss-menu-ringkas {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.hss-menu-chip {
+  background: var(--color-white);
+  border: 1px solid #E1CBB5;
+  border-radius: 10px;
+  padding: 5px 9px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #91511E;
+}

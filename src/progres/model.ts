@@ -30,13 +30,45 @@ export function statusJalur(jalur: Titik[], selesai: ReadonlySet<string>): Map<s
   return status;
 }
 
-/** F7: 5 huruf dengan rasio salah tertinggi, minimal 3 percobaan. */
-export function hurufSeringSalah(stats: StatHuruf[], batas = 5): StatHuruf[] {
+/**
+ * Jenis kesalahan yang dicatat terpisah di `letter_stats` lewat awalan kunci (tanpa kolom baru):
+ *  - 'tebak' : jawaban kuis/pilihan ganda -> kunci = latin apa adanya ("ka", "ki").
+ *  - 'tulis' : cek tulisan di kanvas      -> kunci = "tulis:" + kode huruf ("tulis:ka").
+ * Data lama sebelum pemisahan ini tercatat tanpa awalan, jadi terhitung 'tebak'.
+ */
+export type JenisStat = 'tebak' | 'tulis';
+const AWALAN_TULIS = 'tulis:';
+
+export const kunciStat = (letter: string, jenis: JenisStat = 'tebak') =>
+  jenis === 'tulis' ? AWALAN_TULIS + letter : letter;
+
+export function pisahKunciStat(kunci: string): { jenis: JenisStat; letter: string } {
+  return kunci.startsWith(AWALAN_TULIS)
+    ? { jenis: 'tulis', letter: kunci.slice(AWALAN_TULIS.length) }
+    : { jenis: 'tebak', letter: kunci };
+}
+
+/**
+ * F7: huruf dengan rasio salah tertinggi (default 5), minimal 3 percobaan, untuk satu jenis.
+ * `letter` hasilnya sudah tanpa awalan jenis.
+ */
+export function hurufSeringSalah(stats: StatHuruf[], batas = 5, jenis: JenisStat = 'tebak'): StatHuruf[] {
   const rasio = (s: StatHuruf) => s.wrong / (s.correct + s.wrong);
   return stats
-    .filter((s) => s.correct + s.wrong >= 3 && s.wrong > 0)
+    .map((s) => ({ ...s, ...pisahKunciStat(s.letter) }))
+    .filter((s) => s.jenis === jenis && s.correct + s.wrong >= 3 && s.wrong > 0)
     .sort((a, b) => rasio(b) - rasio(a) || b.wrong - a.wrong)
-    .slice(0, batas);
+    .slice(0, batas)
+    .map(({ jenis: _jenis, ...s }) => s);
+}
+
+/**
+ * "Sudah kukuasai": hitungan salah huruf itu dikembalikan ke 0 sehingga keluar dari daftar
+ * huruf sering salah. Hitungan benar tetap. Bila nanti salah lagi, ia bisa muncul kembali.
+ */
+export function tandaiDikuasai(stats: StatHuruf[], letter: string, jenis: JenisStat, kini = new Date()): StatHuruf[] {
+  const kunci = kunciStat(letter, jenis);
+  return stats.map((s) => (s.letter === kunci ? { ...s, wrong: 0, updated_at: kini.toISOString() } : s));
 }
 
 /** Menambah satu jawaban ke statistik (tanpa mutasi). */

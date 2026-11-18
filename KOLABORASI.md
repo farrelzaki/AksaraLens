@@ -85,6 +85,7 @@ Aturan untuk agen:
 | T-09 | Navbar, jalur, layar pelajaran, materi | Choirun | `[ ]` | | `src/app/`, `src/features/belajar/`, `src/features/pelajaran/` | | 19 Okt–8 Nov |
 | T-10 | Soal + logika jalur (tamu) | Emil | `[ ]` | | `src/content/`, `src/progres/` | | 19 Okt–8 Nov |
 | T-11 | Scanner end-to-end di browser (detektor → CRNN → transliterasi) + sinkron label hasil ML | Farrel | `[x]` | `feature/scanner` | `src/ml/`, `src/aksara/`, `src/features/scanner/` | 2026-10-18 | Identik dengan notebook; uji di ponsel lanjut di T-02 |
+| T-12 | Menu huruf sering salah: dipisah salah ditebak / salah digambar + tombol "Sudah kukuasai" | Choirun | `[~]` | `feature/huruf-sering-salah` | `src/features/profil/`, `src/progres/model.ts`, `src/progres/ProgresProvider.tsx`, `src/features/latihan/LatihanPage.tsx` | 2026-11-18 | disetujui Emil & Farrel 2026-11-18 (menyentuh `src/progres/` dan profil); kunci `letter_stats` berawalan `tulis:` untuk cek tulisan, tanpa migrasi |
 
 Rincian langkah task (rencana, checkpoint) ditulis di `TASK.md` pribadi, bukan di sini.
 
@@ -213,7 +214,7 @@ Format: `- YYYY-MM-DD · T-xx · apa yang dikerjakan · hasil/verifikasi · cata
 
 ### Log Choirun
 
-- _[belum ada]_
+- 2026-11-18 · T-12 · menu "Huruf sering salah" (`/profil/huruf-sering-salah`): tab salah ditebak / salah digambar, tombol "Sudah kukuasai" (hitungan salah jadi 0, muncul lagi bila salah lagi) · typecheck, build lulus; tes baru di `model.test.ts` lulus (`soal.test.ts` masih gagal, masalah lama) · Emil/Farrel: `catat(huruf, benar, 'tulis')` untuk cek tulisan, disimpan sebagai `tulis:<huruf>` di `letter_stats`; data tulisan lama tetap terhitung "ditebak"
 
 ## 9. Mengubah File Ini
 

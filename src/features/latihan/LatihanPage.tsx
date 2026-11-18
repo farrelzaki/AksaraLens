@@ -531,12 +531,12 @@ export function LatihanPage() {
         setPesanDetail(
           `Goresan aksara “${labelLatin}” (${unicodeChar}) sudah tepat dan sesuai pola!`
         );
-        catat(labelLatin, true);
+        catat(labelLatin, true, 'tulis');
         const k = kombo + 1;
         setKombo(k);
         setKomboMaks((m) => Math.max(m, k));
       } else if (terbacaHurufLain) {
-        catat(labelLatin, false);
+        catat(labelLatin, false, 'tulis');
         setSalah((n) => n + 1);
         setKombo(0);
         setStatusCek('huruf_lain');
@@ -544,7 +544,7 @@ export function LatihanPage() {
           `Tulisanmu terbaca seperti aksara “${terbacaHurufLain}”. Hapus lalu ikuti bentuk “${labelLatin}”.`
         );
       } else {
-        catat(labelLatin, false);
+        catat(labelLatin, false, 'tulis');
         setSalah((n) => n + 1);
         setKombo(0);
         const alasan = evalKanvas.alasan || 'belum_lengkap';

@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo, useCallback, type KeyboardEvent } from 'react';
 import { useNavigate } from 'react-router';
-import { hurufDariKode } from '../../aksara/huruf';
 import { hurufSeringSalah } from '../../progres/model';
 import { useProgres } from '../../progres/ProgresProvider';
 import { BAB } from '../../content';
@@ -12,6 +11,7 @@ import { MaskotProfilBab } from '../../app/MaskotAksa';
 import { DetailProgres, type TabDetail } from './DetailProgres';
 import { detailAksara, ringkasAksara } from './dataProgres';
 import './detail-progres.css';
+import './huruf-sering-salah.css';
 
 export { ICON_PROFIL };
 
@@ -64,7 +64,8 @@ export function ProfilPage() {
     };
   }, [pengguna]);
 
-  const lemah = hurufSeringSalah(stats);
+  const lemahTebak = hurufSeringSalah(stats, Infinity, 'tebak');
+  const lemahTulis = hurufSeringSalah(stats, Infinity, 'tulis');
 
   // Detail progres: setiap ringkasan bisa diklik dan membuka tab yang sesuai
   const [detail, setDetail] = useState<TabDetail | null>(null);
@@ -634,25 +635,29 @@ export function ProfilPage() {
           </div>
         </div>
 
-        {/* 4. Huruf Sering Salah (jika ada) */}
-        {lemah.length > 0 && (
-          <div className="card-lemah profil-ringkasan-klik" style={{ textAlign: 'left' }} {...bisaDiklik('aksara', 'Lihat penguasaan aksara')}>
-            <h3 className="lemah-title" style={{ textAlign: 'left' }}>Huruf sering salah</h3>
-            <p className="lemah-sub" style={{ textAlign: 'left' }}>Latih lagi aksara berikut untuk memperkuat ingatanmu:</p>
-            <div className="lemah-tags">
-              {lemah.map((s) => {
-                const infoHuruf = hurufDariKode(s.letter);
-                return (
-                  <span key={s.letter} className="lemah-tag-item">
-                    <span className="aksara">{infoHuruf?.unicode ?? s.letter}</span>
-                    <span className="latin">({s.letter})</span>
-                    <span className="ratio">{s.wrong}x salah</span>
-                  </span>
-                );
-              })}
+        {/* 4. Menu Huruf Sering Salah: salah ditebak & salah digambar */}
+        <button
+          type="button"
+          className="card-lemah hss-menu-card"
+          onClick={() => navigate('/profil/huruf-sering-salah')}
+          aria-label="Buka menu huruf sering salah"
+        >
+          <div className="hss-menu-isi">
+            <h3 className="lemah-title">Huruf sering salah</h3>
+            <p className="lemah-sub" style={{ marginBottom: 0 }}>
+              {lemahTebak.length + lemahTulis.length > 0
+                ? 'Latih lagi aksara yang sering keliru ditebak atau digambar.'
+                : 'Belum ada aksara yang sering salah. Terus berlatih!'}
+            </p>
+            <div className="hss-menu-ringkas">
+              <span className="hss-menu-chip">{lemahTebak.length} salah ditebak</span>
+              <span className="hss-menu-chip">{lemahTulis.length} salah digambar</span>
             </div>
           </div>
-        )}
+          <svg viewBox="0 0 24 24" fill="none" stroke="#91511E" strokeWidth="2.5" width="20" height="20" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
 
         {/* 5. Banner Motivasi Bawah (Langkah pertamamu menunggu) */}
         <div style={{

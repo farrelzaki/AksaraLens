@@ -9,7 +9,7 @@
 import { BAB, SOAL } from '../../content';
 import { LABEL_TAHAP, NAMA_TAHAP, tahapDiBab, type JenisTahap } from '../../content/tahap';
 import { HURUF, hurufDariKode, type Huruf } from '../../aksara/huruf';
-import type { StatHuruf, StatusTitik } from '../../progres/model';
+import { pisahKunciStat, type StatHuruf, type StatusTitik } from '../../progres/model';
 
 export type StatusBelajar = 'sudah' | 'belum';
 export type Penguasaan = 'belum-dicoba' | 'perlu-latihan' | 'berkembang' | 'dikuasai';
@@ -108,13 +108,20 @@ const HURUF_MATERI = HURUF.filter((h) => h.bab !== null);
 const BUKAN_NGLEGENA = HURUF_MATERI.filter((h) => h.jenis !== 'nglegena');
 
 /** Kode huruf materi yang dilatih oleh satu kunci statistik. */
-export function kodeDariKunciStat(kunci: string): string[] {
+export function kodeDariKunciStat(kunciMentah: string): string[] {
+  const kunci = pisahKunciStat(kunciMentah).letter; // "tulis:ka" ikut dihitung untuk "ka"
   const langsung = hurufDariKode(kunci);
   if (langsung && langsung.bab !== null) return [langsung.kode];
   const aksara = LATIN_KE_AKSARA.get(kunci);
   if (!aksara) return [];
   // Suku kata Bab 2–3: kreditkan tanda yang menjadi materi bab tsb (bukan konsonan dasarnya)
   return BUKAN_NGLEGENA.filter((h) => aksara.includes(h.unicode)).map((h) => h.kode);
+}
+
+/** Bentuk aksara dari kunci statistik (huruf atau suku kata Latin), untuk ditampilkan. */
+export function aksaraDariKunciStat(kunci: string): string | undefined {
+  const k = pisahKunciStat(kunci).letter;
+  return hurufDariKode(k)?.unicode ?? LATIN_KE_AKSARA.get(k);
 }
 
 export interface DetailAksara {

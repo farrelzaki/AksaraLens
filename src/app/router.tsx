@@ -9,6 +9,7 @@ import { MateriBabPage } from '../features/belajar/MateriBabPage';
 import { PelajaranPage } from '../features/pelajaran/PelajaranPage';
 import { ProfilPage } from '../features/profil/ProfilPage';
 import { EditProfilPage } from '../features/profil/EditProfilPage';
+import { HurufSeringSalahPage } from '../features/profil/HurufSeringSalahPage';
 import { MasukPage } from '../features/akun/MasukPage';
 import { IntroPage } from '../features/onboarding/IntroPage';
 import { OnboardingPage } from '../features/onboarding/OnboardingPage';
@@ -82,6 +83,7 @@ export const router = createBrowserRouter([
       // 8. Layar Profil & Edit Profil
       { path: 'profil', element: <ProfilPage /> },
       { path: 'edit-profil', element: <EditProfilPage />, handle: penuh },
+      { path: 'profil/huruf-sering-salah', element: <HurufSeringSalahPage />, handle: penuh },
 
       // Fallback
       { path: '*', element: <Navigate to="/belajar" replace /> },
