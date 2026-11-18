@@ -213,7 +213,7 @@ Format: `- YYYY-MM-DD · T-xx · apa yang dikerjakan · hasil/verifikasi · cata
 
 ### Log Choirun
 
-- _[belum ada]_
+- 2026-11-18 · T-09 · Aksa "perjalanan" (roadmap & selingan) diganti dari kubah bergradasi 3D jadi dino full body bergaya datar seperti onboarding (ekor, duri, perut bergaris, cakar); API & animasi tetap · typecheck, build lulus; 6 pose dicek lewat render pratinjau · -
 
 ## 9. Mengubah File Ini
 

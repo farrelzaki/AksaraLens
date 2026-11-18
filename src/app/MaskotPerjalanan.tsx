@@ -3,16 +3,25 @@ import { BatikPatternDef } from './MaskotAksa';
 import './maskot-perjalanan.css';
 
 /**
- * Aksa versi "perjalanan": maskot kubah lime berblangkon batik (sama dengan MaskotHomepageHero),
- * digambar kecil untuk roadmap Materi Bab dan sedang melakukan aktivitas sesuai tahap aktif.
+ * Aksa versi "perjalanan": dino lime full body berblangkon batik. Gayanya datar seperti Aksa di
+ * onboarding (kepala besar, badan berperut bergaris, ekor dan duri punggung, tanpa gradasi 3D),
+ * digambar kecil untuk roadmap Materi Bab dan selingan pelajaran, sedang beraktivitas sesuai tahap.
  * Murni dekoratif (aria-hidden), vektor penuh, animasi CSS (otomatis mati bila prefers-reduced-motion).
  */
 export type AktivitasAksa = 'kenali' | 'cocokkan' | 'ingat' | 'tulis' | 'kuis' | 'rayakan';
 
 const LIME = '#A8D800';
 const LENGAN = '#97C400';
+/** Bayangan datar (bukan gradasi). */
+const BAYANG = '#8DB900';
+const PERUT = '#D2ED7D';
+const GARIS_PERUT = '#B6D45A';
+const DURI = '#EE9A3A';
 const COKLAT = '#4D3423';
 const GARIS_BLANGKON = '#0B1035';
+const LENGAN_KIRI_TURUN = 'M25 61 Q15 64 15 71';
+const BLANGKON =
+  'M13 21 C15 5 26 -2.5 41 -2.5 C56 -2 66 6 67 20 L54 15 C50 18.5 45 21 40.5 22 C36 20 32 17.5 28.5 14.5 Z';
 
 /** Aksara di gelembung pikiran / kartu, mengikuti materi tiap bab. */
 const AKSARA_BAB: Record<1 | 2 | 3, { pikir: string; kartuA: string; kartuB: string }> = {
@@ -51,7 +60,6 @@ export const UKURAN_MASKOT = { lebar: 84, tinggi: 81, kakiX: 36, kakiY: 76 } as 
 export function MaskotPerjalanan({ aktivitas, bab, cermin = false }: Props) {
   const uid = useId().replace(/:/g, '');
   const batikId = `rm-batik-${uid}`;
-  const gradId = `rm-tubuh-${uid}`;
   const clipBlangkon = `rm-blangkon-${uid}`;
   const clipMataL = `rm-mata-l-${uid}`;
   const clipMataR = `rm-mata-r-${uid}`;
@@ -80,91 +88,112 @@ export function MaskotPerjalanan({ aktivitas, bab, cermin = false }: Props) {
     >
       <defs>
         <BatikPatternDef id={batikId} scale={0.42} />
-        <radialGradient id={gradId} cx="34%" cy="32%" r="78%">
-          <stop offset="0" stopColor="#C9F23A" />
-          <stop offset="0.55" stopColor={LIME} />
-          <stop offset="1" stopColor="#8DBA00" />
-        </radialGradient>
         <clipPath id={clipBlangkon}>
-          <path d="M13 33 C15 17 26 9 41 9.5 C56 10 66 18 67 32 L54 27 C50 30.5 45 33 40.5 34 C36 32 32 29.5 28.5 26.5 Z" />
+          <path d={BLANGKON} />
         </clipPath>
         <clipPath id={clipMataL}>
-          <ellipse cx="29" cy="49" rx="8.6" ry="9.6" />
+          <ellipse cx="30" cy="37" rx="7.6" ry="8.6" />
         </clipPath>
         <clipPath id={clipMataR}>
-          <ellipse cx="51" cy="49" rx="8.6" ry="9.6" />
+          <ellipse cx="50" cy="37" rx="7.6" ry="8.6" />
         </clipPath>
       </defs>
 
       {/* Bayangan tanah (tidak ikut melompat) */}
-      <ellipse className="rm-aksa-bayangan" cx="40" cy="77" rx="23" ry="3.6" fill="rgba(77, 52, 35, 0.16)" />
+      <ellipse className="rm-aksa-bayangan" cx="38" cy="77.5" rx="27" ry="3.4" fill="rgba(77, 52, 35, 0.16)" />
 
       <g className={rayakan ? 'rm-aksa-lompat' : 'rm-aksa-ayun'}>
-        {/* Kaki */}
-        <ellipse cx="29" cy="74" rx="7.5" ry="4" fill="#8DBA00" />
-        <ellipse cx="51" cy="74" rx="7.5" ry="4" fill="#8DBA00" />
+        {/* Ekor dino + duri */}
+        <path d="M-1 58 L1.5 52.5 L5 59.5 Z" fill={DURI} />
+        <path d="M6 63 L9.5 57.5 L12 64.5 Z" fill={DURI} />
+        <path d="M13 66 L17 61 L19 67.5 Z" fill={DURI} />
+        <path d="M30 63 C21 68 9 67 -2 57 C2 68 14 77 30 75 Z" fill={LIME} />
+        <path d="M-2 57 C2 68 14 77 30 75 L30 72.5 C17 73.5 6 67 -2 57 Z" fill={BAYANG} />
 
-        {/* Tubuh kubah lime dengan gradasi lembut (kesan 3D) */}
+        {/* Kaki dengan cakar */}
+        <ellipse cx="31" cy="75" rx="7.4" ry="3.6" fill={BAYANG} />
+        <ellipse cx="51" cy="75" rx="7.4" ry="3.6" fill={BAYANG} />
+        {[28.5, 32, 35.5, 48.5, 52, 55.5].map((x) => (
+          <circle key={x} cx={x} cy="77" r="1.2" fill="#FFFBEA" />
+        ))}
+
+        {/* Badan + perut bergaris khas dino */}
         <path
-          d="M10 52 C10 31 23 20 40 20 C57 20 70 31 70 52 L70 62 C70 69.5 64.5 75 57 75 L23 75 C15.5 75 10 69.5 10 62 Z"
-          fill={`url(#${gradId})`}
+          d="M23 56 C23 51 27 49 31 49 L49 49 C53 49 57 51 57 56 L57 68 C57 73 53 76 48 76 L32 76 C27 76 23 73 23 68 Z"
+          fill={LIME}
         />
-        <ellipse cx="23" cy="36" rx="7" ry="4" fill="#FFFFFF" opacity="0.32" transform="rotate(-28 23 36)" />
+        <ellipse cx="40" cy="65" rx="10" ry="8.6" fill={PERUT} />
+        <path d="M32.5 62 Q40 64.5 47.5 62" stroke={GARIS_PERUT} strokeWidth="1.3" strokeLinecap="round" />
+        <path d="M32.5 67 Q40 69.5 47.5 67" stroke={GARIS_PERUT} strokeWidth="1.3" strokeLinecap="round" />
+
+        {/* Duri di belakang kepala */}
+        <path d="M10.5 30 L4.5 33.5 L10.5 38 Z" fill={DURI} />
+        <path d="M10.5 39 L5 42.5 L11 46.5 Z" fill={DURI} />
+
+        {/* Kepala besar (siluet onboarding), warna datar + bayangan bawah */}
+        <path
+          d="M10 33 C10 15 23 7 40 7 C57 7 70 15 70 33 L70 45 C70 52 65 56 58 56 L22 56 C15 56 10 52 10 45 Z"
+          fill={LIME}
+        />
+        <path
+          d="M10 45 C10 52 15 56 22 56 L58 56 C65 56 70 52 70 45 C68 50.5 64 52.5 58 52.5 L22 52.5 C16 52.5 12 50.5 10 45 Z"
+          fill={BAYANG}
+        />
+
+        {/* Pipi merona */}
+        <ellipse cx="21" cy="46.5" rx="3.6" ry="2.1" fill="#F2A99A" opacity="0.75" />
+        <ellipse cx="59" cy="46.5" rx="3.6" ry="2.1" fill="#F2A99A" opacity="0.75" />
 
         {/* Alis */}
-        <path d="M22 39.5 Q28 35.5 34 38.5" stroke={COKLAT} strokeWidth="2.4" strokeLinecap="round" />
-        <path d="M46 38.5 Q52 35.5 58 39.5" stroke={COKLAT} strokeWidth="2.4" strokeLinecap="round" />
+        <path d="M23.5 26.5 Q29 23 34.5 25.5" stroke={COKLAT} strokeWidth="2.2" strokeLinecap="round" />
+        <path d="M45.5 25.5 Q51 23 56.5 26.5" stroke={COKLAT} strokeWidth="2.2" strokeLinecap="round" />
 
         {/* Mata */}
         {[
-          { cx: 29, clip: clipMataL },
-          { cx: 51, clip: clipMataR },
+          { cx: 30, clip: clipMataL },
+          { cx: 50, clip: clipMataR },
         ].map((m) => (
           <g key={m.cx} clipPath={`url(#${m.clip})`}>
-            <ellipse cx={m.cx} cy="49" rx="8.6" ry="9.6" fill="#FFFFFF" />
+            <ellipse cx={m.cx} cy="37" rx="7.6" ry="8.6" fill="#FFFFFF" />
             {rayakan ? (
               <path
-                d={`M${m.cx - 5} 51 Q${m.cx} 44 ${m.cx + 5} 51`}
+                d={`M${m.cx - 4.5} 39 Q${m.cx} 32.5 ${m.cx + 4.5} 39`}
                 stroke={COKLAT}
-                strokeWidth="2.6"
+                strokeWidth="2.4"
                 strokeLinecap="round"
               />
             ) : (
               <g transform={geserPupil}>
-                <circle cx={m.cx + 1.5} cy="50.5" r="5.3" fill={COKLAT} />
-                <circle cx={m.cx + 1} cy="52" r="2.8" fill="#040920" />
-                <circle cx={m.cx + 3.4} cy="47.8" r="1.8" fill="#FFFFFF" />
+                <circle cx={m.cx + 1.3} cy="38.3" r="4.8" fill={COKLAT} />
+                <circle cx={m.cx + 0.9} cy="39.6" r="2.5" fill="#040920" />
+                <circle cx={m.cx + 3} cy="35.8" r="1.7" fill="#FFFFFF" />
               </g>
             )}
             {!rayakan && (
-              <rect className="rm-aksa-kelopak" x={m.cx - 10} y="38" width="20" height="22" fill={LIME} />
+              <rect className="rm-aksa-kelopak" x={m.cx - 9} y="27" width="18" height="20" fill={LIME} />
             )}
           </g>
         ))}
 
-        {/* Hidung dua titik khas Aksa */}
-        <circle cx="38" cy="61" r="1.1" fill={COKLAT} />
-        <circle cx="42.4" cy="61" r="1.1" fill={COKLAT} />
-        {rayakan && <path d="M35.5 64.5 Q40.2 70 45 64.5 Z" fill={COKLAT} />}
+        {/* Hidung dua titik khas Aksa + senyum */}
+        <circle cx="38" cy="47.2" r="1" fill={COKLAT} />
+        <circle cx="42" cy="47.2" r="1" fill={COKLAT} />
+        {rayakan ? (
+          <path d="M35.5 50 Q40 56.5 44.5 50 Z" fill={COKLAT} />
+        ) : (
+          <path d="M37 50.5 Q40 53 43 50.5" stroke={COKLAT} strokeWidth="1.4" strokeLinecap="round" />
+        )}
 
         {/* Blangkon batik */}
         <g>
-          <circle cx="64.5" cy="20.5" r="4.6" fill="#724221" stroke={GARIS_BLANGKON} strokeWidth="1.2" />
-          <path
-            d="M13 33 C15 17 26 9 41 9.5 C56 10 66 18 67 32 L54 27 C50 30.5 45 33 40.5 34 C36 32 32 29.5 28.5 26.5 Z"
-            fill="#8C5426"
-          />
+          <circle cx="64.5" cy="8.5" r="4.6" fill="#724221" stroke={GARIS_BLANGKON} strokeWidth="1.2" />
+          <path d={BLANGKON} fill="#8C5426" />
           <g clipPath={`url(#${clipBlangkon})`}>
-            <rect x="10" y="6" width="60" height="30" fill={`url(#${batikId})`} />
+            <rect x="10" y="-6" width="60" height="30" fill={`url(#${batikId})`} />
           </g>
+          <path d={BLANGKON} stroke={GARIS_BLANGKON} strokeWidth="1.3" strokeLinejoin="round" />
           <path
-            d="M13 33 C15 17 26 9 41 9.5 C56 10 66 18 67 32 L54 27 C50 30.5 45 33 40.5 34 C36 32 32 29.5 28.5 26.5 Z"
-            stroke={GARIS_BLANGKON}
-            strokeWidth="1.3"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M28.5 26.5 L40.5 21.5 L54 27 C50 30.5 45 33 40.5 34 C36 32 32 29.5 28.5 26.5 Z"
+            d="M28.5 14.5 L40.5 9.5 L54 15 C50 18.5 45 21 40.5 22 C36 20 32 17.5 28.5 14.5 Z"
             fill="#8C5426"
             stroke={GARIS_BLANGKON}
             strokeWidth="1.3"
@@ -175,9 +204,9 @@ export function MaskotPerjalanan({ aktivitas, bab, cermin = false }: Props) {
         {/* ===== Lengan & properti per aktivitas ===== */}
         {aktivitas === 'kenali' && (
           <>
-            <path d="M12 56 Q5 60 6 67" stroke={LENGAN} strokeWidth="7" strokeLinecap="round" />
+            <path d={LENGAN_KIRI_TURUN} stroke={LENGAN} strokeWidth="6" strokeLinecap="round" />
             <g className="rm-prop-kaca">
-              <path d="M68 56 Q76 53 79 46" stroke={LENGAN} strokeWidth="7" strokeLinecap="round" />
+              <path d="M55 60 Q70 57 79 46" stroke={LENGAN} strokeWidth="6" strokeLinecap="round" />
               <path d="M80 44 L84 37" stroke="#8C5426" strokeWidth="3.4" strokeLinecap="round" />
               <circle cx="88" cy="29.5" r="8.5" fill="rgba(255,255,255,0.6)" stroke={COKLAT} strokeWidth="2.6" />
               <path d="M84 26 Q86 23.5 89 23.5" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" />
@@ -188,14 +217,14 @@ export function MaskotPerjalanan({ aktivitas, bab, cermin = false }: Props) {
         {aktivitas === 'cocokkan' && (
           <>
             <g className="rm-prop-kartu-kiri">
-              <path d="M12 57 Q4 55 1 49" stroke={LENGAN} strokeWidth="7" strokeLinecap="round" />
+              <path d="M25 60 Q10 58 1 49" stroke={LENGAN} strokeWidth="6" strokeLinecap="round" />
               <g transform="rotate(-12 -2 42)">
                 <rect x="-9" y="31" width="15" height="19" rx="3" fill="#FFFFFF" stroke={COKLAT} strokeWidth="1.6" />
                 <Teks x={-1.5} y={45} cermin={cermin} size={10}>{aksara.kartuA}</Teks>
               </g>
             </g>
             <g className="rm-prop-kartu-kanan">
-              <path d="M68 57 Q76 55 79 49" stroke={LENGAN} strokeWidth="7" strokeLinecap="round" />
+              <path d="M55 60 Q70 58 79 49" stroke={LENGAN} strokeWidth="6" strokeLinecap="round" />
               <g transform="rotate(12 82 42)">
                 <rect x="74" y="31" width="15" height="19" rx="3" fill="#FFFBEA" stroke={COKLAT} strokeWidth="1.6" />
                 <Teks x={81.5} y={45} cermin={cermin} size={10}>{aksara.kartuB}</Teks>
@@ -206,32 +235,33 @@ export function MaskotPerjalanan({ aktivitas, bab, cermin = false }: Props) {
 
         {aktivitas === 'ingat' && (
           <>
-            <path d="M12 56 Q5 60 6 67" stroke={LENGAN} strokeWidth="7" strokeLinecap="round" />
-            <path d="M68 58 Q71 66 61 66.5" stroke={LENGAN} strokeWidth="7" strokeLinecap="round" />
+            <path d={LENGAN_KIRI_TURUN} stroke={LENGAN} strokeWidth="6" strokeLinecap="round" />
+            {/* Tangan di dagu, sedang mengingat */}
+            <path d="M55 61 Q64 60 60 54" stroke={LENGAN} strokeWidth="6" strokeLinecap="round" />
             <g className="rm-prop-gelembung">
-              <circle cx="66" cy="12" r="2.2" fill="#FFFFFF" stroke="#DCD4CA" strokeWidth="1.2" />
-              <circle cx="72" cy="4" r="3.3" fill="#FFFFFF" stroke="#DCD4CA" strokeWidth="1.2" />
-              <ellipse cx="85" cy="-10" rx="15" ry="11.5" fill="#FFFFFF" stroke="#DCD4CA" strokeWidth="1.4" />
-              <Teks x={85} y={-5} cermin={cermin} size={13}>{aksara.pikir}</Teks>
+              <circle cx="66" cy="2" r="2.2" fill="#FFFFFF" stroke="#DCD4CA" strokeWidth="1.2" />
+              <circle cx="72" cy="-5" r="3.3" fill="#FFFFFF" stroke="#DCD4CA" strokeWidth="1.2" />
+              <ellipse cx="86" cy="-13" rx="15" ry="11.5" fill="#FFFFFF" stroke="#DCD4CA" strokeWidth="1.4" />
+              <Teks x={86} y={-8} cermin={cermin} size={13}>{aksara.pikir}</Teks>
             </g>
           </>
         )}
 
         {aktivitas === 'tulis' && (
           <>
-            <path d="M12 56 Q5 60 6 67" stroke={LENGAN} strokeWidth="7" strokeLinecap="round" />
+            <path d={LENGAN_KIRI_TURUN} stroke={LENGAN} strokeWidth="6" strokeLinecap="round" />
             {/* Daun lontar di depan maskot */}
-            <g transform="rotate(-6 70 70)">
-              <rect x="54" y="64" width="32" height="11" rx="3" fill="#F3E3C3" stroke="#C9A66B" strokeWidth="1.2" />
+            <g transform="rotate(-6 74 70)">
+              <rect x="58" y="64" width="32" height="11" rx="3" fill="#F3E3C3" stroke="#C9A66B" strokeWidth="1.2" />
               <path
                 className="rm-prop-goresan"
-                d="M58 70 q2.5 -3 5 0 t5 0 t5 0 t5 0"
+                d="M62 70 q2.5 -3 5 0 t5 0 t5 0 t5 0"
                 stroke={COKLAT}
                 strokeWidth="1.3"
                 strokeLinecap="round"
               />
             </g>
-            <path d="M68 58 Q75 60 76 64" stroke={LENGAN} strokeWidth="7" strokeLinecap="round" />
+            <path d="M55 60 Q68 59 75 63" stroke={LENGAN} strokeWidth="6" strokeLinecap="round" />
             <g className="rm-prop-pensil">
               <g transform="rotate(28 78 60)">
                 <rect x="75" y="42" width="6" height="18" rx="1" fill="#FFD263" stroke={COKLAT} strokeWidth="1.2" />
@@ -245,8 +275,8 @@ export function MaskotPerjalanan({ aktivitas, bab, cermin = false }: Props) {
 
         {aktivitas === 'kuis' && (
           <>
-            <path d="M12 56 Q5 60 6 67" stroke={LENGAN} strokeWidth="7" strokeLinecap="round" />
-            <path d="M68 52 Q78 43 80 32" stroke={LENGAN} strokeWidth="7" strokeLinecap="round" />
+            <path d={LENGAN_KIRI_TURUN} stroke={LENGAN} strokeWidth="6" strokeLinecap="round" />
+            <path d="M55 59 Q74 50 80 32" stroke={LENGAN} strokeWidth="6" strokeLinecap="round" />
             <g className="rm-prop-bintang">
               <path
                 d="M82 11 L85 18.5 L93 19 L87 24 L89 32 L82 27.5 L75 32 L77 24 L71 19 L79 18.5 Z"
@@ -262,8 +292,8 @@ export function MaskotPerjalanan({ aktivitas, bab, cermin = false }: Props) {
 
         {rayakan && (
           <>
-            <path d="M12 52 Q2 44 2 33" stroke={LENGAN} strokeWidth="7" strokeLinecap="round" />
-            <path d="M68 52 Q78 44 78 33" stroke={LENGAN} strokeWidth="7" strokeLinecap="round" />
+            <path d="M25 58 Q10 50 4 36" stroke={LENGAN} strokeWidth="6" strokeLinecap="round" />
+            <path d="M55 58 Q70 50 76 36" stroke={LENGAN} strokeWidth="6" strokeLinecap="round" />
           </>
         )}
       </g>
