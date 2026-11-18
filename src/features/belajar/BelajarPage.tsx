@@ -56,10 +56,11 @@ export function BelajarPage() {
   const progresBab = BAB.map((bab) => {
     const daftarTahap = tahapDiBab(bab.bab);
     const selesai = daftarTahap.filter((t) => tahap.get(t.id) === 'selesai').length;
+    const terkunci = daftarTahap.every((t) => (tahap.get(t.id) ?? 'terkunci') === 'terkunci');
     const total = daftarTahap.length;
     const persenVal = total > 0 ? Math.round((selesai / total) * 100) : 0;
     const semua = total > 0 && selesai === total;
-    return { ...bab, selesai, total, persen: persenVal, semua };
+    return { ...bab, selesai, terkunci, total, persen: persenVal, semua };
   });
 
   const tahapAktifPertama =
@@ -196,6 +197,14 @@ export function BelajarPage() {
                 {bab.semua ? (
                   <svg className="icon-completed" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="22" height="22">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : bab.terkunci ? (
+                  <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-label="Terkunci">
+                    <path
+                      fillRule="evenodd"
+                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 ) : (
                   <svg className="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="22" height="22">
