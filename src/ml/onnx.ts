@@ -3,11 +3,13 @@
 
 import type { InferenceSession } from 'onnxruntime-web';
 
-export type NamaModel = 'model1' | 'model2a' | 'model2b' | 'model2c';
+export type NamaModel = 'model1' | 'model2a' | 'model2a_r1' | 'model2v2' | 'model2b' | 'model2c';
 
 const BERKAS: Record<NamaModel, string> = {
   model1: 'aksaralens_huruf.onnx',
-  model2a: 'aksaralens_scanner.onnx',
+  model2a: 'aksaralens_pembaca_b2r2.onnx', // pembaca B2 putaran 2 (PP-OCRv5 fine-tune + Wikisource, int8), bawaan
+  model2a_r1: 'aksaralens_pembaca_b2.onnx', // pembaca B2 putaran 1: dipakai bila berkas putaran 2 belum ada / gagal dimuat
+  model2v2: 'aksaralens_scanner.onnx', // pembaca CRNN v2: sakelar `?pembaca=v2` / VITE_PEMBACA=v2, dan cadangan bila B2 gagal dimuat
   model2b: 'aksaralens_detektor_pp.onnx',
   model2c: 'aksaralens_klasifikator.onnx',
 };
@@ -89,6 +91,15 @@ export async function ambilModel(url: string, cadangan: string[] = []): Promise<
   throw new Error(galat);
 }
 
+export type JenisPembaca = 'b2' | 'v2';
+/** Pembaca baris yang diminta: `?pembaca=v2` (dikirim halaman ke worker) > VITE_PEMBACA > bawaan B2. */
+let pembacaPaksa: JenisPembaca | undefined;
+export const paksaPembaca = (p?: string) => {
+  pembacaPaksa = p === 'b2' || p === 'v2' ? p : undefined;
+};
+export const pembacaDiminta = (): JenisPembaca =>
+  pembacaPaksa ?? ((import.meta.env.VITE_PEMBACA as string | undefined) === 'v2' ? 'v2' : 'b2');
+
 /** Penyedia eksekusi yang dipaksa lewat `?ep=wasm|webgpu` (diagnosis kecepatan di ponsel); kosong = otomatis. */
 let epPaksa: string | undefined;
 export const paksaEp = (ep?: string) => {
@@ -97,12 +108,20 @@ export const paksaEp = (ep?: string) => {
 const pilihEp = () => (epPaksa ? (epPaksa === 'webgpu' ? ['webgpu', 'wasm'] : ['wasm']) : 'gpu' in navigator ? ['webgpu', 'wasm'] : ['wasm']);
 export const infoOrt = () => ({ ep: pilihEp()[0], terisolasi: self.crossOriginIsolated, inti: navigator.hardwareConcurrency });
 
+let antreanSesi: Promise<void> = Promise.resolve();
+
 /** Membuat sesi sekali per model; WebGPU bila ada, cadangan WASM (F5). */
 export function muatModel(nama: NamaModel): Promise<InferenceSession> {
   let sesi = cache.get(nama);
   if (!sesi) {
     sesi = Promise.all([ortSiap(), ambilModel(urlAbsolut(nama), DASAR_CADANGAN ? [urlAbsolut(nama, DASAR_CADANGAN)] : [])]).then(([ort, bytes]) => {
-      return ort.InferenceSession.create(bytes, { executionProviders: pilihEp() });
+      // Pembaca B2 (int8 QDQ) selalu WASM: kernel MaxPool WebGPU belum mendukung ceil_mode, dan jalur int8 cepat ada di WASM.
+      // Sesi dibuat bergiliran: inisialisasi backend berbeda secara bersamaan memicu "multiple calls to initWasm()".
+      const buat = antreanSesi.then(() =>
+        ort.InferenceSession.create(bytes, { executionProviders: nama.startsWith('model2a') ? ['wasm'] : pilihEp() }),
+      );
+      antreanSesi = buat.then(() => undefined, () => undefined);
+      return buat;
     });
     sesi.catch(() => cache.delete(nama));
     cache.set(nama, sesi);

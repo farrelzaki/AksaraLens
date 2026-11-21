@@ -52,8 +52,10 @@ function kirim<T>(p: Pesan): Promise<T> {
   });
 }
 
+const param = (k: string) => new URLSearchParams(location.search).get(k) ?? undefined;
+
 /** Memanaskan model di worker saat tab Scanner dibuka (tombol Baca nonaktif sampai selesai). */
-export const siapkanScanner = () => (MODE_DEMO ? Promise.resolve() : kirim<void>({ jenis: 'siapkan', ep: new URLSearchParams(location.search).get('ep') ?? undefined }));
+export const siapkanScanner = () => (MODE_DEMO ? Promise.resolve() : kirim<void>({ jenis: 'siapkan', ep: param('ep'), pembaca: param('pembaca') }));
 
 /** Hasil contoh untuk mode demo: tiga baris dari uji foto render (bukan hasil model). */
 const UNICODE_DEMO = ['ꦥꦤꦺꦴꦫꦩꦗꦮ', 'ꦧꦸꦏꦸꦱꦼꦏꦺꦴꦭꦃ', 'ꦗꦭꦤ꧀ꦩꦭꦶꦪꦺꦴꦧꦺꦴꦫꦺꦴ'];
