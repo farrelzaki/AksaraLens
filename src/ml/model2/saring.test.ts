@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Kotak } from './detektor';
-import { MAKS_KOTAK, barisProyeksi, gabungBaris, iou, jumlahKonsonan, nilaiKualitas, nilaiStatus, perluEskalasi, pilihArea, pilihBaris, pilihEskalasi, pilihProyeksi, skorHasil, terapkanBukti, validitas, type Calon } from './saring';
+import { MAKS_KOTAK, barisProyeksi, gabungBaris, iou, jumlahKonsonan, nilaiKualitas, nilaiStatus, perluEskalasi, pilihArea, pilihBaris, pilihEskalasi, pilihProyeksi, skorHasil, terapkanBukti, urutBaca, validitas, type Calon } from './saring';
 
 const calon = (unicode: string, keyakinan: number, kotak: Kotak, status: Calon['status'] = 'TERIMA'): Calon => ({ unicode, keyakinan, kotak, status });
 
@@ -22,6 +22,14 @@ describe('gabungBaris', () => {
 
   it('tidak menggabung baris bertumpuk yang bertumpang mendatar', () => {
     expect(gabungBaris([[0, 0, 300, 40], [0, 15, 300, 55]])).toHaveLength(2);
+  });
+
+  it('menggabung dua pecahan sebaris yang sedikit bertumpuk (C28: tumpang 37 px, tinggi ±72 px)', () => {
+    expect(gabungBaris([[348, 9, 599, 90], [2, 11, 385, 83]])).toEqual([[2, 9, 599, 90]]);
+  });
+
+  it('tidak menggabung baris yang berada di dalam kotak blok secara mendatar', () => {
+    expect(gabungBaris([[0, 0, 400, 100], [20, 30, 380, 90]])).toHaveLength(2);
   });
 
   it('tidak mengubah kotak masukan dan menerima daftar kosong', () => {
@@ -74,9 +82,26 @@ describe('pilihBaris', () => {
     expect(h.map((b) => b.unicode)).toEqual(['ꦫꦠꦤ', 'ꦩꦢꦤ']);
   });
 
+  it('mengurutkan dua potongan sebaris kiri ke kanan meski tepi atas kanan lebih tinggi (C28)', () => {
+    const h = pilihBaris([calon('ꦏꦼꦭꦸꦫꦃ', 0.9, [2, 11, 385, 83]), calon('ꦧꦭꦸꦮꦂꦠꦶ', 0.9, [348, 9, 599, 90])]);
+    expect(h.map((b) => b.unicode)).toEqual(['ꦏꦼꦭꦸꦫꦃ', 'ꦧꦭꦸꦮꦂꦠꦶ']);
+  });
+
   it('menghitung IoU', () => {
     expect(iou([0, 0, 10, 10], [20, 20, 30, 30])).toBe(0);
     expect(iou([0, 0, 10, 10], [0, 0, 10, 10])).toBe(1);
+  });
+});
+
+describe('urutBaca', () => {
+  it('baris atas ke bawah, isi baris kiri ke kanan', () => {
+    const k: Kotak[] = [[300, 2, 400, 42], [0, 100, 90, 140], [0, 0, 100, 40], [150, 104, 250, 138]];
+    expect(urutBaca(k, (x) => x)).toEqual([[0, 0, 100, 40], [300, 2, 400, 42], [0, 100, 90, 140], [150, 104, 250, 138]]);
+  });
+
+  it('baris bertumpuk dengan tumpang tegak kecil tetap dua baris', () => {
+    const k: Kotak[] = [[200, 30, 300, 70], [0, 0, 100, 40]];
+    expect(urutBaca(k, (x) => x)).toEqual([[0, 0, 100, 40], [200, 30, 300, 70]]);
   });
 });
 

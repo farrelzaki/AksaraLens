@@ -10,7 +10,8 @@ KONSONAN = set(ruj.NG)
 
 GABUNG_TINGGI = 0.5   # IoU tinggi minimal dua kotak sebaris
 GABUNG_CELAH = 3.0    # celah mendatar maksimal, kali tinggi baris
-GABUNG_TIMPA = 0.5    # tumpang mendatar maksimal, kali tinggi baris: baris bertumpuk bukan pecahan
+GABUNG_TIMPA = 0.5    # tumpang mendatar maksimal, kali lebar kotak tersempit: kotak di dalam kotak lain bukan pecahan
+SEBARIS = 0.5         # tumpang tegak minimal, kali tinggi kotak terpendek, agar dua kotak dianggap satu baris saat diurutkan
 KECIL = 0.5           # kotak di bawah ini kali median tinggi dibuang
 MAKS_KOTAK = 60       # per polaritas; halaman buku NusaAksara sampai 80 baris
 BUKTI_FOTO = 2        # baris TERIMA minimal agar baris lain di foto dinilai longgar
@@ -70,13 +71,30 @@ def gabung_baris(kotak):
             th = min(r[3], k[3]) - max(r[1], k[1])
             gabungan = max(r[3], k[3]) - min(r[1], k[1])
             celah = k[0] - r[2]
-            if th / max(gabungan, 1) >= GABUNG_TINGGI and -GABUNG_TIMPA * h_min < celah < GABUNG_CELAH * h_min:
+            lebar_min = min(r[2] - r[0], k[2] - k[0])
+            if th / max(gabungan, 1) >= GABUNG_TINGGI and -celah < GABUNG_TIMPA * lebar_min and celah < GABUNG_CELAH * h_min:
                 r[:] = [min(r[0], k[0]), min(r[1], k[1]), max(r[2], k[2]), max(r[3], k[3])]
                 break
         else:
             baris.append(list(k))
     baris = sorted(baris, key=lambda r: r[2] - r[0], reverse=True)[:MAKS_KOTAK]
-    return sorted(baris, key=lambda r: r[1])
+    return urut_baca(baris, lambda k: k)
+
+
+def urut_baca(isi, kotak_dari):
+    """Urutan baca: kelompokkan per baris (tumpang tegak >= SEBARIS x tinggi terpendek), atas ke bawah, kiri ke kanan.
+    Sama dengan urutBaca di src/ml/model2/saring.ts."""
+    baris = []
+    for x in sorted(isi, key=lambda x: kotak_dari(x)[1] + kotak_dari(x)[3]):
+        k = kotak_dari(x)
+        for r in baris:
+            if min(r[1], k[3]) - max(r[0], k[1]) >= SEBARIS * min(r[1] - r[0], k[3] - k[1]):
+                r[2].append(x)
+                r[0], r[1] = min(r[0], k[1]), max(r[1], k[3])
+                break
+        else:
+            baris.append([k[1], k[3], [x]])
+    return [x for r in sorted(baris, key=lambda r: r[0]) for x in sorted(r[2], key=lambda x: kotak_dari(x)[0])]
 
 
 def validitas(teks):
@@ -207,4 +225,4 @@ def baca_foto(gray, area_dipilih=False):
         for b in hasil:
             if b['status'] == 'TOLAK' and nilai_status(b['teks'], b['yakin'], 'area') != 'TOLAK':
                 b['status'] = 'RAGU'
-    return sorted(hasil, key=lambda b: b['kotak'][1])
+    return urut_baca(hasil, lambda b: b['kotak'])
