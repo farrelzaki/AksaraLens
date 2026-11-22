@@ -5,13 +5,17 @@
 # Pakai: python -X utf8 scripts/buat_notebook_b2.py   (butuh docs/random/AksaraLens_Model2_v4.ipynb dari buat_notebook_v4.py)
 #        python -X utf8 scripts/buat_notebook_b2.py --ronde2   -> AksaraLens_Model2_B2r2.ipynb: sama, ditambah baris Wikisource
 #        (butuh docs/random/wikisource_b2.zip dari scripts/ekspor_wikisource_b2.py; charset tetap 31)
+#        python -X utf8 scripts/buat_notebook_b2.py --ronde3   -> AksaraLens_Model2_B2r3.ipynb: data ronde 2 + 10% sintetis terarah
+#        (da/dha, pepet/wulu, taling/taling-tarung), dilanjutkan dari bobot r2 (Drive model2_b2r2/paddle/best_accuracy) dengan
+#        lr kecil sesuai panduan fine-tune PaddleOCR (docs/RISET_RENCANA_28NOV.md bagian 3 dan langkah Sen 23)
 import copy, json, os, sys
 
-RONDE2 = '--ronde2' in sys.argv
+RONDE3 = '--ronde3' in sys.argv
+RONDE2 = '--ronde2' in sys.argv or RONDE3
 
 AKAR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SUMBER = os.path.join(AKAR, 'docs/random/AksaraLens_Model2_v4.ipynb')
-TUJUAN = os.path.join(AKAR, 'docs/random/AksaraLens_Model2_B2r2.ipynb' if RONDE2 else 'docs/random/AksaraLens_Model2_B2.ipynb')
+TUJUAN = os.path.join(AKAR, 'docs/random/AksaraLens_Model2_%s.ipynb' % ('B2r3' if RONDE3 else 'B2r2' if RONDE2 else 'B2'))
 nb = json.load(open(SUMBER, encoding='utf-8'))
 LAMA = nb['cells']
 B2_PY = open(os.path.join(AKAR, 'scripts/b2_paddle.py'), encoding='utf-8').read()
@@ -61,7 +65,7 @@ penolakan "bukan aksara" tetap tugas klasifikator.
 ''')
 
 PENGATURAN = salin(6, ("OUT_DIR = '/content/drive/MyDrive/aksaralens/model2_v4'   # hasil v4, terpisah dari v2/v3",
-                       "OUT_DIR = '/content/drive/MyDrive/aksaralens/model2_b2%s'   # hasil B2, terpisah dari v2/v4" % ('r2' if RONDE2 else '')),
+                       "OUT_DIR = '/content/drive/MyDrive/aksaralens/model2_b2%s'   # hasil B2, terpisah dari v2/v4" % ('r3' if RONDE3 else 'r2' if RONDE2 else '')),
                    ("assert SIMPAN_KE_DRIVE, 'v4 membutuhkan bobot v2 dan data di Drive'", "assert SIMPAN_KE_DRIVE, 'B2 membutuhkan data di Drive'"))
 
 # Sel data v4 tanpa pratinjau gambar di akhir (tidak perlu di sini).
@@ -322,6 +326,48 @@ val = {""").replace(
 }""").replace("val['buku'] + val['v4'] + val['adegan'] + val['foto']", "val['buku'] + val['v4'] + val['adegan'] + val['foto'] + val['wiki']")
     EKSPOR_DATA['source'] = EKSPOR_DATA['source'].splitlines(True)
     UKUR['source'] = ''.join(UKUR['source']).replace("('buku', 'buku_uji', 'v4', 'adegan', 'foto')", "('buku', 'buku_uji', 'v4', 'adegan', 'foto', 'wiki')").splitlines(True)
+
+if RONDE3:
+    EKSPOR_DATA['source'] = ''.join(EKSPOR_DATA['source']).replace(
+"""latih += jalankan(kerja_wiki, len(wiki_latih) * ULANG_WIKI) if wiki_latih else []
+random.Random(0).shuffle(latih)""",
+"""latih += jalankan(kerja_wiki, len(wiki_latih) * ULANG_WIKI) if wiki_latih else []
+
+# ---------- Ronde 3: sintetis terarah untuk pasangan yang paling sering tertukar (rasio umum : terarah = 10 : 1) ----------
+# Tiap sampel memuat minimal satu "pasangan sulit" berdampingan dengan lawannya, supaya model belajar membedakannya:
+# da/dha (ꦢ/ꦝ), pepet/wulu (ꦼ/ꦶ), taling/taling-tarung (ꦺ/ꦺꦴ), dan suku (ꦸ) yang ekornya panjang.
+PASANG_SULIT = [('ꦢ', 'ꦝ', None), (None, None, ('ꦼ', 'ꦶ')), (None, None, ('ꦺ', 'ꦺꦴ')), (None, None, ('ꦸ', ''))]
+def acak_teks_terarah(rng):
+    dasar = list(acak_teks(rng, 1, 8, PAKAI_WYANJANA))
+    a, b, vokal = rng.choice(PASANG_SULIT)
+    suku = []
+    for _ in range(rng.randint(2, 4)):
+        k = rng.choice([a, b]) if a else rng.choice(_CONS)
+        v = rng.choice(vokal) if vokal else rng.choice(['', 'ꦶ', 'ꦸ', 'ꦺ', 'ꦼ'])
+        suku.append(k + v)
+    i = rng.randint(0, len(dasar))
+    if i < len(dasar) and (dasar[i] not in _CONS or (i and dasar[i - 1] == PANGKON)): i = len(dasar)   # jangan menyela sandhangan atau pasangan
+    return ''.join(dasar[:i]) + ''.join(suku) + ''.join(dasar[i:])
+
+def kerja_terarah(k):
+    rng = random.Random(60_000_000 + k); per = _per.setdefault('p', Perender(FONT_SPECS))
+    while True:
+        s = acak_teks_terarah(rng); a = per.render(s, rng)
+        if a is not None:
+            return [baris_daftar(f'terarah_{k}', _balik(augment(a, rng), rng), s)]
+
+N_TERARAH = len(latih) // 10
+latih += jalankan(kerja_terarah, N_TERARAH)
+random.Random(0).shuffle(latih)""")
+    EKSPOR_DATA['source'] = EKSPOR_DATA['source'].splitlines(True)
+    CONFIG['source'] = ''.join(CONFIG['source']).replace(
+"""EPOCH_B2, BS_B2, LR_B2 = 12, 32, 3e-4""",
+"""# Ronde 3: lanjut dari bobot r2 (kelas sama), lr puncak 5e-5 lalu cosine turun (panduan fine-tune PaddleOCR: ~5e-5 -> 1e-5;
+# r1/r2 memakai 3e-4, kira-kira 10x lebih besar). 6 epoch cukup karena bobot awal sudah konvergen di data yang sama.
+EPOCH_B2, BS_B2, LR_B2 = 6, 32, 5e-5
+PRA = f'{os.path.dirname(OUT_DIR)}/model2_b2r2/paddle/best_accuracy'
+assert os.path.exists(PRA + '.pdparams'), 'Bobot r2 tidak ada di Drive: ' + PRA + '.pdparams'""").splitlines(True)
+    LATIH['source'] = ''.join(LATIH['source']).replace('model2_b2/paddle/train.log', 'model2_b2r3/paddle/train.log').splitlines(True)
 
 sel = [
     JUDUL,
