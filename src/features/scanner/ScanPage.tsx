@@ -195,6 +195,8 @@ export function ScanPage() {
 
   const [modelStatus, setModelStatus] = useState<'memuat' | 'siap' | 'gagal'>('memuat');
   const [modelGalat, setModelGalat] = useState<string | null>(null);
+  // Tombol ditekan sebelum model siap: tampilkan sibuk + pesan, bukan diam (pemuatan pertama bisa puluhan detik).
+  const [menungguModel, setMenungguModel] = useState(false);
   const [kameraStatus, setKameraStatus] = useState<'membuka' | 'aktif' | 'gagal'>('membuka');
   const [kameraPesan, setKameraPesan] = useState<string | null>(null);
   const [menghadap, setMenghadap] = useState<'environment' | 'user'>('environment');
@@ -417,12 +419,22 @@ export function ScanPage() {
     }
   };
 
+  const tungguModel = async (paksaUlang = false): Promise<boolean> => {
+    if (modelStatus === 'siap') return true;
+    setMenungguModel(true);
+    try {
+      return await pastikanModelSiap(paksaUlang);
+    } finally {
+      setMenungguModel(false);
+    }
+  };
+
   const tekanShutter = async () => {
-    if (memproses) return;
+    if (memproses || menungguModel) return;
     setGalat(null);
 
     if (foto) {
-      const oke = modelStatus === 'siap' || (await pastikanModelSiap(true));
+      const oke = await tungguModel(true);
       if (oke) {
         await bacaGambar(foto, bingkai);
       } else if (adalahContoh) {
@@ -447,7 +459,7 @@ export function ScanPage() {
         setGalat('Kamera masih bersiap. Tunggu sebentar atau pilih foto dari Galeri.');
         return;
       }
-      const oke = modelStatus === 'siap' || (await pastikanModelSiap());
+      const oke = await tungguModel();
       if (oke) {
         await bacaGambar(b, area, 'area', true);
       } else {
@@ -476,7 +488,7 @@ export function ScanPage() {
   };
 
   const pakaiContoh = async () => {
-    if (memproses) return;
+    if (memproses || menungguModel) return;
     setGalat(null);
     setHasil(null);
     setDetail(false);
@@ -487,7 +499,7 @@ export function ScanPage() {
     const b = await buatContoh();
     setAdalahContoh(true);
     setFoto(b);
-    const oke = modelStatus === 'siap' || (await pastikanModelSiap());
+    const oke = await tungguModel();
     if (oke) {
       await bacaGambar(b, PENUH, 'area');
     } else {
@@ -565,14 +577,18 @@ export function ScanPage() {
     galat ??
     (memproses
       ? 'Membaca aksara…'
-      : foto
+      : menungguModel
+        ? 'Menyiapkan scanner… Pemakaian pertama mengunduh model, bisa sampai 1 menit.'
+        : foto
         ? 'Atur area bingkai, lalu tekan tombol untuk membaca'
         : modelStatus === 'memuat' && !tampilKamera
           ? 'Menyiapkan kamera dan scanner…'
           : tampilKamera
             ? modelStatus === 'gagal' && modelGalat
               ? modelGalat
-              : 'Tekan tombol bulat untuk memfoto dan membaca aksara'
+              : modelStatus === 'memuat'
+                ? 'Menyiapkan scanner… Kamu sudah bisa memotret; hasil muncul setelah siap.'
+                : 'Tekan tombol bulat untuk memfoto dan membaca aksara'
             : modelGalat ?? 'Kamera belum aktif — gunakan Galeri, Contoh, atau Coba buka kamera');
 
   return (
@@ -678,10 +694,10 @@ export function ScanPage() {
             </button>
             <button
               type="button"
-              className={`scan-shutter ${tampilKamera || foto ? 'siap' : ''} ${memproses ? 'sibuk' : ''}`}
+              className={`scan-shutter ${tampilKamera || foto ? 'siap' : ''} ${memproses || menungguModel ? 'sibuk' : ''}`}
               onClick={() => void tekanShutter()}
-              disabled={memproses}
-              aria-label={memproses ? 'Membaca aksara' : foto ? 'Baca foto' : tampilKamera ? 'Ambil foto' : 'Pilih dari galeri'}
+              disabled={memproses || menungguModel}
+              aria-label={memproses ? 'Membaca aksara' : menungguModel ? 'Menyiapkan scanner' : foto ? 'Baca foto' : tampilKamera ? 'Ambil foto' : 'Pilih dari galeri'}
             >
               <span />
             </button>
@@ -689,7 +705,7 @@ export function ScanPage() {
               type="button"
               className="scan-side-btn"
               onClick={() => void pakaiContoh()}
-              disabled={memproses}
+              disabled={memproses || menungguModel}
             >
               <IkonBingkai size={24} />
               Contoh
