@@ -245,7 +245,8 @@ export async function bacaGray(gray: Gray, mode: Mode = 'foto', inti?: Kotak): P
     const proyeksi: Calon[] = [];
     const tinta = maskerTinta(g);
     // Baris proyeksi hanya dipakai bila belum ada baris TERIMA (pilihProyeksi); jangan dibaca percuma.
-    const butuhProyeksi = !terpilih.some((c) => c.status === 'TERIMA');
+    // Baris yang turun ke RAGU hanya karena menyentuh tepi (terpotong) dihitung yakin: baris proyeksi juga terpotong di tepi yang sama.
+    const butuhProyeksi = !terpilih.some((c) => c.status === 'TERIMA' || (c.terpotong && nilaiStatus(c.unicode, c.keyakinan, mode) === 'TERIMA'));
     const kotakProyeksi = butuhProyeksi ? barisProyeksi(tinta.d, tinta.w, tinta.h) : [];
     for (const kotak of inti ? kotakProyeksi.filter((k) => saringInti([{ unicode: '', keyakinan: 0, kotak: k, status: 'TOLAK' }], inti, g.w, g.h).length) : kotakProyeksi) {
       const kotakBaca = perluasEkor(g, kotak);
