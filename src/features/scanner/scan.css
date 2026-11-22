@@ -626,3 +626,87 @@
 }
 
 .scan-hint .scan-retry { align-self: center; margin-top: 6px; }
+
+/* Perbaiki hasil: suku kata dikotakkan, ketuk untuk memilih bacaan pengganti (koreksi.ts). */
+.scan-perbaiki {
+  margin-top: 10px;
+  width: 100%;
+  height: 44px;
+  border: 1.5px solid #4D3423;
+  border-radius: 14px;
+  background: transparent;
+  color: #4D3423;
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.scan-koreksi {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scan-koreksi-petunjuk {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1.4;
+  color: #6B6159;
+  text-align: left;
+}
+
+.scan-koreksi-baris {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.scan-kotak {
+  min-width: 56px;
+  padding: 8px 10px;
+}
+
+.scan-pilihan {
+  background: #FFFFFF;
+  border: 1.5px solid #E5DED7;
+  border-radius: 18px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scan-pilihan-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.scan-pilihan-grid .scan-chip {
+  padding: 8px 4px;
+}
+
+.scan-pilihan-grid .scan-chip .aksara {
+  font-size: 24px;
+}
+
+.scan-pilihan-aksi {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.scan-pilihan-aksi button {
+  flex: 1;
+  height: 38px;
+  border: none;
+  border-radius: 12px;
+  background: #EFE9E3;
+  color: #4D3423;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}

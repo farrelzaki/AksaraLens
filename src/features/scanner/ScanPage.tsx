@@ -2,8 +2,10 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { tampilDebug } from '../../ml/model2/debug';
 import { MODE_DEMO, PENUH, bacaFoto, siapkanScanner, type Bingkai, type HasilScan } from '../../ml/model2/scanner';
-import { bingkaiDariLayar } from '../../ml/model2/bingkai';
+import { bingkaiDariLayar, kePiksel } from '../../ml/model2/bingkai';
+import { dariRGBA, ketajaman } from '../../ml/model2/gambar';
 import { tautanMateri, urai, type SukuKata } from '../../aksara/urai';
+import { gantiSuku, pilihanSuku } from '../../aksara/koreksi';
 import { simpanHasilSementara } from './hasilScan';
 import { BingkaiPotong } from './BingkaiPotong';
 import './scan.css';
@@ -94,17 +96,46 @@ function buatHasilPratinjauContoh(): HasilScan {
   };
 }
 
-/** Satu frame dari video sebagai JPEG (sisi terpanjang dibatasi). */
-function tangkapVideo(v: HTMLVideoElement | null, maks: number): Promise<Blob | null> {
-  return new Promise((ok) => {
-    if (!v || !v.videoWidth) return ok(null);
-    const s = Math.min(1, maks / Math.max(v.videoWidth, v.videoHeight));
+const FRAME_TANGKAP = 3; // frame yang diambil saat rana ditekan; yang paling tajam dibaca
+const JEDA_FRAME_MS = 120;
+const SISI_UJI_TAJAM = 320;
+
+/** Ketajaman area `b` pada kanvas, diukur pada salinan kecil agar cepat. */
+function nilaiTajam(k: HTMLCanvasElement, b: Bingkai): number {
+  const [x0, y0, x1, y1] = kePiksel(b, k.width, k.height);
+  const s = Math.min(1, SISI_UJI_TAJAM / Math.max(x1 - x0, y1 - y0));
+  const w = Math.max(1, Math.round((x1 - x0) * s));
+  const h = Math.max(1, Math.round((y1 - y0) * s));
+  const kecil = document.createElement('canvas');
+  kecil.width = w;
+  kecil.height = h;
+  const c = kecil.getContext('2d', { willReadFrequently: true })!;
+  c.drawImage(k, x0, y0, x1 - x0, y1 - y0, 0, 0, w, h);
+  return ketajaman(dariRGBA(c.getImageData(0, 0, w, h).data, w, h));
+}
+
+/**
+ * Beberapa frame video berjarak pendek; yang paling tajam di area `b` dikembalikan sebagai JPEG
+ * (sisi terpanjang dibatasi). Mengurangi foto buram karena ponsel bergoyang saat rana ditekan.
+ */
+async function tangkapVideo(v: HTMLVideoElement | null, maks: number, b: Bingkai = PENUH): Promise<Blob | null> {
+  if (!v || !v.videoWidth) return null;
+  const s = Math.min(1, maks / Math.max(v.videoWidth, v.videoHeight));
+  let terbaik: HTMLCanvasElement | null = null;
+  let nilaiTerbaik = -1;
+  for (let i = 0; i < FRAME_TANGKAP; i++) {
+    if (i) await new Promise((ok) => setTimeout(ok, JEDA_FRAME_MS));
     const k = document.createElement('canvas');
     k.width = Math.round(v.videoWidth * s);
     k.height = Math.round(v.videoHeight * s);
     k.getContext('2d')!.drawImage(v, 0, 0, k.width, k.height);
-    k.toBlob((b) => ok(b), 'image/jpeg', 0.9);
-  });
+    const n = nilaiTajam(k, b);
+    if (n > nilaiTerbaik) {
+      nilaiTerbaik = n;
+      terbaik = k;
+    }
+  }
+  return new Promise((ok) => terbaik!.toBlob((hasil) => ok(hasil), 'image/jpeg', 0.9));
 }
 
 /** Area bingkai bidik pada video; seluruh video bila elemennya belum terukur. */
@@ -132,7 +163,9 @@ function pesanKosong(h: HasilScan): string {
 function ringkasHasil(h: HasilScan): string {
   const bagian = [`${h.baris.length} baris terbaca`];
   if (h.diabaikan > 0) bagian.push(`${h.diabaikan} teks lain diabaikan`);
-  return `${bagian.join(' · ')}.${h.kurangYakin ? ' Hasil mungkin kurang tepat.' : ''}`;
+  const diperbaiki = h.baris.some((b) => b.diperbaiki) ? ' Sudah kamu perbaiki.' : '';
+  const terpotong = h.baris.some((b) => b.terpotong) ? ' Ada tulisan terpotong di tepi bingkai: geser agar tulisan utuh di dalam bingkai.' : '';
+  return `${bagian.join(' · ')}.${h.kurangYakin && !diperbaiki ? ' Hasil mungkin kurang tepat.' : ''}${terpotong}${diperbaiki}`;
 }
 
 /** Teks Latin dari seluruh hasil, dipisah per kata. */
@@ -178,6 +211,9 @@ export function ScanPage() {
   const [hasil, setHasil] = useState<HasilScan | null>(null);
   const [detail, setDetail] = useState(false);
   const [terpilih, setTerpilih] = useState(0);
+  // Mode koreksi: suku kata yang sedang dipilih untuk diganti (baris, indeks suku di baris itu).
+  const [perbaiki, setPerbaiki] = useState(false);
+  const [sasaran, setSasaran] = useState<{ b: number; s: number } | null>(null);
 
   const hentikanAliran = useCallback(() => {
     aliran.current?.getTracks().forEach((t) => {
@@ -358,15 +394,17 @@ export function ScanPage() {
   }, [foto]);
 
   // Membaca satu gambar di latar belakang, lalu menampilkan lembar hasil.
-  const bacaGambar = async (gambar: Blob, area: Bingkai, mode?: 'foto' | 'area') => {
+  const bacaGambar = async (gambar: Blob, area: Bingkai, mode?: 'foto' | 'area', longgar?: boolean) => {
     setMemproses(true);
     setGalat(null);
     setHasil(null);
     setDetail(false);
+    setPerbaiki(false);
+    setSasaran(null);
     setPratinjauContoh(false);
     setTerpilih(0);
     try {
-      const h = await bacaFoto(gambar, area, mode);
+      const h = await bacaFoto(gambar, area, mode, longgar);
       if (import.meta.env.DEV) console.info('[scanner]', h.info);
       if (new URLSearchParams(location.search).has('debug')) tampilDebug(h.info);
       simpanHasilSementara(h);
@@ -403,15 +441,15 @@ export function ScanPage() {
       if (v && v.paused) {
         await v.play().catch(() => undefined);
       }
-      const b = await tangkapVideo(v, 2048);
+      const area = v ? areaBidik(v, bidik.current) : PENUH;
+      const b = await tangkapVideo(v, 2048, area);
       if (!b || !v) {
         setGalat('Kamera masih bersiap. Tunggu sebentar atau pilih foto dari Galeri.');
         return;
       }
-      const area = areaBidik(v, bidik.current);
       const oke = modelStatus === 'siap' || (await pastikanModelSiap());
       if (oke) {
-        await bacaGambar(b, area, 'area');
+        await bacaGambar(b, area, 'area', true);
       } else {
         setAdalahContoh(false);
         setPratinjauContoh(false);
@@ -442,6 +480,8 @@ export function ScanPage() {
     setGalat(null);
     setHasil(null);
     setDetail(false);
+    setPerbaiki(false);
+    setSasaran(null);
     setPratinjauContoh(false);
     setBingkai(PENUH);
     const b = await buatContoh();
@@ -475,6 +515,8 @@ export function ScanPage() {
     setGalat(null);
     setHasil(null);
     setDetail(false);
+    setPerbaiki(false);
+    setSasaran(null);
     setPratinjauContoh(false);
     if (foto) {
       kembaliKamera();
@@ -492,10 +534,31 @@ export function ScanPage() {
   const tutupHasil = () => {
     setHasil(null);
     setDetail(false);
+    setPerbaiki(false);
+    setSasaran(null);
     setPratinjauContoh(false);
   };
 
+  // Koreksi pengguna: ganti ('' = hapus) satu suku kata. Hanya di memori, sama seperti hasil scan.
+  const ubahSuku = (bi: number, si: number, baru: string) => {
+    if (!hasil) return;
+    const baris = hasil.baris
+      .map((b, k) => {
+        if (k !== bi) return b;
+        const unicode = gantiSuku(b.sukuKata, si, baru);
+        return { ...b, unicode, sukuKata: urai(unicode), diperbaiki: true };
+      })
+      .filter((b) => b.unicode);
+    const h = { ...hasil, baris };
+    simpanHasilSementara(h);
+    setHasil(h);
+    setSasaran(null);
+    setTerpilih(0);
+  };
+
   const suku: SukuKata[] = hasil ? hasil.baris.flatMap((b) => b.sukuKata) : [];
+  const barisSasaran = sasaran && hasil ? hasil.baris[sasaran.b] : null;
+  const pilihan = sasaran && barisSasaran ? pilihanSuku(barisSasaran.unicode, barisSasaran.sukuKata, sasaran.s, barisSasaran.alternatif) : [];
   const dipilih = suku[terpilih] ?? suku[0];
   const tautan = dipilih?.komponen.map(tautanMateri).find(Boolean) ?? '/belajar/materi/1';
   const catatanBawah =
@@ -666,7 +729,16 @@ export function ScanPage() {
             {detail ? 'Pilih suku kata untuk melihat komponennya.' : ringkasHasil(hasil)}
           </p>
 
-          <button type="button" className="scan-bedah" onClick={() => setDetail((d) => !d)} aria-expanded={detail}>
+          <button
+            type="button"
+            className="scan-bedah"
+            onClick={() => {
+              setDetail((d) => !d);
+              setPerbaiki(false);
+              setSasaran(null);
+            }}
+            aria-expanded={detail}
+          >
             <span>{detail ? 'Sembunyikan detail' : 'Bedah suku kata'}</span>
             <Panah atas={detail} />
           </button>
@@ -701,6 +773,71 @@ export function ScanPage() {
                 <Link to={tautan}>Pelajari di materi</Link>
               </div>
             </>
+          )}
+
+          {!pratinjauContoh && (
+            <button
+              type="button"
+              className="scan-perbaiki"
+              onClick={() => {
+                setPerbaiki((p) => !p);
+                setDetail(false);
+                setSasaran(null);
+              }}
+              aria-expanded={perbaiki}
+            >
+              {perbaiki ? 'Selesai memperbaiki' : 'Perbaiki hasil'}
+            </button>
+          )}
+
+          {perbaiki && hasil && (
+            <div className="scan-koreksi">
+              <p className="scan-koreksi-petunjuk">Ketuk suku kata yang keliru, lalu pilih bacaan yang sesuai dengan tulisan di foto.</p>
+              {hasil.baris.map((b, bi) => (
+                <div key={bi} className="scan-koreksi-baris" role="group" aria-label={`Baris ${bi + 1}`}>
+                  {b.sukuKata.map((s, si) => {
+                    const aktif = sasaran?.b === bi && sasaran.s === si;
+                    return (
+                      <button
+                        key={`${s.teks}-${si}`}
+                        type="button"
+                        className={`scan-chip scan-kotak ${aktif ? 'aktif' : ''}`}
+                        aria-pressed={aktif}
+                        aria-label={`Suku kata ${s.latin}, ketuk untuk mengganti`}
+                        onClick={() => setSasaran(aktif ? null : { b: bi, s: si })}
+                      >
+                        <span className="aksara">{s.teksTampil}</span>
+                        <small>{s.latin}</small>
+                      </button>
+                    );
+                  })}
+                </div>
+              ))}
+
+              {sasaran && barisSasaran && (
+                <div className="scan-pilihan" role="group" aria-label="Pilihan pengganti">
+                  <p className="scan-koreksi-petunjuk">
+                    Ganti <strong>{barisSasaran.sukuKata[sasaran.s]?.latin}</strong> dengan:
+                  </p>
+                  <div className="scan-pilihan-grid">
+                    {pilihan.map((p) => (
+                      <button key={p.teks} type="button" className="scan-chip" onClick={() => ubahSuku(sasaran.b, sasaran.s, p.teks)}>
+                        <span className="aksara">{p.teks}</span>
+                        <small>{p.latin}</small>
+                      </button>
+                    ))}
+                  </div>
+                  <div className="scan-pilihan-aksi">
+                    <button type="button" onClick={() => ubahSuku(sasaran.b, sasaran.s, '')}>
+                      Hapus suku kata
+                    </button>
+                    <button type="button" onClick={() => setSasaran(null)}>
+                      Batal
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           )}
         </section>
       )}

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { bulat, buatGray, cariSudut, komponenTerhubung, normalisasiPolaritas, otsu, persentil, putar, resize, terangDiGelap } from './gambar';
-import { kotakDariLogit, potongSatu } from './detektor';
+import { blur5, bulat, buatGray, cariSudut, ketajaman, komponenTerhubung, normalisasiPolaritas, otsu, persentil, putar, resize, terangDiGelap } from './gambar';
+import { kotakDariLogit, perluasEkor, potongSatu } from './detektor';
 
 describe('bulat', () => {
   it('setengah ke genap seperti Python/cvRound', () => {
@@ -107,4 +107,44 @@ describe('terangDiGelap', () => {
   it('tulisan gelap di latar terang: false', () => expect(terangDiGelap(gambar(230, 20))).toBe(false));
   it('tulisan terang di latar gelap: true', () => expect(terangDiGelap(gambar(20, 230))).toBe(true));
   it('gambar rata: false', () => expect(terangDiGelap(buatGray(10, 10, 100))).toBe(false));
+});
+
+describe('ketajaman', () => {
+  it('gambar buram lebih rendah daripada gambar tajam, gambar rata nol', () => {
+    const g = buatGray(40, 40, 255);
+    for (let y = 10; y < 30; y++) for (let x = 18; x < 22; x++) g.d[y * 40 + x] = 0;
+    expect(ketajaman(buatGray(20, 20, 128))).toBe(0);
+    expect(ketajaman(blur5(blur5(g)))).toBeLessThan(ketajaman(g));
+  });
+});
+
+describe('perluasEkor', () => {
+  // halaman putih 200 x 200, badan baris y 40..60, x 20..180
+  const halaman = () => {
+    const g = buatGray(200, 200, 255);
+    const isi = (x0: number, y0: number, x1: number, y1: number) => {
+      for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) g.d[y * 200 + x] = 0;
+    };
+    for (let x = 20; x < 180; x += 30) isi(x, 42, x + 12, 58); // badan aksara
+    return { g, isi };
+  };
+
+  it('kotak diperpanjang sampai ujung ekor yang menyambung ke badan aksara', () => {
+    const { g, isi } = halaman();
+    isi(52, 58, 56, 80); // ekor menyambung ke huruf kedua
+    expect(perluasEkor(g, [20, 40, 180, 60])).toEqual([20, 40, 180, 80]);
+  });
+
+  it('baris berikutnya dan garis tabel tidak ikut', () => {
+    const { g, isi } = halaman();
+    isi(20, 70, 60, 85); // huruf baris berikutnya, terpisah
+    isi(10, 64, 190, 66); // garis tabel di bawah baris
+    expect(perluasEkor(g, [20, 40, 180, 60])).toEqual([20, 40, 180, 60]);
+  });
+
+  it('ekor tidak melewati batas 1,5 kali tinggi kotak', () => {
+    const { g, isi } = halaman();
+    isi(52, 58, 56, 150);
+    expect(perluasEkor(g, [20, 40, 180, 60])).toEqual([20, 40, 180, 90]);
+  });
 });

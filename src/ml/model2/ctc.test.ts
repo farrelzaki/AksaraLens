@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CHARSET, dekodeGreedy, keInputBaris } from './ctc';
+import { CHARSET, dekodeGreedy, keInputBaris, petaAlternatif } from './ctc';
 import { buatGray } from './gambar';
 
 const charset = ['', 'ꦏ', 'ꦶ', 'ꦺ'];
@@ -42,5 +42,32 @@ describe('keInputBaris', () => {
     expect(data).toHaveLength(64 * 400);
     expect(data[32 * 400 + 200]).toBeCloseTo(1); // tengah tinta
     expect(data[0]).toBeCloseTo(0); // latar
+  });
+});
+
+describe('petaAlternatif', () => {
+  const cs = ['', 'ꦏ', 'ꦶ', 'ꦺ', 'ꦒ', 'ꦸ'];
+  // satu kolom: logit tiap kelas (peluang ~ exp)
+  const kolom = (...nilai: number[]) => nilai;
+
+  it('teks sama dengan dekodeGreedy, termasuk taling yang dipindah', () => {
+    const l = [kolom(0, 0, 0, 5, 0, 0), kolom(5, 0, 0, 0, 0, 0), kolom(0, 5, 0, 0, 0, 0)].flat();
+    expect(petaAlternatif(l, 6, cs).teks).toBe(dekodeGreedy(l, 6, cs).teks);
+    expect(petaAlternatif(l, 6, cs).teks).toBe('ꦏꦺ');
+  });
+
+  it('menawarkan huruf lain di kolom puncak dan sandhangan samar di celah blank', () => {
+    // ka (ga cukup mungkin), lalu blank dengan suku samar
+    const l = [kolom(0, 5, 0, 0, 3, 0), kolom(5, 0, 0, 0, 0, 2.5)].flat();
+    const { teks, alternatif } = petaAlternatif(l, 6, cs);
+    expect(teks).toBe('ꦏ');
+    expect(alternatif[0].ganti[0][0]).toBe('ꦒ');
+    expect(alternatif[0].sisip[0][0]).toBe('ꦸ');
+  });
+
+  it('alternatif ikut berpindah ke urutan logis', () => {
+    const l = [kolom(0, 0, 0, 5, 0, 0), kolom(0, 5, 0, 0, 3, 0)].flat();
+    const { alternatif } = petaAlternatif(l, 6, cs);
+    expect(alternatif[0].ganti[0][0]).toBe('ꦒ'); // ka di depan setelah taling dipindah
   });
 });

@@ -56,3 +56,21 @@ export function bingkaiDariLayar(
   const y1 = Math.min(1, (kotak.y + kotak.h + (tampilH - elemen.h) / 2) / tampilH);
   return { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
 }
+
+/** Kelonggaran area baca kamera, relatif ukuran bingkai bidik (atas/bawah, kiri/kanan). */
+export const LONGGAR_Y = 0.2;
+export const LONGGAR_X = 0.05;
+
+/**
+ * Bingkai bidik kamera -> area yang dibaca (diperlonggar agar ekor sandhangan seperti suku dan pasangan
+ * di tepi bingkai ikut terbaca) dan area inti = bingkai asli, relatif terhadap area baca (0..1).
+ */
+export function longgarkan(b: Bingkai, my = LONGGAR_Y, mx = LONGGAR_X): { baca: Bingkai; inti: Bingkai } {
+  const x0 = jepit(b.x - b.w * mx, 0, 1);
+  const y0 = jepit(b.y - b.h * my, 0, 1);
+  const x1 = jepit(b.x + b.w * (1 + mx), 0, 1);
+  const y1 = jepit(b.y + b.h * (1 + my), 0, 1);
+  const baca = { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
+  const inti = { x: (b.x - x0) / baca.w, y: (b.y - y0) / baca.h, w: b.w / baca.w, h: b.h / baca.h };
+  return { baca, inti };
+}

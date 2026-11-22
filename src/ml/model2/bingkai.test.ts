@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { PENUH, SISI_MIN, bingkaiDariLayar, kePiksel, ubahBingkai } from './bingkai';
+import { PENUH, SISI_MIN, bingkaiDariLayar, kePiksel, longgarkan, ubahBingkai } from './bingkai';
 
 const dekat = (b: { x: number; y: number; w: number; h: number }) => [b.x, b.y, b.w, b.h].map((v) => +v.toFixed(6));
 
@@ -49,5 +49,22 @@ describe('bingkaiDariLayar', () => {
   it('tidak keluar dari video', () => {
     const b = bingkaiDariLayar({ w: 100, h: 100 }, { w: 100, h: 100 }, { x: -10, y: -10, w: 200, h: 200 });
     expect(dekat(b)).toEqual([0, 0, 1, 1]);
+  });
+});
+
+describe('longgarkan', () => {
+  it('memperlonggar atas-bawah 20% dan samping 5%, inti = bingkai asli relatif area baca', () => {
+    const { baca, inti } = longgarkan({ x: 0.1, y: 0.3, w: 0.8, h: 0.4 });
+    expect(dekat(baca)).toEqual([0.06, 0.22, 0.88, 0.56]);
+    expect(baca.x + inti.x * baca.w).toBeCloseTo(0.1);
+    expect(baca.y + inti.y * baca.h).toBeCloseTo(0.3);
+    expect(inti.w * baca.w).toBeCloseTo(0.8);
+    expect(inti.h * baca.h).toBeCloseTo(0.4);
+  });
+
+  it('tidak keluar dari foto', () => {
+    const { baca, inti } = longgarkan({ x: 0, y: 0.9, w: 1, h: 0.1 });
+    expect(dekat(baca)).toEqual([0, 0.88, 1, 0.12]);
+    expect(inti.y * baca.h).toBeCloseTo(0.02);
   });
 });

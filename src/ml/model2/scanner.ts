@@ -66,7 +66,8 @@ function hasilDemo(): HasilScan {
 }
 
 /** Membaca foto (hanya area `bingkai`) di worker. Foto tidak disimpan dan tidak dikirim ke server. */
-export const bacaFoto = (foto: Blob, bingkai?: Bingkai, mode?: Mode) =>
+/** `longgar`: bingkai bidik kamera, dibaca sedikit melewati tepinya (lihat longgarkan di bingkai.ts). */
+export const bacaFoto = (foto: Blob, bingkai?: Bingkai, mode?: Mode, longgar?: boolean) =>
   MODE_DEMO
     ? new Promise<HasilScan>((selesai) => setTimeout(() => selesai(hasilDemo()), 1500))
-    : kirim<HasilScan>({ jenis: 'baca', foto, bingkai, mode });
+    : kirim<HasilScan>({ jenis: 'baca', foto, bingkai, mode, longgar });

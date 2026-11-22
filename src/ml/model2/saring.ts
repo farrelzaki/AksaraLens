@@ -2,6 +2,7 @@
 // TERIMA/RAGU/TOLAK. Padanan Python: scripts/pipeline_cerdas.py. Ambang dipilih dari kurva di split
 // pengembangan Set C (docs/EVALUASI.md bagian 3).
 
+import type { AlternatifHuruf } from './ctc';
 import type { Kotak } from './detektor';
 
 export type Mode = 'foto' | 'area'; // area = pengguna sudah menunjuk tulisannya sendiri
@@ -14,6 +15,12 @@ export interface Calon {
   status: Status;
   /** L5: bacaan yang dibetulkan model bahasa (bahasa.ts pilihKoreksi); hanya mengganti teks yang tampil. */
   koreksi?: string | null;
+  /** Baris menyentuh tepi area baca kamera: kemungkinan ada bagian tulisan yang terpotong (saringInti). */
+  terpotong?: boolean;
+  /** Kotak yang benar-benar dibaca (kotak detektor + ekor, detektor.ts perluasEkor); dipakai cek terpotong. */
+  kotakBaca?: Kotak;
+  /** Alternatif per huruf dari pembaca, untuk pilihan koreksi pengguna (ctc.ts petaAlternatif). */
+  alternatif?: AlternatifHuruf[];
 }
 
 const KONSONAN = new Set('ꦲꦤꦕꦫꦏꦢꦠꦱꦮꦭꦥꦝꦗꦪꦚꦩꦒꦧꦛꦔ');
@@ -220,4 +227,27 @@ export function nilaiKualitas(d: ArrayLike<number>, w: number, h: number): Kuali
     }
   }
   return n && kuadrat / n - (jumlah / n) ** 2 < 15 ? 'buram' : 'baik';
+}
+
+const INTI_TUMPANG = 0.4; // bagian tinggi dan lebar kotak yang harus berada di dalam bingkai bidik
+const TEPI = 0.015; // jarak ke tepi area baca (relatif) yang dianggap menyentuh tepi
+
+/**
+ * Area kamera yang dilonggarkan: baris yang sebagian besar di luar bingkai bidik (`inti`) dibuang, dan baris
+ * yang menyentuh tepi area baca kemungkinan terpotong, jadi paling tinggi RAGU dan ditandai `terpotong`.
+ */
+export function saringInti(calon: readonly Calon[], inti: Kotak, w: number, h: number): Calon[] {
+  const tx = TEPI * w;
+  const ty = TEPI * h;
+  const hasil: Calon[] = [];
+  for (const c of calon) {
+    const [x0, y0, x1, y1] = c.kotak;
+    const tumpangY = Math.min(y1, inti[3]) - Math.max(y0, inti[1]);
+    const tumpangX = Math.min(x1, inti[2]) - Math.max(x0, inti[0]);
+    if (tumpangY < INTI_TUMPANG * (y1 - y0) || tumpangX < INTI_TUMPANG * Math.min(x1 - x0, inti[2] - inti[0])) continue;
+    const [bx0, by0, bx1, by1] = c.kotakBaca ?? c.kotak;
+    const terpotong = by0 <= ty || bx0 <= tx || by1 >= h - ty || bx1 >= w - tx;
+    hasil.push(terpotong ? { ...c, terpotong, status: c.status === 'TERIMA' ? 'RAGU' : c.status } : c);
+  }
+  return hasil;
 }

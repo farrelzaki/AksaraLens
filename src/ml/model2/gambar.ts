@@ -506,3 +506,22 @@ export function komponenTerhubung(aktif: Uint8Array, w: number, h: number, label
   }
   return hasil;
 }
+
+/** Ketajaman = varians Laplacian 4-tetangga (makin besar makin tajam); dipakai memilih frame kamera yang tidak buram. */
+export function ketajaman(g: Gray): number {
+  let n = 0;
+  let jumlah = 0;
+  let kuadrat = 0;
+  for (let y = 1; y < g.h - 1; y++) {
+    for (let x = 1; x < g.w - 1; x++) {
+      const i = y * g.w + x;
+      const l = g.d[i - 1] + g.d[i + 1] + g.d[i - g.w] + g.d[i + g.w] - 4 * g.d[i];
+      jumlah += l;
+      kuadrat += l * l;
+      n++;
+    }
+  }
+  if (!n) return 0;
+  const rata = jumlah / n;
+  return kuadrat / n - rata * rata;
+}
