@@ -19,6 +19,11 @@ export interface Komponen {
 export interface SukuKata {
   teks: string; // potongan Unicode asli
   latin: string;
+  /**
+   * Teks untuk ditampilkan agar gugus pasangan tampak sama seperti di tulisan aslinya
+   * (font menggabungkan konsonan + ꧀ + konsonan). Hanya untuk tampilan; bacaan tetap `latin`.
+   */
+  teksTampil: string;
   komponen: Komponen[];
   adaPasangan: boolean;
 }
@@ -47,6 +52,7 @@ const komponenDari = (h: Huruf, peran: Peran): Komponen => ({
 const selesaikan = (b: Pembangun): SukuKata => ({
   teks: b.teks,
   latin: b.konsonan + b.vokal + b.akhiran,
+  teksTampil: b.teks,
   komponen: b.komponen,
   adaPasangan: b.adaPasangan,
 });
@@ -142,7 +148,18 @@ export function urai(baris: string): SukuKata[] {
     }
   }
   tutup();
-  return hasil.map(selesaikan);
+  const suku = hasil.map(selesaikan);
+  return suku.map((s, i) => {
+    const adaPasanganDepan = s.komponen[0]?.peran === 'pasangan';
+    const sebelum = suku[i - 1];
+    const berikut = suku[i + 1];
+    // Suku kata berpasangan: awali dengan konsonan induk + ꧀ agar gugus tampak utuh.
+    const induk = adaPasanganDepan && sebelum ? Array.from(sebelum.teks).at(-2) : undefined;
+    const awal = induk ? `${induk}꧀` : '';
+    // Suku kata yang diikuti pasangan: akhiri dengan konsonan pasangannya.
+    const akhir = berikut?.komponen[0]?.peran === 'pasangan' ? Array.from(berikut.teks)[0] : '';
+    return { ...s, teksTampil: awal + s.teks + akhir };
+  });
 }
 
 /** Bacaan Latin satu baris, suku kata dipisah tanda hubung. */

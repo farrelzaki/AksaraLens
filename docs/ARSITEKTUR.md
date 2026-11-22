@@ -76,6 +76,12 @@ ubah hanya dengan persetujuan, dalam commit tersendiri.
 `lesson_progress(user_id, lesson_id, status='completed', completed_at)` PK (user_id, lesson_id),
 `letter_stats(user_id, letter, correct, wrong, updated_at)` PK (user_id, letter).
 
+**Koin & toko (F8) — disetujui Emil & Farrel 18 Nov 2026** (`supabase/migrations/20261118000000_user_wallet.sql`; belum diterapkan ke proyek Supabase):
+`user_wallet(user_id, coins int >= 0, owned_avatars int[], rewarded text[], updated_at)` PK `user_id`, RLS seperti tabel lain.
+`rewarded` = kunci hadiah yang sudah diberikan (`soal:<id>`, `titik:<id>`) agar mengulang tidak memberi koin lagi.
+Tamu: `aksaralens:wallet`. Konten harga/hadiah: JSON statis (`src/content/toko.json`). Hadiah dihitung di klien (BR-06).
+Antarmuka: `useProgres()` bertambah `{ koin, punyaAvatar(id), beliAvatar(id) }`; `catat(letter, benar, kunciSoal?)` dan `selesaikanTitik(id)` memberi koin via logika murni `progres/koin.ts` dan mengembalikan jumlah koin yang diberikan. Hadiah titik hanya untuk id tahap. Dompet = snapshot penuh (terbaru menang), bukan penjumlahan antarperangkat.
+
 **Data tamu** (`localStorage`): `aksaralens:progress`, `aksaralens:stats`; bentuk sama tanpa `user_id`.
 
 **Konten** (`src/content/index.ts`):

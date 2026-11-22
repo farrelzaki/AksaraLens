@@ -28,6 +28,20 @@ describe('urai', () => {
     expect(suku[3].komponen.map((k) => k.kode)).toEqual(['ca', 'wulu', 'la', 'pangkon']);
   });
 
+  it('teksTampil menjaga gugus pasangan seperti di tulisan aslinya (contoh scanner)', () => {
+    const suku = urai('ꦧꦥꦏ꧀ꦠꦶꦤ꧀ꦝꦏ꧀');
+    expect(suku.map((s) => s.latin)).toEqual(['ba', 'pak', 'tin', 'dhak']);
+    expect(suku.map((s) => s.teks).join('')).toBe('ꦧꦥꦏ꧀ꦠꦶꦤ꧀ꦝꦏ꧀');
+    const pak = suku.find((s) => s.latin === 'pak')!;
+    expect(pak.teksTampil).toBe('ꦥꦏ꧀ꦠ');
+    const ti = suku.find((s) => s.komponen[0]?.kode === 'ta')!;
+    expect(ti.teksTampil.startsWith('ꦏ꧀ꦠꦶ')).toBe(true);
+  });
+
+  it('teksTampil sama dengan teks bila tanpa pasangan', () => {
+    expect(urai('ꦏꦶꦭ').map((s) => s.teksTampil)).toEqual(['ꦏꦶ', 'ꦭ']);
+  });
+
   it('membaca panyigeg', () => {
     expect(keLatin('ꦱꦼꦒꦂ')).toBe('sê-gar');
     expect(keLatin('ꦧꦁꦱ')).toBe('bang-sa');

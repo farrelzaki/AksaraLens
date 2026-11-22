@@ -18,6 +18,8 @@ import { MaskotSplash } from '../../app/MaskotAksa';
 import { itemTulis } from '../pelajaran/bankSoal';
 import { AnimasiCaraMenulis } from '../pelajaran/AnimasiCaraMenulis';
 import { SelinganPelajaran } from '../pelajaran/SelinganPelajaran';
+import { KoinDidapat } from '../koin/LencanaKoin';
+import { kunciSoal } from '../../progres/koin';
 import { useSelingan } from '../pelajaran/useSelingan';
 
 type StatusVerifikasi =
@@ -321,6 +323,7 @@ export function LatihanPage() {
   const [salah, setSalah] = useState(0);
   const [kombo, setKombo] = useState(0);
   const [komboMaks, setKomboMaks] = useState(0);
+  const [koinSesi, setKoinSesi] = useState(0); // F8: koin yang didapat di tahap ini
   const selingan = useSelingan(tahap, faseSelesai);
 
   // Pra-muat Model 1 ONNX untuk evaluasi Bab 1
@@ -340,6 +343,7 @@ export function LatihanPage() {
     setSalah(0);
     setKombo(0);
     setKomboMaks(0);
+    setKoinSesi(0);
   }, [tahap.id]);
 
   useEffect(() => {
@@ -531,7 +535,8 @@ export function LatihanPage() {
         setPesanDetail(
           `Goresan aksara “${labelLatin}” (${unicodeChar}) sudah tepat dan sesuai pola!`
         );
-        catat(labelLatin, true);
+        const koinSoal = catat(labelLatin, true, kunciSoal(tahap.id, itemIndex));
+        if (koinSoal > 0) setKoinSesi((n) => n + koinSoal);
         const k = kombo + 1;
         setKombo(k);
         setKomboMaks((m) => Math.max(m, k));
@@ -578,7 +583,8 @@ export function LatihanPage() {
     if (itemIndex + 1 < totalLatihan) {
       setItemIndex((idx) => idx + 1);
     } else {
-      selesaikanTitik(tahap.id);
+      const koinTitik = selesaikanTitik(tahap.id);
+      if (koinTitik > 0) setKoinSesi((n) => n + koinTitik);
       for (const t of JALUR.filter((x) => x.bab === babNomor && x.type === 'writing')) {
         selesaikanTitik(t.id);
       }
@@ -867,6 +873,7 @@ export function LatihanPage() {
                 <span className="pelajaran-selesai-stat-label">Waktu belajar</span>
               </div>
             </div>
+            <KoinDidapat jumlah={koinSesi} />
           </div>
         )}
       </div>

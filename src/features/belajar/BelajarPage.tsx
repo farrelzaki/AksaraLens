@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { BAB } from '../../content';
-import { TAHAP, tahapDiBab } from '../../content/tahap';
+import { NAMA_TAHAP, TAHAP, tahapDiBab } from '../../content/tahap';
 import { useProgres } from '../../progres/ProgresProvider';
 import { useSesi } from '../../lib/sesi';
 import { ICON_PROFIL } from '../profil/ProfilPage';
 import { ModalGantiAvatar } from '../profil/ModalGantiAvatar';
+import { LencanaKoin } from '../koin/LencanaKoin';
 import { MaskotHomepageHero, MaskotHomepageBab } from '../../app/MaskotAksa';
 
 // F1: Homepage sesuai HOMEPAGE.png — kartu per bab dengan maskot & avatar terpilih
@@ -56,14 +57,23 @@ export function BelajarPage() {
   const progresBab = BAB.map((bab) => {
     const daftarTahap = tahapDiBab(bab.bab);
     const selesai = daftarTahap.filter((t) => tahap.get(t.id) === 'selesai').length;
+    const terkunci = daftarTahap.every((t) => (tahap.get(t.id) ?? 'terkunci') === 'terkunci');
     const total = daftarTahap.length;
     const persenVal = total > 0 ? Math.round((selesai / total) * 100) : 0;
     const semua = total > 0 && selesai === total;
-    return { ...bab, selesai, total, persen: persenVal, semua };
+    return { ...bab, selesai, terkunci, total, persen: persenVal, semua };
   });
 
-  const tahapAktifPertama =
-    TAHAP.find((t) => tahap.get(t.id) === 'terbuka') || TAHAP[0];
+  // Tahap berikutnya = tahap pertama yang terbuka (setelah tahap terakhir yang selesai).
+  const tahapBerikutnya = TAHAP.find((t) => tahap.get(t.id) === 'terbuka');
+  const adaProgres = TAHAP.some((t) => tahap.get(t.id) === 'selesai');
+  const semuaSelesai = !tahapBerikutnya && adaProgres;
+  const tahapAktifPertama = tahapBerikutnya ?? TAHAP[0];
+  const labelCta = semuaSelesai
+    ? 'Ulangi dari Bab 1'
+    : adaProgres
+      ? `Lanjut: Bab ${tahapAktifPertama.bab} ${NAMA_TAHAP[tahapAktifPertama.jenis]}`
+      : 'Mulai belajar';
 
   // Tema kartu bab (sesuai HOMEPAGE.png & aset design/assets-csv)
   const babTheme = [
@@ -91,7 +101,7 @@ export function BelajarPage() {
             <img
               src={avatarTerpilih.src}
               alt={avatarTerpilih.nama}
-              className="avatar-profil-img"
+              className="avatar-profil-img aksa-3d"
               draggable={false}
               onError={(e) => {
                 (e.target as HTMLImageElement).src = '/assets/icon profile 1.svg';
@@ -111,6 +121,14 @@ export function BelajarPage() {
           <span className="greeting-sub" style={{ textAlign: 'left' }}>Sugeng rawuh 👋</span>
           <span className="greeting-name" style={{ textAlign: 'left' }}>Halo, {namaUser}!</span>
         </div>
+        <button
+          type="button"
+          onClick={() => setModalAvatar(true)}
+          aria-label="Buka toko karakter Aksa"
+          style={{ marginLeft: 'auto', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+        >
+          <LencanaKoin />
+        </button>
       </header>
 
       {/* 2. Hero Banner (HOMEPAGE.png) - Seluruh teks wajib Rata Kiri */}
@@ -134,7 +152,7 @@ export function BelajarPage() {
             }
             style={{ textAlign: 'left' }}
           >
-            <span>Mulai belajar</span>
+            <span>{labelCta}</span>
             <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
               <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
             </svg>
@@ -196,6 +214,14 @@ export function BelajarPage() {
                 {bab.semua ? (
                   <svg className="icon-completed" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="22" height="22">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : bab.terkunci ? (
+                  <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-label="Terkunci">
+                    <path
+                      fillRule="evenodd"
+                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 ) : (
                   <svg className="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="22" height="22">

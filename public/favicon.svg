@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" fill="none">
+  <defs>
+    <clipPath id="badgeClip">
+      <circle cx="64" cy="64" r="59" />
+    </clipPath>
+    <clipPath id="blangkonClip">
+      <path d="M23.8145 50.048C27.2542 17.7146 49.2684 1.54785 89.8572 1.54785C130.446 1.54785 152.46 17.7146 155.9 50.048L115.139 37.149C106.884 45.0604 98.4565 50.9079 89.8572 54.6916C80.9139 50.2199 72.4865 44.3724 64.5752 37.149L23.8145 50.048Z" />
+    </clipPath>
+  </defs>
+
+  <!-- Lingkaran luar hijau sage lembut sesuai lencana maskot Aksa -->
+  <circle cx="64" cy="64" r="61" fill="#EFF4E4" stroke="#D1DFBC" stroke-width="5" />
+
+  <g clip-path="url(#badgeClip)">
+    <g transform="translate(15.5 13.5) scale(0.54)">
+      <!-- Kepala & badan kapsul hijau lime -->
+      <path
+        d="M0 90.1817C0 46.5928 35.3357 11.2571 78.9246 11.2571H101.477C145.066 11.2571 180.402 46.5928 180.402 90.1817V135.797C180.402 165.517 156.309 189.609 126.59 189.609H53.8123C24.0926 189.609 0 165.517 0 135.797V90.1817Z"
+        fill="#A8D800"
+      />
+
+      <!-- Rona pipi hangat -->
+      <ellipse cx="34" cy="134" rx="12" ry="7" fill="#FF9E7D" opacity="0.45" />
+      <ellipse cx="146" cy="134" rx="12" ry="7" fill="#FF9E7D" opacity="0.45" />
+
+      <!-- Alis -->
+      <path
+        d="M39.3904 70.0713C45.4013 64.6931 51.254 63.7441 56.9485 67.2241"
+        stroke="#4D3423"
+        stroke-width="6.5"
+        stroke-linecap="round"
+      />
+      <path
+        d="M123.385 67.2241C129.396 63.7441 135.248 64.6931 140.943 70.0713"
+        stroke="#4D3423"
+        stroke-width="6.5"
+        stroke-linecap="round"
+      />
+
+      <!-- Mata kiri -->
+      <ellipse cx="50.7794" cy="100.917" rx="29.8963" ry="31.3203" fill="#FFFFFF" />
+      <ellipse cx="56.9485" cy="107.086" rx="17.0836" ry="18.982" fill="#4D3423" />
+      <circle cx="58.8467" cy="113.255" r="9.0163" fill="#040920" />
+      <circle cx="51.254" cy="99.493" r="6.8" fill="#FFFFFF" />
+      <circle cx="64.5412" cy="108.984" r="3" fill="#202845" />
+
+      <!-- Mata kanan -->
+      <ellipse cx="129.554" cy="100.917" rx="29.8963" ry="31.3203" fill="#FFFFFF" />
+      <ellipse cx="123.385" cy="107.086" rx="17.0836" ry="18.982" fill="#4D3423" />
+      <circle cx="125.283" cy="113.255" r="9.0163" fill="#040920" />
+      <circle cx="117.69" cy="99.493" r="6.8" fill="#FFFFFF" />
+      <circle cx="130.978" cy="108.984" r="3" fill="#202845" />
+
+      <!-- Hidung & senyum -->
+      <circle cx="85.8958" cy="131.288" r="2.6" fill="#4D3423" />
+      <circle cx="94.9122" cy="131.288" r="2.6" fill="#4D3423" />
+      <path
+        d="M76.5 141.253C85.5 149.2 94.5 149.2 103.5 141.253"
+        stroke="#4D3423"
+        stroke-width="4.2"
+        stroke-linecap="round"
+        fill="none"
+      />
+
+      <!-- Mondolan blangkon kanan -->
+      <ellipse
+        cx="149.088"
+        cy="31.6172"
+        rx="10.319"
+        ry="11.3511"
+        fill="#724221"
+        stroke="#0B1035"
+        stroke-width="3.6"
+        stroke-linejoin="round"
+      />
+
+      <!-- Isi motif batik parang blangkon (tanpa pattern eksternal agar aman di semua favicon browser) -->
+      <g clip-path="url(#blangkonClip)">
+        <rect x="20" y="0" width="140" height="58" fill="#4A2714" />
+        <path
+          d="M16 42 Q32 24 48 42 T80 42 T112 42 T144 42 T176 42"
+          stroke="#C5935E"
+          stroke-width="5.2"
+          stroke-linecap="round"
+          fill="none"
+        />
+        <path
+          d="M16 20 Q32 2 48 20 T80 20 T112 20 T144 20 T176 20"
+          stroke="#C5935E"
+          stroke-width="5.2"
+          stroke-linecap="round"
+          fill="none"
+        />
+        <circle cx="48" cy="14" r="2.6" fill="#EFE0C6" opacity="0.85" />
+        <circle cx="112" cy="14" r="2.6" fill="#EFE0C6" opacity="0.85" />
+        <circle cx="38" cy="36" r="2.4" fill="#EFE0C6" opacity="0.85" />
+        <circle cx="140" cy="36" r="2.4" fill="#EFE0C6" opacity="0.85" />
+      </g>
+
+      <!-- Garis jahitan & kerangka blangkon -->
+      <path
+        d="M23.8145 50.048C27.2542 17.7146 49.2684 1.54785 89.8572 1.54785C130.446 1.54785 152.46 17.7146 155.9 50.048L115.139 37.149C106.884 45.0604 98.4565 50.9079 89.8572 54.6916C80.9139 50.2199 72.4865 44.3724 64.5752 37.149L23.8145 50.048Z"
+        stroke="#0B1035"
+        stroke-width="3.6"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M32.0698 21.1543C49.5332 23.7341 70.6603 28.0313 95.4511 34.0458M95.4511 34.0458C113.631 38.4564 133.78 43.7904 155.9 50.048M95.4511 34.0458C117.737 28.8912 135.307 24.594 148.16 21.1543M95.4511 34.0458C75.3927 38.6853 51.5139 44.0193 23.8145 50.048M66.639 4.12769C72.4865 13.4149 80.2259 20.8103 89.8572 26.3139C99.8324 20.4664 107.916 13.071 114.107 4.12769"
+        stroke="#0B1035"
+        stroke-width="3.6"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M64.5753 37.1489L89.8573 24.7659L115.139 37.1489C106.884 45.4042 98.4566 51.2518 89.8573 54.6915C80.914 50.2198 72.4867 44.3723 64.5753 37.1489Z"
+        fill="#8C5426"
+        stroke="#0B1035"
+        stroke-width="3.6"
+        stroke-linejoin="round"
+      />
+    </g>
+  </g>
+</svg>

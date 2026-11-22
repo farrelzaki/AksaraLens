@@ -30,6 +30,7 @@ export function MateriBabPage() {
   // Ambil 5 tahapan untuk bab ini
   const daftarTahap = tahapDiBab(babNomor);
   const selesaiCount = daftarTahap.filter((t) => statusTahap.get(t.id) === 'selesai').length;
+  const babTerkunci = daftarTahap.every((t) => (statusTahap.get(t.id) ?? 'terkunci') === 'terkunci');
   const persen = daftarTahap.length > 0 ? Math.round((selesaiCount / daftarTahap.length) * 100) : 0;
 
   // Temukan tahap terbuka pertama untuk CTA bawah
@@ -106,17 +107,26 @@ export function MateriBabPage() {
   });
 
   // Data untuk lapisan dekorasi (pohon, bunga, maskot) — memakai status yang sama dengan node
-  const nodeDekorasi: NodeRoadmap[] = tahapan.map((t, idx) => ({
+  const nodeDekorasi: NodeRoadmap[] = tahapan.map((t) => ({
     cx: t.cx,
     cy: t.cy,
-    status: (t.tahapRef ? statusTahap.get(t.tahapRef.id) : undefined) ?? (idx === 0 ? 'terbuka' : 'terkunci'),
+    status: (t.tahapRef ? statusTahap.get(t.tahapRef.id) : undefined) ?? 'terkunci',
     jenis: t.tahapRef?.jenis,
   }));
-  const indexMaskot = indexAktif === -1 ? (selesaiCount === 0 ? 0 : -1) : indexAktif;
+  const indexMaskot = indexAktif === -1 ? (babTerkunci || selesaiCount === 0 ? 0 : -1) : indexAktif;
 
   const handleKlikTahap = (item?: TahapBelajar, isLocked?: boolean) => {
     if (isLocked || !item) return;
     navigate(item.jenis === 'tulis' ? `/latihan/${item.id}` : `/pelajaran/${item.id}`);
+  };
+
+  const handleKlikCtaBawah = () => {
+    if (babTerkunci) return;
+    if (selesaiCount === daftarTahap.length && babNomor < 3) {
+      navigate(`/belajar/materi/${babNomor + 1}`);
+      return;
+    }
+    handleKlikTahap(tahapPertama, false);
   };
 
   return (
@@ -190,12 +200,11 @@ export function MateriBabPage() {
         </span>
 
         {/* 5 Node Tahapan dengan penempatan presisi di titik S-curve */}
-        {tahapan.map((tahap, idx) => {
-          const titikStatus = tahap.tahapRef ? statusTahap.get(tahap.tahapRef.id) : idx === 0 ? 'terbuka' : 'terkunci';
+        {tahapan.map((tahap) => {
+          const titikStatus = tahap.tahapRef ? (statusTahap.get(tahap.tahapRef.id) ?? 'terkunci') : 'terkunci';
           const isTerbuka = titikStatus === 'terbuka' || titikStatus === 'selesai';
           const isSelesai = titikStatus === 'selesai';
-          // Tentukan node aktif: jika indexAktif >= 0 gunakan itu, jika tidak ada yg aktif dan ada selesai, node terakhir; default node 0
-          const isCurrent = indexAktif === -1 ? (selesaiCount === 0 && idx === 0) : idx === indexAktif;
+          const isCurrent = titikStatus === 'terbuka';
 
           return (
             <div
@@ -294,20 +303,40 @@ export function MateriBabPage() {
           <path d="M12 13a5 5 0 0 0 5-5c0-3-2-5-5-5s-5 2-5 5a5 5 0 0 0 5 5z" />
           <path d="M7 13a4 4 0 0 0-4-4c0-2.5 1.5-4 4-4" />
         </svg>
-        <span>Selesaikan satu langkah untuk membuka langkah berikutnya.</span>
+        <span>
+          {babTerkunci
+            ? `Selesaikan dahulu semua tahapan di Bab 0${babNomor - 1} untuk membuka bab ini.`
+            : 'Selesaikan satu langkah untuk membuka langkah berikutnya.'}
+        </span>
       </div>
 
       {/* 5. CTA Button Bawah */}
       <div className="bottom-cta-container">
         <button
           type="button"
-          className="btn-primary btn-materi-cta"
-          onClick={() => handleKlikTahap(tahapPertama, false)}
+          className={`btn-primary btn-materi-cta ${babTerkunci ? 'is-locked' : ''}`}
+          disabled={babTerkunci}
+          onClick={handleKlikCtaBawah}
         >
-          <span>{selesaiCount > 0 ? 'Lanjutkan belajar' : 'Mulai pelajaran pertama'}</span>
-          <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
-            <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-          </svg>
+          {babTerkunci && (
+            <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
+              <path
+                fillRule="evenodd"
+                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                clipRule="evenodd"
+              />
+            </svg>
+          )}
+          <span>
+            {babTerkunci
+              ? 'Selesaikan dahulu pembelajaran bab sebelumnya'
+              : 'Lanjutkan pembelajaran'}
+          </span>
+          {!babTerkunci && (
+            <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
+              <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          )}
         </button>
       </div>
     </div>

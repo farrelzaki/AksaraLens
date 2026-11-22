@@ -19,7 +19,7 @@ pembaca foto aksara cetak (U-Net + CRNN). Akun hanya untuk menyimpan progres; ta
 
 ## 2. Non-goals
 
-Gamifikasi (poin, streak, lencana) · audio/pelafalan · scan live · riwayat scan ·
+Gamifikasi selain koin & toko karakter Aksa (poin peringkat, streak, lencana, papan skor) · audio/pelafalan · scan live · riwayat scan ·
 penilaian urutan goresan · materi pasangan/murda/rekan/angka · latihan menulis Bab 2–3 ·
 scan tulisan tangan · kuis akhir bab · aplikasi native / PWA terpasang.
 
@@ -44,6 +44,7 @@ Total 12 titik, dibuka berurutan. Isi final diputuskan Emil (batas 18 Okt).
 | F5 | Scanner | Kamera/galeri → bingkai potong → baca di perangkat (≤ 3 dtk) → per baris Unicode + Latin per suku kata; pasangan ditandai "belum ada di materi"; Kaji lebih dalam = komponen + tautan materi; foto/hasil tidak disimpan/dikirim |
 | F6 | Akun & progres | Tamu di `localStorage`; email + Google (Supabase); migrasi tamu → akun (status terjauh, statistik dijumlah); antrean offline; keluar = tamu kosong |
 | F7 | Profil | 5 huruf rasio salah tertinggi (≥ 3 percobaan); akun (keluar, hapus); tentang & atribusi dataset/font |
+| F8 | Koin & Toko Aksa | Koin didapat dari jawaban benar pertama per soal (+5) dan titik selesai pertama kali (+20); mengulang titik/soal tidak memberi koin lagi; saldo tampil di Pelajaran dan Profil; 8 karakter Aksa, Aksa dasar gratis, 7 lainnya dibeli dengan koin (harga 50–200, data statis); karakter terkunci tampil dengan harga + konfirmasi beli; saldo tidak boleh negatif; koin & karakter milik tamu ikut migrasi ke akun (koin dijumlah, karakter digabung); tidak mengubah alur belajar dan tidak pernah menghalangi |
 
 Keadaan gagal scanner (izin kamera, tidak ada baris, keyakinan rendah, model memuat,
 tanpa WebGPU) ada di sumber, bagian F5.
@@ -57,6 +58,7 @@ tanpa WebGPU) ada di sumber, bagian F5.
 | BR-03 | RLS: pengguna hanya membaca/menulis barisnya sendiri; hapus akun menghapus semua barisnya |
 | BR-04 | Transliterasi: *ha* di awal kata dibaca *a*; keluaran per suku kata |
 | BR-05 | Atribusi wajib di halaman Tentang (CC BY 4.0, CC BY-SA 4.0, OFL, MIT) + sitasi NusaAksara; dataset non-komersial hanya untuk tugas kuliah |
+| BR-06 | Koin hanya dari belajar (jawaban benar pertama per soal, titik selesai pertama kali); tidak ada koin dari scanner; harga & hadiah = data statis; saldo dan karakter milik pengguna (tamu di `localStorage`, akun di Supabase dengan RLS); ditulis dari klien, jadi tidak tahan manipulasi (diterima untuk lingkup tugas kuliah) |
 
 ## 6. Kebutuhan Non-Fungsional
 

@@ -85,6 +85,7 @@ Aturan untuk agen:
 | T-09 | Navbar, jalur, layar pelajaran, materi | Choirun | `[ ]` | | `src/app/`, `src/features/belajar/`, `src/features/pelajaran/` | | 19 Okt–8 Nov |
 | T-10 | Soal + logika jalur (tamu) | Emil | `[ ]` | | `src/content/`, `src/progres/` | | 19 Okt–8 Nov |
 | T-11 | Scanner end-to-end di browser (detektor → CRNN → transliterasi) + sinkron label hasil ML | Farrel | `[x]` | `feature/scanner` | `src/ml/`, `src/aksara/`, `src/features/scanner/` | 2026-10-18 | Identik dengan notebook; uji di ponsel lanjut di T-02 |
+| T-13 | Gamifikasi: koin + toko karakter Aksa (F8) | Choirun | `[~]` | `feature/gamifikasi` | `docs/PRD.md`, `docs/ARSITEKTUR.md`, `src/progres/` (butuh persetujuan Emil), `src/features/profil/` (butuh persetujuan Farrel), UI | 2026-11-18 | disetujui Emil 2026-11-18; disetujui Farrel 2026-11-18 |
 
 Rincian langkah task (rencana, checkpoint) ditulis di `TASK.md` pribadi, bukan di sini.
 
@@ -213,7 +214,8 @@ Format: `- YYYY-MM-DD · T-xx · apa yang dikerjakan · hasil/verifikasi · cata
 
 ### Log Choirun
 
-- _[belum ada]_
+- 2026-11-18 · T-09 · Aksa "perjalanan" (roadmap & selingan) diganti dari kubah bergradasi 3D jadi kartun full body bergaya datar sama seperti onboarding (badan kecil, perut terang, kaki & tangan kapsul); API & animasi tetap · typecheck, build lulus; 6 pose dicek lewat render pratinjau · -
+- 2026-11-18 · T-13 · gamifikasi F8: PRD+kontrak (disetujui Emil & Farrel), `progres/koin.ts` + tes, dompet tamu/akun + migrasi `user_wallet`, UI koin & toko karakter di modal avatar · typecheck, build lulus; belum dicek visual di browser · Emil: terapkan `supabase/migrations/20261118000000_user_wallet.sql` ke Supabase (belum otomatis)
 
 ## 9. Mengubah File Ini
 

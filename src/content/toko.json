@@ -1,0 +1,13 @@
+{
+  "hadiah": { "soal": 5, "titik": 20 },
+  "avatar": [
+    { "id": 1, "harga": 0 },
+    { "id": 2, "harga": 50 },
+    { "id": 3, "harga": 75 },
+    { "id": 4, "harga": 75 },
+    { "id": 5, "harga": 200 },
+    { "id": 6, "harga": 125 },
+    { "id": 7, "harga": 150 },
+    { "id": 8, "harga": 100 }
+  ]
+}
