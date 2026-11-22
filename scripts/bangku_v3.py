@@ -14,6 +14,7 @@
 #                      beam search + model bahasa; status tetap dari bacaan greedy. BAHASA=0 mematikan.
 #   PEMBACA=           path ONNX pembaca B2 (PP-OCRv5 fine-tune, scripts/b2_paddle.py) sebagai ganti aksaralens_scanner.onnx
 #   CACHE_PEMBACA=     berkas pickle untuk menyimpan keluaran pembaca B2 antarjalan (sapuan ambang)
+#   EKOR=0            matikan perluasan kotak ke bawah untuk ekor sandhangan (pipeline_cerdas.perluas_ekor)
 #   AMBANG_FOTO=, AMBANG_AREA=   "terima,ragu" menimpa ambang penilai status (pipeline_cerdas.AMBANG)
 # Model dibaca dari public/models (atau AKSARALENS_MODEL) dan docs/random/klasifikator.
 import os, runpy, sys
@@ -133,7 +134,7 @@ JUMLAH = [0]
 
 
 def baca_dua_arah(gray, k, lurus=True, mode='foto'):
-    c = cerdas.potong(gray, k)
+    c = cerdas.potong_baca(gray, k)
     if c is None:
         return ('', 0.0)
     if lurus:

@@ -2,7 +2,7 @@
 // Salinan kotak_detektor() dan potong_dengan_detektor() dari notebook Model 2 (sel 36 & 39).
 
 import meta from './scanner_charset.json';
-import { bulat, komponenTerhubung, potong, resize, type Gray } from './gambar';
+import { bulat, komponenTerhubung, otsu, potong, resize, type Gray } from './gambar';
 
 const { sisi_terpanjang: SISI, kelipatan: KELIPATAN, skala_keluaran: SKALA, inti: INTI } = meta.detektor;
 
@@ -51,4 +51,38 @@ export function potongSatu(gray: Gray, [x0, y0, x1, y1]: Kotak): Gray | null {
   const c = Math.trunc(Math.max(0, x0 - h * 0.3));
   const d = Math.trunc(Math.min(gray.w, x1 + h * 0.3));
   return b - a >= 8 && d - c >= 8 ? potong(gray, c, a, d, b) : null;
+}
+
+export const EKOR_MAKS = 1.5; // perluasan kotak ke bawah maksimal, kali tinggi kotak
+const EKOR_MULAI = 0.8; // komponen tinta harus mulai di atas titik ini (kali tinggi, dari atas kotak): menempel ke badan aksara
+const EKOR_LEBAR = 0.5; // komponen lebih lebar dari ini (kali lebar kotak) = garis tabel/garis bawah, diabaikan
+
+/**
+ * Kotak detektor hanya menutup badan aksara; goresan yang menyambung ke bawah (ekor suku di sebagian font)
+ * ikut terpotong. Kotak diperpanjang ke bawah sampai ujung komponen tinta yang mulai di dalam badan baris.
+ * Sama dengan perluas_ekor di scripts/pipeline_cerdas.py.
+ */
+export function perluasEkor(gray: Gray, k: Kotak): Kotak {
+  const [x0, y0, x1, y1] = k;
+  const h = y1 - y0;
+  const a = Math.trunc(Math.max(0, y0));
+  const b = Math.trunc(Math.min(gray.h, y1 + EKOR_MAKS * h));
+  const c = Math.trunc(Math.max(0, x0));
+  const d = Math.trunc(Math.min(gray.w, x1));
+  if (b - a < 8 || d - c < 8 || b <= y1) return k;
+  const r = potong(gray, c, a, d, b);
+  const t = otsu(r);
+  let gelap = 0;
+  for (const v of r.d) if (v <= t) gelap++;
+  const tintaGelap = gelap <= r.d.length / 2;
+  const aktif = new Uint8Array(r.d.length);
+  for (let i = 0; i < aktif.length; i++) aktif[i] = r.d[i] <= t === tintaGelap ? 1 : 0;
+  let bawah = y1;
+  for (const m of komponenTerhubung(aktif, r.w, r.h)) {
+    if (m.w > EKOR_LEBAR * (d - c) || (m.y0 === 0 && m.h === b - a)) continue; // garis tabel, atau melintasi seluruh daerah
+    const atas = a + m.y0;
+    const ujung = a + m.y0 + m.h;
+    if (atas < y0 + EKOR_MULAI * h && ujung > y1) bawah = Math.max(bawah, ujung);
+  }
+  return bawah > y1 ? [x0, y0, x1, bawah] : k;
 }

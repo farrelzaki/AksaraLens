@@ -1,5 +1,6 @@
 # Rujukan Python untuk pipeline scanner cerdas (Tahap 1 RENCANA_SCANNER_CERDAS). Padanan web: src/ml/model2/.
 # Dipakai scripts/uji_set_c.py untuk menyetel ambang sebelum logikanya dipindah ke TypeScript.
+import os
 import numpy as np, cv2
 import rujukan_scanner as ruj
 
@@ -37,6 +38,42 @@ def potong(gray, k):
     a, b = int(max(0, y0 - m)), int(min(H, y1 + m))
     c, d = int(max(0, x0 - h * 0.3)), int(min(W, x1 + h * 0.3))
     return gray[a:b, c:d] if b - a >= 8 and d - c >= 8 else None
+
+
+EKOR_MAKS = 1.5      # perluasan kotak ke bawah maksimal, kali tinggi kotak (ekor suku/pasangan di bawah badan aksara)
+EKOR_MULAI = 0.8     # komponen tinta harus mulai di atas titik ini (kali tinggi, dari atas kotak): menempel ke badan aksara
+EKOR_LEBAR = 0.5     # komponen lebih lebar dari ini (kali lebar kotak) = garis tabel/garis bawah, diabaikan
+PAKAI_EKOR = os.environ.get('EKOR', '1') != '0'
+
+
+def perluas_ekor(gray, k):
+    # Kotak detektor hanya menutup badan aksara; goresan yang menyambung ke bawah (ekor suku di sebagian font) terpotong.
+    # Kotak diperpanjang ke bawah sampai ujung komponen tinta yang mulai di dalam badan baris. Sama dengan perluasEkor (saring.ts).
+    H, W = gray.shape
+    x0, y0, x1, y1 = k
+    h = y1 - y0
+    a, b = int(max(0, y0)), int(min(H, y1 + EKOR_MAKS * h))
+    c, d = int(max(0, x0)), int(min(W, x1))
+    if b - a < 8 or d - c < 8 or b <= y1:
+        return k
+    r = np.ascontiguousarray(gray[a:b, c:d])
+    t, _ = cv2.threshold(r, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    gelap = r <= t
+    tinta = gelap if gelap.sum() <= gelap.size / 2 else ~gelap
+    n, _, st, _ = cv2.connectedComponentsWithStats(tinta.astype(np.uint8), 8)
+    bawah = y1
+    for j in range(1, n):
+        cx, cy, cw, ch = st[j, :4]
+        atas, ujung = a + cy, a + cy + ch
+        if cw > EKOR_LEBAR * (d - c) or (cy == 0 and cy + ch == b - a):
+            continue  # garis tabel, atau goresan yang melintasi seluruh daerah
+        if atas < y0 + EKOR_MULAI * h and ujung > y1:
+            bawah = max(bawah, ujung)
+    return (x0, y0, x1, bawah) if bawah > y1 else k
+
+
+def potong_baca(gray, k):
+    return potong(gray, perluas_ekor(gray, k) if PAKAI_EKOR else k)
 
 
 def baca_potongan(crop):
@@ -132,7 +169,7 @@ def luruskan(crop):
 
 
 def baca_dua_arah(gray, k, lurus=True, mode='foto'):
-    c = potong(gray, k)
+    c = potong_baca(gray, k)
     if c is None:
         return ('', 0.0)
     if lurus:

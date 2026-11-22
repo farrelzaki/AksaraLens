@@ -52,8 +52,10 @@ function kirim<T>(p: Pesan): Promise<T> {
   });
 }
 
+const param = (k: string) => new URLSearchParams(location.search).get(k) ?? undefined;
+
 /** Memanaskan model di worker saat tab Scanner dibuka (tombol Baca nonaktif sampai selesai). */
-export const siapkanScanner = () => (MODE_DEMO ? Promise.resolve() : kirim<void>({ jenis: 'siapkan', ep: new URLSearchParams(location.search).get('ep') ?? undefined }));
+export const siapkanScanner = () => (MODE_DEMO ? Promise.resolve() : kirim<void>({ jenis: 'siapkan', ep: param('ep'), pembaca: param('pembaca') }));
 
 /** Hasil contoh untuk mode demo: tiga baris dari uji foto render (bukan hasil model). */
 const UNICODE_DEMO = ['ꦥꦤꦺꦴꦫꦩꦗꦮ', 'ꦧꦸꦏꦸꦱꦼꦏꦺꦴꦭꦃ', 'ꦗꦭꦤ꧀ꦩꦭꦶꦪꦺꦴꦧꦺꦴꦫꦺꦴ'];
@@ -64,7 +66,8 @@ function hasilDemo(): HasilScan {
 }
 
 /** Membaca foto (hanya area `bingkai`) di worker. Foto tidak disimpan dan tidak dikirim ke server. */
-export const bacaFoto = (foto: Blob, bingkai?: Bingkai, mode?: Mode) =>
+/** `longgar`: bingkai bidik kamera, dibaca sedikit melewati tepinya (lihat longgarkan di bingkai.ts). */
+export const bacaFoto = (foto: Blob, bingkai?: Bingkai, mode?: Mode, longgar?: boolean) =>
   MODE_DEMO
     ? new Promise<HasilScan>((selesai) => setTimeout(() => selesai(hasilDemo()), 1500))
-    : kirim<HasilScan>({ jenis: 'baca', foto, bingkai, mode });
+    : kirim<HasilScan>({ jenis: 'baca', foto, bingkai, mode, longgar });

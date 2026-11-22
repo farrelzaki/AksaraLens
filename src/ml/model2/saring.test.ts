@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { Kotak } from './detektor';
-import { MAKS_KOTAK, barisProyeksi, gabungBaris, iou, jumlahKonsonan, nilaiKualitas, nilaiStatus, perluEskalasi, pilihArea, pilihBaris, pilihEskalasi, pilihProyeksi, skorHasil, terapkanBukti, urutBaca, validitas, type Calon } from './saring';
+import { MAKS_KOTAK, barisProyeksi, gabungBaris, iou, jumlahKonsonan, nilaiKualitas, nilaiStatus, perluEskalasi, pilihArea, pilihBaris, pilihEskalasi, pilihProyeksi, saringInti, skorHasil, terapkanBukti, urutBaca, validitas, type Calon } from './saring';
 
 const calon = (unicode: string, keyakinan: number, kotak: Kotak, status: Calon['status'] = 'TERIMA'): Calon => ({ unicode, keyakinan, kotak, status });
 
@@ -205,5 +205,35 @@ describe('eskalasi resolusi', () => {
     expect(pilihEskalasi([a], [b])).toEqual([a]);
     expect(pilihEskalasi([b], [b])).toEqual([b]);
     expect(pilihEskalasi([], [])).toEqual([]);
+  });
+});
+
+describe('saringInti', () => {
+  const calon = (kotak: Kotak, status: Calon['status'] = 'TERIMA'): Calon => ({ unicode: 'ꦫꦒꦸ', keyakinan: 0.95, kotak, status });
+  // area baca 1000 x 600, bingkai bidik (inti) y 100..500
+  const inti: Kotak = [50, 100, 950, 500];
+
+  it('baris di dalam bingkai tetap TERIMA', () => {
+    expect(saringInti([calon([100, 200, 900, 300])], inti, 1000, 600)).toEqual([calon([100, 200, 900, 300])]);
+  });
+
+  it('baris yang sebagian besar di luar bingkai dibuang', () => {
+    expect(saringInti([calon([100, 10, 900, 120])], inti, 1000, 600)).toEqual([]);
+  });
+
+  it('baris di tepi bingkai yang ekornya menyentuh tepi area baca menjadi RAGU dan terpotong', () => {
+    const [b] = saringInti([calon([100, 420, 900, 600])], inti, 1000, 600);
+    expect(b.status).toBe('RAGU');
+    expect(b.terpotong).toBe(true);
+  });
+
+  it('cek terpotong memakai kotak yang dibaca (badan + ekor), bila ada', () => {
+    const [b] = saringInti([{ ...calon([100, 400, 900, 480]), kotakBaca: [100, 400, 900, 600] }], inti, 1000, 600);
+    expect(b.terpotong).toBe(true);
+  });
+
+  it('status RAGU dan TOLAK tidak naik', () => {
+    const [b] = saringInti([calon([0, 200, 900, 300], 'TOLAK')], inti, 1000, 600);
+    expect(b.status).toBe('TOLAK');
   });
 });
