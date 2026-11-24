@@ -90,6 +90,22 @@ kerangka panduan **di posisi aslinya** (radius 20 px CSS) memisahkan pada data s
 huruf setengah maks 0,90; cermin tidak terpisah (0,97–1,0). Belum dipasang: risiko menolak tulisan nyata yang tidak
 persis di atas panduan, perlu dicek dengan tulisan tangan nyata.
 
+**Sinyal tambahan tanpa latih ulang** (`scripts/uji_latihan/sinyal.cjs`, 740 sampel; tulisan benar diberi goyangan
+tangan acak 3–8 px). Di atas keputusan CNN ambang target 0,5:
+
+| Aturan tambahan | Benar diterima | Setengah lolos | Kurang seperempat lolos | Cermin lolos | Huruf lain lolos |
+| --- | --- | --- | --- | --- | --- |
+| tidak ada | 142/160 | 11/80 | 35/80 | 6/40 | 0/380 |
+| **rasio aspek tinta/panduan <= 1,5 (dipasang)** | **142/160** | **0/80** | 35/80 | 6/40 | 0/380 |
+| + panjang goresan ternormalisasi skala >= 0,7 | 127/160 | 0/80 | 4/80 | 4/40 | 0/380 |
+| + cek cermin (p cermin >= p asli) | 132/160 | 0/80 | 34/80 | 3/40 | 0/380 |
+
+Rasio aspek dipasang (`RASIO_ASPEK_MAKS`, status "belum utuh"). Panjang goresan dan cek cermin tidak dipasang: biaya
+pada tulisan benar lebih besar dari hasilnya, dan angka sintetis belum dikalibrasi dengan tulisan tangan nyata.
+UI sungguhan (`scripts/uji_latihan/ui.cjs`, tombol Periksa): benar 16/18 lulus, setengah 0/9, kurang seperempat 7/9.
+Huruf kurang seperempat dan cermin dibaca CNN sebagai huruf target; perbaikan mendasar = latih ulang Model 1 dengan
+contoh "bukan" berupa huruf terpotong/tercermin (praktik penolakan potongan karakter pada OCR).
+
 ## 3. Scanner pada foto nyata (Set C)
 
 Ulangi dengan `scripts/uji_set_c.py` dan `scripts/uji_nusa.py`. Rencana dan target: `docs/RENCANA_SCANNER_CERDAS.md`.

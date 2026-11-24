@@ -49,11 +49,19 @@ export function nilaiTulisan(
  */
 export const RECALL_MIN_TEMPLAT = 0.36;
 
+/**
+ * Batas proporsi tinta terhadap panduan (max(r, 1/r), r = lebar/tinggi tinta dibagi lebar/tinggi panduan).
+ * Huruf setengah jadi yang tetap dibaca CNN sebagai target punya rasio 1,54–1,85, tulisan utuh <= 1,39
+ * (scripts/uji_latihan/sinyal.cjs, 24 Nov: 0/80 huruf setengah lolos, tulisan benar diterima tidak berkurang).
+ */
+export const RASIO_ASPEK_MAKS = 1.5;
+
 export type KeputusanLatihan =
   | { status: 'benar'; skor: number }
   | { status: 'huruf_lain'; huruf: string }
   | { status: 'belum_terbaca' }
   | { status: 'melenceng' }
+  | { status: 'belum_utuh' }
   | { status: 'model_gagal' };
 
 /**
@@ -62,12 +70,14 @@ export type KeputusanLatihan =
  * - Coretan yang ditolak CNN ("belum terbaca") tidak pernah lulus, berapa pun skor templatnya (bug 18 Nov: garis
  *   diagonal/silang/zigzag lulus "99% sesuai" lewat templat saja).
  * - skor = keyakinan CNN dalam persen (bukan angka hiasan).
+ * - Proporsi tinta jauh dari panduan (RASIO_ASPEK_MAKS) -> belum utuh: menahan huruf setengah jadi yang lolos CNN.
  * cnn = null berarti model gagal dimuat/dijalankan: pengguna diminta mencoba lagi, bukan diluluskan.
  */
-export function putuskanLatihan(cnn: HasilCek | null, recallTemplat: number): KeputusanLatihan {
+export function putuskanLatihan(cnn: HasilCek | null, recallTemplat: number, rasioAspek = 1): KeputusanLatihan {
   if (!cnn) return { status: 'model_gagal' };
   if (cnn.jenis === 'terbaca_lain') return { status: 'huruf_lain', huruf: cnn.huruf };
   if (cnn.jenis === 'belum_terbaca') return { status: 'belum_terbaca' };
+  if (rasioAspek > RASIO_ASPEK_MAKS) return { status: 'belum_utuh' };
   if (recallTemplat < RECALL_MIN_TEMPLAT) return { status: 'melenceng' };
   return { status: 'benar', skor: Math.round(cnn.keyakinan * 100) };
 }

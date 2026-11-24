@@ -40,6 +40,8 @@ interface EvaluasiKanvas {
   precision: number;
   skor: number;
   alasan?: 'belum_lengkap' | 'melenceng';
+  /** max(r, 1/r), r = proporsi (lebar/tinggi) tinta / proporsi panduan; huruf setengah jadi -> ~1,6–1,9 */
+  rasioAspek?: number;
 }
 
 function resolveTahapTulis(rawId?: string): Tahap {
@@ -245,6 +247,7 @@ function evaluasiGoresanKanvas(
   if (rasioAspect > 2.35) {
     return {
       benar: false,
+      rasioAspek: rasioAspect,
       recall: 0.25,
       precision: 0.3,
       skor: 28,
@@ -270,6 +273,7 @@ function evaluasiGoresanKanvas(
   if (recall < 0.48) {
     return {
       benar: false,
+      rasioAspek: rasioAspect,
       recall,
       precision,
       skor,
@@ -280,6 +284,7 @@ function evaluasiGoresanKanvas(
   if (precision < 0.44 || bestF1 < 0.5) {
     return {
       benar: false,
+      rasioAspek: rasioAspect,
       recall,
       precision,
       skor,
@@ -289,6 +294,7 @@ function evaluasiGoresanKanvas(
 
   return {
     benar: true,
+    rasioAspek: rasioAspect,
     recall,
     precision,
     skor: Math.max(82, skor),
@@ -529,7 +535,7 @@ export function LatihanPage() {
         } catch {
           hasilModel = null;
         }
-        const keputusan = putuskanLatihan(hasilModel, evalKanvas.recall);
+        const keputusan = putuskanLatihan(hasilModel, evalKanvas.recall, evalKanvas.rasioAspek);
         if (keputusan.status === 'model_gagal') {
           setStatusCek('model_gagal');
           setPesanDetail(
@@ -557,6 +563,11 @@ export function LatihanPage() {
           setStatusCek('huruf_lain');
           setPesanDetail(
             `Tulisanmu terbaca seperti aksara “${keputusan.huruf}”. Hapus lalu ikuti bentuk “${labelLatin}”.`
+          );
+        } else if (keputusan.status === 'belum_utuh') {
+          setStatusCek('belum_lengkap');
+          setPesanDetail(
+            `Sepertinya ada bagian aksara “${labelLatin}” yang belum ditulis. Lengkapi semua bagiannya mengikuti bayangan panduan.`
           );
         } else if (keputusan.status === 'melenceng') {
           setStatusCek('melenceng');

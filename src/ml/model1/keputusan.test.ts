@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { AMBANG_AWAL, AMBANG_TARGET, LABEL_MODEL1, RECALL_MIN_TEMPLAT, nilaiTulisan, putuskanLatihan } from './keputusan';
+import { AMBANG_AWAL, AMBANG_TARGET, LABEL_MODEL1, RASIO_ASPEK_MAKS, RECALL_MIN_TEMPLAT, nilaiTulisan, putuskanLatihan } from './keputusan';
 
 const prob = (huruf: string, p: number) => {
   const v = new Array(LABEL_MODEL1.length).fill((1 - p) / (LABEL_MODEL1.length - 1));
@@ -53,6 +53,11 @@ describe('putuskanLatihan', () => {
   it('CNN benar tetapi tinta jauh dari panduan -> melenceng', () => {
     expect(putuskanLatihan(benar, RECALL_MIN_TEMPLAT - 0.01)).toEqual({ status: 'melenceng' });
     expect(putuskanLatihan(benar, RECALL_MIN_TEMPLAT)).toMatchObject({ status: 'benar' });
+  });
+
+  it('huruf setengah jadi (proporsi beda dari panduan) -> belum utuh walau CNN membaca target', () => {
+    expect(putuskanLatihan(benar, 0.9, 1.65)).toEqual({ status: 'belum_utuh' });
+    expect(putuskanLatihan(benar, 0.9, RASIO_ASPEK_MAKS)).toMatchObject({ status: 'benar' });
   });
 
   it('model gagal tidak meluluskan', () => {
