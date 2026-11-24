@@ -75,6 +75,21 @@ Pada ba dan nga CNN menebak benar (peringkat 1 di 7/8) tetapi kurang yakin (0,24
 UI setelah perbaikan + t = 0,5: coretan 0/12 lulus, jiplakan 11/12 (gagal: nga besar). Batas bukti: jiplakan sintetis,
 bukan tulisan tangan nyata; perlu dicek dengan tulisan kanvas teman (sekitar 5 per huruf).
 
+**Tulisan salah selain coretan** (`scripts/uji_latihan/salah.cjs`, 20 huruf target, keputusan CNN saja = batas atas):
+
+| Jenis tulisan salah | Lolos, ambang target 0,7 | 0,6 | **0,5 (usulan)** |
+| --- | --- | --- | --- |
+| Menulis huruf lain (19 x 2 per target) | 0/760 | 0/760 | **0/760** |
+| Huruf setengah (separuh kiri/kanan/atas/bawah) | 6/80 (7,5%) | 7/80 | 12/80 (15%) |
+| Huruf dicerminkan kiri-kanan | 4/40 (10%) | 5/40 | 5/40 (12,5%) |
+| Pembanding: huruf benar (4 variasi) | 64/80 (80%) | 69/80 | 76/80 (95%) |
+
+Huruf setengah dan cermin sudah lolos dari CNN pada 0,7 (keterbatasan model, bukan akibat ambang). Penjaga templat
+sekarang tidak menahannya: recall templat ternormalisasi untuk huruf setengah yang lolos CNN = 0,82–1,0. Cakupan
+kerangka panduan **di posisi aslinya** (radius 20 px CSS) memisahkan pada data sintetis: huruf benar min 0,95,
+huruf setengah maks 0,90; cermin tidak terpisah (0,97–1,0). Belum dipasang: risiko menolak tulisan nyata yang tidak
+persis di atas panduan, perlu dicek dengan tulisan tangan nyata.
+
 ## 3. Scanner pada foto nyata (Set C)
 
 Ulangi dengan `scripts/uji_set_c.py` dan `scripts/uji_nusa.py`. Rencana dan target: `docs/RENCANA_SCANNER_CERDAS.md`.
