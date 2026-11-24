@@ -47,6 +47,65 @@ Keterbatasan:
 
 Keputusan ambang tetap milik Farrel (batas 8 Nov, `docs/ARSITEKTUR.md` bagian 7).
 
+## 2b. Latihan menulis di aplikasi: bug coretan diterima dan ambang sadar-target (24 Nov 2026)
+
+**Bug (laporan Farrel, produksi):** garis diagonal di kanvas "ba" diterima "99% sesuai". Diuji di dev server (Chromium,
+layar 390x844, dpr 2,75; `scripts/uji_latihan/coret.cjs`): 6 jenis coretan x 3 = 18; CNN menolak **18/18**, tetapi
+aplikasi meluluskan **12/18** (diagonal, silang, lingkaran, zigzag; garis datar/tegak tertolak oleh cek rasio aspek).
+Penyebab: sejak `6a024c5` (18 Nov) `LatihanPage` meluluskan bila pencocokan templat lulus, walau CNN menjawab "belum
+terbaca"; templat menormalkan tinta ke kotak yang sama + dilasi lebar, sehingga coretan yang melintasi kotak huruf
+lolos. Persen yang tampil dipaksa >= 85 (`Math.max(85, ...)`), dan "25% bagian aksara" adalah angka tetap.
+
+**Perbaikan (PR fix/latihan-keputusan-cnn):** `putuskanLatihan()` (fungsi murni, dites) — Bab 1 lulus hanya bila CNN
+membaca huruf target; templat hanya penjaga tambahan (recall >= 0,36); model gagal dimuat -> minta coba lagi, bukan
+lulus; skor = keyakinan CNN. Bab 2–3 (tanpa kelas Model 1, non-goal PRD) tidak diubah.
+
+**Ambang sadar-target (usulan, menunggu Farrel):** tulisan yang menjiplak panduan (kerangka Noto Sans Javanese x 8
+variasi tangan, 20 huruf = 160) vs 600 coretan acak (garis, silang, elips, zigzag, kurva acak, 3 garis), diterima bila
+tebakan teratas = target dan p >= t (`scripts/uji_latihan/ambang.cjs`):
+
+| t | Jiplakan diterima | Huruf lemah (< 6/8) | Coretan lolos (target mana pun) |
+| --- | --- | --- | --- |
+| 0,7 (keputusan 19 Okt) | 131/160 = 82% | pa 5, dha 5, ba 1, nga 0 | 0/600 |
+| 0,6 | 136/160 = 85% | dha 5, ba 2, nga 1 | 0/600 |
+| **0,5 (usulan)** | **145/160 = 91%** | dha 5, ba 5, nga 4 | **0/600** |
+| 0,4 | 152/160 = 95% | ba 5, nga 5 | 2/600 |
+
+Pada ba dan nga CNN menebak benar (peringkat 1 di 7/8) tetapi kurang yakin (0,24–0,77). Huruf lain tetap butuh 0,7.
+UI setelah perbaikan + t = 0,5: coretan 0/12 lulus, jiplakan 11/12 (gagal: nga besar). Batas bukti: jiplakan sintetis,
+bukan tulisan tangan nyata; perlu dicek dengan tulisan kanvas teman (sekitar 5 per huruf).
+
+**Tulisan salah selain coretan** (`scripts/uji_latihan/salah.cjs`, 20 huruf target, keputusan CNN saja = batas atas):
+
+| Jenis tulisan salah | Lolos, ambang target 0,7 | 0,6 | **0,5 (usulan)** |
+| --- | --- | --- | --- |
+| Menulis huruf lain (19 x 2 per target) | 0/760 | 0/760 | **0/760** |
+| Huruf setengah (separuh kiri/kanan/atas/bawah) | 6/80 (7,5%) | 7/80 | 12/80 (15%) |
+| Huruf dicerminkan kiri-kanan | 4/40 (10%) | 5/40 | 5/40 (12,5%) |
+| Pembanding: huruf benar (4 variasi) | 64/80 (80%) | 69/80 | 76/80 (95%) |
+
+Huruf setengah dan cermin sudah lolos dari CNN pada 0,7 (keterbatasan model, bukan akibat ambang). Penjaga templat
+sekarang tidak menahannya: recall templat ternormalisasi untuk huruf setengah yang lolos CNN = 0,82–1,0. Cakupan
+kerangka panduan **di posisi aslinya** (radius 20 px CSS) memisahkan pada data sintetis: huruf benar min 0,95,
+huruf setengah maks 0,90; cermin tidak terpisah (0,97–1,0). Belum dipasang: risiko menolak tulisan nyata yang tidak
+persis di atas panduan, perlu dicek dengan tulisan tangan nyata.
+
+**Sinyal tambahan tanpa latih ulang** (`scripts/uji_latihan/sinyal.cjs`, 740 sampel; tulisan benar diberi goyangan
+tangan acak 3–8 px). Di atas keputusan CNN ambang target 0,5:
+
+| Aturan tambahan | Benar diterima | Setengah lolos | Kurang seperempat lolos | Cermin lolos | Huruf lain lolos |
+| --- | --- | --- | --- | --- | --- |
+| tidak ada | 142/160 | 11/80 | 35/80 | 6/40 | 0/380 |
+| **rasio aspek tinta/panduan <= 1,5 (dipasang)** | **142/160** | **0/80** | 35/80 | 6/40 | 0/380 |
+| + panjang goresan ternormalisasi skala >= 0,7 | 127/160 | 0/80 | 4/80 | 4/40 | 0/380 |
+| + cek cermin (p cermin >= p asli) | 132/160 | 0/80 | 34/80 | 3/40 | 0/380 |
+
+Rasio aspek dipasang (`RASIO_ASPEK_MAKS`, status "belum utuh"). Panjang goresan dan cek cermin tidak dipasang: biaya
+pada tulisan benar lebih besar dari hasilnya, dan angka sintetis belum dikalibrasi dengan tulisan tangan nyata.
+UI sungguhan (`scripts/uji_latihan/ui.cjs`, tombol Periksa): benar 16/18 lulus, setengah 0/9, kurang seperempat 7/9.
+Huruf kurang seperempat dan cermin dibaca CNN sebagai huruf target; perbaikan mendasar = latih ulang Model 1 dengan
+contoh "bukan" berupa huruf terpotong/tercermin (praktik penolakan potongan karakter pada OCR).
+
 ## 3. Scanner pada foto nyata (Set C)
 
 Ulangi dengan `scripts/uji_set_c.py` dan `scripts/uji_nusa.py`. Rencana dan target: `docs/RENCANA_SCANNER_CERDAS.md`.

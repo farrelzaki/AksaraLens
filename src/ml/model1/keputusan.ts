@@ -12,6 +12,14 @@ export const BUKAN_HURUF = 'bukan';
  */
 export const AMBANG_AWAL = 0.7;
 
+/**
+ * Ambang bila tebakan teratas CNN = huruf target (latihan tahu targetnya). Usulan 24 Nov, menunggu persetujuan Farrel:
+ * tulisan yang menjiplak panduan (kerangka Noto Sans Javanese x 8 variasi, 20 huruf) diterima 82% -> 91% (ba 1/8 -> 5/8,
+ * nga 0/8 -> 4/8: CNN menebak benar tetapi kurang yakin), sedangkan 600 coretan acak tetap 0 yang lolos untuk target mana pun.
+ * "Terbaca huruf lain" tetap memakai AMBANG_AWAL.
+ */
+export const AMBANG_TARGET = 0.5;
+
 export type HasilCek =
   | { jenis: 'benar'; keyakinan: number }
   | { jenis: 'terbaca_lain'; huruf: string; keyakinan: number }
@@ -22,13 +30,54 @@ export function nilaiTulisan(
   target: string,
   ambang = AMBANG_AWAL,
   label: readonly string[] = LABEL_MODEL1,
+  ambangTarget = AMBANG_TARGET,
 ): HasilCek {
   let teratas = 0;
   for (let i = 1; i < prob.length; i++) if (prob[i] > prob[teratas]) teratas = i;
   const huruf = label[teratas];
   const keyakinan = prob[teratas];
 
-  if (keyakinan < ambang || huruf === BUKAN_HURUF) return { jenis: 'belum_terbaca' };
-  if (huruf === target) return { jenis: 'benar', keyakinan };
+  if (huruf === BUKAN_HURUF) return { jenis: 'belum_terbaca' };
+  if (huruf === target) return keyakinan >= ambangTarget ? { jenis: 'benar', keyakinan } : { jenis: 'belum_terbaca' };
+  if (keyakinan < ambang) return { jenis: 'belum_terbaca' };
   return { jenis: 'terbaca_lain', huruf, keyakinan };
+}
+
+/**
+ * Batas bawah recall templat (tinta pengguna menutupi bentuk panduan) untuk tulisan yang sudah dibaca benar oleh CNN.
+ * Hanya penjaga tambahan: CNN tetap hakim utama, templat tidak pernah cukup untuk meluluskan sendirian.
+ */
+export const RECALL_MIN_TEMPLAT = 0.36;
+
+/**
+ * Batas proporsi tinta terhadap panduan (max(r, 1/r), r = lebar/tinggi tinta dibagi lebar/tinggi panduan).
+ * Huruf setengah jadi yang tetap dibaca CNN sebagai target punya rasio 1,54–1,85, tulisan utuh <= 1,39
+ * (scripts/uji_latihan/sinyal.cjs, 24 Nov: 0/80 huruf setengah lolos, tulisan benar diterima tidak berkurang).
+ */
+export const RASIO_ASPEK_MAKS = 1.5;
+
+export type KeputusanLatihan =
+  | { status: 'benar'; skor: number }
+  | { status: 'huruf_lain'; huruf: string }
+  | { status: 'belum_terbaca' }
+  | { status: 'melenceng' }
+  | { status: 'belum_utuh' }
+  | { status: 'model_gagal' };
+
+/**
+ * Keputusan latihan menulis Bab 1 (huruf punya kode kelas Model 1).
+ * - Lulus hanya bila CNN membaca huruf target (keyakinan >= AMBANG_TARGET di nilaiTulisan) DAN tinta cukup menutupi panduan.
+ * - Coretan yang ditolak CNN ("belum terbaca") tidak pernah lulus, berapa pun skor templatnya (bug 18 Nov: garis
+ *   diagonal/silang/zigzag lulus "99% sesuai" lewat templat saja).
+ * - skor = keyakinan CNN dalam persen (bukan angka hiasan).
+ * - Proporsi tinta jauh dari panduan (RASIO_ASPEK_MAKS) -> belum utuh: menahan huruf setengah jadi yang lolos CNN.
+ * cnn = null berarti model gagal dimuat/dijalankan: pengguna diminta mencoba lagi, bukan diluluskan.
+ */
+export function putuskanLatihan(cnn: HasilCek | null, recallTemplat: number, rasioAspek = 1): KeputusanLatihan {
+  if (!cnn) return { status: 'model_gagal' };
+  if (cnn.jenis === 'terbaca_lain') return { status: 'huruf_lain', huruf: cnn.huruf };
+  if (cnn.jenis === 'belum_terbaca') return { status: 'belum_terbaca' };
+  if (rasioAspek > RASIO_ASPEK_MAKS) return { status: 'belum_utuh' };
+  if (recallTemplat < RECALL_MIN_TEMPLAT) return { status: 'melenceng' };
+  return { status: 'benar', skor: Math.round(cnn.keyakinan * 100) };
 }
