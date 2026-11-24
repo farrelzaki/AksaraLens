@@ -127,7 +127,7 @@ export function MaskotPerjalanan({ aktivitas, bab, cermin = false }: Props) {
 
   return (
     <svg
-      className={`aksa-3d rm-aksa rm-aksa-${aktivitas} ${cermin ? 'rm-aksa-cermin' : ''}`}
+      className={`rm-aksa rm-aksa-${aktivitas} ${cermin ? 'rm-aksa-cermin' : ''}`}
       viewBox="-8 -24 112 108"
       width={UKURAN_MASKOT.lebar}
       height={UKURAN_MASKOT.tinggi}

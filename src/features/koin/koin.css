@@ -57,30 +57,99 @@
 
 .koin-modal-saldo {
   display: flex;
-  justify-content: flex-end;
-  margin: -4px 0 10px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 10px 6px 12px;
+  background: #f7f3eb;
+  border: 1px solid #ece4d7;
+  border-radius: 14px;
 }
 
-.koin-kunci-lencana {
-  position: absolute;
-  top: 6px;
-  right: 6px;
+.koin-saldo-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #685a4e;
+}
+
+.avatar-preview-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.koin-preview-harga,
+.koin-preview-status {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
-  padding: 2px 7px 2px 3px;
-  background: #ffffff;
-  border: 1px solid #efeae3;
+  gap: 4px;
+  padding: 3px 9px 3px 5px;
   border-radius: 999px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11.5px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.koin-preview-harga {
+  background: #fff4dc;
+  border: 1px solid #f0cf85;
+  color: #7a4a0a;
+}
+
+.koin-preview-harga.kurang {
+  background: #fdf1ee;
+  border-color: #e8b3aa;
+  color: #8b3126;
+}
+
+.koin-preview-status {
+  padding: 3px 9px;
+  background: #e8efe0;
+  color: #46612e;
+}
+
+/* Harga koin di kartu grid — selalu berada di alur tata letak bawah nama agar tidak pernah tertutup avatar 3D */
+.koin-harga-pil {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 2px 7px 2px 4px;
+  border-radius: 999px;
+  background: #fff4dc;
+  border: 1px solid #f0cf85;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 10.5px;
   font-weight: 800;
-  color: #43281c;
+  color: #7a4a0a;
+  line-height: 1.2;
 }
 
-.avatar-choice-card.koin-terkunci .avatar-thumb-img {
-  filter: grayscale(0.85) brightness(0.92);
-  opacity: 0.75;
+.koin-harga-pil.kurang {
+  background: #f9f3eb;
+  border-color: #e2d8c9;
+  color: #685a4e;
+}
+
+.koin-milik-label {
+  position: relative;
+  z-index: 3;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #556e37;
+  line-height: 1.5;
+}
+
+.avatar-choice-card.koin-terkunci .avatar-thumb-img,
+.avatar-choice-card.koin-terkunci .avatar-thumb-img.aksa-3d {
+  filter: url(#aksa-3d) grayscale(0.55) brightness(0.95) drop-shadow(0 4px 6px rgba(67, 40, 28, 0.12));
+  opacity: 0.86;
 }
 
 .koin-pesan {

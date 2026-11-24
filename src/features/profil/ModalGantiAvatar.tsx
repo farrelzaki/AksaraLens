@@ -96,6 +96,7 @@ export function ModalGantiAvatar({
         </div>
 
         <div className="koin-modal-saldo">
+          <span className="koin-saldo-label">Saldo koinmu</span>
           <LencanaKoin />
         </div>
 
@@ -114,9 +115,21 @@ export function ModalGantiAvatar({
             />
           </div>
           <div className="avatar-preview-info">
-            <span className="avatar-preview-name">
-              {currentPreview.id === 1 ? 'Aksa' : currentPreview.nama}
-            </span>
+            <div className="avatar-preview-top-row">
+              <span className="avatar-preview-name">
+                {currentPreview.id === 1 ? 'Aksa' : currentPreview.nama}
+              </span>
+              {!bisaDipakai(currentPreview.id) ? (
+                <span className={`koin-preview-harga ${kurang > 0 ? 'kurang' : ''}`}>
+                  <IkonKoin ukuran={14} />
+                  <span>{harga}</span>
+                </span>
+              ) : (
+                <span className="koin-preview-status">
+                  {currentPreview.id === activeAvatarId ? 'Dipakai' : 'Dimiliki'}
+                </span>
+              )}
+            </div>
             <span className="avatar-preview-sub">{currentPreview.sub}</span>
           </div>
         </div>
@@ -126,21 +139,17 @@ export function ModalGantiAvatar({
           {ICON_PROFIL.map((ic) => {
             const isSelected = tempAvatarId === ic.id;
             const terkunci = !bisaDipakai(ic.id);
+            const hargaItem = hargaAvatar(ic.id) ?? 0;
+            const koinCukup = koin >= hargaItem;
             return (
               <button
                 key={ic.id}
                 type="button"
                 className={`avatar-choice-card ${isSelected ? 'selected' : ''} ${terkunci ? 'koin-terkunci' : ''}`}
                 onClick={() => pilihAvatar(ic.id)}
-                aria-label={terkunci ? `${ic.nama}, terkunci, ${hargaAvatar(ic.id) ?? 0} koin` : ic.nama}
+                aria-label={terkunci ? `${ic.nama}, terkunci, ${hargaItem} koin` : ic.nama}
                 aria-pressed={isSelected}
               >
-                {terkunci && (
-                  <span className="koin-kunci-lencana" aria-hidden="true">
-                    <IkonKoin ukuran={14} />
-                    {hargaAvatar(ic.id) ?? 0}
-                  </span>
-                )}
                 {isSelected && (
                   <div className="avatar-check-badge">
                     <svg viewBox="0 0 20 20" fill="currentColor" width="11" height="11">
@@ -164,6 +173,16 @@ export function ModalGantiAvatar({
                   />
                 </div>
                 <span className="avatar-choice-name">{ic.nama}</span>
+                {terkunci ? (
+                  <span className={`koin-harga-pil ${koinCukup ? 'cukup' : 'kurang'}`} aria-hidden="true">
+                    <IkonKoin ukuran={12} />
+                    <span>{hargaItem}</span>
+                  </span>
+                ) : (
+                  <span className="koin-milik-label" aria-hidden="true">
+                    {ic.id === activeAvatarId ? 'Aktif' : 'Dimiliki'}
+                  </span>
+                )}
               </button>
             );
           })}

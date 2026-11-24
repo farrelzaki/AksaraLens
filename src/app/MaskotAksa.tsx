@@ -7,25 +7,34 @@ import { useEffect, useId, useRef, useState } from 'react';
  */
 export function Aksa3DDefs() {
   return (
-    <svg width="0" height="0" style={{ position: 'absolute' }} aria-hidden="true" focusable="false">
+    <svg
+      width="1"
+      height="1"
+      style={{ position: 'absolute', opacity: 0, pointerEvents: 'none' }}
+      aria-hidden="true"
+      focusable="false"
+    >
       <defs>
-        <filter id="aksa-3d" x="-4%" y="-4%" width="108%" height="108%" colorInterpolationFilters="sRGB" primitiveUnits="objectBoundingBox">
-          <feGaussianBlur in="SourceAlpha" stdDeviation="0.045" result="bulat" />
-          <feDiffuseLighting in="bulat" surfaceScale="1.6" diffuseConstant="1" lightingColor="#ffffff" result="cahaya">
-            <feDistantLight azimuth="235" elevation="58" />
-          </feDiffuseLighting>
-          <feComponentTransfer in="cahaya" result="cahayaNorm">
-            <feFuncR type="linear" slope="1.16" />
-            <feFuncG type="linear" slope="1.16" />
-            <feFuncB type="linear" slope="1.16" />
-          </feComponentTransfer>
-          <feComposite in="cahayaNorm" in2="SourceAlpha" operator="in" result="cahayaPotong" />
-          <feBlend in="SourceGraphic" in2="cahayaPotong" mode="multiply" result="berbayang" />
-          <feSpecularLighting in="bulat" surfaceScale="1.6" specularConstant="0.35" specularExponent="30" lightingColor="#ffffff" result="kilau">
-            <feDistantLight azimuth="235" elevation="55" />
-          </feSpecularLighting>
-          <feComposite in="kilau" in2="SourceAlpha" operator="in" result="kilauPotong" />
-          <feComposite in="berbayang" in2="kilauPotong" operator="arithmetic" k1="0" k2="1" k3="0.4" k4="0" />
+        <filter id="aksa-3d" x="-6%" y="-6%" width="112%" height="112%" colorInterpolationFilters="sRGB">
+          {/* Bayangan dalam lembut di tepi bawah-kanan untuk kesan clay menggembung (aman di semua GPU mobile) */}
+          <feFlood floodColor="#3A2315" floodOpacity="0.16" result="warnaGelap" />
+          <feOffset in="SourceAlpha" dx="-2.5" dy="-3" result="geserGelap" />
+          <feGaussianBlur in="geserGelap" stdDeviation="3" result="kaburGelap" />
+          <feComposite in="SourceAlpha" in2="kaburGelap" operator="out" result="tepiGelap" />
+          <feComposite in="warnaGelap" in2="tepiGelap" operator="in" result="bayangDalam" />
+
+          {/* Kilau cahaya lembut di tepi atas-kiri */}
+          <feFlood floodColor="#FFFFFF" floodOpacity="0.34" result="warnaTerang" />
+          <feOffset in="SourceAlpha" dx="2.5" dy="2.5" result="geserTerang" />
+          <feGaussianBlur in="geserTerang" stdDeviation="2.5" result="kaburTerang" />
+          <feComposite in="SourceAlpha" in2="kaburTerang" operator="out" result="tepiTerang" />
+          <feComposite in="warnaTerang" in2="tepiTerang" operator="in" result="kilauDalam" />
+
+          <feMerge>
+            <feMergeNode in="SourceGraphic" />
+            <feMergeNode in="bayangDalam" />
+            <feMergeNode in="kilauDalam" />
+          </feMerge>
         </filter>
       </defs>
     </svg>
