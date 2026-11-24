@@ -13,6 +13,7 @@ import {
   periksaTulisan,
   siapkanPemeriksa,
 } from '../../ml/model1/periksa';
+import { putuskanLatihan } from '../../ml/model1/keputusan';
 import { useProgres } from '../../progres/ProgresProvider';
 import { MaskotSplash } from '../../app/MaskotAksa';
 import { itemTulis } from '../pelajaran/bankSoal';
@@ -29,6 +30,8 @@ type StatusVerifikasi =
   | 'belum_lengkap'
   | 'melenceng'
   | 'huruf_lain'
+  | 'belum_terbaca'
+  | 'model_gagal'
   | 'benar';
 
 interface EvaluasiKanvas {
@@ -245,7 +248,8 @@ function evaluasiGoresanKanvas(
       recall: 0.25,
       precision: 0.3,
       skor: 28,
-      alasan: 'belum_lengkap',
+      // bukan hasil ukur: jangan ditampilkan sebagai "25% bagian aksara"
+      alasan: 'melenceng',
     };
   }
 
@@ -313,6 +317,7 @@ export function LatihanPage() {
   const [statusCek, setStatusCek] = useState<StatusVerifikasi>('idle');
   const [pesanDetail, setPesanDetail] = useState<string | null>(null);
   const [skorAkurasi, setSkorAkurasi] = useState<number>(0);
+  const [modelSiap, setModelSiap] = useState(false);
 
   const [tampilCaraMenulis, setTampilCaraMenulis] = useState(false);
   const [putarKey, setPutarKey] = useState(0);
@@ -328,7 +333,9 @@ export function LatihanPage() {
 
   // Pra-muat Model 1 ONNX untuk evaluasi Bab 1
   useEffect(() => {
-    siapkanPemeriksa().catch(() => {});
+    siapkanPemeriksa()
+      .then(() => setModelSiap(true))
+      .catch(() => {});
     return () => {
       if (autoHideTimerRef.current !== null) {
         window.clearTimeout(autoHideTimerRef.current);
@@ -509,28 +516,65 @@ export function LatihanPage() {
       // Evaluasi kesesuaian goresan terhadap template aksara target
       const evalKanvas = evaluasiGoresanKanvas(canvas, unicodeChar);
 
-      // Dukungan Model 1 ONNX untuk 20 huruf dasar Bab 1
-      let modelBenar = false;
-      let terbacaHurufLain: string | null = null;
+      // Bab 1 (20 huruf dasar, punya kode kelas Model 1): CNN adalah hakim. Templat hanya penjaga tambahan
+      // (tinta harus menutupi panduan) dan tidak pernah meluluskan sendirian; lihat putuskanLatihan.
       if (targetKode) {
+        let hasilModel: Awaited<ReturnType<typeof periksaTulisan>> = null;
         try {
-          const hasilModel = await periksaTulisan(canvas, targetKode);
-          if (hasilModel?.jenis === 'benar' && evalKanvas.recall >= 0.36) {
-            modelBenar = true;
-          } else if (
-            hasilModel?.jenis === 'terbaca_lain' &&
-            hasilModel.keyakinan >= 0.78 &&
-            evalKanvas.recall < 0.72
-          ) {
-            terbacaHurufLain = hasilModel.huruf;
+          if (!modelSiap) {
+            await siapkanPemeriksa();
+            setModelSiap(true);
           }
+          hasilModel = await periksaTulisan(canvas, targetKode);
         } catch {
-          // Model ONNX tidak wajib bila belum diunduh secara lokal
+          hasilModel = null;
         }
+        const keputusan = putuskanLatihan(hasilModel, evalKanvas.recall);
+        if (keputusan.status === 'model_gagal') {
+          setStatusCek('model_gagal');
+          setPesanDetail(
+            'Pemeriksa tulisan belum siap. Pastikan internet tersambung, lalu tekan "Periksa tulisan" lagi.'
+          );
+          return;
+        }
+        if (keputusan.status === 'benar') {
+          setSkorAkurasi(keputusan.skor);
+          setStatusCek('benar');
+          setPesanDetail(
+            `Goresan aksara “${labelLatin}” (${unicodeChar}) sudah tepat dan sesuai pola!`
+          );
+          const koinSoal = catat(labelLatin, true, kunciSoal(tahap.id, itemIndex));
+          if (koinSoal > 0) setKoinSesi((n) => n + koinSoal);
+          const k = kombo + 1;
+          setKombo(k);
+          setKomboMaks((m) => Math.max(m, k));
+          return;
+        }
+        catat(labelLatin, false);
+        setSalah((n) => n + 1);
+        setKombo(0);
+        if (keputusan.status === 'huruf_lain') {
+          setStatusCek('huruf_lain');
+          setPesanDetail(
+            `Tulisanmu terbaca seperti aksara “${keputusan.huruf}”. Hapus lalu ikuti bentuk “${labelLatin}”.`
+          );
+        } else if (keputusan.status === 'melenceng') {
+          setStatusCek('melenceng');
+          setPesanDetail(
+            `Bentuknya sudah mirip “${labelLatin}”, tapi belum mengikuti bayangan panduan. Tulis di atas bayangan aksara.`
+          );
+        } else {
+          setStatusCek('belum_terbaca');
+          setPesanDetail(
+            `Tulisanmu belum terbaca sebagai aksara “${labelLatin}”. Tekan "Hapus" lalu ikuti bayangan panduan dan "Cara menulis".`
+          );
+        }
+        return;
       }
 
-      if ((evalKanvas.benar && !terbacaHurufLain) || modelBenar) {
-        setSkorAkurasi(Math.max(85, evalKanvas.skor || 92));
+      // Bab 2–3 (tanpa kelas Model 1): hanya pencocokan templat, perilaku lama dipertahankan.
+      if (evalKanvas.benar) {
+        setSkorAkurasi(evalKanvas.skor);
         setStatusCek('benar');
         setPesanDetail(
           `Goresan aksara “${labelLatin}” (${unicodeChar}) sudah tepat dan sesuai pola!`
@@ -540,14 +584,6 @@ export function LatihanPage() {
         const k = kombo + 1;
         setKombo(k);
         setKomboMaks((m) => Math.max(m, k));
-      } else if (terbacaHurufLain) {
-        catat(labelLatin, false);
-        setSalah((n) => n + 1);
-        setKombo(0);
-        setStatusCek('huruf_lain');
-        setPesanDetail(
-          `Tulisanmu terbaca seperti aksara “${terbacaHurufLain}”. Hapus lalu ikuti bentuk “${labelLatin}”.`
-        );
       } else {
         catat(labelLatin, false);
         setSalah((n) => n + 1);
@@ -894,7 +930,9 @@ export function LatihanPage() {
                     ? 'Latihan berikutnya'
                     : 'Selesaikan tahap'
                   : sedangMengecek
-                  ? 'Memeriksa tulisan...'
+                  ? targetKode && !modelSiap
+                    ? 'Menyiapkan pemeriksa...'
+                    : 'Memeriksa tulisan...'
                   : 'Periksa tulisan'}
               </span>
               <span>→</span>

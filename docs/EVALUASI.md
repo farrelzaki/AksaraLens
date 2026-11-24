@@ -47,6 +47,34 @@ Keterbatasan:
 
 Keputusan ambang tetap milik Farrel (batas 8 Nov, `docs/ARSITEKTUR.md` bagian 7).
 
+## 2b. Latihan menulis di aplikasi: bug coretan diterima dan ambang sadar-target (24 Nov 2026)
+
+**Bug (laporan Farrel, produksi):** garis diagonal di kanvas "ba" diterima "99% sesuai". Diuji di dev server (Chromium,
+layar 390x844, dpr 2,75; `scripts/uji_latihan/coret.cjs`): 6 jenis coretan x 3 = 18; CNN menolak **18/18**, tetapi
+aplikasi meluluskan **12/18** (diagonal, silang, lingkaran, zigzag; garis datar/tegak tertolak oleh cek rasio aspek).
+Penyebab: sejak `6a024c5` (18 Nov) `LatihanPage` meluluskan bila pencocokan templat lulus, walau CNN menjawab "belum
+terbaca"; templat menormalkan tinta ke kotak yang sama + dilasi lebar, sehingga coretan yang melintasi kotak huruf
+lolos. Persen yang tampil dipaksa >= 85 (`Math.max(85, ...)`), dan "25% bagian aksara" adalah angka tetap.
+
+**Perbaikan (PR fix/latihan-keputusan-cnn):** `putuskanLatihan()` (fungsi murni, dites) — Bab 1 lulus hanya bila CNN
+membaca huruf target; templat hanya penjaga tambahan (recall >= 0,36); model gagal dimuat -> minta coba lagi, bukan
+lulus; skor = keyakinan CNN. Bab 2–3 (tanpa kelas Model 1, non-goal PRD) tidak diubah.
+
+**Ambang sadar-target (usulan, menunggu Farrel):** tulisan yang menjiplak panduan (kerangka Noto Sans Javanese x 8
+variasi tangan, 20 huruf = 160) vs 600 coretan acak (garis, silang, elips, zigzag, kurva acak, 3 garis), diterima bila
+tebakan teratas = target dan p >= t (`scripts/uji_latihan/ambang.cjs`):
+
+| t | Jiplakan diterima | Huruf lemah (< 6/8) | Coretan lolos (target mana pun) |
+| --- | --- | --- | --- |
+| 0,7 (keputusan 19 Okt) | 131/160 = 82% | pa 5, dha 5, ba 1, nga 0 | 0/600 |
+| 0,6 | 136/160 = 85% | dha 5, ba 2, nga 1 | 0/600 |
+| **0,5 (usulan)** | **145/160 = 91%** | dha 5, ba 5, nga 4 | **0/600** |
+| 0,4 | 152/160 = 95% | ba 5, nga 5 | 2/600 |
+
+Pada ba dan nga CNN menebak benar (peringkat 1 di 7/8) tetapi kurang yakin (0,24–0,77). Huruf lain tetap butuh 0,7.
+UI setelah perbaikan + t = 0,5: coretan 0/12 lulus, jiplakan 11/12 (gagal: nga besar). Batas bukti: jiplakan sintetis,
+bukan tulisan tangan nyata; perlu dicek dengan tulisan kanvas teman (sekitar 5 per huruf).
+
 ## 3. Scanner pada foto nyata (Set C)
 
 Ulangi dengan `scripts/uji_set_c.py` dan `scripts/uji_nusa.py`. Rencana dan target: `docs/RENCANA_SCANNER_CERDAS.md`.
